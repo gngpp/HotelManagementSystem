@@ -59,7 +59,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
-            <Button fx:id="registerUser" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textFill="WHITE">
+            <Button fx:id="signIn" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

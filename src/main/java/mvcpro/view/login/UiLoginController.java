@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import mvcpro.view.messagebox.UiMessageBox;
 
 import java.util.Optional;
 
@@ -26,8 +27,10 @@ public class UiLoginController {
 
     private UiMainFrame uiMainFrame;
 
+    private UiMessageBox uiMessageBox;
+
     @FXML
-    private Button registerUser;
+    private Button signIn;
 
     @FXML
     private TextField loginID;
@@ -43,6 +46,7 @@ public class UiLoginController {
 
     @FXML
     private ChoiceBox selectUserType;
+
 
 
     public void setLoginStage(Stage loginStage){
@@ -61,9 +65,8 @@ public class UiLoginController {
                 return;
             }
         }
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Your account number or password is incorrect！");
-        alert.show();
+        uiMessageBox.showMessageBox("Confirmation Dialog","Your account number or password is incorrect！");
+
     }
 
     @FXML
@@ -95,11 +98,15 @@ public class UiLoginController {
     void initialize() {
         mainStage=new Stage();
         uiMainFrame=new UiMainFrame();
+        uiMessageBox=new UiMessageBox();
+
+
+
         alert=new Alert(Alert.AlertType.CONFIRMATION);
         selectUserType.getItems().addAll("学生","管理员");
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));
-        registerUser.setFont(new Font("System",13));
+        signIn.setFont(new Font("System",13));
 
 
     }
