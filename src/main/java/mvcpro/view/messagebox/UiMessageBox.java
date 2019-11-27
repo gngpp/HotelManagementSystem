@@ -1,6 +1,7 @@
 package mvcpro.view.messagebox;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -16,16 +17,26 @@ import javafx.stage.StageStyle;
 
 public class UiMessageBox{
 
-    private static String title;
-    private static String text;
-    private static Stage newStage=new Stage();
+    private static Stage newStage;
     private static Scene scene;
+    private static UiMessageBoxController uiMessageBoxController;
     private double lastx_distance,lasty_distance;
 
-    public UiMessageBox(){
+    {
         try{
+            newStage=new Stage();
+            //
+            //获取控制类对象
+            //
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_messagebox_layout.fxml"));
+            Pane root =loader.load();
 
-            Pane root =FXMLLoader.load((getClass().getResource("/ui_messagebox_layout.fxml")));
+            //
+            //获取控制类对象引用
+            //
+            UiMessageBox.uiMessageBoxController=loader.getController();
+            uiMessageBoxController.setUiMessageBox(newStage);
+
             //
             //设置背景颜色
             //
@@ -66,25 +77,9 @@ public class UiMessageBox{
         }
     }
 
-    public  String getTitle() {
-        return title;
-    }
-
-    public  void setTitle(String title) {
-        UiMessageBox.title = title;
-    }
-
-    public  String getText() {
-        return text;
-    }
-
-    public  void setText(String text) {
-        UiMessageBox.text = text;
-    }
-
-    public void showMessageBox(String newTitle, String newText){
-        UiMessageBox.text=newText;
-        UiMessageBox.title=newTitle;
+    public static void showMessageBox(String newTitle, String newText){
+        uiMessageBoxController.getText().setText(newText);
+        uiMessageBoxController.getTitle().setText(newTitle);
         newStage.show();
     }
 

@@ -9,14 +9,16 @@
 
 <AnchorPane prefHeight="160.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.view.messagebox.UiMessageBoxController">
    <children>
-      <Button layoutX="218.0" layoutY="4.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="26.0" styleClass="btn_exit" stylesheets="@ui_messagebox_style.css" text="×" textFill="#fcfafa">
+      <Button fx:id="exit" layoutX="218.0" layoutY="4.0" mnemonicParsing="false" onAction="#messageBoxExit" prefHeight="29.0" prefWidth="26.0" styleClass="btn_exit" stylesheets="@ui_messagebox_style.css" text="×" textFill="#fcfafa">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="143.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="btn" stylesheets="@ui_messagebox_style.css" text="确认" textFill="#f8f6f6" />
-      <Button layoutX="199.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" styleClass="btn" stylesheets="@ui_messagebox_style.css" text="取消" textFill="WHITE" />
-      <Label fx:id="title" layoutX="9.0" layoutY="6.0" prefHeight="38.0" prefWidth="196.0" text="Label" textFill="#fffefe" />
-      <Label fx:id="text" contentDisplay="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="38.0" prefWidth="240.0" text="Label" textAlignment="CENTER" textFill="#fff9f9" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <Button fx:id="check" layoutX="198.0" layoutY="129.0" mnemonicParsing="false" onAction="#messageBoxCheck" prefHeight="25.0" prefWidth="50.0" styleClass="btn" stylesheets="@ui_messagebox_style.css" text="确认" textFill="#f8f6f6" />
+      <Label fx:id="title" layoutX="9.0" layoutY="6.0" prefHeight="41.0" prefWidth="196.0" text="Label" textFill="#fffefe" />
+      <Label fx:id="text" contentDisplay="CENTER" layoutX="10.0" layoutY="65.0" prefHeight="60.0" prefWidth="240.0" text="Label" textAlignment="CENTER" textFill="#fff9f9" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
    </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
 </AnchorPane>
