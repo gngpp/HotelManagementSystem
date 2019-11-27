@@ -5,7 +5,7 @@ import com.lqing.orm.internal.conf.anno.AnnotationTable;
 import com.lqing.orm.internal.entity.DefaultEntity;
 
 
-@AnnotationTable(table = "user", clazz = User.class)
+@AnnotationTable(table = "users", clazz = User.class)
 public class User extends DefaultEntity {
     @AnnotationField(col_name = "id", sql_type = "varchar",
             size = 20, field_name = "id", java_type = "String",
