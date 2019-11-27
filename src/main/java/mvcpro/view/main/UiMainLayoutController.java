@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class UiMainLayoutController {
@@ -14,19 +15,20 @@ public class UiMainLayoutController {
     private Button add;
 
     @FXML
-    private Button mainMinimize;
-
-    @FXML
-    private Button brower;
-
-    @FXML
     private Button update;
 
     @FXML
     private Button delete;
 
     @FXML
+    private Button mainMinimize;
+
+    @FXML
+    private Button browse;
+
+    @FXML
     private Button mainExit;
+
     @FXML
     void CheckAdd(ActionEvent event) {
         System.out.println("add");
@@ -57,15 +59,21 @@ public class UiMainLayoutController {
         mainStage.setIconified(true);
     }
 
-
-    @FXML
-    void initialize() {
-
-    }
-
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
     }
+
+    @FXML
+    void initialize() {
+        update.setFont(new Font("System", 13));
+        delete.setFont(new Font("System", 13));
+        add.setFont(new Font("System", 13));
+        browse.setFont(new Font("System",13));
+        mainExit.setFont(new Font("System", 13));
+        mainMinimize.setFont(new Font("System",13));
+    }
+
+
 }
 
 

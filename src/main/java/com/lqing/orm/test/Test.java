@@ -9,9 +9,6 @@ import com.lqing.orm.utils.PkgScanner;
 import java.io.IOException;
 
 class StudentDao extends SimpleDaoImpl<Student>{
-    StudentDao(){
-        super();
-    }
 
 }
 
@@ -19,6 +16,10 @@ public class Test {
     public static void main(String[] args) {
         StudentDao dao = new StudentDao();
         try {
+
+            System.out.println(dao.load(111));
+            for (Student student:dao.list())
+                System.out.println(student);
             // 获取所有
             dao.list().forEach(System.out::println);
 
@@ -27,7 +28,7 @@ public class Test {
 
 
             // 更新
-            Student load = dao.load(3);
+            Student load = dao.load(110);
             load.setName("我");
             dao.update(load);
 

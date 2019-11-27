@@ -1,8 +1,12 @@
 .btn{
-    -fx-background-radius:0px;
-    -fx-background-color: rgba(37,37,38,1);
-    -fx-border-width: 1;
-    -fx-border-color:rgba(63,63,70,1);
+    -fx-background-radius:5px;
+    -fx-background-color: rgba(0, 0, 0, 0.93);
+}
+
+.btn:pressed{
+    -fx-background-color: rgba(28, 104, 133, 0.7);
+    -fx-border-width: 0;
+    -fx-text-fill: white;
 }
 .btn_exit{
     -fx-background-radius:5px;
@@ -15,10 +19,13 @@
     -fx-text-fill: white;
 }
 
+
 .btn:hover{
     -fx-border-color: rgba(0,122,204,1);
-    -fx-background-color: rgba(63, 63, 70, 1);
+    -fx-background-color: rgba(28, 104, 133, 0.7);
+    -fx-border-width: 0;
     -fx-text-fill: white;
+
 }
 
 .frame{

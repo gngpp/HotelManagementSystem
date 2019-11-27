@@ -73,11 +73,7 @@ public class SimpleDaoImpl<T extends IEntity> extends AbstractDao implements IDa
         AbstractQuery query = super.load(info.tbl_name,
                 info.pk,
                 id);
-        ResultSet rs = (ResultSet) query.query_unique(null);
-        assert rs != null;
-        T v = (T) converter.convert(rs);
-        query.close();
-        return v;
+        return (T)query.query_unique(converter);
     }
 
     @Override

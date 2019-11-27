@@ -1,6 +1,7 @@
 package mvcpro.view.login;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.scene.text.Font;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
@@ -26,6 +27,9 @@ public class UiLoginController {
     private UiMainFrame uiMainFrame;
 
     @FXML
+    private Button registerUser;
+
+    @FXML
     private TextField loginID;
 
     @FXML
@@ -35,10 +39,11 @@ public class UiLoginController {
     private PasswordField loginPassword;
 
     @FXML
-    private Button loginMinimize;
+    private Button loginCheck;
 
     @FXML
-    private Button loginCheck;
+    private ChoiceBox selectUserType;
+
 
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
@@ -47,6 +52,7 @@ public class UiLoginController {
     @FXML
     void LoginCheckEvent(ActionEvent event) throws Exception {
 
+        userDao=new UserDao();
         for (User user :userDao.list()) {
             if (loginID.getText().equals(user.getId())&&
                     loginPassword.getText().equals(user.getPassword())) {
@@ -87,12 +93,14 @@ public class UiLoginController {
 
     @FXML
     void initialize() {
-        userDao=new UserDao();
         mainStage=new Stage();
         uiMainFrame=new UiMainFrame();
         alert=new Alert(Alert.AlertType.CONFIRMATION);
+        selectUserType.getItems().addAll("学生","管理员");
         image.screenToLocal(20,20);
-       loginCheck.setFont(new Font("System", 13));
+        loginCheck.setFont(new Font("System", 13));
+        registerUser.setFont(new Font("System",13));
+
 
     }
 
