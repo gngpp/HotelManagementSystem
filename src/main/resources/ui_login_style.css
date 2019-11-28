@@ -1,6 +1,6 @@
 .btn{
     -fx-background-radius:5px;
-    -fx-background-color: rgba(19, 19, 20, 0.86);
+    -fx-background-color: rgba(0, 0, 0, 0.86);
 }
 .btn_exit{
     -fx-background-radius:5px;
@@ -15,6 +15,10 @@
 }
 
 .btn:hover{
+    -fx-border-color: rgba(0,122,204,1);
+    -fx-background-color: rgba(28, 104, 133, 0.7);
+    -fx-border-width: 0;
+    -fx-text-fill: white;
     -fx-border-color: rgba(0,122,204,1);
     -fx-background-color: rgba(28, 104, 133, 0.7);
     -fx-border-width: 0;

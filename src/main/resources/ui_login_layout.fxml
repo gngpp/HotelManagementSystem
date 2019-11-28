@@ -26,10 +26,13 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></PasswordField>
-            <Button fx:id="loginCheck" defaultButton="true" focusTraversable="false" layoutX="56.0" layoutY="257.0" mnemonicParsing="false" onAction="#LoginCheckEvent" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="登录" textFill="#ebeaea" wrapText="true">
+            <Button fx:id="loginCheck" defaultButton="true" focusTraversable="false" layoutX="56.0" layoutY="257.0" mnemonicParsing="false" onAction="#LoginCheckEvent" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="登录" textFill="#dad8d8" wrapText="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <effect>
+                  <ColorAdjust />
+               </effect></Button>
             <Button fx:id="loginMinimize" layoutX="175.0" layoutY="3.0" mnemonicParsing="false" onAction="#loginCheckMinimize" prefHeight="27.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="-" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -59,10 +62,13 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
-            <Button fx:id="signIn" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textFill="WHITE">
+            <Button fx:id="signIn" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textFill="#dddada">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <effect>
+                  <ColorAdjust />
+               </effect></Button>
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />

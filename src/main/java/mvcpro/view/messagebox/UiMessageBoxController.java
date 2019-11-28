@@ -19,14 +19,13 @@ public class UiMessageBoxController implements Initializable {
     @FXML
     private Label title;
 
-
     @FXML
     private Button exit;
 
     @FXML
     private Button check;
 
-    private Stage uiMessageBox;
+    private static Stage uiMessageBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

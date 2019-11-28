@@ -71,8 +71,7 @@ public class UiLoginController {
 
     @FXML
     void LoginExitEvent(ActionEvent event){
-
-        uiMessageBox.showMessageBox("Confirmation Dialog","Sure you want to exit?");
+        Platform.exit();
     }
 
     @FXML
