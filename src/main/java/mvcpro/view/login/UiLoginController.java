@@ -3,6 +3,7 @@ package mvcpro.view.login;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
 import mvcpro.view.main.UiMainFrame;
@@ -22,8 +23,6 @@ public class UiLoginController {
     private Stage loginStage;
 
     private Stage mainStage;
-
-    private Alert alert;
 
     private UiMainFrame uiMainFrame;
 
@@ -56,7 +55,6 @@ public class UiLoginController {
     @FXML
     void LoginCheckEvent(ActionEvent event) throws Exception {
 
-        userDao=new UserDao();
         for (User user :userDao.list()) {
             if (loginID.getText().equals(user.getId())&&
                     loginPassword.getText().equals(user.getPassword())) {
@@ -65,28 +63,16 @@ public class UiLoginController {
                 return;
             }
         }
+
         uiMessageBox.showMessageBox("Confirmation Dialog","Your account number or password is incorrect！");
+
 
     }
 
     @FXML
     void LoginExitEvent(ActionEvent event){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                alert.setGraphic(new ImageView(getClass().getResource("/png/confirmation.png").toString()));
-                alert.setTitle("Confirmation Dialog");
-                alert.setHeaderText("Lock,a Confirmation Dialog");
-                alert.setContentText("Sure you want to exit?");
-                Optional<ButtonType> result=alert.showAndWait();
-                if(result.isPresent()&&result.get()==ButtonType.OK){
-                    Platform.exit();
-                }else {
-                    return;
-                }
-            }
-        });
 
+        uiMessageBox.showMessageBox("Confirmation Dialog","Sure you want to exit?");
     }
 
     @FXML
@@ -99,10 +85,9 @@ public class UiLoginController {
         mainStage=new Stage();
         uiMainFrame=new UiMainFrame();
         uiMessageBox=new UiMessageBox();
+        userDao=new UserDao();
 
-
-
-        alert=new Alert(Alert.AlertType.CONFIRMATION);
+        uiMessageBox.setModality(Modality.APPLICATION_MODAL);
         selectUserType.getItems().addAll("学生","管理员");
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));

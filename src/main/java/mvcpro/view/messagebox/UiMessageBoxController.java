@@ -44,8 +44,6 @@ public class UiMessageBoxController implements Initializable {
         uiMessageBox.close();
     }
 
-
-
     public Label getText() {
         return text;
     }
