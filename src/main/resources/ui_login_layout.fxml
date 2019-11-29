@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
@@ -14,10 +15,13 @@
    <children>
       <Pane layoutY="1.0" prefHeight="369.0" prefWidth="232.0">
          <children>
-            <Button fx:id="loginExit" cancelButton="true" layoutX="204.0" layoutY="3.0" mnemonicParsing="false" onAction="#LoginExitEvent" prefHeight="27.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="x" textFill="#e8e2e2">
+            <Button fx:id="loginExit" cancelButton="true" focusTraversable="false" layoutX="202.0" layoutY="4.0" mnemonicParsing="false" onAction="#LoginExitEvent" prefHeight="12.0" prefWidth="12.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="x" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis></Button>
             <TextField fx:id="loginID" layoutX="46.0" layoutY="173.0" prefHeight="27.0" prefWidth="143.0" promptText="账号" styleClass="txf_username" stylesheets="@ui_login_style.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -26,17 +30,20 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></PasswordField>
-            <Button fx:id="loginCheck" defaultButton="true" focusTraversable="false" layoutX="56.0" layoutY="257.0" mnemonicParsing="false" onAction="#LoginCheckEvent" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="登录" textFill="#dad8d8" wrapText="true">
+            <Button fx:id="loginCheck" defaultButton="true" focusTraversable="false" layoutX="56.0" layoutY="257.0" mnemonicParsing="false" onAction="#LoginCheckEvent" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="登录" textAlignment="JUSTIFY" textFill="#dad8d8" wrapText="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <effect>
                   <ColorAdjust />
                </effect></Button>
-            <Button fx:id="loginMinimize" layoutX="175.0" layoutY="3.0" mnemonicParsing="false" onAction="#loginCheckMinimize" prefHeight="27.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="-" textFill="WHITE">
+            <Button fx:id="loginMinimize" focusTraversable="false" graphicTextGap="0.0" layoutX="173.0" layoutY="4.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginCheckMinimize" prefHeight="12.0" prefWidth="12.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="-" textAlignment="CENTER" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis></Button>
             <ImageView fx:id="image" disable="true" fitHeight="142.0" fitWidth="123.0" layoutX="56.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/icons8-gender_neutral_user.png" />
@@ -55,20 +62,25 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ChoiceBox fx:id="selectUserType" layoutX="73.0" layoutY="297.0" prefHeight="23.0" prefWidth="90.0" styleClass="btn" stylesheets="@ui_login_style.css">
+            <ChoiceBox fx:id="selectUserType" layoutX="56.0" layoutY="296.0" prefHeight="27.0" prefWidth="123.0" styleClass="btn" stylesheets="@ui_login_style.css">
                <effect>
                   <Blend />
                </effect>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
-            <Button fx:id="signIn" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textFill="#dddada">
+            <Button fx:id="signIn" focusTraversable="false" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textAlignment="JUSTIFY" textFill="#dddada">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <effect>
                   <ColorAdjust />
                </effect></Button>
+            <ImageView fitHeight="15.0" fitWidth="59.0" layoutX="159.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@png/Traffic%20Lights.png" />
+               </image>
+            </ImageView>
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />

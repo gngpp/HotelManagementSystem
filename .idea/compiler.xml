@@ -9,6 +9,7 @@
         <module name="fx-6" />
         <module name="fx-5" />
         <module name="orm" />
+        <module name="fx-8" />
       </profile>
     </annotationProcessing>
   </component>

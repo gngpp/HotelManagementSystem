@@ -1,7 +1,12 @@
 package mvcpro.view.login;
 
+import com.sun.deploy.security.SelectableSecurityManager;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import mvcpro.model.entity.User;
@@ -44,9 +49,10 @@ public class UiLoginController {
     private Button loginCheck;
 
     @FXML
+    private Button loginExit;
+
+    @FXML
     private ChoiceBox selectUserType;
-
-
 
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
@@ -91,8 +97,26 @@ public class UiLoginController {
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));
         signIn.setFont(new Font("System",13));
-
-
+        loginExit.hoverProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                if (loginExit.isHover())
+                loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
+                else
+                    loginExit.setGraphic(null);
+            }
+        });
+        
+        
+//        loginExit.setOnMouseEntered((new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                    if(loginExit.isHover()){
+//                   //     loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
+//                    }
+//
+//            }
+//        }));
     }
 
 
