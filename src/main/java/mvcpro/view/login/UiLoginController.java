@@ -97,6 +97,7 @@ public class UiLoginController {
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));
         signIn.setFont(new Font("System",13));
+
         loginExit.hoverProperty().addListener(new InvalidationListener() {
             @Override
             public void invalidated(Observable observable) {

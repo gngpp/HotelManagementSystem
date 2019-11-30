@@ -76,11 +76,6 @@
                <effect>
                   <ColorAdjust />
                </effect></Button>
-            <ImageView fitHeight="15.0" fitWidth="59.0" layoutX="159.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@png/Traffic%20Lights.png" />
-               </image>
-            </ImageView>
          </children>
          <cursor>
             <Cursor fx:constant="HAND" />
