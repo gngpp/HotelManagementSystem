@@ -51,7 +51,7 @@ public class UiLogin extends Application {
         scene.setFill(Paint.valueOf("#FFFFFF00"));
         loginStage.initStyle(StageStyle.TRANSPARENT);
         loginStage.setScene(scene);
-        loginStage.getIcons().add(new Image(UiLogin.class.getResource("/png/confirmation.png").toExternalForm()));
+        loginStage.getIcons().add(new Image(UiLogin.class.getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         loginStage.show();
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
