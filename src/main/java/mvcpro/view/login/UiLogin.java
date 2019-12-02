@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -52,6 +53,7 @@ public class UiLogin extends Application {
         scene.setFill(Paint.valueOf("#FFFFFF00"));
         loginStage.initStyle(StageStyle.TRANSPARENT);
         loginStage.setScene(scene);
+        loginStage.getIcons().add(new Image(UiLogin.class.getResource("/png/confirmation.png").toExternalForm()));
         loginStage.show();
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
