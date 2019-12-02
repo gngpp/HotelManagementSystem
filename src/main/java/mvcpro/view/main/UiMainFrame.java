@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -42,6 +43,7 @@ public class UiMainFrame extends Application {
         scene.getStylesheets().add(getClass().getResource("/ui_main_style.css").toExternalForm());
 
         scene.setFill(Paint.valueOf("#FFFFFF00"));
+        mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);
         mainStage.show();
