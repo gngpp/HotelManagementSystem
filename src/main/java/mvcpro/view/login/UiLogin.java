@@ -1,5 +1,4 @@
 package mvcpro.view.login;
-
 import com.sun.org.apache.regexp.internal.RE;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -16,7 +15,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-//登录使用单列模式
 public class UiLogin extends Application {
 
     private double lastx_distance;

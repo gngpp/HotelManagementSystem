@@ -98,15 +98,15 @@ public class UiLoginController {
         loginCheck.setFont(new Font("System", 13));
         signIn.setFont(new Font("System",13));
 
-        loginExit.hoverProperty().addListener(new InvalidationListener() {
-            @Override
-            public void invalidated(Observable observable) {
-                if (loginExit.isHover())
-                loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
-                else
-                    loginExit.setGraphic(null);
-            }
-        });
+//        loginExit.hoverProperty().addListener(new InvalidationListener() {
+//            @Override
+//            public void invalidated(Observable observable) {
+//                if (loginExit.isHover())
+//                loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
+//                else
+//                    loginExit.setGraphic(null);
+//            }
+//        });
         
         
 //        loginExit.setOnMouseEntered((new EventHandler<MouseEvent>() {

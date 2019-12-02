@@ -59,7 +59,7 @@
                   </Lighting>
                </effect>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
             <ChoiceBox fx:id="selectUserType" layoutX="56.0" layoutY="296.0" prefHeight="27.0" prefWidth="123.0" styleClass="btn" stylesheets="@ui_login_style.css">
@@ -78,7 +78,7 @@
                </effect></Button>
          </children>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Pane>
    </children>
