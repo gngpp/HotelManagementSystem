@@ -15,7 +15,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-//使用单列模式
+
 public class UiMainFrame extends Application {
 
     private double lastx_distance;
