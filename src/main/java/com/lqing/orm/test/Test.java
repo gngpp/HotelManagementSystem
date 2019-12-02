@@ -22,7 +22,6 @@ public class Test {
                 System.out.println(student);
             // 获取所有
             dao.list().forEach(System.out::println);
-
             // 根据id查询
             System.out.println(dao.load(2));
 
@@ -31,7 +30,7 @@ public class Test {
             Student load = dao.load(110);
             load.setName("我");
             dao.update(load);
-
+            System.out.println(load.info());
             // 获取所有
             dao.list().forEach(System.out::println);
 

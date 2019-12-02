@@ -64,6 +64,7 @@ public class UiLoginController {
         for (User user :userDao.list()) {
             if (loginID.getText().equals(user.getId())&&
                     loginPassword.getText().equals(user.getPassword())) {
+                System.out.println(user.info());
                 loginStage.hide();
                 uiMainFrame.start(mainStage);
                 return;
