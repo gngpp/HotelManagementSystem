@@ -17,6 +17,19 @@ public class User extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private String password;
 
+    @AnnotationField(col_name = "userType", sql_type = "Integer",
+            size = 1, field_name = "userType", java_type = "Integer",
+            is_autoincrement = false, is_primary_key = false)
+    private Integer userType;
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+    }
+
     public String getId() {
         return id;
     }
@@ -36,8 +49,9 @@ public class User extends DefaultEntity {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
+                "id='" + id +
+                "', password='" + password + '\'' +
+                ",userType='"+userType+
                 '}';
     }
 }

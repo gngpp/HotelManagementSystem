@@ -6,6 +6,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
@@ -54,25 +55,26 @@ public class UiLoginController {
     @FXML
     private ChoiceBox selectUserType;
 
+    private Integer userType=0;
+
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
     }
 
     @FXML
     void LoginCheckEvent(ActionEvent event) throws Exception {
-
-        for (User user :userDao.list()) {
-            if (loginID.getText().equals(user.getId())&&
-                    loginPassword.getText().equals(user.getPassword())) {
-                System.out.println(user.info());
-                loginStage.hide();
-                uiMainFrame.start(mainStage);
-                return;
-            }
-        }
-
-        uiMessageBox.showMessageBox("Confirmation Dialog","Your account number or password is incorrect！");
-
+        userDao.list().forEach(System.out::println);
+         for (User user :userDao.list()) {
+             if (loginID.getText().equals(user.getId())&&
+                     loginPassword.getText().equals(user.getPassword())&&
+                     userType==user.getUserType()) {
+                 System.out.println(user.info());
+                 loginStage.hide();
+                 uiMainFrame.start(mainStage);
+                 return;
+             }
+         }
+         uiMessageBox.showMessageBox("Confirmation Dialog","Your account number or password is incorrect！");
 
     }
 
@@ -92,33 +94,35 @@ public class UiLoginController {
         uiMainFrame=new UiMainFrame();
         uiMessageBox=new UiMessageBox();
         userDao=new UserDao();
-
         uiMessageBox.setModality(Modality.APPLICATION_MODAL);
         selectUserType.getItems().addAll("学生","管理员");
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));
         signIn.setFont(new Font("System",13));
+        selectUserType.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        switch(selectUserType.getValue().toString()){
+                            case "管理员":
+                                userType=1;
+                                break;
+                            case "学生":
+                                userType=0;
+                                break;
+                            default:
+                                userType=0;
+                                break;
+                        }
+                        System.out.println(userType);
+                    }
+                }).start();
 
-//        loginExit.hoverProperty().addListener(new InvalidationListener() {
-//            @Override
-//            public void invalidated(Observable observable) {
-//                if (loginExit.isHover())
-//                loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
-//                else
-//                    loginExit.setGraphic(null);
-//            }
-//        });
-        
-        
-//        loginExit.setOnMouseEntered((new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                    if(loginExit.isHover()){
-//                   //     loginExit.setGraphic(new ImageView("/png/Traffic Lights.png"));
-//                    }
-//
-//            }
-//        }));
+            }
+        });
+
     }
 
 
