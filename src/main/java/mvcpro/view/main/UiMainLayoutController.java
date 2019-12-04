@@ -64,6 +64,11 @@ public class UiMainLayoutController {
     }
 
     @FXML
+    void systemClose(ActionEvent event){
+        Platform.exit();
+    }
+
+    @FXML
     void initialize() {
         update.setFont(new Font("System", 13));
         delete.setFont(new Font("System", 13));
@@ -75,6 +80,7 @@ public class UiMainLayoutController {
 
 
 }
+
 
 
 

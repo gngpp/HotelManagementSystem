@@ -117,7 +117,7 @@ public class UiLoginController {
                                 userType=0;
                                 break;
                             default:
-                                userType=0;
+                                userType=3;
                                 break;
                         }
                         System.out.println(userType);
