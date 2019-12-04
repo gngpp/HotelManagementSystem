@@ -23,7 +23,6 @@ public class UiMessageBox{
     private  Scene scene;
     private UiMessageBoxController uiMessageBoxController;
     private double lastx_distance,lasty_distance;
-
     public  UiMessageBox(){
         init();
     }
@@ -48,7 +47,7 @@ public class UiMessageBox{
                 Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
                 root.setBackground(bg);
 
-                scene=new Scene(root, 228, 142);
+                scene=new Scene(root, 275, 142);
 
                 //
                 //加载CSS文件

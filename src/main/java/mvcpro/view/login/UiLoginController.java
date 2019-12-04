@@ -55,7 +55,7 @@ public class UiLoginController {
     @FXML
     private ChoiceBox selectUserType;
 
-    private Integer userType=0;
+    private Integer userType=3;
 
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
@@ -63,6 +63,7 @@ public class UiLoginController {
 
     @FXML
     void LoginCheckEvent(ActionEvent event) throws Exception {
+
         userDao.list().forEach(System.out::println);
          for (User user :userDao.list()) {
              if (loginID.getText().equals(user.getId())&&
@@ -74,7 +75,10 @@ public class UiLoginController {
                  return;
              }
          }
-         uiMessageBox.showMessageBox("Confirmation Dialog","Your account number or password is incorrect！");
+         if(userType==3)
+             uiMessageBox.showMessageBox("Confirmation Dialog","Please select permission！");
+            else
+             uiMessageBox.showMessageBox("Confirmation Dialog","Your account or password is incorrect！");
 
     }
 
