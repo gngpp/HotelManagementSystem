@@ -30,12 +30,13 @@
 
 .frame{
     -fx-background-color: #28282855;
+    -fx-background-radius:7px;
 }
 
 
 .txf_username{
     -fx-border-width: 0px;
-    -fx-background-radius:0px;
+    -fx-background-radius:7px;
     -fx-border-color:rgba(63,63,70,1);
     -fx-background-color: rgba(51, 51, 55, 0.22);
     -fx-text-fill: white ;
@@ -55,11 +56,11 @@
 
 .tab-header-background{
     -fx-background-color: #282828BF;
+
 }
 
 .tab{
     -fx-background-color: #282828BF;
-
 }
 
 .tab-content-area{
@@ -72,9 +73,13 @@
 .table_Ktrdata{
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
-    -fx-background-radius: 7px;
 }
-
+.table-column{
+    -fx-background-color: rgba(0, 0, 0, 1);
+}
+.table-header-background{
+    -fx-background-color: rgba(0, 0, 0, 0.99);
+}
 .table-row-cell,.table-cell {
     -fx-text-fill: #000000;
     -fx-background-color: #282828BF;
@@ -82,18 +87,31 @@
     -fx-alignment: center   ;
     -fx-background-radius: 7px;
 }
+.tabel-column-header{
+    -fx-background-color: rgba(0, 0, 0, 0.97);
+}
 .table-row-cell:selected .table-cell {
     -fx-background-color: #000000aa;
     -fx-background-radius: 7px;
 }
 
-.table-column{
-    -fx-background-color: rgb(32, 32, 32);
-}
-
 .tool-bar{
     -fx-background-color: rgba(40, 40, 40, 0);
 }
-.menu-bar{
-    -fx-background-color: #282828BF;
+.menu{
+    -fx-text-fill: rgb(255, 255, 255);
 }
+.menu-bar{
+    -fx-background-color: rgba(40, 40, 40, 0.9);
+}
+.menu-item{
+    -fx-background-color: rgba(97, 97, 97, 0.43);
+}
+.menu-button{
+    -fx-background-color: rgba(0, 0, 0, 0.97);
+    -fx-highlight-fill: green;
+}
+.menu-button-label{
+     -fx-background-color: rgba(255, 255, 255, 0.75);
+     -fx-text-fill: rgba(255, 255, 255, 0.75);
+ }

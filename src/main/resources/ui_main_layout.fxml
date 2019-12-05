@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.input.*?>
 <?import com.jfoenix.svg.*?>
 <?import com.jfoenix.controls.*?>
 <?import org.controlsfx.control.tableview2.*?>
@@ -27,7 +28,7 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
-            <TabPane layoutY="53.0" prefHeight="459.0" prefWidth="887.0" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="56.0" prefHeight="470.0" prefWidth="887.0" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="住户管理">
                      <content>
@@ -35,17 +36,17 @@
                            <children>
                               <TableView layoutX="-4.0" layoutY="35.0" prefHeight="401.0" prefWidth="894.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
                                 <columns>
-                                  <TableColumn prefWidth="55.0" text="住户ID" />
-                                  <TableColumn prefWidth="71.0" text="房间号" />
-                                    <TableColumn prefWidth="61.0" text="房间等级" />
-                                    <TableColumn prefWidth="71.0" text="房间类型" />
-                                    <TableColumn prefWidth="82.0" text="房间备注" />
-                                    <TableColumn prefWidth="59.0" text="区域" />
-                                    <TableColumn prefWidth="137.0" text="入住时间" />
-                                    <TableColumn prefWidth="64.0" text="住户姓名" />
-                                    <TableColumn prefWidth="83.0" text="性别" />
-                                    <TableColumn prefWidth="129.0" text="身份证号" />
-                                    <TableColumn prefWidth="93.0" text="备注" />
+                                  <TableColumn editable="false" prefWidth="55.0" sortable="false" text="住户ID" />
+                                  <TableColumn editable="false" prefWidth="71.0" sortable="false" text="房间号" />
+                                    <TableColumn editable="false" prefWidth="61.0" sortable="false" text="房间等级" />
+                                    <TableColumn editable="false" prefWidth="95.0" sortable="false" text="房间类型" />
+                                    <TableColumn editable="false" prefWidth="70.0" sortable="false" text="区域" />
+                                    <TableColumn editable="false" prefWidth="77.0" sortable="false" text="房间备注" />
+                                    <TableColumn editable="false" prefWidth="112.0" sortable="false" text="入住时间" />
+                                    <TableColumn editable="false" prefWidth="83.0" sortable="false" text="住户姓名" />
+                                    <TableColumn editable="false" prefWidth="63.0" sortable="false" text="性别" />
+                                    <TableColumn editable="false" minWidth="0.0" prefWidth="120.0" sortable="false" text="身份证号" />
+                                    <TableColumn editable="false" prefWidth="86.0" sortable="false" text="备注" />
                                 </columns>
                               </TableView>
                               <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="37.0" prefWidth="887.0">
@@ -64,10 +65,20 @@
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="-4.0" prefHeight="442.0" prefWidth="887.0">
+                              <TableView layoutY="-2.0" prefHeight="442.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="75.0" text="C2" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
+                                    <TableColumn prefWidth="75.0" />
                                 </columns>
                               </TableView>
                            </children></Pane>
@@ -76,27 +87,27 @@
                   <Tab text="用户管理" />
               </tabs>
             </TabPane>
-            <ImageView fitHeight="37.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/logo_main_rename.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="331.0" layoutX="556.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="353.0" layoutX="534.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/logo_main_new.png" />
                </image>
             </ImageView>
-            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="859.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="27.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="856.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="0.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
             </Button>
-            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="822.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="27.0" prefWidth="0.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="825.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="7.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
             </Button>
-            <MenuBar layoutY="24.0" prefHeight="20.0" prefWidth="887.0" stylesheets="@ui_main_style.css">
+            <MenuBar layoutY="30.0" prefHeight="11.0" prefWidth="887.0" stylesheets="@ui_main_style.css">
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
@@ -108,6 +119,9 @@
                   <items>
                     <MenuItem mnemonicParsing="false" text="更改" />
                   </items>
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="BACK_SPACE" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
+                     </accelerator>
                 </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                   <items>
@@ -116,7 +130,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ImageView fitHeight="28.0" fitWidth="401.0" layoutX="299.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="51.0" fitWidth="353.0" layoutX="299.0" pickOnBounds="true" preserveRatio="true" styleClass="frame">
                <image>
                   <Image url="@png/logo_main_new.png" />
                </image>
