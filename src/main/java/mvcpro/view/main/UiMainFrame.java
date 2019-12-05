@@ -32,7 +32,7 @@ public class UiMainFrame extends Application {
         //
         //设置背景颜色
         //
-        Background bg=new Background(new BackgroundFill(Color.valueOf("#FFFFFF00"),new CornerRadii(7),new Insets(0)));
+        Background bg=new Background(new BackgroundFill(Color.valueOf("#00000088"),new CornerRadii(7),new Insets(0)));
         root.setBackground(bg);
         Scene scene=new Scene(root,887,526);
 
