@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.shape.*?>
@@ -19,11 +20,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.view.main.UiMainLayoutController">
+<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainLayoutController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="783.0">
          <children>
-            <TabPane layoutY="39.0" prefHeight="348.0" prefWidth="783.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="57.0" prefHeight="330.0" prefWidth="783.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Tab 1">
                      <content>
@@ -33,6 +34,12 @@
                               <Button fx:id="browse" focusTraversable="false" layoutX="14.0" layoutY="97.0" onAction="#CheckBrower" prefHeight="29.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="查找学生" textFill="WHITE" />
                               <Button fx:id="add" focusTraversable="false" layoutX="14.0" layoutY="143.0" mnemonicParsing="false" onAction="#CheckAdd" prefHeight="29.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="添加学生" textFill="WHITE" />
                               <Button fx:id="update" focusTraversable="false" layoutX="14.0" layoutY="195.0" mnemonicParsing="false" onAction="#CheckUadate" prefHeight="29.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更新信息" textFill="WHITE" />
+                              <TableView layoutX="176.0" layoutY="-3.0" prefHeight="289.0" prefWidth="575.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
                            </children>
                         </Pane>
                      </content>
@@ -54,21 +61,27 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <ToolBar layoutX="716.0" layoutY="1.0" prefHeight="37.0" prefWidth="66.0">
-               <items>
-                  <Button fx:id="mainMinimize" focusTraversable="false" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="27.0" prefWidth="0.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
-                     <effect>
-                        <Blend />
-                     </effect>
-                  </Button>
-                  <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="14.0" prefWidth="13.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
-                     <effect>
-                        <Blend />
-                     </effect>
-                  </Button>
-               </items>
-            </ToolBar>
-            <MenuBar layoutY="1.0" prefHeight="39.0" prefWidth="717.0">
+            <ImageView fitHeight="37.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@png/logo_main_rename.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="329.0" layoutX="455.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@png/logo_main_new.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="746.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="14.0" prefWidth="13.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="713.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="27.0" prefWidth="0.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <MenuBar layoutY="28.0" prefHeight="29.0" prefWidth="783.0" styleClass="txf_username" stylesheets="@ui_main_style.css">
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>

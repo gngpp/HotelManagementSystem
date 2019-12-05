@@ -1,5 +1,4 @@
 package mvcpro.view.login;
-import com.sun.org.apache.regexp.internal.RE;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import mvcpro.controlled.UiLoginController;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package mvcpro.view.main;
+package mvcpro.controlled;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

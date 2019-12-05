@@ -1,4 +1,4 @@
-package mvcpro.view.login;
+package mvcpro.controlled;
 
 import com.sun.deploy.security.SelectableSecurityManager;
 import javafx.application.Platform;

@@ -1,4 +1,4 @@
-package mvcpro.view.messagebox;
+package mvcpro.controlled;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

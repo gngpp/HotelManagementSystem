@@ -1,7 +1,6 @@
 package mvcpro.view.messagebox;
 
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,7 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import mvcpro.view.login.UiLoginController;
+import mvcpro.controlled.UiMessageBoxController;
 
 public class UiMessageBox{
 

@@ -1,4 +1,4 @@
-package mvcpro.view.ru;
+package mvcpro.controlled;
 
 public class SignInController {
 

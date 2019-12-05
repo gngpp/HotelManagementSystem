@@ -12,8 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
-import java.io.IOException;
+import mvcpro.controlled.UiMainLayoutController;
 
 
 public class UiMainFrame extends Application {
