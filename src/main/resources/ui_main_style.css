@@ -1,6 +1,6 @@
 .btn{
     -fx-background-radius:5px;
-    -fx-background-color: rgba(0, 0, 0, 0.93);
+    -fx-background-color: #282828BF;
 }
 
 .btn:pressed{
@@ -49,23 +49,51 @@
     -fx-background-color: rgba(63, 63, 70, 1);
 }
 
+.tab-label{
+    -fx-text-fill: white;
+}
 
-.tab-pane{
-    -fx-column-halignment: 11;
+.tab-header-background{
+    -fx-background-color: #282828BF;
+}
+
+.tab{
+    -fx-background-color: #282828BF;
+
+}
+
+.tab-content-area{
+    -fx-background-color: #282828BF;
+}
+
+.tab-pane * .tab-header-area * .tab-header-background {
+    -fx-background-color: #282828BF;
 }
 .table_Ktrdata{
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
+    -fx-background-radius: 7px;
 }
 
 .table-row-cell,.table-cell {
-
     -fx-text-fill: #000000;
-    -fx-background-color: #28282855;
+    -fx-background-color: #282828BF;
     -fx-font-weight: bold;
-    /*-fx-border-color: transparent;*/
     -fx-alignment: center   ;
+    -fx-background-radius: 7px;
 }
 .table-row-cell:selected .table-cell {
     -fx-background-color: #000000aa;
+    -fx-background-radius: 7px;
+}
+
+.table-column{
+    -fx-background-color: rgb(32, 32, 32);
+}
+
+.tool-bar{
+    -fx-background-color: rgba(40, 40, 40, 0);
+}
+.menu-bar{
+    -fx-background-color: #282828BF;
 }

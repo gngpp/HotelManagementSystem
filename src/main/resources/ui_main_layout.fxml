@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.svg.*?>
+<?import com.jfoenix.controls.*?>
 <?import org.controlsfx.control.tableview2.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -21,15 +23,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox prefHeight="526.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainLayoutController">
+<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainLayoutController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
-            <TabPane layoutY="58.0" prefHeight="468.0" prefWidth="887.0" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="53.0" prefHeight="459.0" prefWidth="887.0" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="住户管理">
                      <content>
-                        <Pane prefHeight="188.0" prefWidth="887.0">
+                        <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
                               <TableView layoutX="-4.0" layoutY="35.0" prefHeight="401.0" prefWidth="894.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
                                 <columns>
@@ -48,10 +50,10 @@
                               </TableView>
                               <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="37.0" prefWidth="887.0">
                                  <items>
-                                    <Button fx:id="add" focusTraversable="false" mnemonicParsing="false" onAction="#CheckAdd" prefHeight="0.0" prefWidth="72.0" stylesheets="@ui_main_style.css" text="添加住户" />
-                                    <Button fx:id="browse" focusTraversable="false" onAction="#CheckBrower" prefHeight="0.0" prefWidth="87.0" stylesheets="@ui_main_style.css" text="删除住户" textFill="#1e1e1e" />
-                                    <Button fx:id="update" focusTraversable="false" mnemonicParsing="false" onAction="#CheckUadate" prefHeight="0.0" prefWidth="78.0" stylesheets="@ui_main_style.css" text="更新住户" />
-                                    <Button fx:id="delete" focusTraversable="false" mnemonicParsing="false" onAction="#CheckDelete" prefHeight="25.0" prefWidth="85.0" stylesheets="@ui_main_style.css" text="查找住户" />
+                                    <Button fx:id="add" focusTraversable="false" mnemonicParsing="false" onAction="#CheckAdd" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="添加住户" textFill="WHITE" />
+                                    <Button fx:id="browse" focusTraversable="false" onAction="#CheckBrower" prefHeight="0.0" prefWidth="87.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除住户" textFill="#f5f3f3" />
+                                    <Button fx:id="update" focusTraversable="false" mnemonicParsing="false" onAction="#CheckUadate" prefHeight="0.0" prefWidth="78.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更新住户" textFill="WHITE" />
+                                    <Button fx:id="delete" focusTraversable="false" mnemonicParsing="false" onAction="#CheckDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btn" stylesheets="@ui_main_style.css" text="查找住户" textFill="WHITE" />
                                  </items>
                               </ToolBar>
                            </children>
@@ -62,7 +64,7 @@
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="33.0" prefHeight="405.0" prefWidth="887.0">
+                              <TableView layoutY="-4.0" prefHeight="442.0" prefWidth="887.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="75.0" text="C2" />
@@ -71,11 +73,7 @@
                            </children></Pane>
                      </content>
                   </Tab>
-                  <Tab text="用户管理">
-                     <content>
-                        <Pane prefHeight="354.0" prefWidth="725.0" />
-                     </content>
-                  </Tab>
+                  <Tab text="用户管理" />
               </tabs>
             </TabPane>
             <ImageView fitHeight="37.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
@@ -98,7 +96,7 @@
                   <Blend />
                </effect>
             </Button>
-            <MenuBar layoutY="29.0" prefHeight="29.0" prefWidth="887.0" stylesheets="@ui_main_style.css">
+            <MenuBar layoutY="24.0" prefHeight="20.0" prefWidth="887.0" stylesheets="@ui_main_style.css">
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
