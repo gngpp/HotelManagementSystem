@@ -29,8 +29,9 @@
 }
 
 .frame{
-    -fx-background-color: rgba(37,37,38,1);
+    -fx-background-color: #28282855;
 }
+
 
 .txf_username{
     -fx-border-width: 0px;
@@ -49,16 +50,20 @@
 }
 
 
+.tab-pane{
+    -fx-column-halignment: 11;
+}
 .table_Ktrdata{
     -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
 }
+
 .table-row-cell,.table-cell {
 
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #000000;
     -fx-background-color: #28282855;
     -fx-font-weight: bold;
-    -fx-border-color: transparent;
+    /*-fx-border-color: transparent;*/
     -fx-alignment: center   ;
 }
 .table-row-cell:selected .table-cell {

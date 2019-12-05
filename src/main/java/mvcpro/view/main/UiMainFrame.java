@@ -32,9 +32,9 @@ public class UiMainFrame extends Application {
         //
         //设置背景颜色
         //
-        Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
+        Background bg=new Background(new BackgroundFill(Color.valueOf("8E8E8EBF"),new CornerRadii(7),new Insets(0)));
         root.setBackground(bg);
-        Scene scene=new Scene(root,783,387);
+        Scene scene=new Scene(root,887,526);
 
         //
         //加载CSS文件
@@ -63,5 +63,7 @@ public class UiMainFrame extends Application {
             }
         });
     }
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
