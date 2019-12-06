@@ -70,48 +70,67 @@
 .tab-pane * .tab-header-area * .tab-header-background {
     -fx-background-color: #282828BF;
 }
+
 .table_Ktrdata{
-    -fx-text-fill: #FFFFFF;
     -fx-background-color: transparent;
 }
+.table-view .column-header .label{
+    -fx-alignment: center;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-width: 1px;
+}
 .table-column{
-    -fx-background-color: rgba(0, 0, 0, 1);
+    -fx-background-color: #282828BF;
+    -fx-border-width: 1px;
+}
+
+.table-view .filler {
+    -fx-background-color: #282828BF;
+    -fx-border-width: 1px;
 }
 .table-header-background{
-    -fx-background-color: rgba(0, 0, 0, 0.99);
+    -fx-background-color: rgba(136, 136, 136, 0.99);
+    -fx-border-width: 1px;
 }
 .table-row-cell,.table-cell {
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
     -fx-background-color: #282828BF;
+    -fx-border-width: 1px;
     -fx-font-weight: bold;
-    -fx-alignment: center   ;
-    -fx-background-radius: 7px;
+    -fx-alignment: center ;
 }
 .tabel-column-header{
-    -fx-background-color: rgba(0, 0, 0, 0.97);
+    -fx-background-color: #282828BF;
+    -fx-border-width: 1px;
 }
 .table-row-cell:selected .table-cell {
-    -fx-background-color: #000000aa;
-    -fx-background-radius: 7px;
+    -fx-background-color: rgba(23, 97, 253, 0.65);
 }
 
 .tool-bar{
     -fx-background-color: rgba(40, 40, 40, 0);
 }
 .menu{
-    -fx-text-fill: rgb(255, 255, 255);
+    -fx-background-color: #282828BF;
 }
 .menu-bar{
-    -fx-background-color: rgba(40, 40, 40, 0.9);
+    -fx-background-color: #282828BF;
 }
 .menu-item{
-    -fx-background-color: rgba(97, 97, 97, 0.43);
+    -fx-background-color: #282828;
 }
+
 .menu-button{
-    -fx-background-color: rgba(0, 0, 0, 0.97);
+    -fx-background-color: rgba(0, 0, 0, 0.45);
     -fx-highlight-fill: green;
 }
-.menu-button-label{
-     -fx-background-color: rgba(255, 255, 255, 0.75);
-     -fx-text-fill: rgba(255, 255, 255, 0.75);
+.menu-button .label{
+     -fx-text-fill: rgb(255, 255, 255);
  }
+
+.menu-btn {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 35px;
+    -fx-background-color: rgb(40, 43, 51);
+    -fx-text-fill: rgb(191, 192, 194);
+}

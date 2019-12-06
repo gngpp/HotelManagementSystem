@@ -22,6 +22,7 @@ public class User extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private Integer userType;
 
+
     public Integer getUserType() {
         return userType;
     }
