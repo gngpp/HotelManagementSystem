@@ -120,7 +120,7 @@ public class UiMainLayoutController {
         clip_one.setArcHeight(15);
         imageView_one.setClip(clip_one);
 
-        Rectangle clip_two = new Rectangle(imageView_two.getFitWidth(),imageView_two.getImage().getHeight());
+        Rectangle clip_two = new Rectangle(361,30);
         clip_two.setArcWidth(15);
         clip_two.setArcHeight(15);
         imageView_two.setClip(clip_two);

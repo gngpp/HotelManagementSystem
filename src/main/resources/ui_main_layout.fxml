@@ -103,7 +103,7 @@
                      </content></Tab>
               </tabs>
             </TabPane>
-            <ImageView fx:id="imageView_two" fitHeight="30.0" fitWidth="361.0" layoutX="532.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fx:id="imageView_two" fitHeight="30.0" fitWidth="361.0" layoutX="533.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@png/logo_main_new.png" />
                </image>
@@ -146,7 +146,7 @@
                   <Image url="@png/logo_main_new.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageView_one" fitHeight="57.0" fitWidth="502.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fx:id="imageView_one" fitHeight="57.0" fitWidth="502.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@png/logo_main_rename.png" />
                </image>
