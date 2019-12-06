@@ -32,7 +32,7 @@ public class UiMainFrame extends Application {
         //
         //设置背景颜色
         //
-        Background bg=new Background(new BackgroundFill(Color.valueOf("#00000088"),new CornerRadii(7),new Insets(0)));
+        Background bg=new Background(new BackgroundFill(Color.valueOf("#00000000"),new CornerRadii(7),new Insets(0)));
         root.setBackground(bg);
         Scene scene=new Scene(root,887,526);
 
@@ -41,7 +41,7 @@ public class UiMainFrame extends Application {
         //
         scene.getStylesheets().add(getClass().getResource("/ui_main_style.css").toExternalForm());
 
-        scene.setFill(Paint.valueOf("#FFFFFF00"));
+        scene.setFill(Paint.valueOf("#00000000"));
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);

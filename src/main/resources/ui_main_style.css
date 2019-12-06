@@ -1,6 +1,6 @@
 .btn{
     -fx-background-radius:5px;
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgba(71, 71, 71, 0.75);
 }
 
 .btn:pressed{
@@ -32,7 +32,6 @@
     -fx-background-color: #28282855;
     -fx-background-radius:7px;
 }
-
 
 .txf_username{
     -fx-border-width: 0px;
