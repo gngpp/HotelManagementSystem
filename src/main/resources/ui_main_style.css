@@ -89,12 +89,12 @@
     -fx-border-width: 1px;
 }
 .table-header-background{
-    -fx-background-color: rgba(136, 136, 136, 0.99);
+    -fx-background-color: rgb(141, 141, 141);
     -fx-border-width: 0px;
 }
 .table-row-cell,.table-cell {
     -fx-text-fill: #ffffff;
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-border-width: 1px;
     -fx-font-weight: bold;
     -fx-alignment: center ;

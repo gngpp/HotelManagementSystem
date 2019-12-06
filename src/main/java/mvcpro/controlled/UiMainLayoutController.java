@@ -9,12 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.entity.User;
+import mvcpro.view.main.server.UserEx;
 
 public class UiMainLayoutController {
 
@@ -51,13 +53,13 @@ public class UiMainLayoutController {
     private TableView<User> mTableUser;
 
     @FXML
-    private TableColumn<User, String> tableColumnPassword;
+    private TableColumn<UserEx, String> tableColumnPassword;
 
     @FXML
-    private TableColumn<User, Integer> tableColumnType;
+    private TableColumn<UserEx, Integer> tableColumnType;
 
     @FXML
-    private TableColumn<User, String> tableColumnId;
+    private TableColumn<UserEx, String> tableColumnId;
 
     //
     // 客户信息表数据列表，此列表绑定这控件
@@ -124,23 +126,32 @@ public class UiMainLayoutController {
         imageView_two.setClip(clip_two);
 
 
-        update.setFont(new Font("System", 13));
-        delete.setFont(new Font("System", 13));
-        add.setFont(new Font("System", 13));
-        browse.setFont(new Font("System", 13));
-        mainExit.setFont(new Font("System", 13));
-        mainMinimize.setFont(new Font("System", 13));
+        update.setFont(new Font("宋体", 13));
+        delete.setFont(new Font("宋体", 13));
+        add.setFont(new Font("宋体", 13));
+        browse.setFont(new Font("宋体", 13));
+        mainExit.setFont(new Font("宋体", 13));
+        mainMinimize.setFont(new Font("宋体", 13));
     }
 
     private void initUserTable() throws Exception {
 
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<User,String>("id"));
-        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
-        tableColumnType.setCellValueFactory(new PropertyValueFactory<User,Integer>("userType"));
-        mTableUser.setEditable(true);
-        mTableUser.setItems(userData);
+        //字段名
+        tableColumnId.setCellValueFactory(new PropertyValueFactory<UserEx,String>("id"));
+        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserEx,String>("password"));
+        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserEx,Integer>("userType"));
+        tableColumnId.setCellFactory(TextFieldTableCell.<UserEx>forTableColumn());
+        tableColumnId.setOnEditCommit(
+                (TableColumn.CellEditEvent<UserEx, String> t) -> {
+                    ((UserEx) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow())
+                    ).setUserId(t.getNewValue());
+                });
+
         UserDao dao=new UserDao();
-        userData.add(dao.list().get(0));
+        for (User user:dao.list())
+            userData.add(user);
+        mTableUser.setItems(userData);
     }
 
 }

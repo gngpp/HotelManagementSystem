@@ -6,42 +6,45 @@ import mvcpro.model.entity.User;
 
 public class UserEx {
     public User user;
-    private SimpleStringProperty a;
-    private SimpleStringProperty b;
-    private SimpleIntegerProperty c;
+    private SimpleStringProperty id;
+    private SimpleStringProperty password;
+    private SimpleIntegerProperty userType;
     public UserEx(User user){
         this.user=new User();
-        this.a=new SimpleStringProperty(user.getId());
-        this.b=new SimpleStringProperty(user.getPassword());
-        this.c=new SimpleIntegerProperty(user.getUserType());
+        this.id=new SimpleStringProperty(user.getId());
+        this.password=new SimpleStringProperty(user.getPassword());
+        this.userType=new SimpleIntegerProperty(user.getUserType());
     }
 
     public User UserExToEntity(){
-        this.user.setId(a.get());
+        this.user.setId(id.get());
+        this.user.setPassword(password.get());
+        this.user.setUserType(userType.get());
         return user;
     }
 
     public String getUserId(){
-        return a.get();
+        return id.get();
     }
 
     public void setUserId(String id){
-        a.set(id);
+        this.id.set(id);
     }
 
     public String getPassword(){
-        return b.get();
+        return id.get();
     }
 
     public void setPassword(String password){
-        b.set(password);
+        this.password.set(password);
     }
 
     public Integer getUserType(){
-        return c.get();
+        return userType.get();
     }
 
     public void setUserType(Integer userType){
-        c.set(userType);
+        this.userType.set(userType);
     }
+
 }

@@ -28,7 +28,7 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
-            <TabPane layoutY="60.0" prefHeight="466.0" prefWidth="887.0" stylesheets="@ui_main_style.css" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutY="60.0" prefHeight="466.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="住户管理">
                      <content>
@@ -36,17 +36,17 @@
                            <children>
                               <TableView fx:id="mTable" layoutX="-1.0" layoutY="35.0" prefHeight="393.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                 <columns>
-                                  <TableColumn editable="false" prefWidth="98.0" sortable="false" text="住户ID" />
-                                  <TableColumn editable="false" prefWidth="89.0" sortable="false" text="房间号" />
-                                    <TableColumn editable="false" minWidth="0.0" prefWidth="0.0" sortable="false" text="房间等级" />
-                                    <TableColumn editable="false" prefWidth="94.0" sortable="false" text="房间类型" />
-                                    <TableColumn editable="false" prefWidth="101.0" sortable="false" text="区域" />
-                                    <TableColumn editable="false" minWidth="0.0" prefWidth="114.0" sortable="false" text="房间备注" />
-                                    <TableColumn editable="false" prefWidth="128.0" sortable="false" text="入住时间" />
-                                    <TableColumn editable="false" minWidth="0.0" prefWidth="120.0" sortable="false" text="住户姓名" />
-                                    <TableColumn editable="false" prefWidth="63.0" sortable="false" text="身份证号" />
-                                    <TableColumn editable="false" minWidth="0.0" prefWidth="0.0" sortType="DESCENDING" text="性别" />
-                                    <TableColumn prefWidth="75.0" text="备注" />
+                                  <TableColumn prefWidth="98.0" sortable="false" text="住户ID" />
+                                  <TableColumn prefWidth="89.0" sortable="false" text="房间号" />
+                                    <TableColumn minWidth="0.0" prefWidth="0.0" sortable="false" text="房间等级" />
+                                    <TableColumn prefWidth="94.0" sortable="false" text="房间类型" />
+                                    <TableColumn prefWidth="101.0" sortable="false" text="区域" />
+                                    <TableColumn minWidth="0.0" prefWidth="114.0" sortable="false" text="房间备注" />
+                                    <TableColumn prefWidth="128.0" sortable="false" text="入住时间" />
+                                    <TableColumn minWidth="0.0" prefWidth="120.0" sortable="false" text="住户姓名" />
+                                    <TableColumn prefWidth="63.0" sortable="false" text="身份证号" />
+                                    <TableColumn minWidth="0.0" prefWidth="0.0" sortType="DESCENDING" sortable="false" text="性别" />
+                                    <TableColumn minWidth="0.0" prefWidth="85.0" sortable="false" text="备注" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -91,11 +91,11 @@
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="mTableUser" layoutY="3.0" prefHeight="425.0" prefWidth="887.0" styleClass="table_Ktrdata">
+                              <TableView fx:id="mTableUser" editable="true" layoutY="3.0" prefHeight="425.0" prefWidth="887.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                 <columns>
-                                  <TableColumn fx:id="tableColumnId" editable="false" prefWidth="75.0" text="id" />
-                                  <TableColumn fx:id="tableColumnPassword" editable="false" prefWidth="75.0" text="password" />
-                                    <TableColumn fx:id="tableColumnType" editable="false" prefWidth="75.0" text="userType" />
+                                  <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="id" />
+                                  <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="password" />
+                                    <TableColumn fx:id="tableColumnType" prefWidth="135.0" sortable="false" text="userType" />
                                 </columns>
                               </TableView>
                            </children>
