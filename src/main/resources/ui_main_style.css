@@ -1,6 +1,6 @@
 .btn{
     -fx-background-radius:5px;
-    -fx-background-color: rgba(71, 71, 71, 0.75);
+    -fx-background-color: rgba(10, 10, 10, 0.75);
 }
 
 .btn:pressed{
@@ -60,7 +60,7 @@
 }
 
 .tab{
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgba(16, 16, 16, 0.63);
 }
 
 .tab-content-area{
@@ -68,7 +68,7 @@
 }
 
 .tab-pane * .tab-header-area * .tab-header-background {
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgba(65, 65, 65, 0.75);
 }
 
 .table_Ktrdata{
@@ -76,20 +76,20 @@
 }
 .table-view .column-header .label{
     -fx-alignment: center;
-    -fx-text-fill: #b9b9b9;
+    -fx-text-fill: #ffffff;
     -fx-border-width: 1px;
 }
 .table-column{
-    -fx-background-color: #282828BF;
+    -fx-background-color: #212121;
     -fx-background-insets: 0.1;
 }
 
 .table-view .filler {
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgb(33, 33, 33);
     -fx-border-width: 1px;
 }
 .table-header-background{
-    -fx-background-color: rgb(141, 141, 141);
+    -fx-background-color: rgb(0, 0, 0);
     -fx-border-width: 0px;
 }
 .table-row-cell,.table-cell {
