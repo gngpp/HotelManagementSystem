@@ -103,22 +103,17 @@
                      </content></Tab>
               </tabs>
             </TabPane>
-            <ImageView fx:id="imageView_one" fitHeight="42.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true" smooth="false">
-               <image>
-                  <Image url="@png/logo_main_rename.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imageView_two" fitHeight="50.0" fitWidth="353.0" layoutX="534.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fx:id="imageView_two" fitHeight="30.0" fitWidth="361.0" layoutX="532.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@png/logo_main_new.png" />
                </image>
             </ImageView>
-            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="856.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="0.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="856.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="0.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
             </Button>
-            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="825.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="7.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="825.0" layoutY="3.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="7.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
@@ -146,9 +141,14 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ImageView fitHeight="51.0" fitWidth="353.0" layoutX="299.0" pickOnBounds="true" preserveRatio="true" styleClass="frame">
+            <ImageView fitHeight="30.0" fitWidth="353.0" layoutX="208.0" pickOnBounds="true" preserveRatio="true" styleClass="frame">
                <image>
                   <Image url="@png/logo_main_new.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imageView_one" fitHeight="57.0" fitWidth="502.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+               <image>
+                  <Image url="@png/logo_main_rename.png" />
                </image>
             </ImageView>
          </children>

@@ -106,14 +106,6 @@ public class UiMainLayoutController {
 
     @FXML
     void initialize() throws Exception {
-
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<User,String>("id"));
-        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
-        tableColumnType.setCellValueFactory(new PropertyValueFactory<User,Integer>("userType"));
-        mTableUser.setItems(userData);
-        UserDao dao=new UserDao();
-        userData.add(dao.list().get(0));
-
         initProprety();
         initUserTable();
 
@@ -140,8 +132,15 @@ public class UiMainLayoutController {
         mainMinimize.setFont(new Font("System", 13));
     }
 
-    private void initUserTable(){
+    private void initUserTable() throws Exception {
 
+        tableColumnId.setCellValueFactory(new PropertyValueFactory<User,String>("id"));
+        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<User,String>("password"));
+        tableColumnType.setCellValueFactory(new PropertyValueFactory<User,Integer>("userType"));
+        mTableUser.setEditable(true);
+        mTableUser.setItems(userData);
+        UserDao dao=new UserDao();
+        userData.add(dao.list().get(0));
     }
 
 }
