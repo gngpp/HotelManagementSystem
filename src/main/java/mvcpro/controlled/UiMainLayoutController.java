@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mvcpro.model.dao.UserDao;
@@ -17,6 +19,12 @@ import mvcpro.model.entity.User;
 public class UiMainLayoutController {
 
     private Stage mainStage;
+
+    @FXML
+    private ImageView imageView_one;
+
+    @FXML
+    private ImageView imageView_two;
 
     @FXML
     private Button add;
@@ -106,15 +114,24 @@ public class UiMainLayoutController {
         UserDao dao=new UserDao();
         userData.add(dao.list().get(0));
 
-
-
-
-        initFontProprety();
+        initProprety();
         initUserTable();
 
     }
 
-    private void initFontProprety(){
+    private void initProprety(){
+
+        Rectangle clip_one = new Rectangle(imageView_one.getImage().getWidth(),imageView_one.getImage().getHeight());
+        clip_one.setArcWidth(15);
+        clip_one.setArcHeight(15);
+        imageView_one.setClip(clip_one);
+
+        Rectangle clip_two = new Rectangle(imageView_two.getFitWidth(),imageView_two.getImage().getHeight());
+        clip_two.setArcWidth(15);
+        clip_two.setArcHeight(15);
+        imageView_two.setClip(clip_two);
+
+
         update.setFont(new Font("System", 13));
         delete.setFont(new Font("System", 13));
         add.setFont(new Font("System", 13));

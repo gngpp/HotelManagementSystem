@@ -34,7 +34,7 @@
                      <content>
                         <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
-                              <TableView fx:id="mTable" layoutX="1.0" layoutY="35.0" prefHeight="393.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                              <TableView fx:id="mTable" layoutX="-1.0" layoutY="35.0" prefHeight="393.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn editable="false" prefWidth="98.0" sortable="false" text="住户ID" />
                                   <TableColumn editable="false" prefWidth="89.0" sortable="false" text="房间号" />
@@ -103,12 +103,12 @@
                      </content></Tab>
               </tabs>
             </TabPane>
-            <ImageView fitHeight="42.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView_one" fitHeight="42.0" fitWidth="498.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@png/logo_main_rename.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="353.0" layoutX="534.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView_two" fitHeight="50.0" fitWidth="353.0" layoutX="534.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@png/logo_main_new.png" />
                </image>
