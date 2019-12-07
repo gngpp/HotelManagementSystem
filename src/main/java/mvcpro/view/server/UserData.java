@@ -1,15 +1,15 @@
-package mvcpro.view.main.server;
+package mvcpro.view.server;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import mvcpro.model.entity.User;
 
-public class UserEx {
+public class UserData {
     public User user;
     private SimpleStringProperty id;
     private SimpleStringProperty password;
     private SimpleIntegerProperty userType;
-    public UserEx(User user){
+    public UserData(User user){
         this.user=new User();
         this.id=new SimpleStringProperty(user.getId());
         this.password=new SimpleStringProperty(user.getPassword());

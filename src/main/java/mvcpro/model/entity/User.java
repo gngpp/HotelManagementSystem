@@ -9,7 +9,7 @@ import com.lqing.orm.internal.entity.DefaultEntity;
 public class User extends DefaultEntity {
     @AnnotationField(col_name = "id", sql_type = "varchar",
             size = 20, field_name = "id", java_type = "String",
-            is_autoincrement = false, is_primary_key = true)
+            is_autoincrement = false, is_primary_key = false)
     private String id;
 
     @AnnotationField(col_name = "password", sql_type = "varchar",
@@ -22,6 +22,12 @@ public class User extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private Integer userType;
 
+
+
+    @AnnotationField(col_name = "UUID", sql_type = "int",
+            size = 15, field_name = "UUID", java_type = "Integer",
+            is_autoincrement = true, is_primary_key = true)
+    private Integer UUID;
 
     public Integer getUserType() {
         return userType;
@@ -47,6 +53,13 @@ public class User extends DefaultEntity {
         this.password = password;
     }
 
+    public Integer getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(Integer UUID) {
+        this.UUID = UUID;
+    }
     @Override
     public String toString() {
         return "User{" +

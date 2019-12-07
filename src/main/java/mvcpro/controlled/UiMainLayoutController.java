@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.entity.User;
-import mvcpro.view.main.server.UserEx;
+import mvcpro.view.server.UserData;
 
 public class UiMainLayoutController {
 
@@ -53,13 +53,13 @@ public class UiMainLayoutController {
     private TableView<User> mTableUser;
 
     @FXML
-    private TableColumn<UserEx, String> tableColumnPassword;
+    private TableColumn<UserData, String> tableColumnPassword;
 
     @FXML
-    private TableColumn<UserEx, Integer> tableColumnType;
+    private TableColumn<UserData, Integer> tableColumnType;
 
     @FXML
-    private TableColumn<UserEx, String> tableColumnId;
+    private TableColumn<UserData, String> tableColumnId;
 
     //
     // 客户信息表数据列表，此列表绑定这控件
@@ -137,13 +137,13 @@ public class UiMainLayoutController {
     private void initUserTable() throws Exception {
 
         //字段名
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<UserEx,String>("id"));
-        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserEx,String>("password"));
-        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserEx,Integer>("userType"));
-        tableColumnId.setCellFactory(TextFieldTableCell.<UserEx>forTableColumn());
+        tableColumnId.setCellValueFactory(new PropertyValueFactory<UserData,String>("id"));
+        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserData,String>("password"));
+        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("userType"));
+        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(
-                (TableColumn.CellEditEvent<UserEx, String> t) -> {
-                    ((UserEx) t.getTableView().getItems().get(
+                (TableColumn.CellEditEvent<UserData, String> t) -> {
+                    ((UserData) t.getTableView().getItems().get(
                             t.getTablePosition().getRow())
                     ).setUserId(t.getNewValue());
                 });
