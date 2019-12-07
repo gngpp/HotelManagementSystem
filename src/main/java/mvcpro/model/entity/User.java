@@ -100,11 +100,17 @@ public class User extends DefaultEntity {
     public void setUUID(Integer UUID) {
         this.UUID = UUID;
     }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id +
-                "', password='" + password + '\'' +
-                ",userType='"+userType+"question_one='"+question_one+"',question_two='"+question_two+"',question_three='"+question_three+"'}";
+                "id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", userType='" + userType + '\'' +
+                ", question_one='" + question_one + '\'' +
+                ", question_two='" + question_two + '\'' +
+                ", question_three='" + question_three + '\'' +
+                ", UUID=" + UUID +
+                '}';
     }
 }
