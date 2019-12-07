@@ -64,6 +64,15 @@ public class UiMainController {
     @FXML
     private TableColumn<UserData,Integer> tableColumnUUID;
 
+    @FXML
+    private TableColumn<UserData, String> tableColumnQs_three;
+
+    @FXML
+    private TableColumn<UserData, String> tableColumnQs_one;
+
+    @FXML
+    private TableColumn<UserData, String> tableColumnQs_two;
+
     //
     // 客户信息表数据列表，此列表绑定这控件
     //
@@ -144,6 +153,10 @@ public class UiMainController {
         tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserData,String>("password"));
         tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("userType"));
         tableColumnUUID.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("UUID"));
+        tableColumnQs_one.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_one"));
+        tableColumnQs_two.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_two"));
+        tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_three"));
+
         tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(
                 (TableColumn.CellEditEvent<UserData, String> t) -> {

@@ -142,13 +142,13 @@
                      <content>
                         <Pane prefHeight="433.0" prefWidth="892.0">
                            <children>
-                              <TabPane layoutX="328.0" layoutY="-4.0" prefHeight="435.0" prefWidth="559.0" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane layoutY="-4.0" prefHeight="435.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
                                   <Tab text="客户信息管理">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="-4.0" layoutY="-1.0" prefHeight="405.0" prefWidth="562.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView layoutX="326.0" layoutY="-1.0" prefHeight="405.0" prefWidth="449.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn prefWidth="89.0" sortable="false" text="姓名" />
                                                       <TableColumn prefWidth="86.0" sortable="false" text="性别" />
@@ -165,12 +165,15 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
                                              <children>
-                                                <TableView fx:id="mTableUser" editable="true" layoutX="-1.0" layoutY="-1.0" prefHeight="380.0" prefWidth="560.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableUser" editable="true" layoutX="182.0" layoutY="-1.0" prefHeight="405.0" prefWidth="706.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
                                                     <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="id" />
                                                     <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="password" />
                                                       <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="userType" />
                                                       <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" sortable="false" text="UUID" />
+                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="question_one" />
+                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="104.0" sortable="false" text="question_two" />
+                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="131.0" sortable="false" text="question_three" />
                                                   </columns>
                                                 </TableView>
                                              </children>

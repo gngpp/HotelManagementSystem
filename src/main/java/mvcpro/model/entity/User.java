@@ -23,12 +23,51 @@ public class User extends DefaultEntity {
     private String userType;
 
 
+    @AnnotationField(col_name = "question_one", sql_type = "char",
+            size = 255, field_name = "question_one", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+    private String question_one;
+
+    @AnnotationField(col_name = "question_two", sql_type = "char",
+            size = 255, field_name = "question_two", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+    private String question_two;
+
+    @AnnotationField(col_name = "question_three", sql_type = "char",
+            size = 255, field_name = "question_three", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+
+    private String question_three;
 
     @AnnotationField(col_name = "UUID", sql_type = "int",
             size = 15, field_name = "UUID", java_type = "Integer",
             is_autoincrement = true, is_primary_key = true)
     private Integer UUID;
 
+
+    public String getQuestion_three() {
+        return question_three;
+    }
+
+    public void setQuestion_three(String question_three) {
+        this.question_three = question_three;
+    }
+
+    public String getQuestion_one() {
+        return question_one;
+    }
+
+    public void setQuestion_one(String question_one) {
+        this.question_one = question_one;
+    }
+
+    public String getQuestion_two() {
+        return question_two;
+    }
+
+    public void setQuestion_two(String question_two) {
+        this.question_two = question_two;
+    }
 
     public String getUserType() {
         return userType;
@@ -66,7 +105,6 @@ public class User extends DefaultEntity {
         return "User{" +
                 "id='" + id +
                 "', password='" + password + '\'' +
-                ",userType='"+userType+
-                '}';
+                ",userType='"+userType+"question_one='"+question_one+"',question_two='"+question_two+"',question_three='"+question_three+"'}";
     }
 }
