@@ -1,14 +1,6 @@
 package com.lqing.orm.test;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
-import com.lqing.orm.internal.conf.ConfigureFactory;
-import com.lqing.orm.internal.conf.anno.AnnotationTable;
-import com.lqing.orm.internal.entity.wrapper.EntityList;
-import com.lqing.orm.internal.query.AbstractQuery;
-import com.lqing.orm.utils.PkgScanner;
-import org.ietf.jgss.ChannelBinding;
-
-import java.io.IOException;
 
 class StudentDao extends SimpleDaoImpl<Student>{
 
@@ -23,6 +15,7 @@ public class Test {
             //获取所有对象的字段信息
             System.out.println(student.list());
             student.list().forEach(System.out::println);
+
 //            //分行遍历所有对象字段信息
 //            student.list().forEach(System.out::println);
 //            for(int i=0;i<10;i++){

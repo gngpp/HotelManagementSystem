@@ -6,6 +6,6 @@ import mvcpro.model.entity.User;
 public class UserDao extends SimpleDaoImpl<User>   {
     public static void main(String[] args) throws Exception {
         UserDao userDao=new UserDao();
-        System.out.println(userDao.list());
+        userDao.list().forEach(System.out::println);
     }
 }
