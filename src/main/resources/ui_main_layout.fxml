@@ -24,7 +24,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainLayoutController">
+<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
@@ -161,7 +161,7 @@
                                           </AnchorPane>
                                     </content>
                                   </Tab>
-                                  <Tab text="管理员">
+                                  <Tab text="用户管理">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
                                              <children>
@@ -170,6 +170,7 @@
                                                     <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="id" />
                                                     <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="password" />
                                                       <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="userType" />
+                                                      <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" sortable="false" text="UUID" />
                                                   </columns>
                                                 </TableView>
                                              </children>

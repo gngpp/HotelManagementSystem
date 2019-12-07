@@ -17,10 +17,10 @@ public class User extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private String password;
 
-    @AnnotationField(col_name = "userType", sql_type = "Integer",
-            size = 1, field_name = "userType", java_type = "Integer",
+    @AnnotationField(col_name = "userType", sql_type = "char",
+            size = 1, field_name = "userType", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
-    private Integer userType;
+    private String userType;
 
 
 
@@ -29,11 +29,12 @@ public class User extends DefaultEntity {
             is_autoincrement = true, is_primary_key = true)
     private Integer UUID;
 
-    public Integer getUserType() {
+
+    public String getUserType() {
         return userType;
     }
 
-    public void setUserType(Integer userType) {
+    public void setUserType(String userType) {
         this.userType = userType;
     }
 

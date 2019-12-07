@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiMessageBoxController;
+import mvcpro.view.ru.SignIn;
 
 public class UiMessageBox{
 
@@ -46,7 +47,7 @@ public class UiMessageBox{
                 Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
                 root.setBackground(bg);
 
-                scene=new Scene(root, 275, 142);
+                scene=new Scene(root);
 
                 //
                 //加载CSS文件
@@ -59,7 +60,6 @@ public class UiMessageBox{
                 scene.setFill(Paint.valueOf("#FFFFFF00"));
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);
-
                 scene.setOnMousePressed(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {

@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import mvcpro.controlled.UiMainLayoutController;
+import mvcpro.controlled.UiMainController;
 
 
 public class UiMainFrame extends Application {
@@ -25,8 +25,8 @@ public class UiMainFrame extends Application {
         Stage mainStage=primaryStage;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_main_layout.fxml"));
         Pane root=loader.load();
-        UiMainLayoutController uiMainLayoutController=loader.getController();
-        uiMainLayoutController.setMainStage(mainStage);
+        UiMainController uiMainController =loader.getController();
+        uiMainController.setMainStage(mainStage);
 
 
         //
@@ -34,7 +34,7 @@ public class UiMainFrame extends Application {
         //
         Background bg=new Background(new BackgroundFill(Color.valueOf("#282828BF"),new CornerRadii(7),new Insets(0)));
         root.setBackground(bg);
-        Scene scene=new Scene(root,887,526);
+        Scene scene=new Scene(root);
 
         //
         //加载CSS文件

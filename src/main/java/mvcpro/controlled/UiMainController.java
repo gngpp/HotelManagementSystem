@@ -18,7 +18,7 @@ import mvcpro.model.dao.UserDao;
 import mvcpro.model.entity.User;
 import mvcpro.view.server.UserData;
 
-public class UiMainLayoutController {
+public class UiMainController {
 
     private Stage mainStage;
 
@@ -60,6 +60,9 @@ public class UiMainLayoutController {
 
     @FXML
     private TableColumn<UserData, String> tableColumnId;
+
+    @FXML
+    private TableColumn<UserData,Integer> tableColumnUUID;
 
     //
     // 客户信息表数据列表，此列表绑定这控件
@@ -140,6 +143,7 @@ public class UiMainLayoutController {
         tableColumnId.setCellValueFactory(new PropertyValueFactory<UserData,String>("id"));
         tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserData,String>("password"));
         tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("userType"));
+        tableColumnUUID.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("UUID"));
         tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(
                 (TableColumn.CellEditEvent<UserData, String> t) -> {

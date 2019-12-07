@@ -9,7 +9,9 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
+import mvcpro.model.Verify;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
 import mvcpro.view.main.UiMainFrame;
@@ -19,10 +21,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import mvcpro.view.messagebox.UiMessageBox;
+import mvcpro.view.ru.SignIn;
 
 import java.util.Optional;
 
-public class UiLoginController {
+public class UiLoginController implements Verify {
 
     private UserDao userDao;
 
@@ -33,6 +36,8 @@ public class UiLoginController {
     private UiMainFrame uiMainFrame;
 
     private UiMessageBox uiMessageBox;
+
+    private SignIn signInStage;
 
     @FXML
     private Button signIn;
@@ -55,8 +60,6 @@ public class UiLoginController {
     @FXML
     private ChoiceBox selectUserType;
 
-    private Integer userType=3;
-
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
     }
@@ -66,19 +69,17 @@ public class UiLoginController {
 
         userDao.list().forEach(System.out::println);
          for (User user :userDao.list()) {
-             if (loginID.getText().equals(user.getId())&&
-                     loginPassword.getText().equals(user.getPassword())&&
-                     userType==user.getUserType()) {
+             if (loginVerify(user.getId(),user.getPassword())) {
                  System.out.println(user.info());
                  loginStage.hide();
                  uiMainFrame.start(mainStage);
                  return;
              }
          }
-         if(userType==3)
-             uiMessageBox.showMessageBox("Confirmation Dialog","Please select permission！");
-            else
-             uiMessageBox.showMessageBox("Confirmation Dialog","Your account or password is incorrect！");
+//         if()
+//             uiMessageBox.showMessageBox("Confirmation Dialog","Please select permission！");
+//            else
+//             uiMessageBox.showMessageBox("Confirmation Dialog","Your account or password is incorrect！");
 
     }
 
@@ -93,10 +94,20 @@ public class UiLoginController {
     }
 
     @FXML
+    void loginSignIn(ActionEvent event) throws Exception {
+       signInStage.start(new Stage());
+    }
+
+
+
+
+
+    @FXML
     void initialize() {
         mainStage=new Stage();
         uiMainFrame=new UiMainFrame();
         uiMessageBox=new UiMessageBox();
+        signInStage=new SignIn();
         userDao=new UserDao();
         uiMessageBox.setModality(Modality.APPLICATION_MODAL);
         selectUserType.getItems().addAll("学生","管理员");
@@ -109,18 +120,18 @@ public class UiLoginController {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        switch(selectUserType.getValue().toString()){
-                            case "管理员":
-                                userType=1;
-                                break;
-                            case "学生":
-                                userType=0;
-                                break;
-                            default:
-                                userType=3;
-                                break;
-                        }
-                        System.out.println(userType);
+//                        switch(selectUserType.getValue().toString()){
+//                            case "管理员":
+//                                userType=1;
+//                                break;
+//                            case "学生":
+//                                userType=0;
+//                                break;
+//                            default:
+//                                userType=3;
+//                                break;
+//                        }
+//                        System.out.println(userType);
                     }
                 }).start();
 
@@ -129,5 +140,9 @@ public class UiLoginController {
 
     }
 
+    private  Boolean loginVerify(String userId,String password){
+        return loginID.getText().equals(userId)&&
+                loginPassword.getText().equals(password)? true:false;
+    }
 
 }

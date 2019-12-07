@@ -38,7 +38,7 @@ public class UiLogin extends Application {
         Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
         root.setBackground(bg);
 
-        Scene scene=new Scene(root, 232, 368);
+        Scene scene=new Scene(root);
 
         //
         //加载CSS文件

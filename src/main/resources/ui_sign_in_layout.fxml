@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="mvcpro.view.ru.SignIn"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="404.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.SignInController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="167.0" layoutX="212.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@png/屏幕快照%202019-11-23%2018.40.07.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ImageView>
+      <TextField layoutX="39.0" layoutY="187.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
+      <PasswordField layoutX="39.0" layoutY="235.0" prefHeight="27.0" prefWidth="156.0" promptText="密码" />
+      <PasswordField layoutX="39.0" layoutY="281.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
+      <TextField layoutX="222.0" layoutY="187.0" prefHeight="27.0" prefWidth="156.0" promptText="密保1" />
+      <TextField layoutX="222.0" layoutY="235.0" prefHeight="27.0" prefWidth="156.0" promptText="密保2" />
+      <TextField layoutX="222.0" layoutY="281.0" prefHeight="27.0" prefWidth="156.0" promptText="密保3" />
+      <ChoiceBox layoutX="406.0" layoutY="187.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="406.0" layoutY="235.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="406.0" layoutY="281.0" prefWidth="150.0" />
+      <Button layoutX="251.0" layoutY="352.0" mnemonicParsing="false" text="注册并登陆" />
+      <Button layoutX="350.0" layoutY="352.0" mnemonicParsing="false" text="重置" />
+      <Button layoutX="190.0" layoutY="352.0" mnemonicParsing="false" text="注册" />
+   </children>
 </AnchorPane>

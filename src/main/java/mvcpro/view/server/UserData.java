@@ -8,21 +8,31 @@ public class UserData {
     public User user;
     private SimpleStringProperty id;
     private SimpleStringProperty password;
-    private SimpleIntegerProperty userType;
+    private SimpleStringProperty userType;
+    private SimpleIntegerProperty UUID;
     public UserData(User user){
         this.user=new User();
         this.id=new SimpleStringProperty(user.getId());
         this.password=new SimpleStringProperty(user.getPassword());
-        this.userType=new SimpleIntegerProperty(user.getUserType());
+        this.userType=new SimpleStringProperty(user.getUserType());
+        this.UUID=new SimpleIntegerProperty(user.getUUID());
     }
 
     public User UserExToEntity(){
         this.user.setId(id.get());
         this.user.setPassword(password.get());
         this.user.setUserType(userType.get());
+        this.user.setUUID(UUID.get());
         return user;
     }
 
+    public Integer getUUID(){
+        return UUID.get();
+    }
+
+    public void setUUID(Integer uuid){
+        this.UUID.set(uuid);
+    }
     public String getUserId(){
         return id.get();
     }
@@ -39,11 +49,11 @@ public class UserData {
         this.password.set(password);
     }
 
-    public Integer getUserType(){
+    public String getUserType(){
         return userType.get();
     }
 
-    public void setUserType(Integer userType){
+    public void setUserType(String userType){
         this.userType.set(userType);
     }
 
