@@ -64,11 +64,11 @@
 }
 
 .tab-content-area{
-    -fx-background-color: #282828BF;
+    -fx-background-color: rgba(40, 40, 40, 0);
 }
 
 .tab-pane * .tab-header-area * .tab-header-background {
-    -fx-background-color: rgba(65, 65, 65, 0.75);
+    -fx-background-color: rgba(65, 65, 65, 0);
 }
 
 .table_Ktrdata{
