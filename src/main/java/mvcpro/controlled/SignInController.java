@@ -49,6 +49,8 @@ public class SignInController implements Initializable {
     @FXML
     private Button reset;
 
+    @FXML
+    private TextField questionTwo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,8 +68,7 @@ public class SignInController implements Initializable {
     }
 
 
-    @FXML
-    private TextField questionTwo;
+
     public void setUiMessageBox(Stage newStage) {
         this.signInStage=newStage;
     }
@@ -88,6 +89,15 @@ public class SignInController implements Initializable {
 
     }
 
+    @FXML
+    void signInExitEvent(ActionEvent event) {
+        signInStage.hide();
+    }
+
+    @FXML
+    void signInCheckMinimize(ActionEvent event) {
+        signInStage.setIconified(true);
+    }
 }
 
 

@@ -42,11 +42,6 @@
             <version>8.40.15</version>
         </dependency>
 
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>

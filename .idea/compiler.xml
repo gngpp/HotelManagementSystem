@@ -12,6 +12,7 @@
         <module name="fx-5" />
         <module name="idea_code" />
         <module name="orm" />
+        <module name="HotelManagementSystem-fx" />
       </profile>
     </annotationProcessing>
   </component>

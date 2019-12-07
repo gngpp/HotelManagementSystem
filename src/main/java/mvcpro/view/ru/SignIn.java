@@ -18,7 +18,7 @@ import mvcpro.controlled.UiMessageBoxController;
 public class SignIn extends Application {
 
 
-    private  Stage newStage;
+    private  Stage newStage=new Stage();
     private Scene scene;
     private SignInController signInController;
     private double lastx_distance,lasty_distance;

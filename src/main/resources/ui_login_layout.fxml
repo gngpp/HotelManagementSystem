@@ -69,7 +69,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
-            <Button fx:id="signIn" focusTraversable="false" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" onAction="#loginSignIn" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textAlignment="JUSTIFY" textFill="#dddada">
+            <Button fx:id="btnSignIn" focusTraversable="false" layoutX="120.0" layoutY="257.0" mnemonicParsing="false" onAction="#loginSignIn" prefHeight="30.0" prefWidth="59.0" styleClass="btn" stylesheets="@ui_login_style.css" text="注册" textAlignment="JUSTIFY" textFill="#dddada">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

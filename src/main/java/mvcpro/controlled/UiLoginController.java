@@ -33,14 +33,14 @@ public class UiLoginController implements Verify {
 
     private Stage mainStage;
 
+    private Stage signInStage;
+
     private UiMainFrame uiMainFrame;
 
     private UiMessageBox uiMessageBox;
 
-    private SignIn signInStage;
-
     @FXML
-    private Button signIn;
+    private Button btnSignIn;
 
     @FXML
     private TextField loginID;
@@ -95,25 +95,21 @@ public class UiLoginController implements Verify {
 
     @FXML
     void loginSignIn(ActionEvent event) throws Exception {
-       signInStage.start(new Stage());
+        new SignIn().start(signInStage);
     }
-
-
-
-
 
     @FXML
     void initialize() {
         mainStage=new Stage();
+        signInStage=new Stage();
         uiMainFrame=new UiMainFrame();
         uiMessageBox=new UiMessageBox();
-        signInStage=new SignIn();
         userDao=new UserDao();
         uiMessageBox.setModality(Modality.APPLICATION_MODAL);
         selectUserType.getItems().addAll("学生","管理员");
         image.screenToLocal(20,20);
         loginCheck.setFont(new Font("System", 13));
-        signIn.setFont(new Font("System",13));
+        btnSignIn.setFont(new Font("System",13));
         selectUserType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
