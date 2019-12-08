@@ -40,7 +40,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView layoutY="14.0" prefHeight="332.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView layoutY="14.0" prefHeight="389.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn prefWidth="89.0" sortable="false" text="房间类型" />
                                                       <TableColumn prefWidth="86.0" sortable="false" text="面积" />
@@ -61,7 +61,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="312.0" layoutY="14.0" prefHeight="387.0" prefWidth="575.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView layoutX="312.0" layoutY="-1.0" prefHeight="402.0" prefWidth="575.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn prefWidth="89.0" sortable="false" text="客房编号" />
                                                       <TableColumn prefWidth="86.0" sortable="false" text="客房类型" />
@@ -148,7 +148,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="326.0" layoutY="-1.0" prefHeight="405.0" prefWidth="449.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView layoutX="326.0" layoutY="-1.0" prefHeight="405.0" prefWidth="561.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn prefWidth="89.0" sortable="false" text="姓名" />
                                                       <TableColumn prefWidth="86.0" sortable="false" text="性别" />
@@ -232,7 +232,7 @@
             </ImageView>
             <ImageView fx:id="imageView_one" fitHeight="57.0" fitWidth="502.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
-                  <Image url="@png/logo_main_rename.png" />
+                  <Image url="@png/1205125218.jpg" />
                </image>
             </ImageView>
          </children>

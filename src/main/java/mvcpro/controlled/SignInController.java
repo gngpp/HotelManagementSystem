@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class SignInController implements Initializable {
     private ComboBox<String> selectOne;
 
     @FXML
-    private PasswordField checkPassword;
+    private PasswordField signInCheckPassword;
 
     @FXML
     private ComboBox<String> selectThree;
@@ -81,12 +82,30 @@ public class SignInController implements Initializable {
 
     @FXML
     void btn_reset(ActionEvent event) {
-
+        siginId.clear();
+        signInpPassword.clear();
+        signInCheckPassword.clear();
+        questionOne.clear();
+        questionTwo.clear();
+        questionThree.clear();
+        selectOne.setValue(null);
+        selectTwo.setValue(null);
+        selectThree.setValue(null);
     }
 
     @FXML
     void btn_signIn(ActionEvent event) {
-
+        if(selectThree==null||selectTwo==null||
+        selectOne==null||signInpPassword.getText()==null||
+        signInCheckPassword.getText()==null||siginId.getText()==null||
+        questionOne.getText()==null||questionTwo.getText()==null||
+        questionThree.getText()==null){
+            Alert confirmation=new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("提示");
+            confirmation.setHeaderText("请完善注册信息");
+            confirmation.show();
+            return;
+        }
     }
 
     @FXML

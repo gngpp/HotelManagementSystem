@@ -20,7 +20,7 @@
       </ImageView>
       <TextField fx:id="siginId" layoutX="39.0" layoutY="220.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
       <PasswordField fx:id="signInpPassword" layoutX="39.0" layoutY="266.0" prefHeight="27.0" prefWidth="156.0" promptText="密码" />
-      <PasswordField fx:id="checkPassword" layoutX="39.0" layoutY="310.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
+      <PasswordField fx:id="signInCheckPassword" layoutX="39.0" layoutY="310.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
       <TextField fx:id="questionOne" layoutX="234.0" layoutY="121.0" prefHeight="29.0" prefWidth="150.0" promptText="问题1" />
       <TextField fx:id="questionTwo" layoutX="236.0" layoutY="214.0" prefHeight="29.0" prefWidth="150.0" promptText="问题2" />
       <TextField fx:id="questionThree" layoutX="237.0" layoutY="310.0" prefHeight="29.0" prefWidth="150.0" promptText="问题3" />
