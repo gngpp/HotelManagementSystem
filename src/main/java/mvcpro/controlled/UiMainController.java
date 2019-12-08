@@ -73,6 +73,8 @@ public class UiMainController {
     @FXML
     private TableColumn<UserData, String> tableColumnQs_two;
 
+    @FXML  TableColumn<UserData,String> tableColumnPicture;
+
     //
     // 客户信息表数据列表，此列表绑定这控件
     //
@@ -156,6 +158,7 @@ public class UiMainController {
         tableColumnQs_one.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_one"));
         tableColumnQs_two.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_two"));
         tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_three"));
+        tableColumnPicture.setCellValueFactory(new PropertyValueFactory<UserData,String>("picture"));
 
         tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(

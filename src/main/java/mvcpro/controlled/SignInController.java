@@ -4,15 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.PickResult;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.dao.UserVerifyDao;
 import mvcpro.model.entity.User;
 import mvcpro.model.entity.UserVerify;
 import mvcpro.view.AlertDefined;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,7 +23,7 @@ public class SignInController implements Initializable {
     private  Stage signInStage;
 
     @FXML
-    private ImageView iv_Image;
+    private ImageView iv_image;
 
     @FXML
     private PasswordField psf_password;
@@ -56,18 +59,20 @@ public class SignInController implements Initializable {
     private Button btn_reset;
 
     @FXML
+    private Button btn_browse;
+
+    @FXML
     private TextField txf_qustion_two;
 
     private UserDao userDao;
 
     private UserVerifyDao userVerifyDao;
 
+    private String pictureUrl;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initProperty();
-
-            System.out.println();
-
     }
 
 
@@ -103,6 +108,7 @@ public class SignInController implements Initializable {
         cbx_selectOne.setValue(null);
         cbx_selectTwo.setValue(null);
         cbx_selectThree.setValue(null);
+        iv_image.setImage(new Image("/png/timg.jpeg"));
     }
 
     @FXML
@@ -127,15 +133,22 @@ public class SignInController implements Initializable {
 
     }
 
+    @FXML
+    void ac_browse(ActionEvent event){
+        FileChooser fileChooser=new FileChooser();
+        File file=fileChooser.showOpenDialog(new Stage());
+        pictureUrl =new String("/png/"+file.getName());
+        iv_image.setImage(new Image(pictureUrl));
+    }
 
 
     @FXML
-    void ac_signInExitEvent(ActionEvent event) {
+    void ac_exit(ActionEvent event) {
         signInStage.hide();
     }
 
     @FXML
-    void ac_signInCheckMinimize(ActionEvent event) {
+    void ac_minimize(ActionEvent event) {
         signInStage.setIconified(true);
     }
 
@@ -167,7 +180,7 @@ public class SignInController implements Initializable {
         user.setQuestion_one(txf_question_one.getText());
         user.setQuestion_two(txf_qustion_two.getText());
         user.setQuestion_three(txf_question_three.getText());
-        user.setPicture(null);
+        user.setPicture(pictureUrl);
         user.setUserType("用户");
         userDao.save(user);
         userDao.list().forEach(System.out::println);

@@ -122,6 +122,7 @@ public class User extends DefaultEntity {
                 ", question_two='" + question_two + '\'' +
                 ", question_three='" + question_three + '\'' +
                 ", UUID=" + UUID +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 }

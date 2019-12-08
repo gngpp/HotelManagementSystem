@@ -13,6 +13,7 @@ public class UserData {
     private SimpleStringProperty question_one;
     private SimpleStringProperty question_two;
     private SimpleStringProperty question_three;
+    private SimpleStringProperty picture;
     public UserData(User user){
         this.user=new User();
         this.id=new SimpleStringProperty(user.getId());
@@ -22,6 +23,7 @@ public class UserData {
         this.question_one=new SimpleStringProperty(user.getQuestion_one());
         this.question_two=new SimpleStringProperty(user.getQuestion_two());
         this.question_three=new SimpleStringProperty(user.getQuestion_three());
+        this.picture=new SimpleStringProperty(user.getPicture());
     }
 
     public User UserExToEntity(){
@@ -32,7 +34,16 @@ public class UserData {
          this.user.setQuestion_one(question_one.get());
         this.user.setQuestion_two(question_two.get());
         this.user.setQuestion_three(question_three.get());
+        this.user.setPicture(picture.get());
         return user;
+    }
+
+    public String getPicture(){
+        return picture.get();
+    }
+
+    public void setPicture(String url){
+        this.picture.set(url);
     }
 
     public String getQuestion_one(){

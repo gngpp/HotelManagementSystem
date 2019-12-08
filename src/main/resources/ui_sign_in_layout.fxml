@@ -10,9 +10,9 @@
 
 <AnchorPane prefHeight="424.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.SignInController">
    <children>
-      <ImageView fx:id="iv_Image" fitHeight="150.0" fitWidth="167.0" layoutX="34.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iv_image" fitHeight="125.0" fitWidth="136.0" layoutX="48.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@png/屏幕快照%202019-11-23%2018.40.07.png" />
+            <Image url="@png/timg.jpeg" />
          </image>
          <effect>
             <DropShadow />
@@ -30,15 +30,16 @@
       <ComboBox fx:id="cbx_selectTwo" layoutX="234.0" layoutY="174.0" prefWidth="150.0" promptText="选择" />
       <ComboBox fx:id="cbx_selectThree" layoutX="236.0" layoutY="268.0" prefWidth="150.0" promptText="选择" />
       <ComboBox fx:id="cbx_selectOne" layoutX="234.0" layoutY="81.0" prefWidth="150.0" promptText="选择" />
-      <Button fx:id="signInExit" cancelButton="true" focusTraversable="false" layoutX="393.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_signInExitEvent" prefHeight="12.0" prefWidth="12.0" text="x" textAlignment="CENTER">
+      <Button fx:id="signInExit" cancelButton="true" focusTraversable="false" layoutX="393.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_exit" prefHeight="12.0" prefWidth="12.0" text="x" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signInMinimize" focusTraversable="false" graphicTextGap="0.0" layoutX="365.0" layoutY="3.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ac_signInCheckMinimize" prefHeight="12.0" prefWidth="12.0" text="-" textAlignment="CENTER" textFill="#030303">
+      <Button fx:id="signInMinimize" focusTraversable="false" graphicTextGap="0.0" layoutX="365.0" layoutY="3.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ac_minimize" prefHeight="12.0" prefWidth="12.0" text="-" textAlignment="CENTER" textFill="#030303">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="btn_browse" layoutX="86.0" layoutY="178.0" mnemonicParsing="false" onAction="#ac_browse" prefHeight="17.0" prefWidth="56.0" text="浏览..." />
    </children>
 </AnchorPane>

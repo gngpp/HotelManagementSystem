@@ -174,7 +174,7 @@
                                                       <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="question_one" />
                                                       <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" sortable="false" text="question_two" />
                                                       <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="question_three" />
-                                                      <TableColumn fx:id="tableColumnQs_three1" prefWidth="105.0" sortable="false" text="picture" />
+                                                      <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="picture" />
                                                   </columns>
                                                 </TableView>
                                              </children>

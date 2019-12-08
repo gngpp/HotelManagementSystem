@@ -60,6 +60,38 @@ public class UiLoginController implements Verify {
     @FXML
     private ChoiceBox selectUserType;
 
+    private StringBuilder verify;
+
+
+    @FXML
+    void initialize() {
+        mainStage=new Stage();
+        signInStage=new Stage();
+        uiMainFrame=new UiMainFrame();
+        uiMessageBox=new UiMessageBox();
+        userDao=new UserDao();
+        verify=new StringBuilder("");
+        uiMessageBox.setModality(Modality.APPLICATION_MODAL);
+        selectUserType.getItems().addAll("用户","管理员");
+        image.screenToLocal(20,20);
+        loginCheck.setFont(new Font("System", 13));
+        btnSignIn.setFont(new Font("System",13));
+        selectUserType.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        verify=new StringBuilder(selectUserType.getValue().toString());
+                        System.out.println(verify);
+                    }
+                }).start();
+
+            }
+        });
+
+    }
+
     public void setLoginStage(Stage loginStage){
         this.loginStage=loginStage;
     }
@@ -68,15 +100,17 @@ public class UiLoginController implements Verify {
     void LoginCheckEvent(ActionEvent event) throws Exception {
 
         userDao.list().forEach(System.out::println);
+
          for (User user :userDao.list()) {
-             if (loginVerify(user.getId(),user.getPassword())) {
-                 System.out.println(user.info());
+             System.out.println(loginVerify(user));
+             if (loginVerify(user)) {
                  loginStage.hide();
                  uiMainFrame.start(mainStage);
                  return;
              }
          }
-//         if()
+
+//         if(verify.toString().equals())
 //             uiMessageBox.showMessageBox("Confirmation Dialog","Please select permission！");
 //            else
 //             uiMessageBox.showMessageBox("Confirmation Dialog","Your account or password is incorrect！");
@@ -98,47 +132,12 @@ public class UiLoginController implements Verify {
         new SignIn().start(signInStage);
     }
 
-    @FXML
-    void initialize() {
-        mainStage=new Stage();
-        signInStage=new Stage();
-        uiMainFrame=new UiMainFrame();
-        uiMessageBox=new UiMessageBox();
-        userDao=new UserDao();
-        uiMessageBox.setModality(Modality.APPLICATION_MODAL);
-        selectUserType.getItems().addAll("学生","管理员");
-        image.screenToLocal(20,20);
-        loginCheck.setFont(new Font("System", 13));
-        btnSignIn.setFont(new Font("System",13));
-        selectUserType.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-//                        switch(selectUserType.getValue().toString()){
-//                            case "管理员":
-//                                userType=1;
-//                                break;
-//                            case "学生":
-//                                userType=0;
-//                                break;
-//                            default:
-//                                userType=3;
-//                                break;
-//                        }
-//                        System.out.println(userType);
-                    }
-                }).start();
 
-            }
-        });
 
-    }
+    private  Boolean loginVerify(User user){
 
-    private  Boolean loginVerify(String userId,String password){
-        return loginID.getText().equals(userId)&&
-                loginPassword.getText().equals(password)? true:false;
+        return (loginID.getText().equals(user.getId())&&
+                loginPassword.getText().equals(user.getPassword())&&verify.toString().equals(user.getUserType()))? true:false;
     }
 
 }
