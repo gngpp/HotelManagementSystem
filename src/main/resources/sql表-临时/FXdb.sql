@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.10, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: FXdb
 -- ------------------------------------------------------
--- Server version	5.7.17
+-- Server version	5.7.10
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -162,10 +162,10 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `password` char(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '123456',
-  `userType` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '学生',
+  `userType` char(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '用户',
   `UUID` int(11) NOT NULL AUTO_INCREMENT,
   `id` char(15) COLLATE utf8_unicode_ci NOT NULL,
-  `question_two` char(255) COLLATE utf8_unicode_ci NOT NULL,
+  `question_two` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `question_three` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `question_one` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`UUID`) USING BTREE
@@ -181,6 +181,33 @@ LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES ('feng','用户',1,'20181004095','','',''),('feng','管理员',2,'admin','','','');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users_verify`
+--
+
+DROP TABLE IF EXISTS `users_verify`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_verify` (
+  `UUID` int(11) NOT NULL,
+  `select_one` char(255) COLLATE utf8_unicode_ci NOT NULL,
+  `select_two` char(255) COLLATE utf8_unicode_ci NOT NULL,
+  `select_three` char(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`UUID`),
+  CONSTRAINT `fk_verify_for_users` FOREIGN KEY (`UUID`) REFERENCES `users` (`UUID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_verify`
+--
+
+LOCK TABLES `users_verify` WRITE;
+/*!40000 ALTER TABLE `users_verify` DISABLE KEYS */;
+INSERT INTO `users_verify` VALUES (1,'buzhidao','buzhidao','buzhidao'),(2,'buzhidao','buzhidao','buzhidao');
+/*!40000 ALTER TABLE `users_verify` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -191,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-07 22:37:59
+-- Dump completed on 2019-12-08  8:59:02
