@@ -165,15 +165,16 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
                                              <children>
-                                                <TableView fx:id="mTableUser" editable="true" layoutX="182.0" layoutY="-1.0" prefHeight="405.0" prefWidth="706.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableUser" editable="true" layoutX="57.0" layoutY="-1.0" prefHeight="405.0" prefWidth="830.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
                                                     <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="id" />
                                                     <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="password" />
                                                       <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="userType" />
                                                       <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" sortable="false" text="UUID" />
                                                       <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="question_one" />
-                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="104.0" sortable="false" text="question_two" />
-                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="131.0" sortable="false" text="question_three" />
+                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" sortable="false" text="question_two" />
+                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="question_three" />
+                                                      <TableColumn fx:id="tableColumnQs_three1" prefWidth="105.0" sortable="false" text="picture" />
                                                   </columns>
                                                 </TableView>
                                              </children>

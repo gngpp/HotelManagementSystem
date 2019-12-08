@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.dao.UserVerifyDao;
 import mvcpro.model.entity.User;
@@ -63,14 +64,17 @@ public class SignInController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userDao=new UserDao();
-        userVerifyDao= new UserVerifyDao();
         initProperty();
+
+            System.out.println();
+
     }
 
 
-    private void initProperty(){
 
+    private void initProperty(){
+        userDao=new UserDao();
+        userVerifyDao= new UserVerifyDao();
         cbx_selectOne.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
         cbx_selectTwo.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
         cbx_selectThree.getItems().addAll("您的出生地是？","您的小学校名是？","您的小学校名是？","您的学号（或工号）是？");
@@ -107,7 +111,7 @@ public class SignInController implements Initializable {
         if(!isCheckInfo()){
             new AlertDefined(Alert.AlertType.INFORMATION,"提示","请完善注册信息").show();
             return;
-        }else if (psf_password.getText().equals(psf_checkPassword.getText())){
+        }else if (!psf_password.getText().equals(psf_checkPassword.getText())){
             new AlertDefined(Alert.AlertType.ERROR,"警告⚠️","您的确认密码错误！").show();
             return;
         }
@@ -163,6 +167,7 @@ public class SignInController implements Initializable {
         user.setQuestion_one(txf_question_one.getText());
         user.setQuestion_two(txf_qustion_two.getText());
         user.setQuestion_three(txf_question_three.getText());
+        user.setPicture(null);
         user.setUserType("用户");
         userDao.save(user);
         userDao.list().forEach(System.out::println);

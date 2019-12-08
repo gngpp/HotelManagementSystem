@@ -36,7 +36,6 @@ public class User extends DefaultEntity {
     @AnnotationField(col_name = "question_three", sql_type = "char",
             size = 255, field_name = "question_three", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
-
     private String question_three;
 
     @AnnotationField(col_name = "UUID", sql_type = "int",
@@ -44,6 +43,18 @@ public class User extends DefaultEntity {
             is_autoincrement = true, is_primary_key = true)
     private Integer UUID;
 
+    @AnnotationField(col_name = "picture", sql_type = "varchar",
+            size = 255, field_name = "picture", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+    private String picture;
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     public String getQuestion_three() {
         return question_three;
