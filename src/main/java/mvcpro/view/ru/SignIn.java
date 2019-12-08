@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -34,7 +35,7 @@ public class SignIn extends Application {
                 //获取控制类对象
                 //
                 FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_sign_in_layout.fxml"));
-                AnchorPane root =loader.load();
+                Pane root =loader.load();
 
                 //
                 //获取控制类对象引用
@@ -45,7 +46,7 @@ public class SignIn extends Application {
                 //
                 //设置背景颜色
                 //
-                Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFFFF"),new CornerRadii(7),new Insets(0)));
+                Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFF6C"),new CornerRadii(0),new Insets(0)));
                 root.setBackground(bg);
 
                 scene=new Scene(root);
@@ -61,23 +62,31 @@ public class SignIn extends Application {
                 scene.setFill(Paint.valueOf("#FFFFFF00"));
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);
-                newStage.show();
-                scene.setOnMousePressed(new EventHandler<MouseEvent>() {
+
+                newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+
+                    //
+                    // 鼠标按下事件
+                    //
+
                     @Override
                     public void handle(MouseEvent event) {
-                        lastx_distance=event.getScreenX()-newStage.getX();
-                        lasty_distance=event.getScreenY()-newStage.getY();
-                    }
-                });
+                        lastx_distance = event.getScreenX()-newStage.getX();
+                        lasty_distance = event.getScreenY()-newStage.getY();
+                    }});
+                newStage.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
 
-                scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                    //
+                    // 鼠标拖拽事件
+                    //
+
                     @Override
                     public void handle(MouseEvent event) {
                         newStage.setX(event.getScreenX()-lastx_distance);
                         newStage.setY(event.getScreenY()-lasty_distance);
                     }
-
                 });
+                newStage.show();
             }catch(Exception e){
                 e.printStackTrace();
             }

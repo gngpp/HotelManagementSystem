@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.PickResult;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mvcpro.model.dao.UserDao;
@@ -23,46 +22,113 @@ public class SignInController implements Initializable {
     private  Stage signInStage;
 
     @FXML
-    private ImageView iv_image;
-
-    @FXML
-    private PasswordField psf_password;
-
-    @FXML
-    private TextField txf_id;
-
-    @FXML
-    private ComboBox<String> cbx_selectTwo;
-
-    @FXML
-    private Button btn_signInAndLogin;
-
-    @FXML
-    private TextField txf_question_three;
-
-    @FXML
-    private ComboBox<String> cbx_selectOne;
-
-    @FXML
-    private PasswordField psf_checkPassword;
-
-    @FXML
-    private ComboBox<String> cbx_selectThree;
+    private TextField txf_question_two_find;
 
     @FXML
     private Button btn_signIn;
 
-    @FXML
-    private TextField txf_question_one;
 
     @FXML
-    private Button btn_reset;
+    private PasswordField psf_password_old_alter;
 
     @FXML
     private Button btn_browse;
 
     @FXML
+    private ComboBox<String> cbx_selectThree_alter;
+
+    @FXML
+    private ComboBox<String> cbx_selectTwo_find;
+
+    @FXML
+    private PasswordField psf_checkPassword;
+
+    @FXML
+    private Button signInMinimize;
+
+    @FXML
+    private TextField txf_id_find_check;
+
+    @FXML
+    private Button btn_reset;
+
+    @FXML
+    private Button signInExit;
+
+    @FXML
+    private Button btn_checkFind;
+
+    @FXML
+    private ImageView iv_image;
+
+    @FXML
+    private ComboBox<String> cbx_selectOne_find;
+
+    @FXML
+    private Button btn_checkAlter;
+
+    @FXML
+    private ComboBox<String> cbx_selectOne;
+
+    @FXML
+    private PasswordField psf_checkPassword_new_alter;
+
+    @FXML
+    private TextField txf_id_find;
+
+    @FXML
+    private TextField txf_id;
+
+    @FXML
+    private TextField txf_id_alter;
+
+    @FXML
+    private ComboBox<String> cbx_selectOne_alter;
+
+    @FXML
+    private TextField txf_question_three_find;
+
+    @FXML
+    private PasswordField psf_password;
+
+    @FXML
+    private TextField txf_question_three_alter;
+
+    @FXML
+    private ComboBox<String> cbx_selectThree_find;
+
+    @FXML
+    private TextField txf_question_one_later;
+
+    @FXML
     private TextField txf_qustion_two;
+
+    @FXML
+    private ComboBox<String> cbx_selectTwo;
+
+    @FXML
+    private ComboBox<String> cbx_selectThree;
+
+    @FXML
+    private TextField txf_qustion_two_alter;
+
+    @FXML
+    private Button btn_signInAndLogin;
+
+    @FXML
+    private PasswordField psf_password_new_alter;
+
+    @FXML
+    private TextField txf_question_one;
+
+    @FXML
+    private TextField txf_question_one_find;
+
+    @FXML
+    private TextField txf_question_three;
+
+    @FXML
+    private ComboBox<String> cbx_selectTwo_alter;
 
     private UserDao userDao;
 
@@ -83,7 +149,14 @@ public class SignInController implements Initializable {
         cbx_selectOne.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
         cbx_selectTwo.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
         cbx_selectThree.getItems().addAll("您的出生地是？","您的小学校名是？","您的小学校名是？","您的学号（或工号）是？");
-    }
+        cbx_selectOne_alter.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
+        cbx_selectTwo_alter.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
+        cbx_selectThree_alter.getItems().addAll("您的出生地是？","您的小学校名是？","您的小学校名是？","您的学号（或工号）是？");
+        cbx_selectOne_find.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
+        cbx_selectTwo_find.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
+        cbx_selectThree_find.getItems().addAll("您的出生地是？","您的小学校名是？","您的学号（或工号）是？");
+
+}
 
 
 
@@ -114,31 +187,26 @@ public class SignInController implements Initializable {
     @FXML
     void ac_signIn(ActionEvent event) throws Exception {
 
-        if(!isCheckInfo()){
-            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请完善注册信息").show();
-            return;
-        }else if (!psf_password.getText().equals(psf_checkPassword.getText())){
-            new AlertDefined(Alert.AlertType.ERROR,"警告⚠️","您的确认密码错误！").show();
-            return;
+        if(isCheckInfo()){
+            System.out.println("正在测试注册验证。。。。。。");
+            //没写入则跳出
+            if(!isWriteInfo()){
+                new AlertDefined(Alert.AlertType.INFORMATION,"警告⚠️","该账号已存在。。。。").show();
+            }else {
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","注册成功！").show();
+            }
         }
-
-
-        System.out.println("正在测试注册验证。。。。。。");
-        //没写入则跳出
-        if(!isWriteInfo()){
-            new AlertDefined(Alert.AlertType.INFORMATION,"警告⚠️","该账号已存在。。。。").show();
-        }else {
-            new AlertDefined(Alert.AlertType.INFORMATION,"提示️","注册成功！").show();
-        }
-
     }
 
     @FXML
     void ac_browse(ActionEvent event){
         FileChooser fileChooser=new FileChooser();
         File file=fileChooser.showOpenDialog(new Stage());
-        pictureUrl =new String("/png/"+file.getName());
-        iv_image.setImage(new Image(pictureUrl));
+        if(file!=null){
+            pictureUrl =new String("/png/"+file.getName());
+            iv_image.setImage(new Image(pictureUrl));
+        }
+
     }
 
 
@@ -152,6 +220,85 @@ public class SignInController implements Initializable {
         signInStage.setIconified(true);
     }
 
+
+    @FXML
+    void ac_checkFind(ActionEvent event) throws Exception {
+        if(isCheckInfo_find()){
+            if (!isFindInfo())
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找失败！，请确认你的信息是否正确。").show();
+        }
+
+    }
+
+    private Boolean isFindInfo() throws Exception {
+
+        for(User user:userDao.list()){
+
+            if(txf_id_find.getText().equals(user.getId())&&
+                    txf_question_one_find.getText().equals(user.getQuestion_one())&&
+                    txf_question_two_find.getText().equals(user.getQuestion_two())&&
+                    txf_question_three_find.getText().equals(user.getQuestion_three())&&
+                    cbx_selectOne_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_one())&&
+                    cbx_selectTwo_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
+                    cbx_selectThree_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找成功！您的密码是："+user.getPassword()).show();
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    private Boolean isCheckInfo_find(){
+
+        if (cbx_selectThree_find.getValue()==null||cbx_selectTwo_find.getValue()==null||
+                cbx_selectOne_find.getValue()==null|| txf_id_find.getText().equals(null)||
+                txf_question_two_find.getText().equals(null)|| txf_question_one_find.getText().equals(null)||
+                txf_question_three_find.getText().equals(null)||txf_id_find_check.getText().equals(null)){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请输入完整信息。。。").show();
+            return false;
+        }else if(!txf_id_find.getText().equals(txf_id_find_check.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","您的确认账号错误").show();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    @FXML
+    void ac_checkAlter(ActionEvent event){
+
+    }
+
+    @FXML
+    void ac_resetFind(ActionEvent event){
+        txf_id_find.clear();
+        txf_id_find_check.clear();
+        txf_question_one_find.clear();
+        txf_question_two_find.clear();
+        txf_question_three_find.clear();
+        cbx_selectOne_find.setValue(null);
+        cbx_selectTwo_find.setValue(null);
+        cbx_selectThree_find.setValue(null);
+    }
+
+    @FXML
+    void ac_resetAlter(ActionEvent event){
+        txf_id_alter.clear();
+        psf_password_old_alter.clear();
+        psf_password_new_alter.clear();
+        psf_checkPassword_new_alter.clear();
+        txf_question_one_later.clear();
+        txf_qustion_two_alter.clear();
+        txf_question_three_alter.clear();
+        cbx_selectOne_alter.setValue(null);
+        cbx_selectTwo_alter.setValue(null);
+        cbx_selectThree_alter.setValue(null);
+    }
+
+
     private Boolean isCheckInfo(){
 
         if (cbx_selectThree.getValue()==null||cbx_selectTwo.getValue()==null||
@@ -159,6 +306,10 @@ public class SignInController implements Initializable {
                 psf_checkPassword.getText().equals(null)||txf_id.getText().equals(null)||
                 txf_qustion_two.getText().equals(null)||txf_question_one.getText().equals(null)||
                 txf_question_three.getText().equals(null)){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请完善注册信息").show();
+            return false;
+        } else if (!psf_password.getText().equals(psf_checkPassword.getText())){
+            new AlertDefined(Alert.AlertType.ERROR,"警告⚠️","您的确认密码错误！").show();
             return false;
         }
         return true;
