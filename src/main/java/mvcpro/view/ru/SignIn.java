@@ -45,7 +45,7 @@ public class SignIn extends Application {
                 //
                 //设置背景颜色
                 //
-                Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
+                Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFFFF"),new CornerRadii(7),new Insets(0)));
                 root.setBackground(bg);
 
                 scene=new Scene(root);
@@ -53,7 +53,7 @@ public class SignIn extends Application {
                 //
                 //加载CSS文件
                 //
-                scene.getStylesheets().add(getClass().getResource("/ui_sign_in_style.css").toExternalForm());
+                //  scene.getStylesheets().add(getClass().getResource("/ui_sign_in_style.css").toExternalForm());
 
                 //
                 //设置场景透明

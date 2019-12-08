@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="424.0" prefWidth="422.0" stylesheets="@ui_sign_in_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.SignInController">
+<AnchorPane prefHeight="424.0" prefWidth="422.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.SignInController">
    <children>
-      <ImageView fx:id="signInImage" fitHeight="150.0" fitWidth="167.0" layoutX="34.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iv_Image" fitHeight="150.0" fitWidth="167.0" layoutX="34.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@png/屏幕快照%202019-11-23%2018.40.07.png" />
          </image>
@@ -18,24 +18,24 @@
             <DropShadow />
          </effect>
       </ImageView>
-      <TextField fx:id="siginId" layoutX="39.0" layoutY="220.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
-      <PasswordField fx:id="signInpPassword" layoutX="39.0" layoutY="266.0" prefHeight="27.0" prefWidth="156.0" promptText="密码" />
-      <PasswordField fx:id="signInCheckPassword" layoutX="39.0" layoutY="310.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
-      <TextField fx:id="questionOne" layoutX="234.0" layoutY="121.0" prefHeight="29.0" prefWidth="150.0" promptText="问题1" />
-      <TextField fx:id="questionTwo" layoutX="236.0" layoutY="214.0" prefHeight="29.0" prefWidth="150.0" promptText="问题2" />
-      <TextField fx:id="questionThree" layoutX="237.0" layoutY="310.0" prefHeight="29.0" prefWidth="150.0" promptText="问题3" />
-      <Button fx:id="signInAndLogin" layoutX="179.0" layoutY="377.0" mnemonicParsing="false" onAction="#btn_signInAndLogin" text="注册并登陆" />
-      <Button fx:id="reset" layoutX="286.0" layoutY="377.0" mnemonicParsing="false" onAction="#btn_reset" text="重置" />
-      <Button fx:id="signIn" layoutX="112.0" layoutY="377.0" mnemonicParsing="false" onAction="#btn_signIn" text="注册" />
-      <ComboBox fx:id="selectTwo" layoutX="234.0" layoutY="174.0" prefWidth="150.0" promptText="选择" />
-      <ComboBox fx:id="selectThree" layoutX="236.0" layoutY="268.0" prefWidth="150.0" promptText="选择" />
-      <ComboBox fx:id="selectOne" layoutX="234.0" layoutY="81.0" prefWidth="150.0" promptText="选择" />
-      <Button fx:id="signInExit" cancelButton="true" focusTraversable="false" layoutX="393.0" layoutY="3.0" mnemonicParsing="false" onAction="#signInExitEvent" prefHeight="12.0" prefWidth="12.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="x" textAlignment="CENTER" textFill="WHITE">
+      <TextField fx:id="txf_id" layoutX="39.0" layoutY="220.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
+      <PasswordField fx:id="psf_password" layoutX="39.0" layoutY="266.0" prefHeight="27.0" prefWidth="156.0" promptText="密码" />
+      <PasswordField fx:id="psf_checkPassword" layoutX="39.0" layoutY="310.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
+      <TextField fx:id="txf_question_one" layoutX="234.0" layoutY="121.0" prefHeight="29.0" prefWidth="150.0" promptText="问题1" />
+      <TextField fx:id="txf_qustion_two" layoutX="236.0" layoutY="214.0" prefHeight="29.0" prefWidth="150.0" promptText="问题2" />
+      <TextField fx:id="txf_question_three" layoutX="237.0" layoutY="310.0" prefHeight="29.0" prefWidth="150.0" promptText="问题3" />
+      <Button fx:id="btn_signInAndLogin" layoutX="179.0" layoutY="377.0" mnemonicParsing="false" onAction="#ac_signInAndLogin" text="注册并登陆" />
+      <Button fx:id="btn_reset" layoutX="286.0" layoutY="377.0" mnemonicParsing="false" onAction="#ac_reset" text="重置" />
+      <Button fx:id="btn_signIn" layoutX="112.0" layoutY="377.0" mnemonicParsing="false" onAction="#ac_signIn" text="注册" />
+      <ComboBox fx:id="cbx_selectTwo" layoutX="234.0" layoutY="174.0" prefWidth="150.0" promptText="选择" />
+      <ComboBox fx:id="cbx_selectThree" layoutX="236.0" layoutY="268.0" prefWidth="150.0" promptText="选择" />
+      <ComboBox fx:id="cbx_selectOne" layoutX="234.0" layoutY="81.0" prefWidth="150.0" promptText="选择" />
+      <Button fx:id="signInExit" cancelButton="true" focusTraversable="false" layoutX="393.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_signInExitEvent" prefHeight="12.0" prefWidth="12.0" text="x" textAlignment="CENTER">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="signInMinimize" focusTraversable="false" graphicTextGap="0.0" layoutX="365.0" layoutY="3.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signInCheckMinimize" prefHeight="12.0" prefWidth="12.0" styleClass="btn_exit" stylesheets="@ui_login_style.css" text="-" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="signInMinimize" focusTraversable="false" graphicTextGap="0.0" layoutX="365.0" layoutY="3.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ac_signInCheckMinimize" prefHeight="12.0" prefWidth="12.0" text="-" textAlignment="CENTER" textFill="#030303">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

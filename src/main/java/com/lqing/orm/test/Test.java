@@ -15,7 +15,6 @@ public class Test {
             //获取所有对象的字段信息
             System.out.println(student.list());
             student.list().forEach(System.out::println);
-
 //            //分行遍历所有对象字段信息
 //            student.list().forEach(System.out::println);
 //            for(int i=0;i<10;i++){
