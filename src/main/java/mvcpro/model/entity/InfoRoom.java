@@ -6,7 +6,7 @@ import com.lqing.orm.internal.entity.DefaultEntity;
 
 
 @AnnotationTable(table = "info_room",clazz = InfoRoom.class)
-public class InfoRoom extends DefaultEntity {
+public class InfoRoom  {
     //房间类型
     @AnnotationField(col_name = "room_type", sql_type = "char",
             size = 20, field_name = "room_type", java_type = "String",
@@ -60,6 +60,78 @@ public class InfoRoom extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private String room_ps;
 
+    public String getRoom_tv() {
+        return room_tv;
+    }
+
+    public void setRoom_tv(String room_tv) {
+        this.room_tv = room_tv;
+    }
+
+    public Integer getRoom_rated_people() {
+        return room_rated_people;
+    }
+
+    public void setRoom_rated_people(Integer room_rated_people) {
+        this.room_rated_people = room_rated_people;
+    }
+
+    public String getRoom_type() {
+        return room_type;
+    }
+
+    public void setRoom_type(String room_type) {
+        this.room_type = room_type;
+    }
+
+    public Integer getRoom_rated_bed() {
+        return room_rated_bed;
+    }
+
+    public void setRoom_rated_bed(Integer room_rated_bed) {
+        this.room_rated_bed = room_rated_bed;
+    }
+
+    public String getRoom_rest() {
+        return room_rest;
+    }
+
+    public void setRoom_rest(String room_rest) {
+        this.room_rest = room_rest;
+    }
+
+    public String getRoom_ps() {
+        return room_ps;
+    }
+
+    public void setRoom_ps(String room_ps) {
+        this.room_ps = room_ps;
+    }
+
+    public String getRoom_phone() {
+        return room_phone;
+    }
+
+    public void setRoom_phone(String room_phone) {
+        this.room_phone = room_phone;
+    }
+
+    public Integer getRoom_area() {
+        return room_area;
+    }
+
+    public void setRoom_area(Integer room_area) {
+        this.room_area = room_area;
+    }
+
+    public String getRoom_air_conditioning() {
+        return room_air_conditioning;
+    }
+
+    public void setRoom_air_conditioning(String room_air_conditioning) {
+        this.room_air_conditioning = room_air_conditioning;
+    }
+
     @Override
     public String toString() {
         return "InfoRoom{" +
@@ -75,84 +147,4 @@ public class InfoRoom extends DefaultEntity {
                 '}';
     }
 
-    public Integer getRoom_area() {
-        return room_area;
-    }
-
-    public InfoRoom setRoom_area(Integer room_area) {
-        this.room_area = room_area;
-        return this;
-    }
-
-    public String getRoom_ps() {
-        return room_ps;
-    }
-
-    public InfoRoom setRoom_ps(String room_ps) {
-        this.room_ps = room_ps;
-        return this;
-    }
-
-    public Integer getRoom_rated_bed() {
-        return room_rated_bed;
-    }
-
-    public InfoRoom setRoom_rated_bed(Integer room_rated_bed) {
-        this.room_rated_bed = room_rated_bed;
-        return this;
-    }
-
-    public Integer getRoom_rated_people() {
-        return room_rated_people;
-    }
-
-    public InfoRoom setRoom_rated_people(Integer room_rated_people) {
-        this.room_rated_people = room_rated_people;
-        return this;
-    }
-
-    public String getRoom_type() {
-        return room_type;
-    }
-
-    public InfoRoom setRoom_type(String room_type) {
-        this.room_type = room_type;
-        return this;
-    }
-
-    public String getRoom_tv() {
-        return room_tv;
-    }
-
-    public InfoRoom setRoom_tv(String room_tv) {
-        this.room_tv = room_tv;
-        return this;
-    }
-
-    public String getRoom_rest() {
-        return room_rest;
-    }
-
-    public InfoRoom setRoom_rest(String room_rest) {
-        this.room_rest = room_rest;
-        return this;
-    }
-
-    public String getRoom_phone() {
-        return room_phone;
-    }
-
-    public InfoRoom setRoom_phone(String room_phone) {
-        this.room_phone = room_phone;
-        return this;
-    }
-
-    public String getRoom_air_conditioning() {
-        return room_air_conditioning;
-    }
-
-    public InfoRoom setRoom_air_conditioning(String room_air_conditioning) {
-        this.room_air_conditioning = room_air_conditioning;
-        return this;
-    }
 }

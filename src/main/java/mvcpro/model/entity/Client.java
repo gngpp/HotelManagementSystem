@@ -43,7 +43,7 @@ public class Client extends DefaultEntity {
 
     //客户的身份证
     @AnnotationField(col_name = "client_id_card", sql_type = "char",
-            size = 30, field_name = "client_id_card", java_type = "String",
+            size = 20, field_name = "client_id_card", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
     private String client_id_card;
 

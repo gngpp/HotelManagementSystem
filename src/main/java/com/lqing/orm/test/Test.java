@@ -1,6 +1,7 @@
 package com.lqing.orm.test;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
+import mvcpro.model.dao.InfoRoomDao;
 
 class StudentDao extends SimpleDaoImpl<Student>{
 
@@ -11,12 +12,13 @@ public class Test {
 
         try {
 
-
+            InfoRoomDao roomDao=new InfoRoomDao();
+            System.out.println(roomDao.list());
         //    Connection connection=DriverManager.getConnection("数据库的url","root","你的数据库密码");
 //          // System.out.println(connection);
-            StudentDao student=new StudentDao();
+     //       StudentDao student=new StudentDao();
             //获取所有对象的字段信息
-            System.out.println(student.list());
+     //       System.out.println(student.list());
 //            student.list().forEach(System.out::println);
 //            //分行遍历所有对象字段信息
 //            student.list().forEach(System.out::println);
