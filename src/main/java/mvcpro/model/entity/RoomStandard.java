@@ -1,51 +1,85 @@
 package mvcpro.model.entity;
 
+import com.lqing.orm.internal.conf.anno.AnnotationField;
+import com.lqing.orm.internal.conf.anno.AnnotationTable;
 import com.lqing.orm.internal.entity.DefaultEntity;
-
+@AnnotationTable(table = "roomStandard",clazz = RoomStandard.class)
 public class RoomStandard extends DefaultEntity {
-        private  String room_id;
-        private  String room_type;
-        private  String room_floor;
-        private  Integer room_price;
-        private  String room_remark;
+    @AnnotationField(col_name = "id", sql_type = "int",
+            size = 20, field_name = "id", java_type = "Integer",
+            is_autoincrement = true, is_primary_key = true)
+        private  Integer id;
 
-    public String getRoom_type() {
-        return room_type;
+    @AnnotationField(col_name = "type", sql_type = "char",
+            size = 20, field_name = "type", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+        private  String type;
+
+    @AnnotationField(col_name = "floor", sql_type = "char",
+            size = 10, field_name = "floor", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+        private  String floor;
+
+    @AnnotationField(col_name = "price", sql_type = "int",
+            size = 20, field_name = "price", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+        private  Integer price;
+
+    @AnnotationField(col_name = "remark", sql_type = "char",
+            size = 255, field_name = "remark", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+        private  String remark;
+
+    @AnnotationField(col_name = "id_number", sql_type = "int",
+            size = 20, field_name = "id_number", java_type = "Integer",
+            is_autoincrement = false, is_primary_key = false)
+        private Integer id_number;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoom_type(String room_type) {
-        this.room_type = room_type;
+    public String getRemark() {
+        return remark;
     }
 
-    public String getRoom_remark() {
-        return room_remark;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
-    public void setRoom_remark(String room_remark) {
-        this.room_remark = room_remark;
+    public String getType() {
+        return type;
     }
 
-    public Integer getRoom_price() {
-        return room_price;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setRoom_price(Integer room_price) {
-        this.room_price = room_price;
+    public String getFloor() {
+        return floor;
     }
 
-    public String getRoom_id() {
-        return room_id;
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 
-    public void setRoom_id(String room_id) {
-        this.room_id = room_id;
+    public Integer getId_number() {
+        return id_number;
     }
 
-    public String getRoom_floor() {
-        return room_floor;
+    public void setId_number(Integer id_number) {
+        this.id_number = id_number;
     }
 
-    public void setRoom_floor(String room_floor) {
-        this.room_floor = room_floor;
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -1,13 +1,6 @@
 package com.lqing.orm.test;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import mvcpro.view.FileChooserDefined;
-
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
 
 class StudentDao extends SimpleDaoImpl<Student>{
 
@@ -19,13 +12,12 @@ public class Test {
         try {
 
 
-
         //    Connection connection=DriverManager.getConnection("数据库的url","root","你的数据库密码");
-          // System.out.println(connection);
+//          // System.out.println(connection);
             StudentDao student=new StudentDao();
             //获取所有对象的字段信息
             System.out.println(student.list());
-            student.list().forEach(System.out::println);
+//            student.list().forEach(System.out::println);
 //            //分行遍历所有对象字段信息
 //            student.list().forEach(System.out::println);
 //            for(int i=0;i<10;i++){
@@ -55,11 +47,11 @@ public class Test {
 //            StringBuilder str=new StringBuilder(demo1.delete("student").where().sql()+"name='n'");
 //            System.out.println(demo1.sql()+"name='n'");
 //            demo1.exec_and_close();
-            Student hanbi=new Student();
-            hanbi.setId(200);
-            hanbi.setName("200");
-
-            student.save(hanbi);
+//            Student hanbi=new Student();
+//            hanbi.setId(200);
+//            hanbi.setName("200");
+//
+//            student.save(hanbi);
 
 
 
