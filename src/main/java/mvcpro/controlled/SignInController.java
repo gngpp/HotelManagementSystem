@@ -110,7 +110,7 @@ public class SignInController implements Initializable {
     private ComboBox<String> cbx_selectThree;
 
     @FXML
-    private TextField txf_qustion_two_alter;
+    private TextField txf_question_two_alter;
 
     @FXML
     private Button btn_signInAndLogin;
@@ -227,76 +227,59 @@ public class SignInController implements Initializable {
             if (!isFindInfo())
                 new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找失败！，请确认你的信息是否正确。").show();
         }
+        ac_resetFind(event);
 
     }
 
-    private Boolean isFindInfo() throws Exception {
+
+    @FXML
+    void ac_checkAlter(ActionEvent event) throws Exception {
+        if(isCheckInfo_alter()){
+            if(!isAlterInfo())
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示️","修改失败！").show();
+        }
+        ac_resetAlter(event);
+    }
+
+    private Boolean isCheckInfo_alter(){
+        if (cbx_selectThree_alter.getValue().equals(null)||cbx_selectTwo_alter.getValue().equals(null)||
+                cbx_selectOne_alter.getValue().equals(null)|| txf_id_alter.getText().equals(null)||
+                txf_question_one_later.getText().equals(null)|| txf_question_three_alter.getText().equals(null)||
+                txf_question_two_alter.getText().equals(null)||txf_id_alter.getText().equals(null)||
+                psf_password_old_alter.getText().equals(null)||psf_password_new_alter.equals(null)||
+                psf_checkPassword_new_alter.equals(null)){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请输入完整信息。。。").show();
+            return false;
+        }else if(!psf_password_new_alter.getText().equals(psf_checkPassword_new_alter.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","您的确认密码错误").show();
+            return false;
+        }
+        return  true;
+    }
+
+    private Boolean isAlterInfo() throws Exception {
 
         for(User user:userDao.list()){
 
-            if(txf_id_find.getText().equals(user.getId())&&
-                    txf_question_one_find.getText().equals(user.getQuestion_one())&&
-                    txf_question_two_find.getText().equals(user.getQuestion_two())&&
-                    txf_question_three_find.getText().equals(user.getQuestion_three())&&
-                    cbx_selectOne_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_one())&&
-                    cbx_selectTwo_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
-                    cbx_selectThree_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
-                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找成功！您的密码是："+user.getPassword()).show();
+            if(txf_id_alter.getText().equals(user.getId())&&
+                    psf_password_old_alter.getText().equals(user.getPassword())&&
+                    txf_question_one_later.getText().equals(user.getQuestion_one())&&
+                    txf_question_two_alter.getText().equals(user.getQuestion_two())&&
+                    txf_question_three_alter.getText().equals(user.getQuestion_three())&&
+                    cbx_selectOne_alter.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_one())&&
+                    cbx_selectTwo_alter.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
+                    cbx_selectThree_alter.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
+                //当前用户对象
+                user.setPassword(psf_checkPassword_new_alter.getText());
+                userDao.update(user);
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","修改成功！").show();
                 return true;
             }
 
         }
-
         return false;
     }
 
-    private Boolean isCheckInfo_find(){
-
-        if (cbx_selectThree_find.getValue()==null||cbx_selectTwo_find.getValue()==null||
-                cbx_selectOne_find.getValue()==null|| txf_id_find.getText().equals(null)||
-                txf_question_two_find.getText().equals(null)|| txf_question_one_find.getText().equals(null)||
-                txf_question_three_find.getText().equals(null)||txf_id_find_check.getText().equals(null)){
-            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请输入完整信息。。。").show();
-            return false;
-        }else if(!txf_id_find.getText().equals(txf_id_find_check.getText())){
-            new AlertDefined(Alert.AlertType.INFORMATION,"提示","您的确认账号错误").show();
-            return false;
-        }
-
-        return true;
-    }
-
-
-    @FXML
-    void ac_checkAlter(ActionEvent event){
-
-    }
-
-    @FXML
-    void ac_resetFind(ActionEvent event){
-        txf_id_find.clear();
-        txf_id_find_check.clear();
-        txf_question_one_find.clear();
-        txf_question_two_find.clear();
-        txf_question_three_find.clear();
-        cbx_selectOne_find.setValue(null);
-        cbx_selectTwo_find.setValue(null);
-        cbx_selectThree_find.setValue(null);
-    }
-
-    @FXML
-    void ac_resetAlter(ActionEvent event){
-        txf_id_alter.clear();
-        psf_password_old_alter.clear();
-        psf_password_new_alter.clear();
-        psf_checkPassword_new_alter.clear();
-        txf_question_one_later.clear();
-        txf_qustion_two_alter.clear();
-        txf_question_three_alter.clear();
-        cbx_selectOne_alter.setValue(null);
-        cbx_selectTwo_alter.setValue(null);
-        cbx_selectThree_alter.setValue(null);
-    }
 
 
     private Boolean isCheckInfo(){
@@ -345,6 +328,69 @@ public class SignInController implements Initializable {
 
         return true;
     }
+
+    private Boolean isFindInfo() throws Exception {
+
+        for(User user:userDao.list()){
+
+            if(txf_id_find.getText().equals(user.getId())&&
+                    txf_question_one_find.getText().equals(user.getQuestion_one())&&
+                    txf_question_two_find.getText().equals(user.getQuestion_two())&&
+                    txf_question_three_find.getText().equals(user.getQuestion_three())&&
+                    cbx_selectOne_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_one())&&
+                    cbx_selectTwo_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
+                    cbx_selectThree_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找成功！您的密码是："+user.getPassword()).show();
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    private Boolean isCheckInfo_find(){
+
+        if (cbx_selectThree_find.getValue()==null||cbx_selectTwo_find.getValue()==null||
+                cbx_selectOne_find.getValue()==null|| txf_id_find.getText().equals(null)||
+                txf_question_two_find.getText().equals(null)|| txf_question_one_find.getText().equals(null)||
+                txf_question_three_find.getText().equals(null)||txf_id_find_check.getText().equals(null)){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","请输入完整信息。。。").show();
+            return false;
+        }else if(!txf_id_find.getText().equals(txf_id_find_check.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION,"提示","您的确认账号错误").show();
+            return false;
+        }
+
+        return true;
+    }
+
+    @FXML
+    void ac_resetFind(ActionEvent event){
+        txf_id_find.clear();
+        txf_id_find_check.clear();
+        txf_question_one_find.clear();
+        txf_question_two_find.clear();
+        txf_question_three_find.clear();
+        cbx_selectOne_find.setValue(null);
+        cbx_selectTwo_find.setValue(null);
+        cbx_selectThree_find.setValue(null);
+    }
+
+    @FXML
+    void ac_resetAlter(ActionEvent event){
+        txf_id_alter.clear();
+        psf_password_old_alter.clear();
+        psf_password_new_alter.clear();
+        psf_checkPassword_new_alter.clear();
+        txf_question_one_later.clear();
+        txf_question_two_alter.clear();
+        txf_question_three_alter.clear();
+        cbx_selectOne_alter.setValue(null);
+        cbx_selectTwo_alter.setValue(null);
+        cbx_selectThree_alter.setValue(null);
+    }
+
 }
 
 
