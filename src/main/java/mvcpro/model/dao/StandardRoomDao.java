@@ -1,11 +1,11 @@
 package mvcpro.model.dao;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
-import mvcpro.model.entity.RoomStandard;
+import mvcpro.model.entity.StandardRoom;
 
-public class RoomStandardDao extends SimpleDaoImpl<RoomStandard> {
+public class StandardRoomDao extends SimpleDaoImpl<StandardRoom> {
     public static void main(String[] args) throws Exception {
-        RoomStandardDao roomStandardDao=new RoomStandardDao();
+        StandardRoomDao roomStandardDao=new StandardRoomDao();
         System.out.println(roomStandardDao.list());
     }
 }
