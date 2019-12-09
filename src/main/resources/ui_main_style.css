@@ -141,4 +141,9 @@
 }
 .combo-box .label{
     -fx-background-color: rgb(255, 245, 255);
+    -fx-text-fill: white;
+}
+.combo-box-base{
+    -fx-background-color: rgb(255, 245, 255);
+    -fx-text-fill: white;
 }

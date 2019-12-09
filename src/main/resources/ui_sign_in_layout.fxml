@@ -67,37 +67,42 @@
             </Tab>
             <Tab text="找回密码">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="351.0" styleClass="frame" stylesheets="@ui_sign_in_style.css">
+                  <Pane>
                      <children>
-                        <TextField fx:id="txf_id_find" layoutX="138.0" layoutY="30.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" styleClass="txf_username" />
-                        <ComboBox fx:id="cbx_selectOne_find" layoutX="104.0" layoutY="119.0" prefHeight="27.0" prefWidth="228.0" promptText="请选择你的密保问题" />
-                        <TextField fx:id="txf_question_one_find" layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="229.0" promptText="问题1" styleClass="txf_username" />
-                        <TextField fx:id="txf_question_two_find" layoutX="102.0" layoutY="266.0" prefHeight="29.0" prefWidth="229.0" promptText="问题2" styleClass="txf_username" />
-                        <ComboBox fx:id="cbx_selectTwo_find" layoutX="102.0" layoutY="215.0" prefHeight="27.0" prefWidth="229.0" promptText="请选择你的密保问题" />
-                        <ComboBox fx:id="cbx_selectThree_find" layoutX="101.0" layoutY="312.0" prefHeight="27.0" prefWidth="231.0" promptText="请选择你的密保问题" />
-                        <TextField fx:id="txf_question_three_find" layoutX="102.0" layoutY="357.0" prefHeight="29.0" prefWidth="232.0" promptText="问题3" styleClass="txf_username" />
-                        <TextField fx:id="txf_id_find_check" layoutX="138.0" layoutY="73.0" prefHeight="27.0" prefWidth="156.0" promptText="确认账号" styleClass="txf_username" />
-                        <Button fx:id="btn_checkFind" layoutX="172.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_checkFind" prefHeight="22.0" prefWidth="44.0" styleClass="btn" text="确认">
-                           <textFill>
-                              <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="WHITE" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </textFill>
-                        </Button>
-                        <Button fx:id="btn_reset_find" layoutX="228.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_resetFind" styleClass="btn" text="重置">
-                           <textFill>
-                              <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="WHITE" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </textFill></Button>
+                        <AnchorPane layoutX="-1.0" layoutY="-6.0" prefHeight="448.0" prefWidth="439.0" styleClass="frame" stylesheets="@ui_sign_in_style.css">
+                           <children>
+                              <TextField fx:id="txf_id_find" layoutX="138.0" layoutY="24.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" styleClass="txf_username" />
+                              <ComboBox fx:id="cbx_selectOne_find" layoutX="106.0" layoutY="116.0" prefHeight="27.0" prefWidth="228.0" promptText="请选择你的密保问题" />
+                              <TextField fx:id="txf_question_one_find" layoutX="103.0" layoutY="162.0" prefHeight="29.0" prefWidth="229.0" promptText="问题1" styleClass="txf_username" />
+                              <TextField fx:id="txf_question_two_find" layoutX="102.0" layoutY="263.0" prefHeight="29.0" prefWidth="229.0" promptText="问题2" styleClass="txf_username" />
+                              <ComboBox fx:id="cbx_selectTwo_find" layoutX="102.0" layoutY="213.0" prefHeight="27.0" prefWidth="229.0" promptText="请选择你的密保问题" />
+                              <ComboBox fx:id="cbx_selectThree_find" layoutX="101.0" layoutY="310.0" prefHeight="27.0" prefWidth="231.0" promptText="请选择你的密保问题" />
+                              <TextField fx:id="txf_question_three_find" layoutX="102.0" layoutY="355.0" prefHeight="29.0" prefWidth="232.0" promptText="问题3" styleClass="txf_username" />
+                              <TextField fx:id="txf_id_find_check" layoutX="138.0" layoutY="67.0" prefHeight="27.0" prefWidth="156.0" promptText="确认账号" styleClass="txf_username" />
+                              <Button fx:id="btn_checkFind" layoutX="129.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_checkFind" prefHeight="30.0" prefWidth="73.0" styleClass="btn" text="确认">
+                                 <textFill>
+                                    <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
+                                       <stops>
+                                          <Stop color="BLACK" />
+                                          <Stop color="WHITE" offset="1.0" />
+                                       </stops>
+                                    </LinearGradient>
+                                 </textFill>
+                              </Button>
+                              <Button fx:id="btn_reset_find" layoutX="218.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_resetFind" prefHeight="30.0" prefWidth="77.0" styleClass="btn" text="重置">
+                                 <textFill>
+                                    <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
+                                       <stops>
+                                          <Stop color="BLACK" />
+                                          <Stop color="WHITE" offset="1.0" />
+                                       </stops>
+                                    </LinearGradient>
+                                 </textFill>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                      </children>
-                  </AnchorPane>
+                  </Pane>
                </content>
             </Tab>
             <Tab text="修改密码">
