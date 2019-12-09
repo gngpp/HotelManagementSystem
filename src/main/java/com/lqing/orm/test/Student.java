@@ -35,7 +35,7 @@ public class Student extends DefaultEntity {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "InfoRoom{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
