@@ -67,27 +67,35 @@
             </Tab>
             <Tab text="找回密码">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="351.0" styleClass="frame">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="351.0" styleClass="frame" stylesheets="@ui_sign_in_style.css">
                      <children>
-                        <TextField fx:id="txf_id_find" layoutX="138.0" layoutY="30.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
+                        <TextField fx:id="txf_id_find" layoutX="138.0" layoutY="30.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" styleClass="txf_username" />
                         <ComboBox fx:id="cbx_selectOne_find" layoutX="104.0" layoutY="119.0" prefHeight="27.0" prefWidth="228.0" promptText="请选择你的密保问题" />
-                        <TextField fx:id="txf_question_one_find" layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="229.0" promptText="问题1" />
-                        <TextField fx:id="txf_question_two_find" layoutX="102.0" layoutY="266.0" prefHeight="29.0" prefWidth="229.0" promptText="问题2" />
+                        <TextField fx:id="txf_question_one_find" layoutX="102.0" layoutY="163.0" prefHeight="29.0" prefWidth="229.0" promptText="问题1" styleClass="txf_username" />
+                        <TextField fx:id="txf_question_two_find" layoutX="102.0" layoutY="266.0" prefHeight="29.0" prefWidth="229.0" promptText="问题2" styleClass="txf_username" />
                         <ComboBox fx:id="cbx_selectTwo_find" layoutX="102.0" layoutY="215.0" prefHeight="27.0" prefWidth="229.0" promptText="请选择你的密保问题" />
                         <ComboBox fx:id="cbx_selectThree_find" layoutX="101.0" layoutY="312.0" prefHeight="27.0" prefWidth="231.0" promptText="请选择你的密保问题" />
-                        <TextField fx:id="txf_question_three_find" layoutX="102.0" layoutY="357.0" prefHeight="29.0" prefWidth="232.0" promptText="问题3" />
-                        <TextField fx:id="txf_id_find_check" layoutX="138.0" layoutY="73.0" prefHeight="27.0" prefWidth="156.0" promptText="确认账号" />
-                        <Button fx:id="btn_checkFind" layoutX="172.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_checkFind" prefHeight="22.0" prefWidth="44.0" text="确认">
+                        <TextField fx:id="txf_question_three_find" layoutX="102.0" layoutY="357.0" prefHeight="29.0" prefWidth="232.0" promptText="问题3" styleClass="txf_username" />
+                        <TextField fx:id="txf_id_find_check" layoutX="138.0" layoutY="73.0" prefHeight="27.0" prefWidth="156.0" promptText="确认账号" styleClass="txf_username" />
+                        <Button fx:id="btn_checkFind" layoutX="172.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_checkFind" prefHeight="22.0" prefWidth="44.0" styleClass="btn" text="确认">
                            <textFill>
-                              <LinearGradient endX="1.0" endY="0.5769230769230769" proportional="false" startY="1.0">
+                              <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
                                  <stops>
                                     <Stop color="BLACK" />
-                                    <Stop color="BLACK" offset="1.0" />
+                                    <Stop color="WHITE" offset="1.0" />
                                  </stops>
                               </LinearGradient>
                            </textFill>
                         </Button>
-                        <Button fx:id="btn_reset_find" layoutX="228.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_resetFind" text="重置" />
+                        <Button fx:id="btn_reset_find" layoutX="228.0" layoutY="395.0" mnemonicParsing="false" onAction="#ac_resetFind" styleClass="btn" text="重置">
+                           <textFill>
+                              <LinearGradient endY="0.5769230769230769" proportional="false" startY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </textFill></Button>
                      </children>
                   </AnchorPane>
                </content>
@@ -96,20 +104,20 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="437.0" prefWidth="439.0">
+                        <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="437.0" prefWidth="439.0" styleClass="frame" stylesheets="@ui_sign_in_style.css">
                            <children>
-                              <TextField fx:id="txf_id_alter" layoutX="43.0" layoutY="80.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" />
-                              <PasswordField fx:id="psf_password_old_alter" layoutX="43.0" layoutY="136.0" prefHeight="27.0" prefWidth="156.0" promptText="旧密码" />
-                              <PasswordField fx:id="psf_password_new_alter" layoutX="43.0" layoutY="187.0" prefHeight="27.0" prefWidth="156.0" promptText="新密码" />
-                              <TextField fx:id="txf_question_one_later" layoutX="234.0" layoutY="121.0" prefHeight="29.0" prefWidth="157.0" promptText="问题1" />
-                              <TextField fx:id="txf_question_two_alter" layoutX="236.0" layoutY="214.0" prefHeight="29.0" prefWidth="156.0" promptText="问题2" />
-                              <TextField fx:id="txf_question_three_alter" layoutX="237.0" layoutY="310.0" prefHeight="29.0" prefWidth="156.0" promptText="问题3" />
-                              <Button fx:id="btn_checkAlter" layoutX="150.0" layoutY="388.0" mnemonicParsing="false" onAction="#ac_checkAlter" text="确认修改">
+                              <TextField fx:id="txf_id_alter" layoutX="43.0" layoutY="80.0" prefHeight="27.0" prefWidth="156.0" promptText="账号" styleClass="txf_username" />
+                              <PasswordField fx:id="psf_password_old_alter" layoutX="43.0" layoutY="136.0" prefHeight="27.0" prefWidth="156.0" promptText="旧密码" styleClass="txf_username" />
+                              <PasswordField fx:id="psf_password_new_alter" layoutX="43.0" layoutY="187.0" prefHeight="27.0" prefWidth="156.0" promptText="新密码" styleClass="txf_username" />
+                              <TextField fx:id="txf_question_one_later" layoutX="234.0" layoutY="121.0" prefHeight="29.0" prefWidth="157.0" promptText="问题1" styleClass="txf_username" />
+                              <TextField fx:id="txf_question_two_alter" layoutX="236.0" layoutY="214.0" prefHeight="29.0" prefWidth="156.0" promptText="问题2" styleClass="txf_username" />
+                              <TextField fx:id="txf_question_three_alter" layoutX="237.0" layoutY="310.0" prefHeight="29.0" prefWidth="156.0" promptText="问题3" styleClass="txf_username" />
+                              <Button fx:id="btn_checkAlter" layoutX="150.0" layoutY="388.0" mnemonicParsing="false" onAction="#ac_checkAlter" styleClass="btn" text="确认修改">
                                  <textFill>
                                     <LinearGradient endX="1.0" endY="0.5769230769230769" proportional="false" startY="1.0">
                                        <stops>
                                           <Stop color="BLACK" />
-                                          <Stop color="BLACK" offset="1.0" />
+                                          <Stop color="WHITE" offset="1.0" />
                                        </stops>
                                     </LinearGradient>
                                  </textFill>
@@ -117,8 +125,8 @@
                               <ComboBox fx:id="cbx_selectTwo_alter" layoutX="234.0" layoutY="174.0" prefHeight="27.0" prefWidth="159.0" promptText="请选择问题" />
                               <ComboBox fx:id="cbx_selectThree_alter" layoutX="236.0" layoutY="268.0" prefHeight="27.0" prefWidth="159.0" promptText="请选择问题" />
                               <ComboBox fx:id="cbx_selectOne_alter" layoutX="234.0" layoutY="81.0" prefHeight="27.0" prefWidth="157.0" promptText="请选择问题" />
-                              <PasswordField fx:id="psf_checkPassword_new_alter" layoutX="43.0" layoutY="239.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" />
-                              <Button fx:id="btn_reset_alter" layoutX="237.0" layoutY="388.0" mnemonicParsing="false" onAction="#ac_resetAlter" text="重置" />
+                              <PasswordField fx:id="psf_checkPassword_new_alter" layoutX="43.0" layoutY="239.0" prefHeight="27.0" prefWidth="156.0" promptText="确认密码" styleClass="txf_username" />
+                              <Button fx:id="btn_reset_alter" layoutX="237.0" layoutY="388.0" mnemonicParsing="false" onAction="#ac_resetAlter" styleClass="btn" text="重置" textFill="WHITE" />
                            </children>
                         </AnchorPane>
                      </children>
