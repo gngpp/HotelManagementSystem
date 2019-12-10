@@ -9,7 +9,7 @@ import com.lqing.orm.internal.entity.DefaultEntity;
 public class InfoRoom extends DefaultEntity {
     @AnnotationField(col_name = "id", sql_type = "int",
                                size = 11, field_name = "id", java_type = "int",
-                               is_autoincrement = false, is_primary_key = true)
+                               is_autoincrement = true, is_primary_key = true)
     private int id;
 
     @AnnotationField(col_name = "name", sql_type = "char",

@@ -14,8 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import mvcpro.model.dao.UserDao;
+import mvcpro.model.dao.*;
+import mvcpro.model.entity.Client;
 import mvcpro.model.entity.User;
+import mvcpro.view.server.ClientData;
 import mvcpro.view.server.UserData;
 
 public class UiMainController {
@@ -47,11 +49,12 @@ public class UiMainController {
     private Button mainExit;
 
     @FXML
-    private TableView<User> mTable;
-
-    @FXML
     private TableView<User> mTableUser;
 
+    @FXML
+    private TableView<Client> mTableClient;
+
+    //用户表
     @FXML
     private TableColumn<UserData, String> tableColumnPassword;
 
@@ -75,11 +78,41 @@ public class UiMainController {
 
     @FXML  TableColumn<UserData,String> tableColumnPicture;
 
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnNative_client;
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnIdNumber_client;
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnName_client;
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnSex_client;
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnCard_client;
+
+    @FXML
+    private TableColumn<ClientData, String> tableColumnPhone_client;
+
+
+
+
     //
-    // 客户信息表数据列表，此列表绑定这控件
+    // 用户表数据列表，此列表绑定这控件
     //
     private final ObservableList<User> userData=FXCollections.observableArrayList();
 
+    //客户数据列表
+    private final ObservableList<Client> clientData=FXCollections.observableArrayList();
+
+    private UserDao userDao;
+    private ClientDao clientDao;
+    private InfoRoomDao infoRoomDao;
+    private BookRoomDao bookRoomDao;
+    private StandardRoomDao standardRoomDao;
 
     @FXML
     void CheckAdd(ActionEvent event) throws Exception {
@@ -122,11 +155,21 @@ public class UiMainController {
 
     @FXML
     void initialize() throws Exception {
+        initDataDao();
         initProprety();
         initUserTable();
+        initClientTable();
 
     }
 
+    private void initDataDao(){
+        bookRoomDao=new BookRoomDao();
+        clientDao=new ClientDao();
+        infoRoomDao=new InfoRoomDao();
+        standardRoomDao=new StandardRoomDao();
+        userDao=new UserDao();
+
+    }
     private void initProprety(){
 
         Rectangle clip_one = new Rectangle(imageView_one.getImage().getWidth(),imageView_one.getImage().getHeight());
@@ -160,6 +203,7 @@ public class UiMainController {
         tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_three"));
         tableColumnPicture.setCellValueFactory(new PropertyValueFactory<UserData,String>("picture"));
 
+        //添加列双击事件
         tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(
                 (TableColumn.CellEditEvent<UserData, String> t) -> {
@@ -168,13 +212,25 @@ public class UiMainController {
                     ).setUserId(t.getNewValue());
                 });
 
-        UserDao dao=new UserDao();
-        for (User user:dao.list())
+        for (User user:userDao.list())
             userData.add(user);
         mTableUser.setItems(userData);
     }
 
+    private void initClientTable() throws Exception {
+        tableColumnName_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_name"));
+        tableColumnSex_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_sex"));
+        tableColumnCard_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_id_card"));
+        tableColumnPhone_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_phone"));
+        tableColumnNative_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_native"));
+        tableColumnIdNumber_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_id_number"));
+        for (Client client:clientDao.list())
+            clientData.add(client);
+        mTableClient.setItems(clientData);
+
+    }
 }
+
 
 
 

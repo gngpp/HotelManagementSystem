@@ -47,6 +47,20 @@ public class Client extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private String client_id_card;
 
+    //客户的身份证
+    @AnnotationField(col_name = "client_id_number", sql_type = "char",
+            size = 20, field_name = "client_id_number", java_type = "String",
+            is_autoincrement = false, is_primary_key = false)
+    private String client_id_number;
+
+    public String getClient_id_number() {
+        return client_id_number;
+    }
+
+    public void setClient_id_number(String client_id_number) {
+        this.client_id_number = client_id_number;
+    }
+
     public String getClient_id_card() {
         return client_id_card;
     }
@@ -110,6 +124,7 @@ public class Client extends DefaultEntity {
                 ", client_id=" + client_id +
                 ", client_phone='" + client_phone + '\'' +
                 ", client_id_card='" + client_id_card + '\'' +
+                ", client_id_number='" + client_id_number + '\'' +
                 '}';
     }
 }

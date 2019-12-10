@@ -148,13 +148,14 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="326.0" layoutY="-1.0" prefHeight="405.0" prefWidth="561.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableClient" layoutX="163.0" layoutY="-1.0" prefHeight="405.0" prefWidth="724.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
-                                                      <TableColumn prefWidth="89.0" sortable="false" text="姓名" />
-                                                      <TableColumn prefWidth="86.0" sortable="false" text="性别" />
-                                                      <TableColumn minWidth="0.0" prefWidth="96.0" sortable="false" text="身份证" />
-                                                      <TableColumn minWidth="0.0" prefWidth="70.0" sortable="false" text="籍贯" />
-                                                      <TableColumn prefWidth="228.0" sortable="false" text="联系电话" />
+                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" sortable="false" text="姓名" />
+                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" sortable="false" text="性别" />
+                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" sortable="false" text="身份证" />
+                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" sortable="false" text="籍贯" />
+                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" sortable="false" text="联系电话" />
+                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" sortable="false" text="客户编号" />
                                                    </columns>
                                                 </TableView>
                                              </children>
@@ -165,16 +166,16 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
                                              <children>
-                                                <TableView fx:id="mTableUser" editable="true" layoutX="57.0" layoutY="-1.0" prefHeight="405.0" prefWidth="830.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableUser" editable="true" layoutY="-1.0" prefHeight="405.0" prefWidth="887.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
-                                                    <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="id" />
-                                                    <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="password" />
-                                                      <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="userType" />
+                                                    <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="用户账号" />
+                                                    <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="密码" />
+                                                      <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="用户类型" />
                                                       <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" sortable="false" text="UUID" />
-                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="question_one" />
-                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" sortable="false" text="question_two" />
-                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="question_three" />
-                                                      <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="picture" />
+                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="密保问题1" />
+                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" sortable="false" text="密保问题2" />
+                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="密保问题3" />
+                                                      <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
                                                 </TableView>
                                              </children>
