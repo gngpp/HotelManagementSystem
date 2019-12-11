@@ -12,11 +12,6 @@ public class InfoRoom extends DefaultEntity {
                                is_autoincrement = true, is_primary_key = true)
     private int id;
 
-    @AnnotationField(col_name = "name", sql_type = "char",
-                              size = 24, field_name = "name", java_type = "String",
-                              is_autoincrement = false, is_primary_key = false)
-    private String name;
-
     @AnnotationField(col_name = "type", sql_type = "char",
                    size = 20, field_name = "type", java_type = "String",
                    is_autoincrement = false, is_primary_key = false)
@@ -147,13 +142,6 @@ public class InfoRoom extends DefaultEntity {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -163,7 +151,6 @@ public class InfoRoom extends DefaultEntity {
     public String toString() {
         return "InfoRoom{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", area=" + area +
                 ", iphone='" + iphone + '\'' +

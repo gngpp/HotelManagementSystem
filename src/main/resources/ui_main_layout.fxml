@@ -40,17 +40,17 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView layoutY="14.0" prefHeight="389.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableInfoRoom" layoutY="14.0" prefHeight="389.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
-                                                      <TableColumn prefWidth="89.0" sortable="false" text="房间类型" />
-                                                      <TableColumn prefWidth="86.0" sortable="false" text="面积" />
-                                                      <TableColumn minWidth="0.0" prefWidth="90.0" sortable="false" text="额定床数" />
-                                                      <TableColumn minWidth="0.0" prefWidth="76.0" sortable="false" text="额定人数" />
-                                                      <TableColumn prefWidth="73.0" sortable="false" text="空调" />
-                                                      <TableColumn minWidth="0.0" prefWidth="75.0" sortable="false" text="电视" />
-                                                      <TableColumn minWidth="0.0" prefWidth="109.0" sortable="false" text="卫生间" />
-                                                      <TableColumn minWidth="0.0" prefWidth="107.0" sortable="false" text="电话" />
-                                                      <TableColumn minWidth="0.0" prefWidth="181.0" sortable="false" text="备注" />
+                                                      <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" sortable="false" text="房间类型" />
+                                                      <TableColumn fx:id="tableColumnArea_Info" prefWidth="86.0" sortable="false" text="面积" />
+                                                      <TableColumn fx:id="tableColumnMax_bed_Info" minWidth="0.0" prefWidth="90.0" sortable="false" text="额定床数" />
+                                                      <TableColumn fx:id="tableColumnMax_people_Info" minWidth="0.0" prefWidth="76.0" sortable="false" text="额定人数" />
+                                                      <TableColumn fx:id="tableColumnAir_conditioning_Info" prefWidth="73.0" sortable="false" text="空调" />
+                                                      <TableColumn fx:id="tableColumnTv_Info" minWidth="0.0" prefWidth="75.0" sortable="false" text="电视" />
+                                                      <TableColumn fx:id="tableColumnRest_Info" minWidth="0.0" prefWidth="109.0" sortable="false" text="卫生间" />
+                                                      <TableColumn fx:id="tableColumnPhone_Info" minWidth="0.0" prefWidth="107.0" sortable="false" text="电话" />
+                                                      <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="181.0" sortable="false" text="备注" />
                                                    </columns>
                                                 </TableView>
                                              </children>
@@ -61,19 +61,20 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView layoutX="312.0" layoutY="-1.0" prefHeight="402.0" prefWidth="575.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableStandardRoom" layoutY="51.0" prefHeight="350.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
-                                                      <TableColumn prefWidth="89.0" sortable="false" text="客房编号" />
-                                                      <TableColumn prefWidth="86.0" sortable="false" text="客房类型" />
-                                                      <TableColumn minWidth="0.0" prefWidth="96.0" sortable="false" text="客房楼层" />
-                                                      <TableColumn minWidth="0.0" prefWidth="70.0" sortable="false" text="单价" />
-                                                      <TableColumn prefWidth="228.0" sortable="false" text="备注" />
+                                                      <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" sortable="false" text="客房编号" />
+                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="86.0" sortable="false" text="客房类型" />
+                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="96.0" sortable="false" text="客房楼层" />
+                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="132.0" sortable="false" text="单价/天" />
+                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="166.0" sortable="false" text="备注" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="90.0" layoutY="88.0" mnemonicParsing="false" text="Button" />
-                                                <Button layoutX="90.0" layoutY="175.0" mnemonicParsing="false" text="Button" />
-                                                <Button layoutX="90.0" layoutY="257.0" mnemonicParsing="false" text="Button" />
-                                                <Button layoutX="90.0" layoutY="309.0" mnemonicParsing="false" text="Button" />
+                                                <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" styleClass="btn" text="添加客房" textFill="WHITE" />
+                                                <Button layoutX="184.0" layoutY="14.0" mnemonicParsing="false" styleClass="btn" text="删除客房" textFill="WHITE" />
+                                                <Button layoutX="97.0" layoutY="14.0" mnemonicParsing="false" styleClass="btn" text="修改信息" textFill="WHITE" />
+                                                <Button layoutX="531.0" layoutY="14.0" mnemonicParsing="false" styleClass="btn" text="查找" textFill="WHITE" />
+                                                <TextField layoutX="352.0" layoutY="14.0" promptText="按编号查找" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -88,18 +89,18 @@
                      <content>
                         <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
-                              <TableView layoutX="-1.0" layoutY="35.0" prefHeight="400.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                              <TableView fx:id="mTableBookRoom" layoutX="-1.0" layoutY="35.0" prefHeight="400.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                 <columns>
-                                  <TableColumn prefWidth="76.0" sortable="false" text="客房编号" />
-                                  <TableColumn prefWidth="70.0" sortable="false" text="客房类型" />
-                                    <TableColumn minWidth="0.0" prefWidth="87.0" sortable="false" text="客房单价" />
-                                    <TableColumn prefWidth="88.0" sortable="false" text="客户编号" />
-                                    <TableColumn prefWidth="88.0" sortable="false" text="客户姓名" />
-                                    <TableColumn minWidth="0.0" prefWidth="83.0" sortable="false" text="入住日期" />
-                                    <TableColumn prefWidth="86.0" sortable="false" text="折扣" />
-                                    <TableColumn minWidth="0.0" prefWidth="74.0" sortable="false" text="结算日期" />
-                                    <TableColumn prefWidth="67.0" sortable="false" text="总金额" />
-                                    <TableColumn minWidth="0.0" prefWidth="167.0" sortable="false" text="备注" />
+                                  <TableColumn fx:id="tableColumnId_number_booking" prefWidth="76.0" sortable="false" text="客房编号" />
+                                  <TableColumn fx:id="tableColumnType_booking" prefWidth="70.0" sortable="false" text="客房类型" />
+                                    <TableColumn fx:id="tableColumnPrice_booking" minWidth="0.0" prefWidth="87.0" sortable="false" text="客房单价" />
+                                    <TableColumn fx:id="tableColumnPeople_id_booking" prefWidth="88.0" sortable="false" text="客户编号" />
+                                    <TableColumn fx:id="tableColumnPeople_name_booking" prefWidth="88.0" sortable="false" text="客户姓名" />
+                                    <TableColumn fx:id="tableColumnIn_date_booking" minWidth="0.0" prefWidth="83.0" sortable="false" text="入住日期" />
+                                    <TableColumn fx:id="tableColumnDiscount_booking" prefWidth="86.0" sortable="false" text="折扣" />
+                                    <TableColumn fx:id="tableColumnOut_date_booking" minWidth="0.0" prefWidth="74.0" sortable="false" text="结算日期" />
+                                    <TableColumn fx:id="tableColumnAmout_booking" prefWidth="67.0" sortable="false" text="总金额" />
+                                    <TableColumn fx:id="tableColumnRemark_booking" minWidth="0.0" prefWidth="167.0" sortable="false" text="备注" />
                                 </columns>
                               </TableView>
                               <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="37.0" prefWidth="260.0">
@@ -119,19 +120,11 @@
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutY="-2.0" prefHeight="442.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
+                              <TableView layoutX="-6.0" layoutY="-2.0" prefHeight="442.0" prefWidth="893.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="75.0" text="C2" />
                                     <TableColumn prefWidth="75.0" text="C2" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
-                                    <TableColumn prefWidth="75.0" />
                                     <TableColumn prefWidth="75.0" />
                                 </columns>
                               </TableView>
@@ -166,7 +159,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
                                              <children>
-                                                <TableView fx:id="mTableUser" editable="true" layoutY="-1.0" prefHeight="405.0" prefWidth="887.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableUser" editable="true" layoutX="264.0" layoutY="52.0" prefHeight="352.0" prefWidth="623.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
                                                     <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="用户账号" />
                                                     <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="密码" />
@@ -178,6 +171,18 @@
                                                       <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
                                                 </TableView>
+                                                <Button layoutX="703.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_check" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
+                                                <DatePicker layoutX="46.0" layoutY="14.0" />
+                                                <TextField fx:id="txf_search" layoutX="535.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
+                                                <ImageView fx:id="iv_picture_user" fitHeight="148.0" fitWidth="164.0" layoutX="53.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                                   <effect>
+                                                      <DropShadow />
+                                                   </effect>
+                                                </ImageView>
+                                                <Button fx:id="add1" focusTraversable="false" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_edit_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="编辑" textFill="WHITE" />
+                                                <Button fx:id="add11" focusTraversable="false" layoutX="348.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="WHITE" />
+                                                <Button fx:id="add111" focusTraversable="false" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="刷新" textFill="WHITE" />
+                                                <Button fx:id="add112" focusTraversable="false" layoutX="97.0" layoutY="217.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更换头像" textFill="WHITE" />
                                              </children>
                                           </AnchorPane>
                                     </content>

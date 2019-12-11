@@ -4,6 +4,8 @@ import com.lqing.orm.internal.SimpleDaoImpl;
 import mvcpro.model.dao.InfoRoomDao;
 import mvcpro.model.entity.InfoRoom;
 
+import java.util.Date;
+
 public class Test {
     public static void main(String[] args) {
 
@@ -11,6 +13,8 @@ public class Test {
 
             InfoRoomDao roomDao=new InfoRoomDao();
             roomDao.list().forEach(System.out::println);
+
+
         //    Connection connection=DriverManager.getConnection("数据库的url","root","你的数据库密码");
 //          // System.out.println(connection);
      //       StudentDao student=new StudentDao();

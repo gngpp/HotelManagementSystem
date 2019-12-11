@@ -2,6 +2,8 @@ package com.lqing.orm.test;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
 import mvcpro.model.dao.InfoRoomDao;
+import mvcpro.model.dao.UserDao;
+import mvcpro.view.server.UserData;
 
 class StudentDao extends SimpleDaoImpl<Student>{
 
@@ -12,8 +14,8 @@ public class Test {
 
         try {
 
-            InfoRoomDao roomDao=new InfoRoomDao();
-            System.out.println(roomDao.list());
+            UserDao userDao=new UserDao();
+
         //    Connection connection=DriverManager.getConnection("数据库的url","root","你的数据库密码");
 //          // System.out.println(connection);
      //       StudentDao student=new StudentDao();

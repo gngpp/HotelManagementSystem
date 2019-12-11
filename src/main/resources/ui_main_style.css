@@ -37,9 +37,9 @@
 .txf_username{
     -fx-border-width: 0px;
     -fx-background-radius:7px;
-    -fx-border-color:rgba(63,63,70,1);
-    -fx-background-color: rgba(51, 51, 55, 0.22);
-    -fx-text-fill: #b9b9b9;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-background-color: rgba(51, 51, 55, 0.8);
+    -fx-text-fill: #ffffff;
 }
 .txf_username:hover{
     -fx-border-color: rgba(0,122,204,1);

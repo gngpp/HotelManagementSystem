@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import mvcpro.model.entity.Client;
 
 public class ClientData {
-    public Client client;
+    private Client client;
     private SimpleStringProperty client_name;
     private SimpleStringProperty client_sex;
     private SimpleStringProperty client_id_card;
@@ -13,7 +13,7 @@ public class ClientData {
     private SimpleStringProperty client_native;
     private SimpleStringProperty client_id_number;
 
-    public ClientData(Client user){
+    public ClientData(Client client){
         this.client=new Client();
         this.client_name=new SimpleStringProperty(client.getClient_name());
         this.client_native=new SimpleStringProperty(client.getClient_native());

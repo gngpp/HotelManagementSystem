@@ -1,24 +1,29 @@
 package mvcpro.controlled;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mvcpro.model.dao.*;
-import mvcpro.model.entity.Client;
-import mvcpro.model.entity.User;
-import mvcpro.view.server.ClientData;
-import mvcpro.view.server.UserData;
+import mvcpro.model.entity.*;
+import mvcpro.view.AlertDefined;
+import mvcpro.view.server.*;
+
+import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class UiMainController {
 
@@ -30,6 +35,7 @@ public class UiMainController {
     @FXML
     private ImageView imageView_two;
 
+    @FXML ImageView iv_picture_user;
     @FXML
     private Button add;
 
@@ -49,10 +55,22 @@ public class UiMainController {
     private Button mainExit;
 
     @FXML
-    private TableView<User> mTableUser;
+    private TextField txf_search;
 
     @FXML
-    private TableView<Client> mTableClient;
+    private TableView<UserData> mTableUser;
+
+    @FXML
+    private TableView<ClientData> mTableClient;
+
+    @FXML
+    private TableView<BookRoomData> mTableBookRoom;
+
+    @FXML
+    private TableView<InfoRoomData> mTableInfoRoom;
+
+    @FXML
+    private TableView<StandardRoomData> mTableStandardRoom;
 
     //用户表
     @FXML
@@ -97,16 +115,101 @@ public class UiMainController {
     @FXML
     private TableColumn<ClientData, String> tableColumnPhone_client;
 
+    //订房信息列
+    @FXML
+    private TableColumn<BookRoomData, Integer> tableColumnId_number_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnType_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, Integer> tableColumnPrice_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnPeople_id_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnPeople_name_booking;
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnIn_date_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnDiscount_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnOut_date_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, Integer> tableColumnAmout_booking;
+
+    @FXML
+    private TableColumn<BookRoomData, String> tableColumnRemark_booking;
+
+    //房间信息列
+
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnType_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, Integer> tableColumnArea_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, Integer> tableColumnMax_bed_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, Integer> tableColumnMax_people_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnAir_conditioning_Info;
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnTv_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnRest_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnPhone_Info;
+
+    @FXML
+    private TableColumn<InfoRoomData, String> tableColumnPs_Info;
+
+
+
+    //房间标准列
+    @FXML
+    private TableColumn<StandardRoomData, Integer> tableColumnIdNumber_standard;
+
+    @FXML
+    private TableColumn<StandardRoomData, String> tableColumnType_standard;
+
+    @FXML
+    private TableColumn<StandardRoomData, String> tableColumnFloor_standard;
+
+    @FXML
+    private TableColumn<StandardRoomData, Integer> tableColumnPrice_standard;
+
+    @FXML
+    private TableColumn<StandardRoomData, String> tableColumnRemark_standard;
 
 
 
     //
     // 用户表数据列表，此列表绑定这控件
     //
-    private final ObservableList<User> userData=FXCollections.observableArrayList();
+    private final ObservableList<UserData> userData=FXCollections.observableArrayList();
 
     //客户数据列表
-    private final ObservableList<Client> clientData=FXCollections.observableArrayList();
+    private final ObservableList<ClientData> clientData=FXCollections.observableArrayList();
+
+    //订房数据列表
+    private final ObservableList<BookRoomData> bookRoomData=FXCollections.observableArrayList();
+
+    //房间信息列表
+    private final ObservableList<InfoRoomData> infoRoomData=FXCollections.observableArrayList();
+
+    //房间标准信息
+    private final ObservableList<StandardRoomData> standardRoomData=FXCollections.observableArrayList();
+
 
     private UserDao userDao;
     private ClientDao clientDao;
@@ -159,6 +262,9 @@ public class UiMainController {
         initProprety();
         initUserTable();
         initClientTable();
+        initBookRoomTable();
+        initInfoRoomTable();
+        initStandardRoom();
 
     }
 
@@ -183,12 +289,28 @@ public class UiMainController {
         imageView_two.setClip(clip_two);
 
 
+
         update.setFont(new Font("宋体", 13));
         delete.setFont(new Font("宋体", 13));
         add.setFont(new Font("宋体", 13));
         browse.setFont(new Font("宋体", 13));
         mainExit.setFont(new Font("宋体", 13));
         mainMinimize.setFont(new Font("宋体", 13));
+        iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+
+
+
+        mTableUser.getSelectionModel().selectedItemProperty().addListener(// 选中某一行
+                new ChangeListener<UserData>() {
+                    @Override
+                    public void changed(ObservableValue<? extends UserData> observable, UserData oldValue, UserData newValue) {
+                        if(newValue.getPicture()==null)
+                             iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+                        iv_picture_user.setImage(new Image(newValue.getPicture()));
+
+
+                    }
+                });
     }
 
     private void initUserTable() throws Exception {
@@ -203,21 +325,23 @@ public class UiMainController {
         tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_three"));
         tableColumnPicture.setCellValueFactory(new PropertyValueFactory<UserData,String>("picture"));
 
-        //添加列双击事件
-        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
-        tableColumnId.setOnEditCommit(
-                (TableColumn.CellEditEvent<UserData, String> t) -> {
-                    ((UserData) t.getTableView().getItems().get(
-                            t.getTablePosition().getRow())
-                    ).setUserId(t.getNewValue());
-                });
+//        //添加列双击事件
+//        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+//        tableColumnId.setOnEditCommit(
+//                (TableColumn.CellEditEvent<UserData, String> t) -> {
+//                    ((UserData) t.getTableView().getItems().get(
+//                            t.getTablePosition().getRow())
+//                    ).setUserId(t.getNewValue());
+//                });
 
         for (User user:userDao.list())
-            userData.add(user);
+            userData.add(new UserData(user));
         mTableUser.setItems(userData);
     }
 
     private void initClientTable() throws Exception {
+
+
         tableColumnName_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_name"));
         tableColumnSex_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_sex"));
         tableColumnCard_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_id_card"));
@@ -225,10 +349,174 @@ public class UiMainController {
         tableColumnNative_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_native"));
         tableColumnIdNumber_client.setCellValueFactory(new PropertyValueFactory<ClientData,String>("client_id_number"));
         for (Client client:clientDao.list())
-            clientData.add(client);
+            clientData.add(new ClientData(client));
         mTableClient.setItems(clientData);
 
     }
+
+    private void initBookRoomTable() throws Exception {
+        tableColumnRemark_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_remark"));
+        tableColumnAmout_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,Integer>("room_amout"));
+        tableColumnPeople_name_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_peple_name"));
+        tableColumnDiscount_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_discount"));
+        tableColumnId_number_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,Integer>("room_id_number"));
+        tableColumnIn_date_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_in_date"));
+        tableColumnOut_date_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_out_date"));
+        tableColumnPeople_id_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_peple_id"));
+        tableColumnType_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_type"));
+        tableColumnPrice_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,Integer>("room_price"));
+
+        for(BookRoom bookRoom:bookRoomDao.list())
+            bookRoomData.add(new BookRoomData(bookRoom));
+        mTableBookRoom.setItems(bookRoomData);
+
+
+    }
+
+    private void initInfoRoomTable() throws Exception {
+        tableColumnMax_bed_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("max_bed"));
+        tableColumnAir_conditioning_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("air_conditioning"));
+        tableColumnPhone_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("iphone"));
+        tableColumnType_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("type"));
+        tableColumnArea_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("area"));
+        tableColumnPs_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("ps"));
+        tableColumnTv_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("tv"));
+        tableColumnMax_people_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("max_people"));
+        tableColumnRest_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,String>("rest"));
+
+        for (InfoRoom infoRoom:infoRoomDao.list())
+            infoRoomData.add(new InfoRoomData(infoRoom));
+        mTableInfoRoom.setItems(infoRoomData);
+
+    }
+
+    private void initStandardRoom() throws Exception {
+        tableColumnIdNumber_standard.setCellValueFactory(new PropertyValueFactory<StandardRoomData,Integer>("room_id_number"));
+        tableColumnFloor_standard.setCellValueFactory(new PropertyValueFactory<StandardRoomData,String>("room_floor"));
+        tableColumnPrice_standard.setCellValueFactory(new PropertyValueFactory<StandardRoomData,Integer>("room_price"));
+        tableColumnType_standard.setCellValueFactory(new PropertyValueFactory<StandardRoomData,String>("room_type"));
+        tableColumnRemark_standard.setCellValueFactory(new PropertyValueFactory<StandardRoomData,String>("room_remark"));
+
+        for (StandardRoom standardRoom:standardRoomDao.list())
+            standardRoomData.add(new StandardRoomData(standardRoom));
+        mTableStandardRoom.setItems(standardRoomData);
+    }
+
+
+    @FXML
+    void ac_refresh_user(ActionEvent event) throws Exception {
+        System.out.println("刷新");
+        iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+        userData.removeAll(userData);
+        for(User user:userDao.list())
+            userData.add(new UserData(user));
+    }
+
+    @FXML
+    void ac_edit_user(ActionEvent event){
+        UserData selectUser=mTableUser.getSelectionModel().getSelectedItem();
+
+    }
+
+    @FXML
+    void ac_AlterPicture_user(ActionEvent event) throws Exception {
+        if(mTableUser.getSelectionModel().getSelectedIndex()==-1){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中用户").show();
+            return;
+        }
+
+        File file= new FileChooser().showOpenDialog(new Stage());
+        UserData userSelect=mTableUser.getSelectionModel().getSelectedItem();
+        if(file!=null){
+            String pictureUrl =new String("/png/"+file.getName());
+            iv_picture_user.setImage(new Image(pictureUrl));
+            userSelect.setPicture(pictureUrl);
+            userDao.update(userSelect.userToEntity());
+            ac_refresh_user(event);
+        }
+
+
+    }
+
+    @FXML
+    void ac_delete_user(ActionEvent event) throws Exception {
+        try {
+            int index=mTableUser.getSelectionModel().getSelectedIndex();
+            if(index==-1){
+                 new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中用户").show();
+                return;
+            }
+            UserData selectUser = mTableUser.getSelectionModel().getSelectedItem();
+            AlertDefined dialog=new AlertDefined(Alert.AlertType.INFORMATION,"提示","你确定要删除用户[ "+selectUser.getId()+" ]吗?");
+            Optional result=dialog.showAndWait();
+            if(result.get()==ButtonType.OK){
+                if (!userDao.delete(selectUser.userToEntity())) {
+                    System.out.println("点击确认");
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除用户失败").show();
+                    return;
+                } else {
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该用户已删除").show();
+                    ac_refresh_user(event);
+                }
+            }
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+    }
+        @FXML
+    void ac_search_check(ActionEvent event){
+        if(txf_search.getText()!=null){
+
+            //
+            // 获取搜索内容
+            //
+
+            String search_text = txf_search.getText();
+
+            //
+            // 存放搜索到的用户信息
+            //
+
+            ArrayList<UserData> search_result_list = new ArrayList<>();
+
+            //
+            // 遍历客户用户数据列表
+            //
+
+
+            for(int i = 0;i<userData.size();i++){
+                if(search_text.equals(userData.get(i).getId()) ||
+                        search_text.equals(userData.get(i).getPassword()) ||
+                        search_text.equals(userData.get(i).getUserType()) ||
+                        search_text.equals(String.valueOf(userData.get(i).getUUID()))){
+
+                    //
+                    // 存放符合搜索条件的用户信息
+                    //
+
+                    search_result_list.add(userData.get(i));
+
+                }
+            }
+
+            //
+            // 将符合条件的客户信息，重新插入到客户信息数据列表中，从第0行开始插入
+            //
+
+            userData.removeAll(userData);
+            for(int j = 0;j<search_result_list.size();j++){
+                userData.add(j,search_result_list.get(j));
+            }
+
+            //
+            // 清空
+            //
+
+            search_result_list.clear();
+        }
+        }
 }
 
 

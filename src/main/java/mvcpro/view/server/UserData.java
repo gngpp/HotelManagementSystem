@@ -26,7 +26,7 @@ public class UserData {
         this.picture=new SimpleStringProperty(user.getPicture());
     }
 
-    public User UserExToEntity(){
+    public User userToEntity(){
         this.user.setId(id.get());
         this.user.setPassword(password.get());
         this.user.setUserType(userType.get());
@@ -38,66 +38,107 @@ public class UserData {
         return user;
     }
 
-    public String getPicture(){
-        return picture.get();
-    }
-
-    public void setPicture(String url){
-        this.picture.set(url);
-    }
-
-    public String getQuestion_one(){
-        return question_one.get();
-    }
-
-    public void setQuestion_one(String question_one){
-        this.question_one.set(question_one);
-    }
-    public String getQuestion_two(){
-        return question_two.get();
-    }
-
-    public void setQuestion_two(String question_two){
-        this.question_two.set(question_two);
-    }
-
-    public String getQuestion_three(){
-        return question_three.get();
-    }
-
-    public void setQuestion_three(String question_three){
-        this.question_three.set(question_three);
-    }
-
-    public Integer getUUID(){
-        return UUID.get();
-    }
-
-    public void setUUID(Integer uuid){
-        this.UUID.set(uuid);
-    }
-    public String getUserId(){
+    public String getId() {
         return id.get();
     }
 
-    public void setUserId(String id){
+    public SimpleStringProperty idProperty() {
+        return id;
+    }
+
+    public void setId(String id) {
         this.id.set(id);
     }
 
-    public String getPassword(){
-        return id.get();
+    public String getPassword() {
+        return password.get();
     }
 
-    public void setPassword(String password){
+    public SimpleStringProperty passwordProperty() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password.set(password);
     }
 
-    public String getUserType(){
+    public String getUserType() {
         return userType.get();
     }
 
-    public void setUserType(String userType){
+    public SimpleStringProperty userTypeProperty() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
         this.userType.set(userType);
     }
 
+    public String getQuestion_three() {
+        return question_three.get();
+    }
+
+    public SimpleStringProperty question_threeProperty() {
+        return question_three;
+    }
+
+    public void setQuestion_three(String question_three) {
+        this.question_three.set(question_three);
+    }
+
+    public String getQuestion_one() {
+        return question_one.get();
+    }
+
+    public SimpleStringProperty question_oneProperty() {
+        return question_one;
+    }
+
+    public void setQuestion_one(String question_one) {
+        this.question_one.set(question_one);
+    }
+
+    public String getQuestion_two() {
+        return question_two.get();
+    }
+
+    public SimpleStringProperty question_twoProperty() {
+        return question_two;
+    }
+
+    public void setQuestion_two(String question_two) {
+        this.question_two.set(question_two);
+    }
+
+    public String getPicture() {
+        return picture.get();
+    }
+
+    public SimpleStringProperty pictureProperty() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture.set(picture);
+    }
+
+    public int getUUID() {
+        return UUID.get();
+    }
+
+    public SimpleIntegerProperty UUIDProperty() {
+        return UUID;
+    }
+
+    public void setUUID(int UUID) {
+        this.UUID.set(UUID);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
