@@ -439,12 +439,6 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_edit_user(ActionEvent event){
-        UserData selectUser=mTableUser.getSelectionModel().getSelectedItem();
-
-    }
-
-    @FXML
     void ac_AlterPicture_user(ActionEvent event) throws Exception {
         if(mTableUser.getSelectionModel().getSelectedIndex()==-1){
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中用户").show();
@@ -458,10 +452,7 @@ public class UiMainController {
             iv_picture_user.setImage(new Image(pictureUrl));
             userSelect.setPicture(pictureUrl);
             userDao.update(userSelect.userToEntity());
-            ac_refresh_user(event);
         }
-
-
     }
 
     @FXML
