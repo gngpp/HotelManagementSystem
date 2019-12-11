@@ -111,7 +111,7 @@
                                  </items>
                               </ToolBar>
                               <Button fx:id="delete" focusTraversable="false" layoutX="624.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btn" stylesheets="@ui_main_style.css" text="查找" textFill="WHITE" />
-                              <TextField layoutX="443.0" layoutY="4.0" promptText="查找" />
+                              <TextField layoutX="443.0" layoutY="4.0" promptText="查找" styleClass="txf_username" />
                            </children>
                         </Pane>
                      </content>
@@ -137,24 +137,6 @@
                            <children>
                               <TabPane layoutY="-4.0" prefHeight="435.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="客户信息管理">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView fx:id="mTableClient" layoutX="163.0" layoutY="-1.0" prefHeight="405.0" prefWidth="724.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
-                                                   <columns>
-                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" sortable="false" text="姓名" />
-                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" sortable="false" text="性别" />
-                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" sortable="false" text="身份证" />
-                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" sortable="false" text="籍贯" />
-                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" sortable="false" text="联系电话" />
-                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" sortable="false" text="客户编号" />
-                                                   </columns>
-                                                </TableView>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                  </Tab>
                                   <Tab text="用户管理">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
@@ -171,18 +153,35 @@
                                                       <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
                                                 </TableView>
-                                                <Button layoutX="703.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_check" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
-                                                <DatePicker layoutX="46.0" layoutY="14.0" />
-                                                <TextField fx:id="txf_search" layoutX="535.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
-                                                <ImageView fx:id="iv_picture_user" fitHeight="148.0" fitWidth="164.0" layoutX="53.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                                                <Button layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_check" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
+                                                <DatePicker layoutX="44.0" layoutY="52.0" prefHeight="27.0" prefWidth="169.0" promptText="查看日期...." />
+                                                <TextField fx:id="txf_search" layoutX="606.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
+                                                <ImageView fx:id="iv_picture_user" fitHeight="165.0" fitWidth="164.0" layoutX="44.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
                                                    <effect>
                                                       <DropShadow />
                                                    </effect>
                                                 </ImageView>
-                                                <Button fx:id="add1" focusTraversable="false" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_edit_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="编辑" textFill="WHITE" />
-                                                <Button fx:id="add11" focusTraversable="false" layoutX="348.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="WHITE" />
-                                                <Button fx:id="add111" focusTraversable="false" layoutX="433.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="刷新" textFill="WHITE" />
-                                                <Button fx:id="add112" focusTraversable="false" layoutX="97.0" layoutY="217.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更换头像" textFill="WHITE" />
+                                                <Button fx:id="add11" focusTraversable="false" layoutX="279.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="WHITE" />
+                                                <Button fx:id="add111" focusTraversable="false" layoutX="357.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="刷新" textFill="WHITE" />
+                                                <Button fx:id="add112" focusTraversable="false" layoutX="90.0" layoutY="291.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更换头像" textFill="WHITE" />
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="客户信息管理">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TableView fx:id="mTableClient" layoutX="163.0" layoutY="-1.0" prefHeight="405.0" prefWidth="724.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                   <columns>
+                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" sortable="false" text="姓名" />
+                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" sortable="false" text="性别" />
+                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" sortable="false" text="身份证" />
+                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" sortable="false" text="籍贯" />
+                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" sortable="false" text="联系电话" />
+                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" sortable="false" text="客户编号" />
+                                                   </columns>
+                                                </TableView>
                                              </children>
                                           </AnchorPane>
                                     </content>

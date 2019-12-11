@@ -6,9 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -77,7 +79,7 @@ public class UiMainController {
     private TableColumn<UserData, String> tableColumnPassword;
 
     @FXML
-    private TableColumn<UserData, Integer> tableColumnType;
+    private TableColumn<UserData, String > tableColumnType;
 
     @FXML
     private TableColumn<UserData, String> tableColumnId;
@@ -265,9 +267,42 @@ public class UiMainController {
         initBookRoomTable();
         initInfoRoomTable();
         initStandardRoom();
-
+        initActionEvent();
     }
 
+   private void initActionEvent(){
+        //用户列表添加列双击事件
+        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+        tableColumnId.setOnEditCommit(
+                (TableColumn.CellEditEvent<UserData, String> event) -> {
+                    try {
+                       event.getTableView().getItems().get(event.getTablePosition().getRow()).setId(event.getNewValue());
+                        userDao.update(event.getTableView().getItems().get(event.getTablePosition().getRow()).userToEntity());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        tableColumnPassword.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+        tableColumnPassword.setOnEditCommit((TableColumn.CellEditEvent<UserData,String> event)->{
+            try{
+                event.getTableView().getItems().get(event.getTablePosition().getRow()).setPassword(event.getNewValue());
+                userDao.update(event.getTableView().getItems().get(event.getTablePosition().getRow()).userToEntity());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+       tableColumnType.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+       tableColumnType.setOnEditCommit((TableColumn.CellEditEvent<UserData,String> event)->{
+           try{
+               event.getTableView().getItems().get(event.getTablePosition().getRow()).setUserType(event.getNewValue());
+               userDao.update(event.getTableView().getItems().get(event.getTablePosition().getRow()).userToEntity());
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       });
+    }
     private void initDataDao(){
         bookRoomDao=new BookRoomDao();
         clientDao=new ClientDao();
@@ -318,21 +353,12 @@ public class UiMainController {
         //字段名
         tableColumnId.setCellValueFactory(new PropertyValueFactory<UserData,String>("id"));
         tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserData,String>("password"));
-        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("userType"));
+        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData,String>("userType"));
         tableColumnUUID.setCellValueFactory(new PropertyValueFactory<UserData,Integer>("UUID"));
         tableColumnQs_one.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_one"));
         tableColumnQs_two.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_two"));
         tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData,String>("question_three"));
         tableColumnPicture.setCellValueFactory(new PropertyValueFactory<UserData,String>("picture"));
-
-//        //添加列双击事件
-//        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
-//        tableColumnId.setOnEditCommit(
-//                (TableColumn.CellEditEvent<UserData, String> t) -> {
-//                    ((UserData) t.getTableView().getItems().get(
-//                            t.getTablePosition().getRow())
-//                    ).setUserId(t.getNewValue());
-//                });
 
         for (User user:userDao.list())
             userData.add(new UserData(user));

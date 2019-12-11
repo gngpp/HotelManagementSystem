@@ -6,6 +6,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -14,6 +15,7 @@ import javafx.stage.Modality;
 import mvcpro.model.Verify;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
+import mvcpro.view.login.UiLogin;
 import mvcpro.view.main.UiMainFrame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,8 +76,17 @@ public class UiLoginController implements Verify {
         uiMessageBox.setModality(Modality.APPLICATION_MODAL);
         selectUserType.getItems().addAll("用户","管理员");
         image.screenToLocal(20,20);
+
         loginCheck.setFont(new Font("System", 13));
         btnSignIn.setFont(new Font("System",13));
+        final Tooltip tooltip = new Tooltip();
+        tooltip.setText(
+                "\nYour password must be\n" +
+                        "at least 8 characters in length\n"
+        );
+        ImageView tipImage=new ImageView(new Image(String.valueOf(((UiLogin.class.getResource("/png/icons8-close_window.png"))))));
+        tooltip.setGraphic(tipImage);
+        loginPassword.setTooltip(tooltip);
         selectUserType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -109,11 +120,6 @@ public class UiLoginController implements Verify {
                  return;
              }
          }
-
-//         if(verify.toString().equals())
-//             uiMessageBox.showMessageBox("Confirmation Dialog","Please select permission！");
-//            else
-//             uiMessageBox.showMessageBox("Confirmation Dialog","Your account or password is incorrect！");
 
     }
 
