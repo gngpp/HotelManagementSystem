@@ -19,10 +19,10 @@ public class UiMainFrame extends Application {
 
     private double lastx_distance;
     private double lasty_distance;
-
+    private Stage mainStage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Stage mainStage=primaryStage;
+        mainStage=primaryStage;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_main_layout.fxml"));
         Pane root=loader.load();
         UiMainController uiMainController =loader.getController();
@@ -45,8 +45,6 @@ public class UiMainFrame extends Application {
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);
-        mainStage.show();
-
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -62,6 +60,10 @@ public class UiMainFrame extends Application {
                 mainStage.setY(event.getScreenY()-lasty_distance);
             }
         });
+        show();
+    }
+    public void show(){
+        mainStage.show();
     }
     public static void main(String[] args) {
         launch(args);

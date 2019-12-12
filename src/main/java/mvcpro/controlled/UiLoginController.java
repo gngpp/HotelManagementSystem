@@ -1,6 +1,7 @@
 package mvcpro.controlled;
 
 import com.sun.deploy.security.SelectableSecurityManager;
+import com.sun.javaws.IconUtil;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -29,11 +30,11 @@ import java.util.Optional;
 
 public class UiLoginController implements Verify {
 
+    private  static boolean isTure=false;
+
     private UserDao userDao;
 
     private Stage loginStage;
-
-    private Stage mainStage;
 
     private Stage signInStage;
 
@@ -66,10 +67,10 @@ public class UiLoginController implements Verify {
 
 
     @FXML
-    void initialize() {
-        mainStage=new Stage();
-        signInStage=new Stage();
+    void initialize() throws Exception {
         uiMainFrame=new UiMainFrame();
+        uiMainFrame.start(new Stage());
+        signInStage=new Stage();
         uiMessageBox=new UiMessageBox();
         userDao=new UserDao();
         verify=new StringBuilder("");
@@ -110,16 +111,21 @@ public class UiLoginController implements Verify {
     @FXML
     void LoginCheckEvent(ActionEvent event) throws Exception {
 
-        userDao.list().forEach(System.out::println);
-
-         for (User user :userDao.list()) {
-             System.out.println(loginVerify(user));
-             if (loginVerify(user)) {
-                 loginStage.hide();
-                 uiMainFrame.start(mainStage);
-                 return;
-             }
-         }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    for (User user :userDao.list())
+                        if (loginVerify(user)) {
+                            System.out.println("已登陆");
+                            loginStage.hide();
+                            uiMainFrame.show();
+                        }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 

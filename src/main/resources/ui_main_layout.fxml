@@ -110,8 +110,8 @@
                                     <Button fx:id="update" focusTraversable="false" mnemonicParsing="false" onAction="#CheckUadate" prefHeight="0.0" prefWidth="78.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更新" textFill="WHITE" />
                                  </items>
                               </ToolBar>
-                              <Button fx:id="delete" focusTraversable="false" layoutX="624.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btn" stylesheets="@ui_main_style.css" text="查找" textFill="WHITE" />
-                              <TextField layoutX="443.0" layoutY="4.0" promptText="查找" styleClass="txf_username" />
+                              <Button fx:id="delete" focusTraversable="false" layoutX="624.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckDelete" prefHeight="25.0" prefWidth="85.0" styleClass="btn" stylesheets="@ui_main_style.css" text="搜索" textFill="WHITE" />
+                              <TextField layoutX="457.0" layoutY="4.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
                            </children>
                         </Pane>
                      </content>
