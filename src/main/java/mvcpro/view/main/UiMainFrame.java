@@ -60,7 +60,6 @@ public class UiMainFrame extends Application {
                 mainStage.setY(event.getScreenY()-lasty_distance);
             }
         });
-        show();
     }
     public void show(){
         mainStage.show();
