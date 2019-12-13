@@ -12,6 +12,7 @@ import mvcpro.model.dao.UserDao;
 import mvcpro.model.dao.UserVerifyDao;
 import mvcpro.model.entity.User;
 import mvcpro.model.entity.UserVerify;
+import mvcpro.model.md5.MD5;
 import mvcpro.view.AlertDefined;
 
 import java.io.File;
@@ -262,7 +263,7 @@ public class SignInController implements Initializable {
         for(User user:userDao.list()){
 
             if(txf_id_alter.getText().equals(user.getId())&&
-                    psf_password_old_alter.getText().equals(user.getPassword())&&
+                    MD5.encrypt(psf_password_old_alter.getText()).equals(user.getPassword())&&
                     txf_question_one_later.getText().equals(user.getQuestion_one())&&
                     txf_question_two_alter.getText().equals(user.getQuestion_two())&&
                     txf_question_three_alter.getText().equals(user.getQuestion_three())&&
@@ -270,7 +271,7 @@ public class SignInController implements Initializable {
                     cbx_selectTwo_alter.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
                     cbx_selectThree_alter.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
                 //当前用户对象
-                user.setPassword(psf_checkPassword_new_alter.getText());
+                user.setPassword(MD5.encrypt(psf_checkPassword_new_alter.getText()));
                 userDao.update(user);
                 new AlertDefined(Alert.AlertType.INFORMATION,"提示️","修改成功！").show();
                 return true;
@@ -310,7 +311,7 @@ public class SignInController implements Initializable {
         //先写入主键表
         User user=new User();
         user.setId(txf_id.getText());
-        user.setPassword(psf_password.getText());
+        user.setPassword(MD5.encrypt(psf_password.getText()));
         user.setQuestion_one(txf_question_one.getText());
         user.setQuestion_two(txf_qustion_two.getText());
         user.setQuestion_three(txf_question_three.getText());
@@ -332,7 +333,6 @@ public class SignInController implements Initializable {
     private Boolean isFindInfo() throws Exception {
 
         for(User user:userDao.list()){
-
             if(txf_id_find.getText().equals(user.getId())&&
                     txf_question_one_find.getText().equals(user.getQuestion_one())&&
                     txf_question_two_find.getText().equals(user.getQuestion_two())&&
@@ -340,7 +340,9 @@ public class SignInController implements Initializable {
                     cbx_selectOne_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_one())&&
                     cbx_selectTwo_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_two())&&
                     cbx_selectThree_find.getValue().equals(userVerifyDao.load(user.getUUID()).getSelect_three())){
-                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找成功！您的密码是："+user.getPassword()).show();
+                user.setPassword(MD5.encrypt("123456"));
+                userDao.update(user);
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","重置密码成功！您的密码是：123456，请尽快修改密码！").show();
                 return true;
             }
 

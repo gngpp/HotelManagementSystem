@@ -40,7 +40,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView fx:id="mTableInfoRoom" layoutY="14.0" prefHeight="389.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableInfoRoom" layoutX="-7.0" layoutY="14.0" prefHeight="389.0" prefWidth="894.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" sortable="false" text="房间类型" />
                                                       <TableColumn fx:id="tableColumnArea_Info" prefWidth="86.0" sortable="false" text="面积" />
@@ -61,7 +61,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableStandardRoom" layoutY="51.0" prefHeight="350.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableStandardRoom" layoutX="-6.0" layoutY="51.0" prefHeight="350.0" prefWidth="893.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" sortable="false" text="客房编号" />
                                                       <TableColumn fx:id="tableColumnType_standard" prefWidth="86.0" sortable="false" text="客房类型" />

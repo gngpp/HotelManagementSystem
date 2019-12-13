@@ -537,7 +537,6 @@ public class UiMainController {
             }
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
     }

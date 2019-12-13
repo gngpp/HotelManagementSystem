@@ -1,21 +1,13 @@
 package mvcpro.controlled;
 
-import com.sun.deploy.security.SelectableSecurityManager;
-import com.sun.javaws.IconUtil;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
-import mvcpro.model.Verify;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
+import mvcpro.model.md5.MD5;
 import mvcpro.view.login.UiLogin;
 import mvcpro.view.main.UiMainFrame;
 import javafx.event.ActionEvent;
@@ -25,8 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import mvcpro.view.messagebox.UiMessageBox;
 import mvcpro.view.ru.SignIn;
-
-import java.util.Optional;
 
 public class UiLoginController implements Verify {
 
@@ -149,7 +139,7 @@ public class UiLoginController implements Verify {
     private  Boolean loginVerify(User user){
 
         return (loginID.getText().equals(user.getId())&&
-                loginPassword.getText().equals(user.getPassword())&&verify.toString().equals(user.getUserType()))? true:false;
+                MD5.encrypt(loginPassword.getText()).equals(user.getPassword())&&verify.toString().equals(user.getUserType()))? true:false;
     }
 
 }

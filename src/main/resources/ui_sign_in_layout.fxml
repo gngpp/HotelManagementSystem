@@ -65,7 +65,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="找回密码">
+            <Tab text="重置密码">
                <content>
                   <Pane>
                      <children>

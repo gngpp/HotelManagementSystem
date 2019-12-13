@@ -16,6 +16,7 @@ public class Test {
             file.mkdir();
         }
 
+        System.out.println(System.getProperties().get("os.name"));
         try {
             String mysql = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file="+newFile.toString()+"--default-character-set=utf8.sql FXdb";
             Process p = Runtime.getRuntime().exec(mysql);
