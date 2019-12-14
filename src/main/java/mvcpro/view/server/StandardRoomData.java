@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import mvcpro.model.entity.StandardRoom;
 
+import java.text.SimpleDateFormat;
+
 public class StandardRoomData {
     private StandardRoom standardRoom;
     private SimpleStringProperty room_type;
@@ -20,9 +22,10 @@ public class StandardRoomData {
         this.room_price=new SimpleIntegerProperty(standardRoom.getRoom_price());
         this.room_remark=new SimpleStringProperty(standardRoom.getRoom_remark());
         this.room_id_number=new SimpleIntegerProperty(standardRoom.getRoom_id_number());
+        this.standardRoom.setRoom_id(standardRoom.getRoom_id());
     }
 
-    public StandardRoom StandardRoomToEntity(){
+    public StandardRoom standardRoomToEntity(){
         this.standardRoom.setRoom_id_number(room_id_number.get());
         this.standardRoom.setRoom_floor(room_floor.get());
         this.standardRoom.setRoom_price(room_price.get());
@@ -30,6 +33,7 @@ public class StandardRoomData {
         this.standardRoom.setRoom_remark(room_remark.get());
         return standardRoom;
     }
+
 
     public String getRoom_type() {
         return room_type.get();

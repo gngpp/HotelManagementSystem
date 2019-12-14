@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,7 +20,6 @@ import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
 import mvcpro.view.AlertDefined;
 import mvcpro.view.server.*;
-import sun.lwawt.macosx.CThreading;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -29,6 +27,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class UiMainController {
+
+    private UserDao userDao;
+    private ClientDao clientDao;
+    private InfoRoomDao infoRoomDao;
+    private BookRoomDao bookRoomDao;
+    private StandardRoomDao standardRoomDao;
 
     private Stage mainStage;
 
@@ -59,7 +63,7 @@ public class UiMainController {
     private Button mainExit;
 
     @FXML
-    private TextField txf_search;
+    private TextField txf_search_user;
 
     @FXML
     private TableView<UserData> mTableUser;
@@ -214,11 +218,23 @@ public class UiMainController {
     private final ObservableList<StandardRoomData> standardRoomData = FXCollections.observableArrayList();
 
 
-    private UserDao userDao;
-    private ClientDao clientDao;
-    private InfoRoomDao infoRoomDao;
-    private BookRoomDao bookRoomDao;
-    private StandardRoomDao standardRoomDao;
+    /*
+    标准房字段
+     */
+
+    @FXML
+    private  TextField txf_id_number_standard;
+    @FXML
+    private  ComboBox<String> cbx_type_standard;
+    @FXML
+    private  ComboBox<String> cbx_floor_standard;
+    @FXML
+    private TextField txf_price_standard;
+    @FXML
+    private TextArea txa_remark_standard;
+    @FXML
+    private TextField txf_search_standard;
+
 
     @FXML
     void CheckAdd(ActionEvent event) throws Exception {
@@ -268,10 +284,11 @@ public class UiMainController {
         initBookRoomTable();
         initInfoRoomTable();
         initStandardRoom();
-        initActionEvent();
+        initTableColumnEvent();
+        initTableEvent();
     }
 
-    private void initActionEvent() {
+    private void initTableColumnEvent() {
         //用户列表添加列双击事件
         tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
         tableColumnId.setOnEditCommit(
@@ -305,6 +322,31 @@ public class UiMainController {
         });
     }
 
+    private void initTableEvent(){
+        mTableUser.getSelectionModel().selectedItemProperty().addListener(// 选中某一行
+                new ChangeListener<UserData>() {
+                    @Override
+                    public void changed(ObservableValue<? extends UserData> observable, UserData oldValue, UserData newValue) {
+                        if (newValue.getPicture() == null)
+                            iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+                        iv_picture_user.setImage(new Image(newValue.getPicture()));
+                    }
+                });
+
+        mTableStandardRoom.getSelectionModel().selectedItemProperty().addListener(// 选中某一行
+                new ChangeListener<StandardRoomData>() {
+                    @Override
+                    public void changed(ObservableValue<? extends StandardRoomData> observable, StandardRoomData oldValue, StandardRoomData newValue) {
+                        StandardRoom standardRoom= newValue.standardRoomToEntity();
+                        txa_remark_standard.setText(standardRoom.getRoom_remark());
+                        txf_id_number_standard.setText(standardRoom.getRoom_id_number().toString());
+                        txf_price_standard.setText(standardRoom.getRoom_price().toString());
+                        cbx_type_standard.setValue(standardRoom.getRoom_type());
+                        cbx_floor_standard.setValue(standardRoom.getRoom_floor());
+                    }
+                });
+    }
+
     private void initDataDao() {
         bookRoomDao = new BookRoomDao();
         clientDao = new ClientDao();
@@ -333,19 +375,33 @@ public class UiMainController {
         mainExit.setFont(new Font("宋体", 13));
         mainMinimize.setFont(new Font("宋体", 13));
         iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+        cbx_type_standard.getItems().setAll("单人间","标准间","豪华间/高级间","商务间","双套间","组合套间","复式套间");
+        cbx_floor_standard.getItems().setAll("一楼","二楼","一楼","二楼","一楼","二楼");
+        txf_search_standard.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("")){
+                standardRoomData.removeAll(standardRoomData);
+                try {
+                    for (StandardRoom standardRoom:standardRoomDao.list())
+                        standardRoomData.add(new StandardRoomData(standardRoom));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        txf_search_user.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("")){
+                userData.removeAll(userData);
+                try {
+                    for (User user : userDao.list())
+                        userData.add(new UserData(user));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
-        mTableUser.getSelectionModel().selectedItemProperty().addListener(// 选中某一行
-                new ChangeListener<UserData>() {
-                    @Override
-                    public void changed(ObservableValue<? extends UserData> observable, UserData oldValue, UserData newValue) {
-                        if (newValue.getPicture() == null)
-                            iv_picture_user.setImage(new Image("/png/timg.jpeg"));
-                        iv_picture_user.setImage(new Image(newValue.getPicture()));
-
-
-                    }
-                });
     }
 
     private void initUserTable() throws Exception {
@@ -478,13 +534,12 @@ public class UiMainController {
         }).start();
     }
 
-
     @FXML
-    void ac_refresh_user(ActionEvent event) throws Exception {
+    void ac_refresh_user(ActionEvent event) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("刷新线程已启动...");
+                System.out.println("用户刷新线程已启动...");
                 iv_picture_user.setImage(new Image("/png/timg.jpeg"));
                 userData.removeAll(userData);
                 try {
@@ -498,7 +553,7 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_AlterPicture_user(ActionEvent event) throws Exception {
+    void ac_AlterPicture_user(ActionEvent event) throws SQLException {
         if (mTableUser.getSelectionModel().getSelectedIndex() == -1) {
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中用户").show();
             return;
@@ -515,7 +570,7 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_delete_user(ActionEvent event) throws Exception {
+    void ac_delete_user(ActionEvent event)  {
         try {
             int index = mTableUser.getSelectionModel().getSelectedIndex();
             if (index == -1) {
@@ -542,18 +597,18 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_search_check(ActionEvent event) {
+    void ac_search_user(ActionEvent event) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("搜索线程已启动...");
-                if (txf_search.getText() != null) {
+                if (txf_search_user.getText() != null) {
 
                     //
                     // 获取搜索内容
                     //
 
-                    String search_text = txf_search.getText();
+                    String search_text = txf_search_user.getText();
 
                     //
                     // 存放搜索到的用户信息
@@ -565,25 +620,24 @@ public class UiMainController {
                     // 遍历客户用户数据列表
                     //
 
+                    try {
+                        for (User test:userDao.list()) {
+                            if (search_text.equals(String.valueOf(test.getUUID())) ||
+                                    search_text.equals(test.getUserType()) ||
+                                    search_text.equals(test.getId()) ||
+                                    search_text.equals(String.valueOf(test.getPassword()))){
 
-                    for (int i = 0; i < userData.size(); i++) {
-                        if (search_text.equals(userData.get(i).getId()) ||
-                                search_text.equals(userData.get(i).getPassword()) ||
-                                search_text.equals(userData.get(i).getUserType()) ||
-                                search_text.equals(String.valueOf(userData.get(i).getUUID()))) {
-
-                            //
-                            // 存放符合搜索条件的用户信息
-                            //
-
-                            search_result_list.add(userData.get(i));
+                                //
+                                // 存放符合搜索条件的用户信息
+                                //
+                                search_result_list.add(new UserData(test));
+                            }
 
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
 
-                    //
-                    // 将符合条件的客户信息，重新插入到客户信息数据列表中，从第0行开始插入
-                    //
 
                     userData.removeAll(userData);
                     for (int j = 0; j < search_result_list.size(); j++) {
@@ -593,15 +647,217 @@ public class UiMainController {
                     //
                     // 清空
                     //
-
                     search_result_list.clear();
                 }
             }
         }).start();
     }
+
+    @FXML
+    private void ac_refresh_standard(ActionEvent event){
+        clear_standard();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("标准刷新线程已启动...");
+                standardRoomData.removeAll(standardRoomData);
+                try {
+                    for (StandardRoom standardRoom: standardRoomDao.list())
+                        standardRoomData.add(new StandardRoomData(standardRoom));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    @FXML
+    void ac_delete_standard(ActionEvent event){
+        try {
+            int index = mTableStandardRoom.getSelectionModel().getSelectedIndex();
+            if (index == -1) {
+                new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中房间").show();
+                return;
+            }
+            StandardRoomData selectStandardRoom = mTableStandardRoom.getSelectionModel().getSelectedItem();
+            System.out.println(selectStandardRoom.standardRoomToEntity());
+            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要删除房间[ " + selectStandardRoom.getRoom_id_number() + " ]吗?");
+            Optional result = dialog.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                if (!standardRoomDao.delete(selectStandardRoom.standardRoomToEntity())) {
+                    System.out.println("点击确认");
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除房间失败").show();
+                    return;
+                } else {
+                    standardRoomData.remove(selectStandardRoom);
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该房间已删除").show();
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ac_search_standard(ActionEvent event){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("搜索线程已启动...");
+                if (txf_search_standard.getText() != null) {
+
+                    //
+                    // 获取搜索内容
+                    //
+
+                    String search_text = txf_search_standard.getText();
+                    System.out.println(search_text);
+                    //
+                    // 存放搜索到的信息
+                    //
+
+                    ArrayList<StandardRoomData> search_result_list = new ArrayList<>();
+
+                    //
+                    // 遍历客户用户数据列表
+                    //
+
+                    try {
+                        for (StandardRoom test:standardRoomDao.list()) {
+                            if (search_text.equals(String.valueOf(test.getRoom_id_number())) ||
+                                    search_text.equals(test.getRoom_floor()) ||
+                                    search_text.equals(test.getRoom_type()) ||
+                                    search_text.equals(String.valueOf(test.getRoom_price()))) {
+
+                                //
+                                // 存放符合搜索条件的用户信息
+                                //
+                                search_result_list.add(new StandardRoomData(test));
+                            }
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    standardRoomData.removeAll(standardRoomData);
+                    for (int j = 0; j < search_result_list.size(); j++) {
+                        standardRoomData.add(j, search_result_list.get(j));
+                    }
+
+                    //
+                    // 清空
+                    //
+                    search_result_list.clear();
+                }
+            }
+        }).start();
+    }
+
+    @FXML
+    void  ac_alter_standard(ActionEvent event) throws Exception {
+        int index = mTableStandardRoom.getSelectionModel().getSelectedIndex();
+        StandardRoomData selectStandardRoom = mTableStandardRoom.getSelectionModel().getSelectedItem();
+        if (index == -1) {
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中房间").show();
+            return;
+        }
+
+        if (cbx_type_standard.getValue()==null||
+                txf_id_number_standard.getText().equals(null)||
+                txf_price_standard.getText().equals(null)||
+                txa_remark_standard.getText().equals(null)||
+                cbx_floor_standard.getValue()==null) {
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请完善信息").show();
+            return;
+        }
+            if(!standardRoomDao.list().isEmpty())
+                for (StandardRoom standardRoom:standardRoomDao.list()){
+                    if(!txf_id_number_standard.getText().equals((selectStandardRoom.standardRoomToEntity().getRoom_id_number().toString())))
+                        if (txf_id_number_standard.getText().equals((standardRoom.getRoom_id_number().toString()))){
+                            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该编号已存在").show();
+                            return;
+                        }
+                }
+
+        if (!isNumber(txf_id_number_standard.getText())||!isNumber(txf_price_standard.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "编号/单价请输入数字").show();
+            return;
+        }
+
+        AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要修改房间[ " + selectStandardRoom.getRoom_id_number() + " ]的吗?");
+        Optional result = dialog.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            StandardRoom standardRoom=selectStandardRoom.standardRoomToEntity();
+            standardRoom.setRoom_id_number(Integer.parseInt(txf_id_number_standard.getText()));
+            standardRoom.setRoom_remark(txa_remark_standard.getText());
+            standardRoom.setRoom_type(cbx_type_standard.getValue());
+            standardRoom.setRoom_floor(cbx_floor_standard.getValue());
+            standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
+            System.out.println(standardRoom);
+            if (!standardRoomDao.update(standardRoom)) {
+                System.out.println("点击确认");
+                new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
+                return;
+            } else {
+                standardRoomData.remove(selectStandardRoom);
+                standardRoomData.add(new StandardRoomData(standardRoom));
+                ac_refresh_standard(event);
+                new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已修改").show();
+            }
+        }
+
+    }
+
+    @FXML
+    void ac_add_standard(ActionEvent event) throws Exception {
+        if (cbx_type_standard.getValue()==null||
+                txf_id_number_standard.getText().equals(null)||
+                txf_price_standard.getText().equals(null)||
+                txa_remark_standard.getText().equals(null)||
+                 cbx_floor_standard.getValue()==null) {
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请完善信息").show();
+            return;
+        }
+    if(!standardRoomDao.list().isEmpty())
+        for (StandardRoom standardRoom:standardRoomDao.list()){
+                if (txf_id_number_standard.getText().equals(standardRoom.getRoom_id_number().toString())){
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该编号已存在").show();
+                    return;
+                }
+            }
+
+        if (!isNumber(txf_id_number_standard.getText())||!isNumber(txf_price_standard.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "编号/单价请输入数字").show();
+            return;
+        }
+
+        StandardRoom standardRoom=new StandardRoom();
+        standardRoom.setRoom_id_number(Integer.parseInt(txf_id_number_standard.getText()));
+        standardRoom.setRoom_remark(txa_remark_standard.getText());
+        standardRoom.setRoom_type(cbx_type_standard.getValue());
+        standardRoom.setRoom_floor(cbx_floor_standard.getValue());
+        standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
+        System.out.println(standardRoom);
+        standardRoomDao.save(standardRoom);
+        standardRoomData.add(new StandardRoomData(standardRoom));
+        clear_standard();
+    }
+
+    private void clear_standard(){
+        txa_remark_standard.clear();
+        txf_id_number_standard.clear();
+        txf_price_standard.clear();
+        cbx_type_standard.setValue(null);
+        cbx_floor_standard.setValue(null);
+    }
+
+    public static boolean isNumber(String phone) {
+        String regex = "^[0-9]*$";
+        return phone.matches(regex);
+    }
+
+
 }
-
-
-
-
 

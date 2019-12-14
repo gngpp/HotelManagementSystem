@@ -64,26 +64,27 @@
                                                 <TableView fx:id="mTableStandardRoom" layoutX="289.0" layoutY="51.0" prefHeight="350.0" prefWidth="598.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" sortable="false" text="客房编号" />
-                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="86.0" sortable="false" text="客房类型" />
-                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="96.0" sortable="false" text="楼层" />
-                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="106.0" sortable="false" text="单价/天" />
-                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="220.0" sortable="false" text="备注" />
+                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" sortable="false" text="客房类型" />
+                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="91.0" sortable="false" text="楼层" />
+                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="122.0" sortable="false" text="单价/天" />
+                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="166.0" sortable="false" text="备注" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="299.0" layoutY="17.0" mnemonicParsing="false" styleClass="btn" text="删除客房" textFill="WHITE" />
-                                                <Button layoutX="801.0" layoutY="15.0" mnemonicParsing="false" styleClass="btn" text="查找" textFill="WHITE" />
-                                                <TextField layoutX="617.0" layoutY="16.0" promptText="按编号查找" styleClass="txf_username" />
-                                                <Pane layoutY="-7.0" prefHeight="409.0" prefWidth="287.0" stylesheets="@../../../../fx-17/src/main/resources/ui_sign_in_style.css">
+                                                <Button layoutX="299.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
+                                                <Button layoutX="801.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_search_standard" styleClass="btn" text="查找" textFill="WHITE" />
+                                                <TextField fx:id="txf_search_standard" layoutX="617.0" layoutY="16.0" promptText="查找..." styleClass="txf_username" />
+                                                <Pane layoutY="-7.0" prefHeight="409.0" prefWidth="287.0" styleClass="frame" stylesheets="@ui_default_style.css">
                                                    <children>
                                                       <TextField fx:id="txf_price_standard" layoutX="61.0" layoutY="199.0" prefHeight="27.0" prefWidth="166.0" promptText="单价/天" />
-                                                      <TextArea fx:id="txa_remark_standard" layoutX="37.0" layoutY="250.0" prefHeight="84.0" prefWidth="217.0" promptText="备注：" />
-                                                      <Button layoutX="67.0" layoutY="345.0" mnemonicParsing="false" styleClass="btn" text="修改信息" textFill="WHITE" />
-                                                      <Button layoutX="150.0" layoutY="345.0" mnemonicParsing="false" styleClass="btn" text="添加客房" textFill="WHITE" />
+                                                      <TextArea fx:id="txa_remark_standard" layoutX="42.0" layoutY="248.0" prefHeight="84.0" prefWidth="217.0" promptText="备注：" stylesheets="@ui_default_style.css" wrapText="true" />
+                                                      <Button layoutX="67.0" layoutY="345.0" mnemonicParsing="false" onAction="#ac_alter_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="修改信息" textFill="WHITE" />
+                                                      <Button layoutX="150.0" layoutY="345.0" mnemonicParsing="false" onAction="#ac_add_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="添加客房" textFill="WHITE" />
                                                       <ComboBox fx:id="cbx_floor_standard" layoutX="62.0" layoutY="153.0" prefHeight="27.0" prefWidth="165.0" promptText="楼层" />
                                                       <ComboBox fx:id="cbx_type_standard" layoutX="61.0" layoutY="108.0" prefHeight="27.0" prefWidth="167.0" promptText="客房类型" />
                                                       <TextField fx:id="txf_id_number_standard" layoutX="62.0" layoutY="61.0" prefHeight="27.0" prefWidth="165.0" promptText="客房编号" />
                                                    </children>
                                                 </Pane>
+                                                <Button layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -162,9 +163,9 @@
                                                       <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
                                                 </TableView>
-                                                <Button layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_check" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
+                                                <Button layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_user" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
                                                 <DatePicker layoutX="44.0" layoutY="52.0" prefHeight="27.0" prefWidth="169.0" promptText="查看日期...." />
-                                                <TextField fx:id="txf_search" layoutX="606.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
+                                                <TextField fx:id="txf_search_user" layoutX="606.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
                                                 <ImageView fx:id="iv_picture_user" fitHeight="165.0" fitWidth="164.0" layoutX="44.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
                                                    <effect>
                                                       <DropShadow />

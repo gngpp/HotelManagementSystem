@@ -210,7 +210,6 @@ public class SignInController implements Initializable {
 
     }
 
-
     @FXML
     void ac_exit(ActionEvent event) {
         signInStage.hide();
@@ -221,7 +220,6 @@ public class SignInController implements Initializable {
         signInStage.setIconified(true);
     }
 
-
     @FXML
     void ac_checkFind(ActionEvent event) throws Exception {
         if(isCheckInfo_find()){
@@ -231,7 +229,6 @@ public class SignInController implements Initializable {
         ac_resetFind(event);
 
     }
-
 
     @FXML
     void ac_checkAlter(ActionEvent event) throws Exception {
@@ -280,8 +277,6 @@ public class SignInController implements Initializable {
         }
         return false;
     }
-
-
 
     private Boolean isCheckInfo(){
 
