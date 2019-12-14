@@ -16,6 +16,8 @@ import sun.misc.Launcher;
 
 import java.awt.*;
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,68 +25,44 @@ public class Test {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
-        File newFile = new File(file, new SimpleDateFormat("YYYY-MM-dd-mm:hh:ss").format(new Date()) + "-backup");
+        File newFile = new File(file, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
         if (!file.exists()) {
             file.mkdir();
         }
         System.out.println(System.getProperties().get("os.name"));
+        System.out.println(newFile);
 
 
         //备份
-        String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
-        Process p = Runtime.getRuntime().exec(mysqldump);
-        if (p.waitFor() == 0) {// 0 表示线程正常终止。
-            System.out.println("导出成功");
+        String mysql="/usr/local/mysql/bin/mysql -h localhost --user=root --password=itcast --result-file=/Users/black-mac/IdeaProjects/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-14-09:03:54-backup--default-character-set=utf8.sql FXdb";
+        System.out.println(mysql);
+//        String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
+//        System.out.println(mysqldump);
+//        Process p = Runtime.getRuntime().exec(mysqldump);
+//        if (p.waitFor() == 0) {// 0 表示线程正常终止。
+//            System.out.println("导出成功");
+//        } else {
+//            System.out.println("导出失败,失败码:" + p.waitFor());
+//        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        Process ps = Runtime.getRuntime().exec(mysql);
+        if (ps.waitFor() == 0) {// 0 表示线程正常终止。
+            System.out.println("恢复成功");
         } else {
-            System.out.println("导出失败,失败码:" + p.waitFor());
+            System.out.println("恢复失败,失败码:" + ps.waitFor());
         }
 
 
-
-
-
-
-
-//        try {
-//                Process process = Runtime.getRuntime().exec("mysql -h192.168.64.129 -P3306 -uroot -p123 test");
-//                OutputStream outputStream = process.getOutputStream();
-//                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream()));
-//                String str = null;
-//                StringBuffer sb = new StringBuffer();
-//                while((str = br.readLine()) != null){
-//                    sb.append(str+"\r\n");
-//                }
-//                str = sb.toString();
-//                System.out.println(str);
-//                OutputStreamWriter writer = new OutputStreamWriter(outputStream,"utf-8");
-//                writer.write(str);
-//                writer.flush();
-//                outputStream.close();
-//                br.close();
-//                writer.close();
-//                System.out.println("数据库恢复成功");
-//            } catch (IOException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//                System.out.println("数据库恢复失败");
-//            }
-
-
-
-
-
-
-
-
-
-
-
-//            Process p=Runtime.getRuntime().exec(mysql);
-//            if (p.waitFor()==0){
-//                System.out.println("恢复成功");
-//            }else {
-//                System.out.println("恢复失败，失败码"+p.waitFor());
-//            }
 
 
     }
