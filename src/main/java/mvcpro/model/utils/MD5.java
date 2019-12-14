@@ -1,4 +1,4 @@
-package mvcpro.model.md5;
+package mvcpro.model.utils;
 
 import java.security.MessageDigest;
 

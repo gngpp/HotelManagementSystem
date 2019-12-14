@@ -7,16 +7,16 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
-import mvcpro.model.md5.MD5;
-import mvcpro.view.login.UiLogin;
-import mvcpro.view.main.UiMainFrame;
+import mvcpro.model.utils.MD5;
+import mvcpro.view.UiLogin;
+import mvcpro.view.UiMainFrame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import mvcpro.view.messagebox.UiMessageBox;
-import mvcpro.view.ru.SignIn;
+import mvcpro.view.UiMessageBox;
+import mvcpro.view.SignIn;
 
 public class UiLoginController {
 

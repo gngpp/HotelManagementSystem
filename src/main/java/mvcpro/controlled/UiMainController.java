@@ -34,6 +34,9 @@ public class UiMainController {
     private BookRoomDao bookRoomDao;
     private StandardRoomDao standardRoomDao;
 
+    @FXML
+    private Tab a;
+
     private Stage mainStage;
 
     @FXML
@@ -235,6 +238,12 @@ public class UiMainController {
     @FXML
     private TextField txf_search_standard;
 
+    /*
+    房间信息字段
+     */
+
+    @FXML
+    private  TextField txf_search_info;
 
     @FXML
     void CheckAdd(ActionEvent event) throws Exception {
@@ -690,6 +699,7 @@ public class UiMainController {
                     return;
                 } else {
                     standardRoomData.remove(selectStandardRoom);
+                    ac_refresh_standard(event);
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该房间已删除").show();
                 }
             }
@@ -852,6 +862,27 @@ public class UiMainController {
         cbx_type_standard.setValue(null);
         cbx_floor_standard.setValue(null);
     }
+
+    @FXML
+    void ac_add_info(ActionEvent event){
+
+    }
+
+    @FXML
+    void ac_alter_info(ActionEvent event){
+
+    }
+
+    @FXML
+    void ac_delete_info(ActionEvent event){
+
+    }
+
+    @FXML
+    void ac_search_info(ActionEvent event){
+
+    }
+
 
     public static boolean isNumber(String phone) {
         String regex = "^[0-9]*$";

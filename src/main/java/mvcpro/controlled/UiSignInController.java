@@ -12,7 +12,7 @@ import mvcpro.model.dao.UserDao;
 import mvcpro.model.dao.UserVerifyDao;
 import mvcpro.model.entity.User;
 import mvcpro.model.entity.UserVerify;
-import mvcpro.model.md5.MD5;
+import mvcpro.model.utils.MD5;
 import mvcpro.view.AlertDefined;
 
 import java.io.File;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SignInController implements Initializable {
+public class UiSignInController implements Initializable {
     private  Stage signInStage;
 
     @FXML

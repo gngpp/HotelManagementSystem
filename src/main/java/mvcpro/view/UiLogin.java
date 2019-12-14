@@ -1,4 +1,4 @@
-package mvcpro.view.login;
+package mvcpro.view;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;

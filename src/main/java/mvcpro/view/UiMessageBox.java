@@ -1,4 +1,4 @@
-package mvcpro.view.messagebox;
+package mvcpro.view;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiMessageBoxController;
-import mvcpro.view.ru.SignIn;
 
 public class UiMessageBox{
 

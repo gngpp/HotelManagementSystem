@@ -30,7 +30,7 @@
          <children>
             <TabPane layoutY="60.0" prefHeight="466.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="客房信息">
+                  <Tab fx:id="a" text="客房信息">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -40,7 +40,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView fx:id="mTableInfoRoom" layoutY="15.0" prefHeight="388.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
+                                                <TableView fx:id="mTableInfoRoom" layoutY="29.0" prefHeight="374.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" sortable="false" text="房间类型" />
                                                       <TableColumn fx:id="tableColumnArea_Info" prefWidth="86.0" sortable="false" text="面积" />
@@ -53,6 +53,11 @@
                                                       <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="160.0" sortable="false" text="备注" />
                                                    </columns>
                                                 </TableView>
+                                                <Button layoutX="23.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="26.0" prefWidth="55.0" styleClass="btn" text="添加" />
+                                                <Button layoutX="92.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="26.0" prefWidth="56.0" styleClass="btn" text="修改" />
+                                                <Button layoutX="160.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="58.0" styleClass="btn" text="删除" />
+                                                <Button layoutX="696.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="51.0" styleClass="btn" text="搜索" />
+                                                <TextField fx:id="txf_search_info" layoutX="514.0" layoutY="1.0" styleClass="txf_username" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -222,7 +227,6 @@
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
                     <MenuItem mnemonicParsing="false" onAction="#systemClose" text="退出" />
                   </items>
                 </Menu>
@@ -234,9 +238,17 @@
                         <KeyCodeCombination alt="UP" code="BACK_SPACE" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                      </accelerator>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="系统维护">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="数据库备份与恢复" />
+                        <MenuItem mnemonicParsing="false" text="退出系统" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                   <items>
                     <MenuItem mnemonicParsing="false" text="关于" />
+                        <MenuItem mnemonicParsing="false" text="联系技术支持" />
+                        <MenuItem mnemonicParsing="false" text="访问技术网站" />
                   </items>
                 </Menu>
               </menus>

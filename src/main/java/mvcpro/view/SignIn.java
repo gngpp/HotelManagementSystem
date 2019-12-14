@@ -1,27 +1,24 @@
-package mvcpro.view.ru;
+package mvcpro.view;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import mvcpro.controlled.SignInController;
-import mvcpro.controlled.UiMessageBoxController;
+import mvcpro.controlled.UiSignInController;
 
 public class SignIn extends Application {
 
 
     private  Stage newStage=new Stage();
     private Scene scene;
-    private SignInController signInController;
+    private UiSignInController uiSignInController;
     private double lastx_distance,lasty_distance;
     public  SignIn(){
         newStage=new Stage();
@@ -40,8 +37,8 @@ public class SignIn extends Application {
                 //
                 //获取控制类对象引用
                 //
-                signInController=loader.getController();
-                signInController.setUiMessageBox(newStage);
+                uiSignInController =loader.getController();
+                uiSignInController.setUiMessageBox(newStage);
 
                 //
                 //设置背景颜色
