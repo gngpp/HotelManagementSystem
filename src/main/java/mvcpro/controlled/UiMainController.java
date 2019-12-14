@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
 import mvcpro.view.AlertDefined;
+import mvcpro.view.UiInfoRoom;
 import mvcpro.view.server.*;
 
 import java.io.File;
@@ -864,8 +865,8 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_add_info(ActionEvent event){
-
+    void ac_add_info(ActionEvent event) throws Exception {
+        new UiInfoRoom().start(new Stage());
     }
 
     @FXML

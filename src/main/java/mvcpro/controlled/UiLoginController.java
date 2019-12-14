@@ -16,7 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import mvcpro.view.UiMessageBox;
-import mvcpro.view.SignIn;
+import mvcpro.view.UiSignIn;
 
 public class UiLoginController {
 
@@ -131,7 +131,7 @@ public class UiLoginController {
 
     @FXML
     void loginSignIn(ActionEvent event) throws Exception {
-        new SignIn().start(signInStage);
+        new UiSignIn().start(signInStage);
     }
 
 

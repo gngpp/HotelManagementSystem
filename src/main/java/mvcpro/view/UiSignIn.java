@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -13,14 +14,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiSignInController;
 
-public class SignIn extends Application {
+public class UiSignIn extends Application {
 
 
     private  Stage newStage=new Stage();
     private Scene scene;
     private UiSignInController uiSignInController;
     private double lastx_distance,lasty_distance;
-    public  SignIn(){
+    public UiSignIn(){
         newStage=new Stage();
     }
 
@@ -48,14 +49,7 @@ public class SignIn extends Application {
 
                 scene=new Scene(root);
 
-                //
-                //加载CSS文件
-                //
-                //  scene.getStylesheets().add(getClass().getResource("/ui_sign_in_style.css").toExternalForm());
-
-                //
-                //设置场景透明
-                //
+                newStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
                 scene.setFill(Paint.valueOf("#FFFFFF00"));
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);

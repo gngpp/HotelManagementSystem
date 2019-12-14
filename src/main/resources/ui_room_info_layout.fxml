@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
+   <children>
+      <TextField layoutX="51.0" layoutY="96.0" promptText="房间面积" />
+      <TextField layoutX="51.0" layoutY="139.0" promptText="房间床数" />
+      <TextField layoutX="51.0" layoutY="187.0" promptText="额定人数" />
+      <ComboBox layoutX="51.0" layoutY="235.0" prefHeight="27.0" prefWidth="167.0" promptText="空调" />
+      <ComboBox layoutX="51.0" layoutY="283.0" prefHeight="27.0" prefWidth="167.0" promptText="电视" />
+      <ComboBox layoutX="51.0" layoutY="330.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
+      <TextField layoutX="51.0" layoutY="49.0" promptText="房间电话" />
+   </children>
+</AnchorPane>
