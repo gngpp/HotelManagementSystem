@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import mvcpro.view.messagebox.UiMessageBox;
 import mvcpro.view.ru.SignIn;
 
-public class UiLoginController implements Verify {
+public class UiLoginController {
 
     private  static boolean isTure=false;
 

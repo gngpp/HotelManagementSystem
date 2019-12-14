@@ -99,7 +99,7 @@ public class UiMainController {
     private TableColumn<UserData, String> tableColumnQs_two;
 
     @FXML
-    TableColumn<UserData, String> tableColumnPicture;
+    private TableColumn<UserData, String> tableColumnPicture;
 
 
     @FXML

@@ -147,13 +147,13 @@ public class SignInController implements Initializable {
     private void initProperty(){
         userDao=new UserDao();
         userVerifyDao= new UserVerifyDao();
-        cbx_selectOne.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
+        cbx_selectOne.getItems().addAll("你父母亲的姓名?","你的生日是?","你毕业于那个初中?","你喜欢看的电影?");
         cbx_selectTwo.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
         cbx_selectThree.getItems().addAll("您的出生地是？","您的小学校名是？","您的小学校名是？","您的学号（或工号）是？");
-        cbx_selectOne_alter.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
+        cbx_selectOne_alter.getItems().addAll("你父母亲的姓名?","你的生日是?","你毕业于那个初中?","你喜欢看的电影?");
         cbx_selectTwo_alter.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
         cbx_selectThree_alter.getItems().addAll("您的出生地是？","您的小学校名是？","您的小学校名是？","您的学号（或工号）是？");
-        cbx_selectOne_find.getItems().addAll("你父母亲的姓名?","你的生日?","你毕业于那个初中?","你喜欢看的电影?");
+        cbx_selectOne_find.getItems().addAll("你父母亲的姓名?","你的生日是?","你毕业于那个初中?","你喜欢看的电影?");
         cbx_selectTwo_find.getItems().addAll("您父亲的姓名是？","您配偶的姓名是？","您高中班主任的名字是？","您配偶的姓名是？");
         cbx_selectThree_find.getItems().addAll("您的出生地是？","您的小学校名是？","您的学号（或工号）是？");
 
@@ -226,7 +226,7 @@ public class SignInController implements Initializable {
     void ac_checkFind(ActionEvent event) throws Exception {
         if(isCheckInfo_find()){
             if (!isFindInfo())
-                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","查找失败！，请确认你的信息是否正确。").show();
+                new AlertDefined(Alert.AlertType.INFORMATION,"提示️","重置失败！，请确认你的信息是否正确。").show();
         }
         ac_resetFind(event);
 

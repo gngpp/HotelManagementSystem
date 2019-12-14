@@ -1,12 +1,16 @@
 .btn{
-    -fx-background-radius:5px;
-    -fx-background-color: rgba(10, 10, 10, 0.75);
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#000000, #3b3b3b);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+
 }
 
 .btn:pressed{
-    -fx-background-color: rgba(0, 0, 0, 0.7);
-    -fx-border-width: 0;
-    -fx-text-fill: #b9b9b9;
+    -fx-background-color: rgba(253, 9, 0, 0.7);
+    -fx-border-width: 1px;
+    -fx-text-fill: #fffbfd;
 }
 .btn_exit{
     -fx-background-radius:5px;
@@ -22,11 +26,10 @@
 
 
 .btn:hover{
-    -fx-border-color: rgba(0,122,204,1);
-    -fx-background-color: rgba(28, 104, 133, 0.7);
-    -fx-border-width: 0;
-    -fx-text-fill: #b9b9b9;
 
+    -fx-background-color: linear-gradient(#3b3b3b, #000000);
+    -fx-border-width: 0;
+    -fx-text-fill: #dadada;
 }
 
 .frame{
@@ -95,8 +98,8 @@
 .table-row-cell,.table-cell {
     -fx-text-fill: #ffffff;
     -fx-background-color: rgba(0, 0, 0, 0);
-    -fx-border-width: 1px;
-    -fx-font-weight: bold;
+    -fx-border-width: 0.5px;
+    /*-fx-font-weight: bold;*/
     -fx-alignment: center ;
 }
 .tabel-column-header{
@@ -104,7 +107,7 @@
     -fx-border-width: 0px;
 }
 .table-row-cell:selected .table-cell {
-    -fx-background-color: rgba(23, 97, 253, 0.65);
+    -fx-background-color: rgba(25, 136, 253, 0.65);
 }
 
 .tool-bar{
@@ -135,15 +138,15 @@
     -fx-text-fill: rgb(191, 192, 194);
 }
 .combo-box{
-    -fx-background-color: rgb(0, 0, 0);
+    -fx-background-color: rgb(255, 249, 255);
     -fx-border-radius: 7px;
 
 }
 .combo-box .label{
-    -fx-background-color: rgb(255, 245, 255);
+    -fx-background-color: rgb(255, 249, 255);
     -fx-text-fill: white;
 }
 .combo-box-base{
-    -fx-background-color: rgb(255, 245, 255);
+    -fx-background-color: rgb(255, 249, 255);
     -fx-text-fill: white;
 }

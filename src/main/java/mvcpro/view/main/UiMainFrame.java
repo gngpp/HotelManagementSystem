@@ -52,7 +52,7 @@ public class UiMainFrame extends Application {
                 lasty_distance=event.getScreenY()-mainStage.getY();
             }
         });
-
+        show();
         scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
