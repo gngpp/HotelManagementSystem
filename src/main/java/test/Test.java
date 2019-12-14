@@ -50,8 +50,6 @@ public class Test {
 //            System.out.println("导出失败,失败码:" + p.waitFor());
 //        }
         Test test=new Test();
-      //  System.out.println(test.readFileByLines("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-14-10:23:17-backup--default-character-set=utf8.sql"));
-
         test.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-14-10:34:11-backup--default-character-set=utf8.sql");
     }
 
