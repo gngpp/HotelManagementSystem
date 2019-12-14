@@ -16,6 +16,7 @@ import mvcpro.model.md5.MD5;
 import mvcpro.view.AlertDefined;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -142,8 +143,6 @@ public class SignInController implements Initializable {
         initProperty();
     }
 
-
-
     private void initProperty(){
         userDao=new UserDao();
         userVerifyDao= new UserVerifyDao();
@@ -159,16 +158,19 @@ public class SignInController implements Initializable {
 
 }
 
-
-
     public void setUiMessageBox(Stage newStage) {
         this.signInStage=newStage;
     }
 
-
     @FXML
     void ac_signInAndLogin(ActionEvent event) {
-
+        FileChooser fileChooser=new FileChooser();
+        File file=fileChooser.showOpenDialog(new Stage());
+        try {
+            System.out.println(file.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
