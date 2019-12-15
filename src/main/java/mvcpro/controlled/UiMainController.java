@@ -1,5 +1,6 @@
 package mvcpro.controlled;
 
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -36,9 +38,15 @@ public class UiMainController {
     private BookRoomDao bookRoomDao;
     private StandardRoomDao standardRoomDao;
     private User user;
+    private final String verifyUser="用户";
+    @FXML
+    private Tab tab_bookRoom;
 
     @FXML
-    private Tab a;
+    private Tab tab_accounts;
+
+    @FXML
+    private Tab tab_system;
 
     private Stage mainStage;
 
@@ -49,7 +57,8 @@ public class UiMainController {
     private ImageView imageView_two;
 
     @FXML
-    ImageView iv_picture_user;
+    private ImageView iv_picture_user;
+
     @FXML
     private Button add;
 
@@ -67,6 +76,18 @@ public class UiMainController {
 
     @FXML
     private Button mainExit;
+
+    @FXML
+    private Button btn_add_info;
+
+    @FXML
+    private Button btn_delete_info;
+
+    @FXML
+    private Button btn_delete_standard;
+
+    @FXML
+    private Pane pane_info;
 
     @FXML
     private TextField txf_search_user;
@@ -283,6 +304,15 @@ public class UiMainController {
     public void setMainStage(Stage mainStage,User user) {
         this.user=user;
         this.mainStage = mainStage;
+        if (user.getUserType().equals(verifyUser)){
+            tab_system.setDisable(true);
+            tab_accounts.setDisable(true);
+            tab_bookRoom.setDisable(true);
+            btn_add_info.setVisible(false);
+            btn_delete_info.setVisible(false);
+            btn_delete_standard.setVisible(false);
+            pane_info.setVisible(false);
+        }
     }
 
     @FXML
@@ -398,6 +428,18 @@ public class UiMainController {
                 try {
                     for (StandardRoom standardRoom:standardRoomDao.list())
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        txf_search_info.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("")) {
+                infoRoomData_list.removeAll(standardRoomData_list);
+                try {
+                    for (InfoRoom infoRoom : infoRoomDao.list())
+                        infoRoomData_list.add(new InfoRoomData(infoRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -614,11 +656,15 @@ public class UiMainController {
 
     @FXML
     void ac_search_user(ActionEvent event) {
+        if(txf_search_user.getText().equals("")){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请输入搜索信息").show();
+            return;
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("搜索线程已启动...");
-                if (txf_search_user.getText() != null) {
+                if (!txf_search_user.getText().equals("")) {
 
                     //
                     // 获取搜索内容
@@ -727,11 +773,16 @@ public class UiMainController {
 
     @FXML
     void ac_search_standard(ActionEvent event){
+        if(txf_search_standard.getText().equals("")){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请输入搜索信息").show();
+            return;
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("搜索线程已启动...");
-                if (txf_search_standard.getText() != null) {
+                if (!txf_search_standard.getText().equals("")) {
 
                     //
                     // 获取搜索内容
@@ -887,11 +938,6 @@ public class UiMainController {
     }
 
     @FXML
-    void ac_alter_info(ActionEvent event){
-
-    }
-
-    @FXML
     void ac_delete_info(ActionEvent event){
         try {
             int index = mTableInfoRoom.getSelectionModel().getSelectedIndex();
@@ -919,7 +965,69 @@ public class UiMainController {
 
     @FXML
     void ac_search_info(ActionEvent event){
+        if(txf_search_info.getText().equals("")){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请输入搜索信息").show();
+            return;
+        }
 
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("搜索线程已启动...");
+                if (!txf_search_info.getText().equals("")) {
+
+                    //
+                    // 获取搜索内容
+                    //
+
+                    String search_text = txf_search_info.getText();
+                    System.out.println(search_text);
+                    //
+                    // 存放搜索到的信息
+                    //
+
+                    ArrayList<InfoRoomData> search_result_list = new ArrayList<>();
+
+                    //
+                    // 遍历客户用户数据列表
+                    //
+
+                    try {
+                        for (InfoRoom test:infoRoomDao.list()) {
+                            if (search_text.equals(String.valueOf(test.getId_number()))||
+                                    search_text.equals(test.getAir_conditioning())||
+                                    search_text.equals(String.valueOf(test.getIphone()))||
+                                    search_text.equals(test.getRest())||
+                                    search_text.equals(test.getType())||
+                                    search_text.equals(test.getTv())||
+                                    search_text.equals(String.valueOf(test.getArea()))||
+                                    search_text.equals(String.valueOf(test.getMax_bed()))||
+                                    search_text.equals(String.valueOf(test.getMax_people()))){
+
+                                //
+                                // 存放符合搜索条件的用户信息
+                                //
+                                search_result_list.add(new InfoRoomData(test));
+                            }
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    infoRoomData_list.removeAll(infoRoomData_list);
+                    for (int j = 0; j < search_result_list.size(); j++) {
+                        infoRoomData_list.add(j, search_result_list.get(j));
+                    }
+
+                    //
+                    // 清空
+                    //
+                    search_result_list.clear();
+                }
+            }
+        }).start();
     }
 
 }

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.embed.swing.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -23,23 +33,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
+<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
             <TabPane layoutY="60.0" prefHeight="466.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab fx:id="a" text="房间信息">
+                  <Tab text="房间信息">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TabPane layoutY="-2.0" prefHeight="436.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="客房信息">
+                                  <Tab text="客房详情">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView fx:id="mTableInfoRoom" layoutY="29.0" prefHeight="374.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableInfoRoom" layoutY="40.0" prefHeight="363.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_Info" prefWidth="75.0" text="房间编号" />
                                                       <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" text="房间类型" />
@@ -53,11 +63,10 @@
                                                       <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="148.72198486328125" text="备注" />
                                                    </columns>
                                                 </TableView>
-                                                <Button fx:id="btn_add_info" layoutX="23.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="0.0" prefWidth="70.0" styleClass="btn" text="添加" />
-                                                <Button fx:id="btn_alter_info" layoutX="107.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="8.0" prefWidth="73.0" styleClass="btn" text="修改" />
-                                                <Button fx:id="btn_delete_info" layoutX="194.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="0.0" prefWidth="68.0" styleClass="btn" text="删除" />
-                                                <Button layoutX="649.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="51.0" styleClass="btn" text="搜索" />
-                                                <TextField fx:id="txf_search_info" layoutX="461.0" layoutY="1.0" styleClass="txf_username" />
+                                                <Button fx:id="btn_add_info" layoutX="95.0" layoutY="8.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="0.0" prefWidth="70.0" styleClass="btn" text="添加" />
+                                                <Button fx:id="btn_delete_info" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="71.0" styleClass="btn" text="删除" />
+                                                <Button layoutX="773.0" layoutY="7.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="60.0" styleClass="btn" text="搜索" />
+                                                <TextField fx:id="txf_search_info" layoutX="597.0" layoutY="7.0" promptText="搜索..." styleClass="txf_username" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -66,7 +75,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableStandardRoom" layoutX="289.0" layoutY="51.0" prefHeight="350.0" prefWidth="597.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableStandardRoom" layoutX="287.0" layoutY="51.0" prefHeight="350.0" prefWidth="599.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
                                                       <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
@@ -75,10 +84,23 @@
                                                       <TableColumn fx:id="tableColumnRemark_standard" prefWidth="184.0" text="备注" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="299.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
+                                                <Button fx:id="btn_delete_standard" layoutX="299.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
                                                 <Button layoutX="801.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_search_standard" styleClass="btn" text="查找" textFill="WHITE" />
                                                 <TextField fx:id="txf_search_standard" layoutX="617.0" layoutY="16.0" promptText="查找..." styleClass="txf_username" />
-                                                <Pane layoutY="-7.0" prefHeight="409.0" prefWidth="287.0" styleClass="frame" stylesheets="@ui_default_style.css">
+                                                <Button layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
+                                                <Pane fx:id="pane_stackedBar_info" layoutY="2.0" prefHeight="400.0" prefWidth="285.0">
+                                                   <children>
+                                                      <StackedBarChart layoutX="1.0" prefHeight="402.0" prefWidth="284.0">
+                                                        <xAxis>
+                                                          <CategoryAxis side="BOTTOM" />
+                                                        </xAxis>
+                                                        <yAxis>
+                                                          <NumberAxis side="LEFT" />
+                                                        </yAxis>
+                                                      </StackedBarChart>
+                                                   </children>
+                                                </Pane>
+                                                <Pane fx:id="pane_info" prefHeight="409.0" prefWidth="287.0" styleClass="frame" stylesheets="@ui_default_style.css">
                                                    <children>
                                                       <TextField fx:id="txf_price_standard" layoutX="61.0" layoutY="199.0" prefHeight="27.0" prefWidth="166.0" promptText="单价/天" />
                                                       <TextArea fx:id="txa_remark_standard" layoutX="42.0" layoutY="248.0" prefHeight="84.0" prefWidth="217.0" promptText="备注：" stylesheets="@ui_default_style.css" wrapText="true" />
@@ -89,7 +111,6 @@
                                                       <TextField fx:id="txf_id_number_standard" layoutX="62.0" layoutY="61.0" prefHeight="27.0" prefWidth="165.0" promptText="客房编号" />
                                                    </children>
                                                 </Pane>
-                                                <Button layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -100,7 +121,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                <Tab text="订房信息管理">
+                <Tab fx:id="tab_bookRoom" text="订房信息管理">
                      <content>
                         <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
@@ -131,7 +152,7 @@
                         </Pane>
                      </content>
                   </Tab>
-                <Tab text="结账信息管理">
+                <Tab fx:id="tab_accounts" text="结账信息管理">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -146,7 +167,7 @@
                            </children></Pane>
                      </content>
                   </Tab>
-                  <Tab text="系统管理">
+                  <Tab fx:id="tab_system" text="系统管理">
                      <content>
                         <Pane prefHeight="433.0" prefWidth="892.0">
                            <children>

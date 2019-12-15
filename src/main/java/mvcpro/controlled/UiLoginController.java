@@ -79,14 +79,9 @@ public class UiLoginController {
         selectUserType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        verify=new StringBuilder(selectUserType.getValue().toString());
-                    }
-                }).start();
-
-            }
+                   verify=new StringBuilder(selectUserType.getValue().toString());
+                     System.out.println(verify);
+                }
         });
 
     }
@@ -108,10 +103,8 @@ public class UiLoginController {
                             loginStage.hide();
                             uiMainFrame.show(user);
                             return;
-                        }else {
-                            new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
-                            return;
                         }
+                    new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
