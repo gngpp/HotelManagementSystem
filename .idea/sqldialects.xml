@@ -3,6 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/backup/schema/2019-12-14-09:26:54-backup--default-character-set=utf8.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/resources/backup/schema/2019-12-14-10:34:11-backup--default-character-set=utf8.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/backup/schema/2019-12-15-10:20:51-backup--default-character-set=utf8.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql表-临时/FXdb.sql" dialect="MariaDB" />
   </component>
