@@ -159,6 +159,8 @@ public class UiMainController {
     private TableColumn<BookRoomData, String> tableColumnRemark_booking;
 
     //房间信息列
+    @FXML
+    private TableColumn<InfoRoomData,Integer> tableColumnIdNumber_Info;
 
     @FXML
     private TableColumn<InfoRoomData, String> tableColumnType_Info;
@@ -505,6 +507,7 @@ public class UiMainController {
         tableColumnTv_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("tv"));
         tableColumnMax_people_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, Integer>("max_people"));
         tableColumnRest_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("rest"));
+        tableColumnIdNumber_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("id"));
 
         new Thread(new Runnable() {
             @Override

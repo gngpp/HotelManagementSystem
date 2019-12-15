@@ -4,7 +4,7 @@
     <default-config>
         <property name="user">root</property>
         <property name="password">itcast</property>
-        <property name="jdbcUrl">jdbc:mysql://localhost:3306/FXdb?useUnicode=tru&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;allowMultiQueries=true</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/FXdb?useUnicode=tru&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;allowMultiQueries=false</property>
         <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
         <property name="checkoutTimeout">30000</property>
         <property name="idleConnectionTestPeriod">30</property>

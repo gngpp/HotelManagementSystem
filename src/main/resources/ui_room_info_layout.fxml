@@ -6,15 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
    <children>
-      <TextField layoutX="51.0" layoutY="96.0" promptText="房间面积" />
-      <TextField layoutX="51.0" layoutY="139.0" promptText="房间床数" />
-      <TextField layoutX="51.0" layoutY="187.0" promptText="额定人数" />
-      <ComboBox layoutX="51.0" layoutY="235.0" prefHeight="27.0" prefWidth="167.0" promptText="空调" />
-      <ComboBox layoutX="51.0" layoutY="283.0" prefHeight="27.0" prefWidth="167.0" promptText="电视" />
-      <ComboBox layoutX="51.0" layoutY="330.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
-      <TextField layoutX="51.0" layoutY="49.0" promptText="房间电话" />
+      <TextField layoutX="52.0" layoutY="117.0" promptText="房间面积" />
+      <TextField layoutX="51.0" layoutY="162.0" promptText="房间床数" />
+      <TextField layoutX="51.0" layoutY="209.0" promptText="额定人数" />
+      <ComboBox layoutX="51.0" layoutY="256.0" prefHeight="27.0" prefWidth="167.0" promptText="空调" />
+      <ComboBox layoutX="51.0" layoutY="303.0" prefHeight="27.0" prefWidth="167.0" promptText="电视" />
+      <ComboBox layoutX="52.0" layoutY="344.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
+      <TextField layoutX="51.0" layoutY="67.0" promptText="房间电话" />
+      <ComboBox layoutX="52.0" layoutY="24.0" prefHeight="27.0" prefWidth="167.0" promptText="房间编号" />
    </children>
 </AnchorPane>

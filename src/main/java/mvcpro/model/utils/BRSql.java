@@ -3,67 +3,13 @@ package mvcpro.model.utils;
 import com.lqing.orm.internal.connection.C3p0ConnectionProvider;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class BRSql {
-
-    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-
-    private static final String URL = "jdbc:mysql://localhost:3306/FXdb?allowMultiQueries=true";
-
-    private static final String USER_NAME = "root";
-
-    private static final String PASSWORD = "itcast";
-
-    private static Connection connection;
-
-    static {
-        try {
-            Class.forName(DRIVER_NAME);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public BRSql() {
-        try {
-            Class.forName(DRIVER_NAME);
-            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();
-            connection = null;
-        }
-    }
-
-    public BRSql(String Database, String User, String Password) {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Database, User, Password);
-        } catch (Exception e) {
-            e.printStackTrace();
-            connection = null;
-        }
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
-    public static void ReleaseConnect() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    C3p0ConnectionProvider c3p0ConnectionProvider=new C3p0ConnectionProvider();
 
     public Boolean Backpu() throws IOException, InterruptedException {
         File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
@@ -87,8 +33,6 @@ public class BRSql {
         }
         return false;
     }
-
-
     /**
      * @param sql 包含待执行的SQL语句的ArrayList集合
      * @return int 影响的函数
@@ -96,11 +40,12 @@ public class BRSql {
      */
     public int batchDate(ArrayList<String> sql) {
         try {
-            Statement st = connection.createStatement();
+            Statement st = c3p0ConnectionProvider.getConnection().createStatement();
             for (String subsql : sql) {
                 st.addBatch(subsql);
             }
-            st.executeBatch();
+            int arr[]=st.executeBatch();
+            System.out.println(arr);
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
