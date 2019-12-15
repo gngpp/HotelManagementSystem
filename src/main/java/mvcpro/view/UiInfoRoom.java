@@ -1,6 +1,8 @@
 package mvcpro.view;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,17 +19,20 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiInfoRoomController;
 import mvcpro.controlled.UiMainController;
+import mvcpro.view.server.InfoRoomData;
 
 public class UiInfoRoom extends Application {
     private double lastx_distance;
     private double lasty_distance;
     private Stage newStage;
+    private UiInfoRoomController uiInfoRoomController;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         newStage=primaryStage;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_room_info_layout.fxml"));
         Pane root=loader.load();
-        UiInfoRoomController uiInfoRoomController =loader.getController();
+        uiInfoRoomController =loader.getController();
         uiInfoRoomController.setMainStage(newStage);
 
 
@@ -62,5 +67,9 @@ public class UiInfoRoom extends Application {
                 newStage.setY(event.getScreenY()-lasty_distance);
             }
         });
+    }
+
+    public void setInfoRoomData(ObservableList<InfoRoomData> infoRoomData){
+        uiInfoRoomController.setInfoRoomData(infoRoomData);
     }
 }

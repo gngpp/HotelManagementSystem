@@ -44,8 +44,7 @@ public class BRSql {
             for (String subsql : sql) {
                 st.addBatch(subsql);
             }
-            int arr[]=st.executeBatch();
-            System.out.println(arr);
+            st.executeBatch();
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,5 +119,9 @@ public class BRSql {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public  static void main(String [] agrs){
+        new BRSql().runSqlByReadFileContent("/Users/black-mac/IdeaProjects/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
     }
 }

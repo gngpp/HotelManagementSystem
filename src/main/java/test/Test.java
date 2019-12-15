@@ -21,22 +21,22 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
 
-//        File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
-//        File newFile = new File(file, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
-//        if (!file.exists()) {
-//            file.mkdir();
-//        }
-//        System.out.println(System.getProperties().get("os.name"));
-//
-//        //备份
-//        String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
-//        System.out.println(mysqldump);
-//        Process p = Runtime.getRuntime().exec(mysqldump);
-//        if (p.waitFor() == 0) {// 0 表示线程正常终止。
-//            System.out.println("导出成功");
-//        } else {
-//            System.out.println("导出失败,失败码:" + p.waitFor());
-//        }
+        File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
+        File newFile = new File(file, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        System.out.println(System.getProperties().get("os.name"));
+
+        //备份
+        String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
+        System.out.println(mysqldump);
+        Process p = Runtime.getRuntime().exec(mysqldump);
+        if (p.waitFor() == 0) {// 0 表示线程正常终止。
+            System.out.println("导出成功");
+        } else {
+            System.out.println("导出失败,失败码:" + p.waitFor());
+        }
        // Test test=new Test();
       //  test.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
     }

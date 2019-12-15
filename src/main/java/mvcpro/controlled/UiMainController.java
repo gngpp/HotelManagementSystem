@@ -18,10 +18,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
+import mvcpro.model.utils.Uitls;
 import mvcpro.view.AlertDefined;
 import mvcpro.view.UiInfoRoom;
 import mvcpro.view.server.*;
 
+import javax.rmi.CORBA.Util;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -705,6 +707,9 @@ public class UiMainController {
                     return;
                 } else {
                     standardRoomData.remove(selectStandardRoom);
+                    infoRoomData.removeAll(infoRoomData);
+                    for (InfoRoom infoRoom:infoRoomDao.list())
+                        infoRoomData.add(new InfoRoomData(infoRoom));
                     ac_refresh_standard(event);
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该房间已删除").show();
                 }
@@ -797,7 +802,7 @@ public class UiMainController {
                         }
                 }
 
-        if (!isNumber(txf_id_number_standard.getText())||!isNumber(txf_price_standard.getText())){
+        if (!Uitls.isNumber(txf_id_number_standard.getText())||!Uitls.isNumber(txf_price_standard.getText())){
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "编号/单价请输入数字").show();
             return;
         }
@@ -844,7 +849,7 @@ public class UiMainController {
                 }
             }
 
-        if (!isNumber(txf_id_number_standard.getText())||!isNumber(txf_price_standard.getText())){
+        if (!Uitls.isNumber(txf_id_number_standard.getText())||!Uitls.isNumber(txf_price_standard.getText())){
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "编号/单价请输入数字").show();
             return;
         }
@@ -871,7 +876,10 @@ public class UiMainController {
 
     @FXML
     void ac_add_info(ActionEvent event) throws Exception {
-        new UiInfoRoom().start(new Stage());
+       UiInfoRoom uiInfoRoom = new UiInfoRoom();
+       uiInfoRoom.start(new Stage());
+       uiInfoRoom.setInfoRoomData(infoRoomData);
+
     }
 
     @FXML
@@ -888,13 +896,6 @@ public class UiMainController {
     void ac_search_info(ActionEvent event){
 
     }
-
-
-    public static boolean isNumber(String phone) {
-        String regex = "^[0-9]*$";
-        return phone.matches(regex);
-    }
-
 
 }
 
