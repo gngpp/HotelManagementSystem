@@ -46,7 +46,7 @@ class MySQLHandle {
     //mysql驱动包名
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     //数据库连接地址
-    private static final String URL = "jdbc:mysql://localhost:3306/FXdb";
+    private static final String URL = "jdbc:mysql://localhost:3306/FXdb?allowMultiQueries=false";
     //用户名
     private static final String USER_NAME = "root";
     //密码
@@ -56,7 +56,7 @@ class MySQLHandle {
 
     public static void main(String[] args) {
         MySQLHandle mySQLHandle=new MySQLHandle();
-        mySQLHandle.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
+        mySQLHandle.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-10:20:51-backup--default-character-set=utf8.sql");
         ReleaseConnect();
     }
 

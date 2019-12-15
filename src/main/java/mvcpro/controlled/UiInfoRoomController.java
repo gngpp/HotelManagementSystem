@@ -60,23 +60,26 @@ public class UiInfoRoomController {
     private ComboBox<String> cbx_rest_info;
 
 
-    private ObservableList<InfoRoomData> infoRoomData;
+    private ObservableList<InfoRoomData> infoRoomData_list;
 
     @FXML
     void initialize() throws Exception {
         standardRoomDao=new StandardRoomDao();
         infoRoomDao=new InfoRoomDao();
         List<Integer> arrayList=new ArrayList<>();
-        for (StandardRoom standardRoom:standardRoomDao.list())
+        for (StandardRoom standardRoom : standardRoomDao.list())
             arrayList.add(standardRoom.getRoom_id_number());
+        try{
+                    for (StandardRoom standardRoom:standardRoomDao.list())
+                        for (InfoRoom infoRoom:infoRoomDao.list())
+                            if (standardRoom.getRoom_id_number()==infoRoom.getId_number())
+                                arrayList.remove(standardRoom.getRoom_id_number());
 
-
-        for (StandardRoom standardRoom:standardRoomDao.list())
-            for (InfoRoom infoRoom:infoRoomDao.list())
-                if (standardRoom.getRoom_id_number()==infoRoom.getId_number())
-                    arrayList.remove(standardRoom.getRoom_id_number());
-
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
             cbx_IdNumber_info.getItems().setAll(arrayList);
+        }
             cbx_air_conditioning_info.getItems().setAll("有","无");
             cbx_rest_info.getItems().setAll("单间","双间");
             cbx_tv_info.getItems().setAll("IPTV","网络电视");
@@ -115,7 +118,7 @@ public class UiInfoRoomController {
                 infoRoom.setAir_conditioning(cbx_air_conditioning_info.getValue());
                 infoRoom.setType(next.getRoom_type());
                 infoRoom.setPs(next.getRoom_remark());
-                infoRoomData.add(new InfoRoomData(infoRoom));
+                infoRoomData_list.add(new InfoRoomData(infoRoom));
                 infoRoomDao.save(infoRoom);
                 break;
             }
@@ -127,7 +130,7 @@ public class UiInfoRoomController {
         this.uiInfoRoom=mainStage;
     }
 
-    public void setInfoRoomData(ObservableList<InfoRoomData> infoRoomData) {
-        this.infoRoomData = infoRoomData;
+    public void setInfoRoomData(ObservableList<InfoRoomData> infoRoomData_list) {
+        this.infoRoomData_list = infoRoomData_list;
     }
 }

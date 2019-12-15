@@ -23,7 +23,6 @@ import mvcpro.view.AlertDefined;
 import mvcpro.view.UiInfoRoom;
 import mvcpro.view.server.*;
 
-import javax.rmi.CORBA.Util;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -212,19 +211,19 @@ public class UiMainController {
     //
     // 用户表数据列表，此列表绑定这控件
     //
-    private final ObservableList<UserData> userData = FXCollections.observableArrayList();
+    private final ObservableList<UserData> userData_list = FXCollections.observableArrayList();
 
     //客户数据列表
-    private final ObservableList<ClientData> clientData = FXCollections.observableArrayList();
+    private final ObservableList<ClientData> clientData_list = FXCollections.observableArrayList();
 
     //订房数据列表
-    private final ObservableList<BookRoomData> bookRoomData = FXCollections.observableArrayList();
+    private final ObservableList<BookRoomData> bookRoomData_list = FXCollections.observableArrayList();
 
     //房间信息列表
-    private final ObservableList<InfoRoomData> infoRoomData = FXCollections.observableArrayList();
+    private final ObservableList<InfoRoomData> infoRoomData_list = FXCollections.observableArrayList();
 
     //房间标准信息
-    private final ObservableList<StandardRoomData> standardRoomData = FXCollections.observableArrayList();
+    private final ObservableList<StandardRoomData> standardRoomData_list = FXCollections.observableArrayList();
 
 
     /*
@@ -395,10 +394,10 @@ public class UiMainController {
         cbx_floor_standard.getItems().setAll("一楼","二楼","一楼","二楼","一楼","二楼");
         txf_search_standard.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")){
-                standardRoomData.removeAll(standardRoomData);
+                standardRoomData_list.removeAll(standardRoomData_list);
                 try {
                     for (StandardRoom standardRoom:standardRoomDao.list())
-                        standardRoomData.add(new StandardRoomData(standardRoom));
+                        standardRoomData_list.add(new StandardRoomData(standardRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -407,10 +406,10 @@ public class UiMainController {
 
         txf_search_user.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")){
-                userData.removeAll(userData);
+                userData_list.removeAll(userData_list);
                 try {
                     for (User user : userDao.list())
-                        userData.add(new UserData(user));
+                        userData_list.add(new UserData(user));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -438,11 +437,11 @@ public class UiMainController {
                 System.out.println("用户信息列表初始化线程已启动...");
                 try {
                     for (User user : userDao.list())
-                        userData.add(new UserData(user));
+                        userData_list.add(new UserData(user));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableUser.setItems(userData);
+                mTableUser.setItems(userData_list);
             }
         }).start();
     }
@@ -462,11 +461,11 @@ public class UiMainController {
                 System.out.println("客户信息列表初始化线程已启动...");
                 try {
                     for (Client client : clientDao.list())
-                        clientData.add(new ClientData(client));
+                        clientData_list.add(new ClientData(client));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableClient.setItems(clientData);
+                mTableClient.setItems(clientData_list);
             }
         }).start();
 
@@ -490,11 +489,11 @@ public class UiMainController {
                 System.out.println("房间预定信息列表初始化线程已启动...");
                 try {
                     for (BookRoom bookRoom : bookRoomDao.list())
-                        bookRoomData.add(new BookRoomData(bookRoom));
+                        bookRoomData_list.add(new BookRoomData(bookRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableBookRoom.setItems(bookRoomData);
+                mTableBookRoom.setItems(bookRoomData_list);
             }
         }).start();
 
@@ -519,11 +518,11 @@ public class UiMainController {
                 System.out.println("房间信息列表初始化线程已启动...");
                 try {
                     for (InfoRoom infoRoom : infoRoomDao.list())
-                        infoRoomData.add(new InfoRoomData(infoRoom));
+                        infoRoomData_list.add(new InfoRoomData(infoRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableInfoRoom.setItems(infoRoomData);
+                mTableInfoRoom.setItems(infoRoomData_list);
             }
         }).start();
 
@@ -542,11 +541,11 @@ public class UiMainController {
                 System.out.println("标准房间信息列表初始化线程已启动...");
                 try {
                     for (StandardRoom standardRoom : standardRoomDao.list())
-                        standardRoomData.add(new StandardRoomData(standardRoom));
+                        standardRoomData_list.add(new StandardRoomData(standardRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableStandardRoom.setItems(standardRoomData);
+                mTableStandardRoom.setItems(standardRoomData_list);
             }
         }).start();
     }
@@ -558,10 +557,10 @@ public class UiMainController {
             public void run() {
                 System.out.println("用户刷新线程已启动...");
                 iv_picture_user.setImage(new Image("/png/timg.jpeg"));
-                userData.removeAll(userData);
+                userData_list.removeAll(userData_list);
                 try {
                     for (User user : userDao.list())
-                        userData.add(new UserData(user));
+                        userData_list.add(new UserData(user));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -656,9 +655,9 @@ public class UiMainController {
                     }
 
 
-                    userData.removeAll(userData);
+                    userData_list.removeAll(userData_list);
                     for (int j = 0; j < search_result_list.size(); j++) {
-                        userData.add(j, search_result_list.get(j));
+                        userData_list.add(j, search_result_list.get(j));
                     }
 
                     //
@@ -677,10 +676,10 @@ public class UiMainController {
             @Override
             public void run() {
                 System.out.println("标准刷新线程已启动...");
-                standardRoomData.removeAll(standardRoomData);
+                standardRoomData_list.removeAll(standardRoomData_list);
                 try {
                     for (StandardRoom standardRoom: standardRoomDao.list())
-                        standardRoomData.add(new StandardRoomData(standardRoom));
+                        standardRoomData_list.add(new StandardRoomData(standardRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -705,9 +704,16 @@ public class UiMainController {
                     new AlertDefined(Alert.AlertType.ERROR, "提示", "删除房间失败").show();
                     return;
                 } else {
-                    standardRoomData.remove(selectStandardRoom);
+                    standardRoomData_list.remove(selectStandardRoom);
+                    standardRoomDao.delete(selectStandardRoom.standardRoomToEntity());
                     for (InfoRoom infoRoom:infoRoomDao.list()){
+                        if(infoRoom.getId_number()==selectStandardRoom.getRoom_id_number()){
+                            infoRoomData_list.removeAll(infoRoomData_list);
+                            infoRoomDao.delete(infoRoom);
+                            for (InfoRoom next:infoRoomDao.list())
+                                infoRoomData_list.add(new InfoRoomData(next));
 
+                        }
                     }
                     ac_refresh_standard(event);
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该房间已删除").show();
@@ -761,9 +767,9 @@ public class UiMainController {
                         e.printStackTrace();
                     }
 
-                    standardRoomData.removeAll(standardRoomData);
+                    standardRoomData_list.removeAll(standardRoomData_list);
                     for (int j = 0; j < search_result_list.size(); j++) {
-                        standardRoomData.add(j, search_result_list.get(j));
+                        standardRoomData_list.add(j, search_result_list.get(j));
                     }
 
                     //
@@ -820,8 +826,8 @@ public class UiMainController {
                 new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
                 return;
             } else {
-                standardRoomData.remove(selectStandardRoom);
-                standardRoomData.add(new StandardRoomData(standardRoom));
+                standardRoomData_list.remove(selectStandardRoom);
+                standardRoomData_list.add(new StandardRoomData(standardRoom));
                 ac_refresh_standard(event);
                 new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已修改").show();
             }
@@ -860,7 +866,7 @@ public class UiMainController {
         standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
         System.out.println(standardRoom);
         standardRoomDao.save(standardRoom);
-        standardRoomData.add(new StandardRoomData(standardRoom));
+        standardRoomData_list.add(new StandardRoomData(standardRoom));
         clear_standard();
     }
 
@@ -876,7 +882,7 @@ public class UiMainController {
     void ac_add_info(ActionEvent event) throws Exception {
        UiInfoRoom uiInfoRoom = new UiInfoRoom();
        uiInfoRoom.start(new Stage());
-       uiInfoRoom.setInfoRoomData(infoRoomData);
+       uiInfoRoom.setInfoRoomData(infoRoomData_list);
 
     }
 
@@ -902,7 +908,7 @@ public class UiMainController {
                     return;
                 } else {
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
-                    infoRoomData.remove(selectInfoRoom);
+                    infoRoomData_list.remove(selectInfoRoom);
                 }
             }
 
