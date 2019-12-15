@@ -2,25 +2,13 @@ package test;
 
 import com.lqing.orm.internal.connection.C3p0ConnectionProvider;
 import com.lqing.orm.internal.connection.IConnectionProvide;
-import com.sun.javaws.IconUtil;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import mvcpro.view.FileChooserDefined;
-import sun.misc.Launcher;
 
-import java.awt.*;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +16,7 @@ import java.util.Date;
 
 public class Test {
 
-    private  IConnectionProvide connProvider = new C3p0ConnectionProvider();
+    //private  IConnectionProvide connProvider = new C3p0ConnectionProvider();
 
     public static void main(String[] args) throws Exception {
 
@@ -49,59 +37,123 @@ public class Test {
 //        } else {
 //            System.out.println("导出失败,失败码:" + p.waitFor());
 //        }
-        Test test=new Test();
-        test.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-14-10:34:11-backup--default-character-set=utf8.sql");
+       // Test test=new Test();
+      //  test.runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
+    }
+}
+
+class MySQLHandle {
+    //mysql驱动包名
+    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+    //数据库连接地址
+    private static final String URL = "jdbc:mysql://localhost:3306/FXdb?allowMultiQueries=true";
+    //用户名
+    private static final String USER_NAME = "root";
+    //密码
+    private static final String PASSWORD = "itcast";
+    //数据库连接对象
+    private static Connection connection;
+
+
+    public static void main(String[] args) {
+        new MySQLHandle().runSqlByReadFileContent("/Volumes/Backup/javaFX期末项目用件/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
+    }
+
+    static {
+        try {
+            //加载mysql的驱动类
+            Class.forName(DRIVER_NAME);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //构造函数，包括连接数据库等操作
+    public MySQLHandle() {
+        try {
+            //加载mysql的驱动类
+            Class.forName(DRIVER_NAME);
+            //获取数据库连接
+            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+            connection = null;
+        }
+    }
+
+    //带参数构造函数，用于指定参数连接数据库
+    public MySQLHandle(String Database, String User, String Password) {
+        try {
+            //获取数据库连接
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + Database, User, Password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            connection = null;
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public static void ReleaseConnect() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
-
     /**
-     * @方法描述：批量执行SQL语句
-     * url加上，多条sql语句执行，allowMultiQueries=true
      * @param sql 包含待执行的SQL语句的ArrayList集合
      * @return int 影响的函数
+     * @方法描述：批量执行SQL语句
      */
-    public int batchDate(ArrayList<String> sql){
+    public int batchDate(ArrayList<String> sql) {
         try {
-            Statement st = connProvider.getConnection().createStatement();
-            for(String subsql :sql){
+            Statement st = connection.createStatement();
+            for (String subsql : sql) {
                 st.addBatch(subsql);
             }
             st.executeBatch();
             return 1;
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-
-    private ArrayList<String> readFileByLines(String filePath) throws Exception {
-        ArrayList<String> listStr=new ArrayList<>();
-        StringBuffer sb=new StringBuffer();
+    /**
+     * 以行为单位读取文件，并将文件的每一行格式化到ArrayList中，常用于读面向行的格式化文件
+     */
+    private static ArrayList<String> readFileByLines(String filePath) throws Exception {
+        ArrayList<String> listStr = new ArrayList<>();
+        StringBuffer sb = new StringBuffer();
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(
                     new FileInputStream(filePath), "UTF-8"));
             String tempString = null;
-            int flag=0;
+            int flag = 0;
             // 一次读入一行，直到读入null为文件结束
             while ((tempString = reader.readLine()) != null) {
                 // 显示行号
                 // System.out.println("line " + line + ": " + tempString);
-                if(tempString.trim().equals(""))
+                if (tempString.trim().equals(""))
                     continue;
-                if(tempString.substring(tempString.length()-1).equals(";")){
-                    if(flag==1){
+                if (tempString.substring(tempString.length() - 1).equals(";")) {
+                    if (flag == 1) {
                         sb.append(tempString);
                         listStr.add(sb.toString());
-                        sb.delete(0,sb.length());
-                        flag=0;
-                    }
-                    else
+                        sb.delete(0, sb.length());
+                        flag = 0;
+                    } else
                         listStr.add(tempString);
-                }else{
-                    flag=1;
+                } else {
+                    flag = 1;
                     sb.append(tempString);
                 }
             }
@@ -123,12 +175,12 @@ public class Test {
 
     /**
      * 读取文件内容到SQL中执行
+     *
      * @param sqlPath SQL文件的路径：如：D:/TestProject/web/sql/脚本.Sql
      */
     public void runSqlByReadFileContent(String sqlPath) {
         try {
             ArrayList<String> sqlStr = readFileByLines(sqlPath);
-            System.out.println(sqlStr);
             if (sqlStr.size() > 0) {
                 int num = batchDate(sqlStr);
                 if (num > 0)
@@ -141,9 +193,9 @@ public class Test {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
+
 
 
 
