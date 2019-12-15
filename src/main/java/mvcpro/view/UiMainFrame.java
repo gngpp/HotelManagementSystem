@@ -13,6 +13,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiMainController;
+import mvcpro.model.entity.User;
 
 
 public class UiMainFrame extends Application {
@@ -20,14 +21,13 @@ public class UiMainFrame extends Application {
     private double lastx_distance;
     private double lasty_distance;
     private Stage mainStage;
+    UiMainController uiMainController;
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainStage=primaryStage;
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_main_layout.fxml"));
         Pane root=loader.load();
-        UiMainController uiMainController =loader.getController();
-        uiMainController.setMainStage(mainStage);
-
+        uiMainController =loader.getController();
 
         //
         //设置背景颜色
@@ -52,7 +52,6 @@ public class UiMainFrame extends Application {
                 lasty_distance=event.getScreenY()-mainStage.getY();
             }
         });
-        show();
         scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -61,7 +60,9 @@ public class UiMainFrame extends Application {
             }
         });
     }
-    public void show(){
+
+    public void show(User user) {
+        uiMainController.setMainStage(mainStage,user);
         mainStage.show();
     }
     public static void main(String[] args) {

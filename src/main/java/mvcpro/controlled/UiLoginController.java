@@ -8,15 +8,12 @@ import javafx.stage.Modality;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.utils.MD5;
-import mvcpro.view.UiLogin;
-import mvcpro.view.UiMainFrame;
+import mvcpro.view.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import mvcpro.view.UiMessageBox;
-import mvcpro.view.UiSignIn;
 
 public class UiLoginController {
 
@@ -60,6 +57,7 @@ public class UiLoginController {
     void initialize() throws Exception {
         uiMainFrame=new UiMainFrame();
         uiMainFrame.start(new Stage());
+
         signInStage=new Stage();
         uiMessageBox=new UiMessageBox();
         userDao=new UserDao();
@@ -85,7 +83,6 @@ public class UiLoginController {
                     @Override
                     public void run() {
                         verify=new StringBuilder(selectUserType.getValue().toString());
-                        System.out.println(verify);
                     }
                 }).start();
 
@@ -99,24 +96,25 @@ public class UiLoginController {
     }
 
     @FXML
-    void LoginCheckEvent(ActionEvent event) throws Exception {
+    void LoginCheckEvent(ActionEvent event) {
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
+        if (selectUserType.getValue()==null) {
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请选择你的身份信息").show();
+            return;
+        }
                 try {
                     for (User user :userDao.list())
                         if (loginVerify(user)) {
-                            System.out.println("已登陆");
                             loginStage.hide();
-                            uiMainFrame.show();
+                            uiMainFrame.show(user);
+                            return;
+                        }else {
+                            new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
+                            return;
                         }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        });
-
     }
 
     @FXML
@@ -133,8 +131,6 @@ public class UiLoginController {
     void loginSignIn(ActionEvent event) throws Exception {
         new UiSignIn().start(signInStage);
     }
-
-
 
     private  Boolean loginVerify(User user){
 

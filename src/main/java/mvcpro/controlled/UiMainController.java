@@ -34,6 +34,7 @@ public class UiMainController {
     private InfoRoomDao infoRoomDao;
     private BookRoomDao bookRoomDao;
     private StandardRoomDao standardRoomDao;
+    private User user;
 
     @FXML
     private Tab a;
@@ -278,7 +279,8 @@ public class UiMainController {
         mainStage.setIconified(true);
     }
 
-    public void setMainStage(Stage mainStage) {
+    public void setMainStage(Stage mainStage,User user) {
+        this.user=user;
         this.mainStage = mainStage;
     }
 

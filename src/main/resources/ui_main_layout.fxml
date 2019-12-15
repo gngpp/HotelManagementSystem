@@ -54,9 +54,9 @@
                                                       <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="148.72198486328125" sortable="false" text="备注" />
                                                    </columns>
                                                 </TableView>
-                                                <Button layoutX="158.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="26.0" prefWidth="70.0" styleClass="btn" text="添加" />
-                                                <Button layoutX="251.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="26.0" prefWidth="73.0" styleClass="btn" text="修改" />
-                                                <Button layoutX="348.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="68.0" styleClass="btn" text="删除" />
+                                                <Button fx:id="btn_add_info" layoutX="23.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="0.0" prefWidth="70.0" styleClass="btn" text="添加" />
+                                                <Button fx:id="btn_alter_info" layoutX="107.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="8.0" prefWidth="73.0" styleClass="btn" text="修改" />
+                                                <Button fx:id="btn_delete_info" layoutX="194.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="0.0" prefWidth="68.0" styleClass="btn" text="删除" />
                                                 <Button layoutX="649.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="51.0" styleClass="btn" text="搜索" />
                                                 <TextField fx:id="txf_search_info" layoutX="461.0" layoutY="1.0" styleClass="txf_username" />
                                              </children>
