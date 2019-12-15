@@ -316,8 +316,8 @@ public class UiSignInController implements Initializable {
         user.setUserType("用户");
         userDao.save(user);
         userDao.list().forEach(System.out::println);
-        //写入外健表
 
+        //写入外健表
         UserVerify userVerify=new UserVerify();
         userVerify.setSelect_one(cbx_selectOne.getValue());
         userVerify.setSelect_two(cbx_selectTwo.getValue());

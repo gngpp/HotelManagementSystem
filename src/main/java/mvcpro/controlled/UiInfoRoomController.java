@@ -67,15 +67,15 @@ public class UiInfoRoomController {
         standardRoomDao=new StandardRoomDao();
         infoRoomDao=new InfoRoomDao();
         List<Integer> arrayList=new ArrayList<>();
-        for (StandardRoom standardRoom:standardRoomDao.list()){
+        for (StandardRoom standardRoom:standardRoomDao.list())
             arrayList.add(standardRoom.getRoom_id_number());
-        }
+
 
         for (StandardRoom standardRoom:standardRoomDao.list())
             for (InfoRoom infoRoom:infoRoomDao.list())
-                if (standardRoom.getRoom_id_number()==infoRoom.getId()) {
+                if (standardRoom.getRoom_id_number()==infoRoom.getId_number())
                     arrayList.remove(standardRoom.getRoom_id_number());
-                }
+
             cbx_IdNumber_info.getItems().setAll(arrayList);
             cbx_air_conditioning_info.getItems().setAll("有","无");
             cbx_rest_info.getItems().setAll("单间","双间");
@@ -102,27 +102,24 @@ public class UiInfoRoomController {
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "人数/床数/房间面积请输入数字").show();
             return;
         }
-        StandardRoom standardRoom=null;
-
         for (StandardRoom next:standardRoomDao.list())
             if(cbx_IdNumber_info.getValue()==next.getRoom_id_number()){
-                standardRoom=next;
+                InfoRoom infoRoom=new InfoRoom();
+                infoRoom.setArea(Integer.parseInt(txf_area_info.getText()));
+                infoRoom.setId_number(cbx_IdNumber_info.getValue());
+                infoRoom.setIphone(txf_phone_info.getText());
+                infoRoom.setMax_bed(Integer.parseInt(txf_bed_info.getText()));
+                infoRoom.setMax_people(Integer.parseInt(txf_maxPeople_info.getText()));
+                infoRoom.setTv(cbx_tv_info.getValue());
+                infoRoom.setRest(cbx_rest_info.getValue());
+                infoRoom.setAir_conditioning(cbx_air_conditioning_info.getValue());
+                infoRoom.setType(next.getRoom_type());
+                infoRoom.setPs(next.getRoom_remark());
+                infoRoomData.add(new InfoRoomData(infoRoom));
+                infoRoomDao.save(infoRoom);
                 break;
             }
 
-        InfoRoom infoRoom=new InfoRoom();
-        infoRoom.setArea(Integer.parseInt(txf_area_info.getText()));
-        infoRoom.setId(cbx_IdNumber_info.getValue());
-        infoRoom.setIphone(txf_phone_info.getText());
-        infoRoom.setMax_bed(Integer.parseInt(txf_bed_info.getText()));
-        infoRoom.setMax_people(Integer.parseInt(txf_maxPeople_info.getText()));
-        infoRoom.setTv(cbx_tv_info.getValue());
-        infoRoom.setRest(cbx_rest_info.getValue());
-        infoRoom.setAir_conditioning(cbx_air_conditioning_info.getValue());
-        infoRoom.setType(standardRoom.getRoom_type());
-        infoRoom.setPs(standardRoom.getRoom_remark());
-        infoRoomData.add(new InfoRoomData(infoRoom));
-        infoRoomDao.save(infoRoom);
         this.uiInfoRoom.close();
     }
 

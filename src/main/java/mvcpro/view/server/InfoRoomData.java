@@ -7,6 +7,7 @@ import mvcpro.model.entity.InfoRoom;
 public class InfoRoomData {
     private InfoRoom infoRoom;
     private SimpleIntegerProperty id;
+    private SimpleIntegerProperty id_number;
     private SimpleStringProperty type;
     private SimpleIntegerProperty area;
     private SimpleStringProperty iphone;
@@ -15,10 +16,12 @@ public class InfoRoomData {
     private SimpleIntegerProperty max_people;
     private SimpleIntegerProperty max_bed;
     private SimpleStringProperty rest;
+    private SimpleStringProperty air_conditioning;
 
     public InfoRoomData(InfoRoom infoRoom){
         this.infoRoom=new InfoRoom();
         id=new SimpleIntegerProperty(infoRoom.getId());
+        id_number=new SimpleIntegerProperty(infoRoom.getId_number());
         type=new SimpleStringProperty(infoRoom.getType());
         tv=new SimpleStringProperty(infoRoom.getTv());
         area=new SimpleIntegerProperty(infoRoom.getArea());
@@ -27,10 +30,12 @@ public class InfoRoomData {
         max_bed=new SimpleIntegerProperty(infoRoom.getMax_bed());
         max_people=new SimpleIntegerProperty(infoRoom.getMax_people());
         rest=new SimpleStringProperty(infoRoom.getRest());
+        air_conditioning=new SimpleStringProperty(infoRoom.getAir_conditioning());
     }
 
-    public InfoRoom InfoRoomToEntity(){
+    public InfoRoom infoRoomToEntity(){
         infoRoom.setId(id.get());
+        infoRoom.setId_number(id_number.get());
         infoRoom.setAir_conditioning(air_conditioning.get());
         infoRoom.setArea(area.get());
         infoRoom.setIphone(iphone.get());
@@ -40,6 +45,18 @@ public class InfoRoomData {
         infoRoom.setMax_people(max_people.get());
         infoRoom.setRest(rest.get());
         return this.infoRoom;
+    }
+
+    public int getId() {
+        return id.get();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id.set(id);
     }
 
     public String getIphone() {
@@ -150,18 +167,16 @@ public class InfoRoomData {
         this.type.set(type);
     }
 
-    private SimpleStringProperty air_conditioning;
-
-    public int getId() {
-        return id.get();
+    public int getId_number() {
+        return id_number.get();
     }
 
-    public SimpleIntegerProperty idProperty() {
-        return id;
+    public SimpleIntegerProperty id_numberProperty() {
+        return id_number;
     }
 
-    public void setId(int id) {
-        this.id.set(id);
+    public void setId_number(int id_number) {
+        this.id_number.set(id_number);
     }
 
     public InfoRoom getInfoRoom() {

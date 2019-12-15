@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.input.*?>
-<?import com.jfoenix.svg.*?>
-<?import com.jfoenix.controls.*?>
-<?import org.controlsfx.control.tableview2.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.web.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.embed.swing.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
+<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
@@ -43,15 +42,15 @@
                                                 <TableView fx:id="mTableInfoRoom" layoutY="29.0" prefHeight="374.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_Info" prefWidth="75.0" text="房间编号" />
-                                                      <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" sortable="false" text="房间类型" />
-                                                      <TableColumn fx:id="tableColumnArea_Info" prefWidth="84.0" sortable="false" text="面积/平米" />
-                                                      <TableColumn fx:id="tableColumnMax_bed_Info" minWidth="0.0" prefWidth="92.0" sortable="false" text="房间床数" />
-                                                      <TableColumn fx:id="tableColumnMax_people_Info" minWidth="0.0" prefWidth="76.0" sortable="false" text="额定人数" />
-                                                      <TableColumn fx:id="tableColumnAir_conditioning_Info" prefWidth="73.0" sortable="false" text="空调" />
-                                                      <TableColumn fx:id="tableColumnTv_Info" minWidth="0.0" prefWidth="75.0" sortable="false" text="电视" />
-                                                      <TableColumn fx:id="tableColumnRest_Info" minWidth="0.0" prefWidth="64.0" sortable="false" text="卫生间" />
-                                                      <TableColumn fx:id="tableColumnPhone_Info" minWidth="0.0" prefWidth="106.53955078125" sortable="false" text="电话" />
-                                                      <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="148.72198486328125" sortable="false" text="备注" />
+                                                      <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" text="房间类型" />
+                                                      <TableColumn fx:id="tableColumnArea_Info" prefWidth="84.0" text="面积/平米" />
+                                                      <TableColumn fx:id="tableColumnMax_bed_Info" minWidth="0.0" prefWidth="92.0" text="房间床数" />
+                                                      <TableColumn fx:id="tableColumnMax_people_Info" minWidth="0.0" prefWidth="76.0" text="额定人数" />
+                                                      <TableColumn fx:id="tableColumnAir_conditioning_Info" prefWidth="73.0" text="空调" />
+                                                      <TableColumn fx:id="tableColumnTv_Info" minWidth="0.0" prefWidth="75.0" text="电视" />
+                                                      <TableColumn fx:id="tableColumnRest_Info" minWidth="0.0" prefWidth="64.0" text="卫生间" />
+                                                      <TableColumn fx:id="tableColumnPhone_Info" minWidth="0.0" prefWidth="106.53955078125" text="电话" />
+                                                      <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="148.72198486328125" text="备注" />
                                                    </columns>
                                                 </TableView>
                                                 <Button fx:id="btn_add_info" layoutX="23.0" layoutY="2.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="0.0" prefWidth="70.0" styleClass="btn" text="添加" />
@@ -69,11 +68,11 @@
                                              <children>
                                                 <TableView fx:id="mTableStandardRoom" layoutX="289.0" layoutY="51.0" prefHeight="350.0" prefWidth="597.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
-                                                      <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" sortable="false" text="客房编号" />
-                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" sortable="false" text="客房类型" />
-                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="91.0" sortable="false" text="楼层" />
-                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="102.0" sortable="false" text="单价/天" />
-                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="184.0" sortable="false" text="备注" />
+                                                      <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
+                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
+                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="91.0" text="楼层" />
+                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="102.0" text="单价/天" />
+                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="184.0" text="备注" />
                                                    </columns>
                                                 </TableView>
                                                 <Button layoutX="299.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
@@ -107,16 +106,16 @@
                            <children>
                               <TableView fx:id="mTableBookRoom" layoutY="35.0" prefHeight="400.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                 <columns>
-                                  <TableColumn fx:id="tableColumnId_number_booking" prefWidth="76.0" sortable="false" text="客房编号" />
-                                  <TableColumn fx:id="tableColumnType_booking" prefWidth="70.0" sortable="false" text="客房类型" />
-                                    <TableColumn fx:id="tableColumnPrice_booking" minWidth="0.0" prefWidth="87.0" sortable="false" text="客房单价" />
-                                    <TableColumn fx:id="tableColumnPeople_id_booking" prefWidth="63.0" sortable="false" text="客户编号" />
-                                    <TableColumn fx:id="tableColumnPeople_name_booking" prefWidth="77.0" sortable="false" text="客户姓名" />
-                                    <TableColumn fx:id="tableColumnIn_date_booking" minWidth="0.0" prefWidth="119.0" sortable="false" text="入住日期" />
-                                    <TableColumn fx:id="tableColumnDiscount_booking" prefWidth="56.0" sortable="false" text="折扣" />
-                                    <TableColumn fx:id="tableColumnOut_date_booking" minWidth="0.0" prefWidth="85.0" sortable="false" text="结算日期" />
-                                    <TableColumn fx:id="tableColumnAmout_booking" minWidth="0.0" prefWidth="93.0" sortable="false" text="总金额" />
-                                    <TableColumn fx:id="tableColumnRemark_booking" minWidth="0.0" prefWidth="156.0" sortable="false" text="备注" />
+                                  <TableColumn fx:id="tableColumnId_number_booking" prefWidth="76.0" text="客房编号" />
+                                  <TableColumn fx:id="tableColumnType_booking" prefWidth="70.0" text="客房类型" />
+                                    <TableColumn fx:id="tableColumnPrice_booking" minWidth="0.0" prefWidth="87.0" text="客房单价" />
+                                    <TableColumn fx:id="tableColumnPeople_id_booking" prefWidth="63.0" text="客户编号" />
+                                    <TableColumn fx:id="tableColumnPeople_name_booking" prefWidth="77.0" text="客户姓名" />
+                                    <TableColumn fx:id="tableColumnIn_date_booking" minWidth="0.0" prefWidth="119.0" text="入住日期" />
+                                    <TableColumn fx:id="tableColumnDiscount_booking" prefWidth="56.0" text="折扣" />
+                                    <TableColumn fx:id="tableColumnOut_date_booking" minWidth="0.0" prefWidth="85.0" text="结算日期" />
+                                    <TableColumn fx:id="tableColumnAmout_booking" minWidth="0.0" prefWidth="93.0" text="总金额" />
+                                    <TableColumn fx:id="tableColumnRemark_booking" minWidth="0.0" prefWidth="156.0" text="备注" />
                                 </columns>
                               </TableView>
                               <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="37.0" prefWidth="260.0">
@@ -159,12 +158,12 @@
                                              <children>
                                                 <TableView fx:id="mTableUser" editable="true" layoutX="264.0" layoutY="52.0" prefHeight="352.0" prefWidth="623.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
-                                                    <TableColumn fx:id="tableColumnId" prefWidth="75.0" sortable="false" text="用户账号" />
-                                                    <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" sortable="false" text="密码" />
-                                                      <TableColumn fx:id="tableColumnType" prefWidth="131.0" sortable="false" text="用户类型" />
-                                                      <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" sortable="false" text="UUID" />
-                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" sortable="false" text="密保问题1" />
-                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" sortable="false" text="密保问题2" />
+                                                    <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="用户账号" />
+                                                    <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" text="密码" />
+                                                      <TableColumn fx:id="tableColumnType" prefWidth="131.0" text="用户类型" />
+                                                      <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" text="UUID" />
+                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" text="密保问题1" />
+                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" text="密保问题2" />
                                                       <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="密保问题3" />
                                                       <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
@@ -190,12 +189,12 @@
                                              <children>
                                                 <TableView fx:id="mTableClient" layoutY="-1.0" prefHeight="405.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
-                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" sortable="false" text="姓名" />
-                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" sortable="false" text="性别" />
-                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" sortable="false" text="身份证" />
-                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" sortable="false" text="籍贯" />
-                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" sortable="false" text="联系电话" />
-                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" sortable="false" text="客户编号" />
+                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
+                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" text="性别" />
+                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" text="身份证" />
+                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" text="籍贯" />
+                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" text="联系电话" />
+                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
                                                    </columns>
                                                 </TableView>
                                              </children>

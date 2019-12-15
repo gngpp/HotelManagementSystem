@@ -511,7 +511,7 @@ public class UiMainController {
         tableColumnTv_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("tv"));
         tableColumnMax_people_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, Integer>("max_people"));
         tableColumnRest_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("rest"));
-        tableColumnIdNumber_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("id"));
+        tableColumnIdNumber_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData,Integer>("id_number"));
 
         new Thread(new Runnable() {
             @Override
@@ -702,14 +702,13 @@ public class UiMainController {
             Optional result = dialog.showAndWait();
             if (result.get() == ButtonType.OK) {
                 if (!standardRoomDao.delete(selectStandardRoom.standardRoomToEntity())) {
-                    System.out.println("点击确认");
                     new AlertDefined(Alert.AlertType.ERROR, "提示", "删除房间失败").show();
                     return;
                 } else {
                     standardRoomData.remove(selectStandardRoom);
-                    infoRoomData.removeAll(infoRoomData);
-                    for (InfoRoom infoRoom:infoRoomDao.list())
-                        infoRoomData.add(new InfoRoomData(infoRoom));
+                    for (InfoRoom infoRoom:infoRoomDao.list()){
+
+                    }
                     ac_refresh_standard(event);
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该房间已删除").show();
                 }
@@ -816,7 +815,6 @@ public class UiMainController {
             standardRoom.setRoom_type(cbx_type_standard.getValue());
             standardRoom.setRoom_floor(cbx_floor_standard.getValue());
             standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
-            System.out.println(standardRoom);
             if (!standardRoomDao.update(standardRoom)) {
                 System.out.println("点击确认");
                 new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
@@ -889,7 +887,28 @@ public class UiMainController {
 
     @FXML
     void ac_delete_info(ActionEvent event){
+        try {
+            int index = mTableInfoRoom.getSelectionModel().getSelectedIndex();
+            if (index == -1) {
+                new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中房间").show();
+                return;
+            }
+            InfoRoomData selectInfoRoom = mTableInfoRoom.getSelectionModel().getSelectedItem();
+            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要房间[ " + selectInfoRoom.getId_number()+ " ]详情吗?");
+            Optional result = dialog.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                if (!infoRoomDao.delete(selectInfoRoom.infoRoomToEntity())) {
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除失败").show();
+                    return;
+                } else {
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
+                    infoRoomData.remove(selectInfoRoom);
+                }
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

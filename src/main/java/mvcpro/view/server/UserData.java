@@ -14,6 +14,7 @@ public class UserData {
     private SimpleStringProperty question_two;
     private SimpleStringProperty question_three;
     private SimpleStringProperty picture;
+
     public UserData(User user){
         this.user=new User();
         this.id=new SimpleStringProperty(user.getId());
