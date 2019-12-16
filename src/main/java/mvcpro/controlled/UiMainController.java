@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
@@ -532,10 +533,10 @@ public class UiMainController {
                 try {
                     for (BookRoom bookRoom : bookRoomDao.list())
                         bookRoomData_list.add(new BookRoomData(bookRoom));
+                    mTableBookRoom.setItems(bookRoomData_list);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mTableBookRoom.setItems(bookRoomData_list);
             }
         }).start();
 
@@ -592,22 +593,30 @@ public class UiMainController {
         }).start();
     }
 
+    private void clear_standard(){
+        txa_remark_standard.clear();
+        txf_id_number_standard.clear();
+        txf_price_standard.clear();
+        cbx_type_standard.setValue(null);
+        cbx_floor_standard.setValue(null);
+    }
+
     @FXML
     void ac_refresh_user(ActionEvent event) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("用户刷新线程已启动...");
-                iv_picture_user.setImage(new Image("/png/timg.jpeg"));
-                userData_list.removeAll(userData_list);
-                try {
-                    for (User user : userDao.list())
-                        userData_list.add(new UserData(user));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+      Platform.runLater(new Runnable() {
+          @Override
+          public void run() {
+              try {
+                  System.out.println("用户刷新线程已启动...");
+                  iv_picture_user.setImage(new Image("/png/timg.jpeg"));
+                  userData_list.removeAll(userData_list);
+                  for (User user : userDao.list())
+                      userData_list.add(new UserData(user));
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+          }
+      });
     }
 
     @FXML
@@ -666,21 +675,15 @@ public class UiMainController {
                 System.out.println("搜索线程已启动...");
                 if (!txf_search_user.getText().equals("")) {
 
-                    //
-                    // 获取搜索内容
-                    //
+
 
                     String search_text = txf_search_user.getText();
 
-                    //
-                    // 存放搜索到的用户信息
-                    //
+
 
                     ArrayList<UserData> search_result_list = new ArrayList<>();
 
-                    //
-                    // 遍历客户用户数据列表
-                    //
+
 
                     try {
                         for (User test:userDao.list()) {
@@ -689,9 +692,7 @@ public class UiMainController {
                                     search_text.equals(test.getId()) ||
                                     search_text.equals(String.valueOf(test.getPassword()))){
 
-                                //
-                                // 存放符合搜索条件的用户信息
-                                //
+
                                 search_result_list.add(new UserData(test));
                             }
 
@@ -706,9 +707,7 @@ public class UiMainController {
                         userData_list.add(j, search_result_list.get(j));
                     }
 
-                    //
-                    // 清空
-                    //
+
                     search_result_list.clear();
                 }
             }
@@ -717,20 +716,20 @@ public class UiMainController {
 
     @FXML
     private void ac_refresh_standard(ActionEvent event){
-        clear_standard();
-        new Thread(new Runnable() {
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println("标准刷新线程已启动...");
-                standardRoomData_list.removeAll(standardRoomData_list);
                 try {
+                    System.out.println("标准刷新线程已启动...");
+                    clear_standard();
+                    standardRoomData_list.removeAll(standardRoomData_list);
                     for (StandardRoom standardRoom: standardRoomDao.list())
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        });
     }
 
     @FXML
@@ -784,21 +783,12 @@ public class UiMainController {
                 System.out.println("搜索线程已启动...");
                 if (!txf_search_standard.getText().equals("")) {
 
-                    //
-                    // 获取搜索内容
-                    //
-
                     String search_text = txf_search_standard.getText();
                     System.out.println(search_text);
-                    //
-                    // 存放搜索到的信息
-                    //
+
 
                     ArrayList<StandardRoomData> search_result_list = new ArrayList<>();
 
-                    //
-                    // 遍历客户用户数据列表
-                    //
 
                     try {
                         for (StandardRoom test:standardRoomDao.list()) {
@@ -807,9 +797,6 @@ public class UiMainController {
                                     search_text.equals(test.getRoom_type()) ||
                                     search_text.equals(String.valueOf(test.getRoom_price()))) {
 
-                                //
-                                // 存放符合搜索条件的用户信息
-                                //
                                 search_result_list.add(new StandardRoomData(test));
                             }
 
@@ -823,9 +810,7 @@ public class UiMainController {
                         standardRoomData_list.add(j, search_result_list.get(j));
                     }
 
-                    //
-                    // 清空
-                    //
+
                     search_result_list.clear();
                 }
             }
@@ -921,20 +906,11 @@ public class UiMainController {
         clear_standard();
     }
 
-    private void clear_standard(){
-        txa_remark_standard.clear();
-        txf_id_number_standard.clear();
-        txf_price_standard.clear();
-        cbx_type_standard.setValue(null);
-        cbx_floor_standard.setValue(null);
-    }
-
     @FXML
     void ac_add_info(ActionEvent event) throws Exception {
        UiInfoRoom uiInfoRoom = new UiInfoRoom();
        uiInfoRoom.start(new Stage());
        uiInfoRoom.setInfoRoomData(infoRoomData_list);
-
     }
 
     @FXML
@@ -977,21 +953,15 @@ public class UiMainController {
                 System.out.println("搜索线程已启动...");
                 if (!txf_search_info.getText().equals("")) {
 
-                    //
-                    // 获取搜索内容
-                    //
+
 
                     String search_text = txf_search_info.getText();
                     System.out.println(search_text);
-                    //
-                    // 存放搜索到的信息
-                    //
+
 
                     ArrayList<InfoRoomData> search_result_list = new ArrayList<>();
 
-                    //
-                    // 遍历客户用户数据列表
-                    //
+
 
                     try {
                         for (InfoRoom test:infoRoomDao.list()) {
@@ -1005,9 +975,7 @@ public class UiMainController {
                                     search_text.equals(String.valueOf(test.getMax_bed()))||
                                     search_text.equals(String.valueOf(test.getMax_people()))){
 
-                                //
-                                // 存放符合搜索条件的用户信息
-                                //
+
                                 search_result_list.add(new InfoRoomData(test));
                             }
 

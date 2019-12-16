@@ -13,12 +13,16 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mvcpro.model.utils.BRSql;
 
 public final class FileChooserDefined extends Application {
 
@@ -26,40 +30,52 @@ public final class FileChooserDefined extends Application {
 
     @Override
     public void start(final Stage stage) {
-        stage.setTitle("File Chooser Sample");
-
+        stage.setTitle("File Chooser");
+        stage.initModality(Modality.APPLICATION_MODAL);
         final FileChooser fileChooser = new FileChooser();
-        final Button openButton = new Button("Open a Picture...");
-        final Button openMultipleButton = new Button("Open Pictures...");
+        final DirectoryChooser directoryChooser=new DirectoryChooser();
+        final Button openButton_backup = new Button("备份");
+        final Button openButton_restore = new Button("恢复");
 
-        openButton.setOnAction(
+        openButton_backup.setOnAction(
                 (final ActionEvent e) -> {
-                    configureFileChooser(fileChooser);
-                    File file = fileChooser.showOpenDialog(stage);
-                    if (file != null) {
-                        openFile(file);
+                    //configureFileChooser(fileChooser);
+                    File fileDirectory = directoryChooser.showDialog(stage);
+                    BRSql brSql=new BRSql();
+                    try {
+                        if (brSql.backup(fileDirectory)) {
+                            new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
+                        }else {
+                            new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
+                        }
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
                     }
                 });
 
-        openMultipleButton.setOnAction(
+        openButton_restore.setOnAction(
                 (final ActionEvent e) -> {
-                    configureFileChooser(fileChooser);
-                    List<File> list =
-                            fileChooser.showOpenMultipleDialog(stage);
-                    if (list != null) {
-                        list.stream().forEach((file) -> {
-                            openFile(file);
-                        });
-                    }
+
+                    File file=fileChooser.showOpenDialog(new Stage());
+                    BRSql brSql=new BRSql();
+                        if(file!=null&& brSql.runSqlByReadFileContent(file.getPath()))
+                            new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
+                        else
+                            new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+
+
+
                 });
 
         final GridPane inputGridPane = new GridPane();
 
-        GridPane.setConstraints(openButton, 0, 1);
-        GridPane.setConstraints(openMultipleButton, 1, 1);
+        GridPane.setConstraints(openButton_backup, 0, 1);
+        GridPane.setConstraints(openButton_restore, 1, 1);
         inputGridPane.setHgap(6);
         inputGridPane.setVgap(6);
-        inputGridPane.getChildren().addAll(openButton, openMultipleButton);
+        inputGridPane.getChildren().addAll(openButton_backup, openButton_restore);
 
         final Pane rootGroup = new VBox(12);
         rootGroup.getChildren().addAll(inputGridPane);
@@ -77,8 +93,7 @@ public final class FileChooserDefined extends Application {
         );
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
+                new FileChooser.ExtensionFilter("SQL", "*.sql")
         );
     }
 

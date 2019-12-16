@@ -15,6 +15,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiInfoRoomController;
@@ -52,6 +53,7 @@ public class UiInfoRoom extends Application {
         newStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         newStage.setScene(scene);
       //  newStage.initStyle(StageStyle.TRANSPARENT);
+        newStage.initModality(Modality.APPLICATION_MODAL);
         newStage.show();
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

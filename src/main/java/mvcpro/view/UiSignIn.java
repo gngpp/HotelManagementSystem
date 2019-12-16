@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiSignInController;
@@ -53,7 +54,8 @@ public class UiSignIn extends Application {
                 scene.setFill(Paint.valueOf("#FFFFFF00"));
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);
-
+                newStage.initModality(Modality.APPLICATION_MODAL);
+                newStage.show();
                 newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
                     //
@@ -77,7 +79,6 @@ public class UiSignIn extends Application {
                         newStage.setY(event.getScreenY()-lasty_distance);
                     }
                 });
-                newStage.show();
             }catch(Exception e){
                 e.printStackTrace();
             }

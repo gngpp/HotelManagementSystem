@@ -164,9 +164,11 @@ public class UiSignInController implements Initializable {
 
     @FXML
     void ac_signInAndLogin(ActionEvent event) {
-        FileChooser fileChooser=new FileChooser();
-        File file=fileChooser.showOpenDialog(new Stage());
+
         try {
+            FileChooser fileChooser=new FileChooser();
+            File file=fileChooser.showOpenDialog(new Stage());
+            if(file!=null)
             System.out.println(file.getCanonicalPath());
         } catch (IOException e) {
             e.printStackTrace();

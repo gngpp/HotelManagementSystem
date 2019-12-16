@@ -11,24 +11,24 @@ import java.util.Date;
 public class BRSql {
     C3p0ConnectionProvider c3p0ConnectionProvider=new C3p0ConnectionProvider();
 
-    public Boolean Backpu() throws IOException, InterruptedException {
-        File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
-        File newFile = new File(file, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
-        if (!file.exists()) {
-            file.mkdir();
-        }
+    public Boolean backup(File fileDirectory) throws IOException, InterruptedException {
+//        File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
+        File newFile = new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
 
         if (System.getProperties().get("os.name").equals("Mac OS X")){
             System.out.println(System.getProperties().get("os.name"));
-            //备份
+            //备份                                                                                                               //文件绝对路径
             String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
             System.out.println(mysqldump);
             Process p = Runtime.getRuntime().exec(mysqldump);
-            if (p.waitFor() == 0) {// 0 表示线程正常终止。
+
+            // 0 表示线程正常终止。
+            if (p.waitFor() == 0) {
                 System.out.println("导出成功");
                 return true;
             } else {
                 System.out.println("导出失败,失败码:" + p.waitFor());
+                return false;
             }
         }
         return false;
@@ -104,24 +104,25 @@ public class BRSql {
      *
      * @param sqlPath SQL文件的路径：如：D:/TestProject/web/sql/脚本.Sql
      */
-    public void runSqlByReadFileContent(String sqlPath) {
+    public Boolean runSqlByReadFileContent(String sqlPath) {
         try {
             ArrayList<String> sqlStr = readFileByLines(sqlPath);
             if (sqlStr.size() > 0) {
                 int num = batchDate(sqlStr);
-                if (num > 0)
+                if (num > 0){
                     System.out.println("执行成功");
-                else
+                    return false;
+                } else{
                     System.out.println("未有执行的SQL语句");
+                    return true;
+                }
             } else {
                 System.out.println("没有需要执行的SQL语句");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return false;
     }
 
-    public  static void main(String [] agrs){
-        new BRSql().runSqlByReadFileContent("/Users/black-mac/IdeaProjects/HotelManagementSystem-fx/src/main/resources/backup/schema/2019-12-15-11:43:17-backup--default-character-set=utf8.sql");
-    }
 }

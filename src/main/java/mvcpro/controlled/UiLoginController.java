@@ -57,7 +57,6 @@ public class UiLoginController {
     void initialize() throws Exception {
         uiMainFrame=new UiMainFrame();
         uiMainFrame.start(new Stage());
-
         signInStage=new Stage();
         uiMessageBox=new UiMessageBox();
         userDao=new UserDao();
@@ -97,17 +96,17 @@ public class UiLoginController {
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请选择你的身份信息").show();
             return;
         }
-                try {
-                    for (User user :userDao.list())
-                        if (loginVerify(user)) {
-                            loginStage.hide();
-                            uiMainFrame.show(user);
-                            return;
-                        }
-                    new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        try {
+            for (User user :userDao.list())
+                if (loginVerify(user)) {
+                    loginStage.hide();
+                    uiMainFrame.show(user);
+                    return;
                 }
+            new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
