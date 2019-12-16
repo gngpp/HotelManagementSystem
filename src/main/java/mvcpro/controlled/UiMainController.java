@@ -1,14 +1,24 @@
 package mvcpro.controlled;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -17,21 +27,27 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
 import mvcpro.model.utils.Uitls;
+import mvcpro.model.utils.checkbox;
+import mvcpro.model.utils.person;
 import mvcpro.view.AlertDefined;
+import mvcpro.view.FileChooserDefined;
 import mvcpro.view.UiInfoRoom;
 import mvcpro.view.server.*;
 
+import java.awt.*;
 import java.io.File;
+import java.net.URI;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class UiMainController {
+public class UiMainController implements Initializable {
 
     private UserDao userDao;
     private ClientDao clientDao;
@@ -40,14 +56,20 @@ public class UiMainController {
     private StandardRoomDao standardRoomDao;
     private User user;
     private final String verifyUser="用户";
-    @FXML
-    private Tab tab_bookRoom;
 
     @FXML
-    private Tab tab_accounts;
+    private TabPane tabPane_master;
 
     @FXML
-    private Tab tab_system;
+    private Tab tab_4;
+
+    @FXML
+    private Tab tab_2;
+    @FXML
+    private Tab tab_3;
+
+    @FXML
+    private Menu menu_system;
 
     private Stage mainStage;
 
@@ -110,28 +132,28 @@ public class UiMainController {
 
     //用户表
     @FXML
-    private TableColumn<UserData, String> tableColumnPassword;
+    private TableColumn<UserData, String> tableColumnPassword_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnType;
+    private TableColumn<UserData, String> tableColumnType_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnId;
+    private TableColumn<UserData, String> tableColumnId_user;
 
     @FXML
-    private TableColumn<UserData, Integer> tableColumnUUID;
+    private TableColumn<UserData, Integer> tableColumnUUID_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnQs_three;
+    private TableColumn<UserData, String> tableColumnQs_three_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnQs_one;
+    private TableColumn<UserData, String> tableColumnQs_one_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnQs_two;
+    private TableColumn<UserData, String> tableColumnQs_two_user;
 
     @FXML
-    private TableColumn<UserData, String> tableColumnPicture;
+    private TableColumn<UserData, String> tableColumnPicture_user;
 
 
     @FXML
@@ -187,7 +209,7 @@ public class UiMainController {
     private TableColumn<InfoRoomData,Integer> tableColumnIdNumber_Info;
 
     @FXML
-    private TableColumn<InfoRoomData, String> tableColumnType_Info;
+    private TableColumn<InfoRoomData,ComboBox> tableColumnType_Info;
 
     @FXML
     private TableColumn<InfoRoomData, Integer> tableColumnArea_Info;
@@ -265,6 +287,12 @@ public class UiMainController {
     @FXML
     private TextField txf_search_standard;
 
+
+
+
+
+
+
     /*
     房间信息字段
      */
@@ -306,13 +334,14 @@ public class UiMainController {
         this.user=user;
         this.mainStage = mainStage;
         if (user.getUserType().equals(verifyUser)){
-            tab_system.setDisable(true);
-            tab_accounts.setDisable(true);
-            tab_bookRoom.setDisable(true);
+            tabPane_master.getTabs().remove(tab_4);
+            tabPane_master.getTabs().remove(tab_2);
+            tabPane_master.getTabs().remove(tab_3);
             btn_add_info.setVisible(false);
             btn_delete_info.setVisible(false);
             btn_delete_standard.setVisible(false);
             pane_info.setVisible(false);
+            menu_system.setVisible(false);
         }
     }
 
@@ -321,23 +350,10 @@ public class UiMainController {
         Platform.exit();
     }
 
-    @FXML
-    void initialize() throws Exception {
-        initDataDao();
-        initProprety();
-        initUserTable();
-        initClientTable();
-        initBookRoomTable();
-        initInfoRoomTable();
-        initStandardRoom();
-        initTableColumnEvent();
-        initTableEvent();
-    }
-
     private void initTableColumnEvent() {
         //用户列表添加列双击事件
-        tableColumnId.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
-        tableColumnId.setOnEditCommit(
+        tableColumnId_user.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+        tableColumnId_user.setOnEditCommit(
                 (TableColumn.CellEditEvent<UserData, String> event) -> {
                     try {
                         event.getTableView().getItems().get(event.getTablePosition().getRow()).setId(event.getNewValue());
@@ -347,8 +363,8 @@ public class UiMainController {
                     }
                 });
 
-        tableColumnPassword.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
-        tableColumnPassword.setOnEditCommit((TableColumn.CellEditEvent<UserData, String> event) -> {
+        tableColumnPassword_user.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+        tableColumnPassword_user.setOnEditCommit((TableColumn.CellEditEvent<UserData, String> event) -> {
             try {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setPassword(event.getNewValue());
                 userDao.update(event.getTableView().getItems().get(event.getTablePosition().getRow()).userToEntity());
@@ -357,8 +373,8 @@ public class UiMainController {
             }
         });
 
-        tableColumnType.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
-        tableColumnType.setOnEditCommit((TableColumn.CellEditEvent<UserData, String> event) -> {
+        tableColumnType_user.setCellFactory(TextFieldTableCell.<UserData>forTableColumn());
+        tableColumnType_user.setOnEditCommit((TableColumn.CellEditEvent<UserData, String> event) -> {
             try {
                 event.getTableView().getItems().get(event.getTablePosition().getRow()).setUserType(event.getNewValue());
                 userDao.update(event.getTableView().getItems().get(event.getTablePosition().getRow()).userToEntity());
@@ -366,6 +382,7 @@ public class UiMainController {
                 e.printStackTrace();
             }
         });
+
     }
 
     private void initTableEvent(){
@@ -425,10 +442,11 @@ public class UiMainController {
         cbx_floor_standard.getItems().setAll("一楼","二楼","一楼","二楼","一楼","二楼");
         txf_search_standard.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")){
-                standardRoomData_list.removeAll(standardRoomData_list);
                 try {
+                    standardRoomData_list.removeAll(standardRoomData_list);
                     for (StandardRoom standardRoom:standardRoomDao.list())
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
+                    ac_refresh_standard(new ActionEvent());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -437,8 +455,8 @@ public class UiMainController {
 
         txf_search_info.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")) {
-                infoRoomData_list.removeAll(standardRoomData_list);
                 try {
+                    infoRoomData_list.removeAll(infoRoomData_list);
                     for (InfoRoom infoRoom : infoRoomDao.list())
                         infoRoomData_list.add(new InfoRoomData(infoRoom));
                 } catch (Exception e) {
@@ -449,10 +467,11 @@ public class UiMainController {
 
         txf_search_user.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")){
-                userData_list.removeAll(userData_list);
                 try {
+                    userData_list.removeAll(userData_list);
                     for (User user : userDao.list())
                         userData_list.add(new UserData(user));
+                    ac_refresh_user(new ActionEvent());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -465,14 +484,14 @@ public class UiMainController {
     private void initUserTable() throws Exception {
 
         //字段名
-        tableColumnId.setCellValueFactory(new PropertyValueFactory<UserData, String>("id"));
-        tableColumnPassword.setCellValueFactory(new PropertyValueFactory<UserData, String>("password"));
-        tableColumnType.setCellValueFactory(new PropertyValueFactory<UserData, String>("userType"));
-        tableColumnUUID.setCellValueFactory(new PropertyValueFactory<UserData, Integer>("UUID"));
-        tableColumnQs_one.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_one"));
-        tableColumnQs_two.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_two"));
-        tableColumnQs_three.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_three"));
-        tableColumnPicture.setCellValueFactory(new PropertyValueFactory<UserData, String>("picture"));
+        tableColumnId_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("id"));
+        tableColumnPassword_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("password"));
+        tableColumnType_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("userType"));
+        tableColumnUUID_user.setCellValueFactory(new PropertyValueFactory<UserData, Integer>("UUID"));
+        tableColumnQs_one_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_one"));
+        tableColumnQs_two_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_two"));
+        tableColumnQs_three_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("question_three"));
+        tableColumnPicture_user.setCellValueFactory(new PropertyValueFactory<UserData, String>("picture"));
 
         new Thread(new Runnable() {
             @Override
@@ -547,7 +566,7 @@ public class UiMainController {
         tableColumnMax_bed_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, Integer>("max_bed"));
         tableColumnAir_conditioning_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("air_conditioning"));
         tableColumnPhone_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("iphone"));
-        tableColumnType_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("type"));
+        tableColumnType_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, ComboBox>("type"));
         tableColumnArea_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, Integer>("area"));
         tableColumnPs_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("ps"));
         tableColumnTv_Info.setCellValueFactory(new PropertyValueFactory<InfoRoomData, String>("tv"));
@@ -721,8 +740,8 @@ public class UiMainController {
             public void run() {
                 try {
                     System.out.println("标准刷新线程已启动...");
-                    clear_standard();
                     standardRoomData_list.removeAll(standardRoomData_list);
+                    clear_standard();
                     for (StandardRoom standardRoom: standardRoomDao.list())
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
                 } catch (Exception e) {
@@ -864,7 +883,7 @@ public class UiMainController {
             } else {
                 standardRoomData_list.remove(selectStandardRoom);
                 standardRoomData_list.add(new StandardRoomData(standardRoom));
-                ac_refresh_standard(event);
+               // ac_refresh_standard(event);
                 new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已修改").show();
             }
         }
@@ -998,5 +1017,63 @@ public class UiMainController {
         }).start();
     }
 
+    @FXML
+    void ac_backup_restore_item(ActionEvent event){
+        new FileChooserDefined().start(new Stage());
+    }
+
+    @FXML
+    void ac_technology_item(ActionEvent event){
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                URI uri = new URI("mailto:1596863112@qq.com");
+                desktop.mail(uri);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    void ac_web_item(ActionEvent event){
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                URL url = new URL("http://www.hotelhis.com/yx/?bd_vid=12200328551249509319");
+                desktop.browse(url.toURI());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  <tt>null</tt> if the location is not known.
+     * @param resources The resources used to localize the root object, or <tt>null</tt> if
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources)  {
+        try{
+            initDataDao();
+            initProprety();
+            initUserTable();
+            initClientTable();
+            initBookRoomTable();
+            initInfoRoomTable();
+            initStandardRoom();
+            initTableColumnEvent();
+            initTableEvent();
+            //tableColumnType_Info.setCellValueFactory(cellData ->cellData.getValue().cb.getComboBox());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 }
 

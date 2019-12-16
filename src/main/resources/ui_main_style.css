@@ -99,7 +99,7 @@
     -fx-text-fill: #ffffff;
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-border-width: 0.5px;
-    /*-fx-font-weight: bold;*/
+    -fx-font-weight: bold;
     -fx-alignment: center ;
 }
 .tabel-column-header{
@@ -107,7 +107,7 @@
     -fx-border-width: 0px;
 }
 .table-row-cell:selected .table-cell {
-    -fx-background-color: rgba(25, 136, 253, 0.65);
+    -fx-background-color: rgba(151, 154, 158, 0.98);
 }
 
 .tool-bar{

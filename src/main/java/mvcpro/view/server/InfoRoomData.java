@@ -2,9 +2,12 @@ package mvcpro.view.server;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import mvcpro.model.entity.InfoRoom;
+import mvcpro.model.utils.checkbox;
 
 public class InfoRoomData {
+    public checkbox cb=new checkbox();
     private InfoRoom infoRoom;
     private SimpleIntegerProperty id;
     private SimpleIntegerProperty id_number;
@@ -17,6 +20,7 @@ public class InfoRoomData {
     private SimpleIntegerProperty max_bed;
     private SimpleStringProperty rest;
     private SimpleStringProperty air_conditioning;
+
 
     public InfoRoomData(InfoRoom infoRoom){
         this.infoRoom=new InfoRoom();
@@ -46,6 +50,7 @@ public class InfoRoomData {
         infoRoom.setRest(rest.get());
         return this.infoRoom;
     }
+
 
     public int getId() {
         return id.get();

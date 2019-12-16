@@ -29,9 +29,8 @@ public final class FileChooserDefined extends Application {
     private final Desktop desktop = Desktop.getDesktop();
 
     @Override
-    public void start(final Stage stage) {
+    public void start( Stage stage) {
         stage.setTitle("File Chooser");
-        stage.initModality(Modality.APPLICATION_MODAL);
         final FileChooser fileChooser = new FileChooser();
         final DirectoryChooser directoryChooser=new DirectoryChooser();
         final Button openButton_backup = new Button("备份");
@@ -41,9 +40,10 @@ public final class FileChooserDefined extends Application {
                 (final ActionEvent e) -> {
                     //configureFileChooser(fileChooser);
                     File fileDirectory = directoryChooser.showDialog(stage);
+
                     BRSql brSql=new BRSql();
                     try {
-                        if (brSql.backup(fileDirectory)) {
+                        if (fileDirectory!=null&&brSql.backup(fileDirectory)) {
                             new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
                         }else {
                             new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
@@ -79,9 +79,9 @@ public final class FileChooserDefined extends Application {
 
         final Pane rootGroup = new VBox(12);
         rootGroup.getChildren().addAll(inputGridPane);
-        rootGroup.setPadding(new Insets(12, 12, 12, 12));
+        rootGroup.setPadding(new Insets(0, 50, 12, 50));
 
-        stage.setScene(new Scene(rootGroup));
+        stage.setScene(new Scene(rootGroup,200,50));
         stage.show();
     }
 

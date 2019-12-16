@@ -37,9 +37,9 @@
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
-            <TabPane layoutY="60.0" prefHeight="466.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="tabPane_master" layoutY="60.0" prefHeight="466.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="房间信息">
+                  <Tab fx:id="tab_1" text="房间信息">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -62,10 +62,16 @@
                                                       <TableColumn fx:id="tableColumnPhone_Info" minWidth="0.0" prefWidth="106.53955078125" text="电话" />
                                                       <TableColumn fx:id="tableColumnPs_Info" minWidth="0.0" prefWidth="148.72198486328125" text="备注" />
                                                    </columns>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                   <effect>
+                                                      <Blend />
+                                                   </effect>
                                                 </TableView>
                                                 <Button fx:id="btn_add_info" layoutX="95.0" layoutY="8.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="0.0" prefWidth="70.0" styleClass="btn" text="添加" />
                                                 <Button fx:id="btn_delete_info" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="71.0" styleClass="btn" text="删除" />
-                                                <Button layoutX="773.0" layoutY="7.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="60.0" styleClass="btn" text="搜索" />
+                                                <Button defaultButton="true" layoutX="773.0" layoutY="7.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="60.0" styleClass="btn" text="搜索" />
                                                 <TextField fx:id="txf_search_info" layoutX="597.0" layoutY="7.0" promptText="搜索..." styleClass="txf_username" />
                                              </children>
                                           </AnchorPane>
@@ -75,7 +81,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableStandardRoom" layoutX="287.0" layoutY="51.0" prefHeight="350.0" prefWidth="599.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableStandardRoom" layoutX="289.0" layoutY="51.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
                                                       <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
@@ -85,21 +91,9 @@
                                                    </columns>
                                                 </TableView>
                                                 <Button fx:id="btn_delete_standard" layoutX="299.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
-                                                <Button layoutX="801.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_search_standard" styleClass="btn" text="查找" textFill="WHITE" />
+                                                <Button defaultButton="true" layoutX="801.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_search_standard" styleClass="btn" text="查找" textFill="WHITE" />
                                                 <TextField fx:id="txf_search_standard" layoutX="617.0" layoutY="16.0" promptText="查找..." styleClass="txf_username" />
                                                 <Button layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
-                                                <Pane fx:id="pane_stackedBar_info" layoutY="2.0" prefHeight="400.0" prefWidth="285.0">
-                                                   <children>
-                                                      <StackedBarChart layoutX="1.0" prefHeight="402.0" prefWidth="284.0">
-                                                        <xAxis>
-                                                          <CategoryAxis side="BOTTOM" />
-                                                        </xAxis>
-                                                        <yAxis>
-                                                          <NumberAxis side="LEFT" />
-                                                        </yAxis>
-                                                      </StackedBarChart>
-                                                   </children>
-                                                </Pane>
                                                 <Pane fx:id="pane_info" prefHeight="409.0" prefWidth="287.0" styleClass="frame" stylesheets="@ui_default_style.css">
                                                    <children>
                                                       <TextField fx:id="txf_price_standard" layoutX="61.0" layoutY="199.0" prefHeight="27.0" prefWidth="166.0" promptText="单价/天" />
@@ -121,7 +115,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                <Tab fx:id="tab_bookRoom" text="订房信息管理">
+                <Tab fx:id="tab_2" text="订房信息管理">
                      <content>
                         <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
@@ -152,7 +146,7 @@
                         </Pane>
                      </content>
                   </Tab>
-                <Tab fx:id="tab_accounts" text="结账信息管理">
+                <Tab fx:id="tab_3" text="结账信息管理">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -167,7 +161,7 @@
                            </children></Pane>
                      </content>
                   </Tab>
-                  <Tab fx:id="tab_system" text="系统管理">
+                  <Tab fx:id="tab_4" text="系统管理">
                      <content>
                         <Pane prefHeight="433.0" prefWidth="892.0">
                            <children>
@@ -179,17 +173,17 @@
                                              <children>
                                                 <TableView fx:id="mTableUser" editable="true" layoutX="264.0" layoutY="52.0" prefHeight="352.0" prefWidth="623.0" styleClass="table_Ktrdata" tableMenuButtonVisible="true">
                                                   <columns>
-                                                    <TableColumn fx:id="tableColumnId" prefWidth="75.0" text="用户账号" />
-                                                    <TableColumn fx:id="tableColumnPassword" prefWidth="75.0" text="密码" />
-                                                      <TableColumn fx:id="tableColumnType" prefWidth="131.0" text="用户类型" />
-                                                      <TableColumn fx:id="tableColumnUUID" prefWidth="92.0" text="UUID" />
-                                                      <TableColumn fx:id="tableColumnQs_one" prefWidth="92.0" text="密保问题1" />
-                                                      <TableColumn fx:id="tableColumnQs_two" prefWidth="137.0" text="密保问题2" />
-                                                      <TableColumn fx:id="tableColumnQs_three" prefWidth="124.0" sortable="false" text="密保问题3" />
-                                                      <TableColumn fx:id="tableColumnPicture" prefWidth="105.0" sortable="false" text="图片路径" />
+                                                    <TableColumn fx:id="tableColumnId_user" prefWidth="75.0" text="用户账号" />
+                                                    <TableColumn fx:id="tableColumnPassword_user" prefWidth="75.0" text="密码" />
+                                                      <TableColumn fx:id="tableColumnType_user" prefWidth="131.0" text="用户类型" />
+                                                      <TableColumn fx:id="tableColumnUUID_user" prefWidth="92.0" text="UUID" />
+                                                      <TableColumn fx:id="tableColumnQs_one_user" prefWidth="92.0" text="密保问题1" />
+                                                      <TableColumn fx:id="tableColumnQs_two_user" prefWidth="137.0" text="密保问题2" />
+                                                      <TableColumn fx:id="tableColumnQs_three_user" prefWidth="124.0" sortable="false" text="密保问题3" />
+                                                      <TableColumn fx:id="tableColumnPicture_user" prefWidth="105.0" sortable="false" text="图片路径" />
                                                   </columns>
                                                 </TableView>
-                                                <Button layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_user" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
+                                                <Button defaultButton="true" layoutX="777.0" layoutY="14.0" mnemonicParsing="false" onAction="#ac_search_user" prefHeight="27.0" prefWidth="65.0" styleClass="btn" text="搜索" textFill="WHITE" />
                                                 <DatePicker layoutX="44.0" layoutY="52.0" prefHeight="27.0" prefWidth="169.0" promptText="查看日期...." />
                                                 <TextField fx:id="txf_search_user" layoutX="606.0" layoutY="14.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
                                                 <ImageView fx:id="iv_picture_user" fitHeight="165.0" fitWidth="164.0" layoutX="44.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
@@ -248,28 +242,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#systemClose" text="退出" />
+                    <MenuItem mnemonicParsing="false" onAction="#systemClose" text="退出系统" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="编辑">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="更改" />
-                  </items>
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="BACK_SPACE" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
-                     </accelerator>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="系统维护">
+                  <Menu fx:id="menu_system" mnemonicParsing="false" text="系统维护">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="数据库备份与恢复" />
-                        <MenuItem mnemonicParsing="false" text="退出系统" />
+                      <MenuItem fx:id="menu_backup_restore" mnemonicParsing="false" onAction="#ac_backup_restore_item" text="数据库备份与恢复" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                   <items>
                     <MenuItem mnemonicParsing="false" text="关于" />
-                        <MenuItem mnemonicParsing="false" text="联系技术支持" />
-                        <MenuItem mnemonicParsing="false" text="访问技术网站" />
+                        <MenuItem mnemonicParsing="false" onAction="#ac_technology_item" text="联系技术支持" />
+                        <MenuItem mnemonicParsing="false" onAction="#ac_web_item" text="访问技术网站" />
                   </items>
                 </Menu>
               </menus>
