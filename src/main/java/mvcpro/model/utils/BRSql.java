@@ -17,7 +17,6 @@ public class BRSql {
 
     C3p0ConnectionProvider c3p0ConnectionProvider = new C3p0ConnectionProvider();
 
-
     public Boolean backup(File fileDirectory) {
         if(fileDirectory.isDirectory() && fileDirectory.exists()){
             try {
