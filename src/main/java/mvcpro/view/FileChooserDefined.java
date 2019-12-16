@@ -41,33 +41,24 @@ public final class FileChooserDefined extends Application {
                     //configureFileChooser(fileChooser);
                     File fileDirectory = directoryChooser.showDialog(stage);
 
-                    BRSql brSql=new BRSql();
-                    try {
-                        if (fileDirectory!=null&&brSql.backup(fileDirectory)) {
-                            new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
-                        }else {
-                            new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
-                        }
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
+                    BRSql brSql = new BRSql();
+                    if (fileDirectory!=null && brSql.backup(fileDirectory)) {
+                        new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
+                    }else {
+                        new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
                     }
                 });
 
-        openButton_restore.setOnAction(
-                (final ActionEvent e) -> {
+        openButton_restore.setOnAction((event -> {
+            File file = fileChooser.showOpenDialog(new Stage());
+            BRSql brSql = new BRSql();
 
-                    File file=fileChooser.showOpenDialog(new Stage());
-                    BRSql brSql=new BRSql();
-                        if(file!=null&& brSql.runSqlByReadFileContent(file.getPath()))
-                            new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
-                        else
-                            new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+            if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file))
+                new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
+            else
+                new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+        }));
 
-
-
-                });
 
         final GridPane inputGridPane = new GridPane();
 

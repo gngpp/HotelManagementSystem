@@ -1,6 +1,8 @@
 package mvcpro.model.utils;
 
 import com.lqing.orm.internal.connection.C3p0ConnectionProvider;
+import com.lqing.orm.utils.LoggerUtils;
+import org.slf4j.Logger;
 
 import java.io.*;
 import java.sql.Statement;
@@ -9,30 +11,90 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class BRSql {
-    C3p0ConnectionProvider c3p0ConnectionProvider=new C3p0ConnectionProvider();
+    public static final String MYSQL_DUMP = "mysqldump --defaults-extra-file=/etc/my.cnf Fxdb";
 
-    public Boolean backup(File fileDirectory) throws IOException, InterruptedException {
-//        File file = new File(new File("").getCanonicalPath() + "/src/main/resources/backup/schema/");
-        File newFile = new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup");
+    private static Logger LOG = LoggerUtils.getLogger(BRSql.class);
 
-        if (System.getProperties().get("os.name").equals("Mac OS X")){
-            System.out.println(System.getProperties().get("os.name"));
-            //备份                                                                                                               //文件绝对路径
-            String mysqldump = "/usr/local/mysql/bin/mysqldump --opt -h localhost --user=root --password=itcast --result-file=" + newFile.toString() + "--default-character-set=utf8.sql FXdb";
-            System.out.println(mysqldump);
-            Process p = Runtime.getRuntime().exec(mysqldump);
+    C3p0ConnectionProvider c3p0ConnectionProvider = new C3p0ConnectionProvider();
 
-            // 0 表示线程正常终止。
-            if (p.waitFor() == 0) {
-                System.out.println("导出成功");
+
+    public Boolean backup(File fileDirectory) {
+        if(fileDirectory.isDirectory() && fileDirectory.exists()){
+            try {
+                // 使用策略生成备份文件名
+                File file = generateBackUpFileName(fileDirectory);
+                if(file.exists() || file.isDirectory()){
+                    LOG.error("备份文件路径无效：{}", file.toString());
+                    return false;
+                }
+
+                // 执行备份命令
+                InputStream inputStream = executeBackUpCmd();
+                if(inputStream == null){
+                    LOG.error("执行备份命令失败!");
+                    return false;
+                }
+
+                // 写出备份文件
+                if(writeBackUpFile(inputStream,new FileOutputStream(file))){
+                    LOG.info("数据库备份成功 > {}",file.getAbsolutePath());
+                    return true;
+                }else{
+                    LOG.error("写出备份文件失败");
+                    return false;
+                }
+            } catch (Exception e) {
+                LOG.error("备份数据库失败 : {}", e.getMessage());
+            }
+        }
+        return false;
+    }
+
+    private File generateBackUpFileName(File fileDirectory){
+        return new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup.sql");
+    }
+
+    private InputStream executeBackUpCmd() throws IOException, InterruptedException {
+        Process p = Runtime.getRuntime().exec(MYSQL_DUMP);
+        if (p.waitFor() == 0) {
+            return p.getInputStream();
+        }
+        return null;
+    }
+
+    private boolean writeBackUpFile(InputStream inputStream,OutputStream outputStream)
+            throws IOException {
+        int needLength = inputStream.available();
+        if(needLength > 0){
+            byte[] bytes = new byte[needLength];
+            if(inputStream.read(bytes) == needLength){
+                BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+                bos.write(bytes);
+                bos.flush();
                 return true;
-            } else {
-                System.out.println("导出失败,失败码:" + p.waitFor());
+            }else{
                 return false;
             }
         }
         return false;
     }
+
+    public boolean recover(File sqlFilePath){
+        if(sqlFilePath.exists() && sqlFilePath.canRead() && sqlFilePath.length() > 0){
+            String absolutePath = sqlFilePath.getAbsolutePath();
+            try {
+                Process p = Runtime.getRuntime().exec(new String[]{"bash","-c","/usr/local/mysql/bin/mysql --defaults-extra-file=/etc/my.cnf Fxdb < " + absolutePath});
+                if(p.waitFor() == 0){
+                    LOG.info("数据库恢复成功，数据来源 < {}",absolutePath);
+                    return true;
+                }
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     /**
      * @param sql 包含待执行的SQL语句的ArrayList集合
      * @return int 影响的函数

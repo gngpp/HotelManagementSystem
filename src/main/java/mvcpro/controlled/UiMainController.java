@@ -876,14 +876,25 @@ public class UiMainController implements Initializable {
             standardRoom.setRoom_type(cbx_type_standard.getValue());
             standardRoom.setRoom_floor(cbx_floor_standard.getValue());
             standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
-            if (!standardRoomDao.update(standardRoom)) {
+
+            InfoRoom newNext=null;
+            for (InfoRoom infoRoom:infoRoomDao.list())
+                if (infoRoom.getId_number() == selectStandardRoom.getRoom_id_number()) {
+                    newNext=infoRoom;
+                    break;
+                }
+            newNext.setPs(txa_remark_standard.getText());
+                newNext.setType(cbx_type_standard.getValue());
+                    newNext.setId_number(Integer.parseInt(txf_id_number_standard.getText()));
+            System.out.println(newNext);
+            if (!standardRoomDao.update(standardRoom)&&!infoRoomDao.update(newNext)) {
                 System.out.println("点击确认");
                 new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
                 return;
             } else {
                 standardRoomData_list.remove(selectStandardRoom);
                 standardRoomData_list.add(new StandardRoomData(standardRoom));
-               // ac_refresh_standard(event);
+                ac_refresh_standard(event);
                 new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已修改").show();
             }
         }
