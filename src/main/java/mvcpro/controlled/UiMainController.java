@@ -1,24 +1,19 @@
 package mvcpro.controlled;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -31,8 +26,6 @@ import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
 import mvcpro.model.utils.Uitls;
-import mvcpro.model.utils.checkbox;
-import mvcpro.model.utils.person;
 import mvcpro.view.AlertDefined;
 import mvcpro.view.FileChooserDefined;
 import mvcpro.view.UiInfoRoom;
@@ -286,11 +279,6 @@ public class UiMainController implements Initializable {
     private TextArea txa_remark_standard;
     @FXML
     private TextField txf_search_standard;
-
-
-
-
-
 
 
     /*
@@ -878,16 +866,18 @@ public class UiMainController implements Initializable {
             standardRoom.setRoom_price(Integer.parseInt(txf_price_standard.getText()));
 
             InfoRoom newNext=null;
-            for (InfoRoom infoRoom:infoRoomDao.list())
+            for (InfoRoom infoRoom:infoRoomDao.list()){
                 if (infoRoom.getId_number() == selectStandardRoom.getRoom_id_number()) {
                     newNext=infoRoom;
                     break;
                 }
+            }
+
             newNext.setPs(txa_remark_standard.getText());
                 newNext.setType(cbx_type_standard.getValue());
                     newNext.setId_number(Integer.parseInt(txf_id_number_standard.getText()));
-            System.out.println(newNext);
-            if (!standardRoomDao.update(standardRoom)&&!infoRoomDao.update(newNext)) {
+
+            if (!standardRoomDao.update(standardRoom)||!infoRoomDao.update(newNext)) {
                 System.out.println("点击确认");
                 new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
                 return;
@@ -895,6 +885,7 @@ public class UiMainController implements Initializable {
                 standardRoomData_list.remove(selectStandardRoom);
                 standardRoomData_list.add(new StandardRoomData(standardRoom));
                 ac_refresh_standard(event);
+                ac_refresh_info(event);
                 new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已修改").show();
             }
         }
@@ -941,6 +932,24 @@ public class UiMainController implements Initializable {
        UiInfoRoom uiInfoRoom = new UiInfoRoom();
        uiInfoRoom.start(new Stage());
        uiInfoRoom.setInfoRoomData(infoRoomData_list);
+    }
+
+    @FXML
+    void ac_refresh_info(ActionEvent event){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("标准刷新线程已启动...");
+                    infoRoomData_list.removeAll(infoRoomData_list);
+                    clear_standard();
+                    for (InfoRoom infoRoom: infoRoomDao.list())
+                        infoRoomData_list.add(new InfoRoomData(infoRoom));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @FXML

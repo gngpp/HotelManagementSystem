@@ -38,9 +38,7 @@ public final class FileChooserDefined extends Application {
 
         openButton_backup.setOnAction(
                 (final ActionEvent e) -> {
-                    //configureFileChooser(fileChooser);
                     File fileDirectory = directoryChooser.showDialog(stage);
-
                     BRSql brSql = new BRSql();
                     if (fileDirectory!=null && brSql.backup(fileDirectory)) {
                         new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
@@ -53,10 +51,12 @@ public final class FileChooserDefined extends Application {
             File file = fileChooser.showOpenDialog(new Stage());
             BRSql brSql = new BRSql();
 
-            if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file))
+            if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file)){
                 new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
-            else
+            } else{
                 new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+            }
+
         }));
 
 
