@@ -6,6 +6,8 @@ import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,31 +32,62 @@ public final class FileChooserDefined extends Application {
 
     @Override
     public void start( Stage stage) {
+
         stage.setTitle("File Chooser");
         final FileChooser fileChooser = new FileChooser();
         final DirectoryChooser directoryChooser=new DirectoryChooser();
         final Button openButton_backup = new Button("备份");
         final Button openButton_restore = new Button("恢复");
 
-        openButton_backup.setOnAction(
-                (final ActionEvent e) -> {
-                    File fileDirectory = directoryChooser.showDialog(stage);
-                    BRSql brSql = new BRSql();
-                    if (fileDirectory!=null && brSql.backup(fileDirectory)) {
-                        new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
-                    }else {
-                        new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
+        openButton_backup.setOnAction(event-> {
+
+            File fileDirectory = directoryChooser.showDialog(stage);
+            BRSql brSql = new BRSql();
+
+            if(System.getProperties().get("os.name").equals("Windows 10")){
+
+                try {
+                    File file = new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup.sql");
+                    if (!file.exists()) {
+                        file.mkdir();
                     }
-                });
+                    brSql.exportDbSql("localhost","3306","root","itcast",fileDirectory.getAbsolutePath(),file.getName(),"FXdb");
+                    new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(System.getProperties().get("os.name").equals("Mac OS X")){
+                if (fileDirectory!=null && brSql.backup(fileDirectory)) {
+                    new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
+                }else {
+                    new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
+                }
+            }
+
+        });
+
 
         openButton_restore.setOnAction((event -> {
+
             File file = fileChooser.showOpenDialog(new Stage());
             BRSql brSql = new BRSql();
 
-            if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file)){
-                new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
-            } else{
-                new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+            if (System.getProperties().get("os.name").equals("Windows 10")){
+                try {
+                    brSql.restoreDbBySql("localhost","3306","root","itcast",file.getAbsolutePath(),"FXdb");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(System.getProperties().get("os.name").equals("Mac OS X")){
+                if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file)){
+                    new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
+                } else{
+                    new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
+                }
             }
 
         }));
@@ -88,6 +121,7 @@ public final class FileChooserDefined extends Application {
         );
     }
 
+
     private void openFile(File file) {
         EventQueue.invokeLater(() -> {
             try {
@@ -100,7 +134,4 @@ public final class FileChooserDefined extends Application {
         });
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
 }

@@ -48,6 +48,7 @@ public class InfoRoomData {
         infoRoom.setMax_bed(max_bed.get());
         infoRoom.setMax_people(max_people.get());
         infoRoom.setRest(rest.get());
+        infoRoom.setPs(ps.get());
         return this.infoRoom;
     }
 

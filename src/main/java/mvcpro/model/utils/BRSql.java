@@ -2,6 +2,10 @@ package mvcpro.model.utils;
 
 import com.lqing.orm.internal.connection.C3p0ConnectionProvider;
 import com.lqing.orm.utils.LoggerUtils;
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.PumpStreamHandler;
 import org.slf4j.Logger;
 import sun.rmi.runtime.Log;
 
@@ -58,7 +62,7 @@ public class BRSql {
     private InputStream executeBackUpCmd() throws IOException, InterruptedException {
         Process p=Runtime.getRuntime().exec("which mysql");
         LOG.info("返回路径：{}",p.getInputStream());
-       // Process p = Runtime.getRuntime().exec(MYSQL_DUMP);
+        // Process p = Runtime.getRuntime().exec(MYSQL_DUMP);
         if (p.waitFor() == 0) {
             return p.getInputStream();
         }
@@ -190,72 +194,168 @@ public class BRSql {
         return false;
     }
 
-}
-
-
-class Main {
-
     public static void main(String[] args) throws Exception {
-        String result = execCmd("java -version", null);
-        System.out.println(result);
+        exportDbSql("localhost","3306","root","itcast","C:\\Users\\Windows\\Desktop","my.sql","FXdb");
     }
 
     /**
-     * 执行系统命令, 返回执行结果
-     *
-     * @param cmd 需要执行的命令
-     * @param dir 执行命令的子进程的工作目录, null 表示和当前主进程工作目录相同
+     * 导出sql文件
+     * 采用Apache的command-exec来执行命令
+     * @param host ip地址
+     * @param port 端口
+     * @param userName 账号
+     * @param password 密码
+     * @param savePath sql文件保存路径
+     * @param fileName 文件名
+     * @param databaseName 要备份的数据库名
+     * @return
      */
-    public static String execCmd(String cmd, File dir) throws Exception {
-        StringBuilder result = new StringBuilder();
 
-        Process process = null;
-        BufferedReader bufrIn = null;
-        BufferedReader bufrError = null;
+    public static void exportDbSql(String host,String port, String userName, String password, String savePath, String fileName, String databaseName) throws Exception {
+
+        LOG.debug("mysqlDumpApi.exportDbSql,param:host={},port={},userName={},password={},savePath={},fileName={},databaseName={}",
+                host,port, userName, password, savePath, fileName, databaseName);
+
+        File saveFile = new File(savePath);
+        if (!saveFile.exists()) {// 如果目录不存在
+            saveFile.mkdirs();// 创建文件夹
+        }
+        if(!savePath.endsWith(File.separator)){
+            savePath = savePath + File.separator;
+        }
+
+        FileOutputStream fos = null;
+        ByteArrayOutputStream errorStream = null;
+        try {
+            // 拼接命令
+            CommandLine command = new CommandLine("mysqldump");
+            command.addArgument("-h"+host);
+            command.addArgument("-P"+port);
+            command.addArgument("-u"+userName);
+            command.addArgument("-p"+password);
+            command.addArgument(databaseName);
+
+            LOG.debug("mysqlDumpApi.exportDbSql,command:{}",command.toString());
+
+            DefaultExecutor executor=new DefaultExecutor();
+            //导出到文件
+            fos=new FileOutputStream(savePath+fileName);
+            //命令执行的错误信息
+            errorStream = new ByteArrayOutputStream();
+            //fos为标准输出流，errorStream为错误输出流，这里一定要传这两个参数，否则最终生成的文件中会包含警告信息，导致恢复时无法恢复
+            executor.setStreamHandler(new PumpStreamHandler(fos, errorStream));
+
+            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+            executor.execute(command,resultHandler);
+
+            //等待子线程完成
+            resultHandler.waitFor();
+            //获取执行的返回值
+            int exitValue=resultHandler.getExitValue();
+            String errorStreamStr=errorStream.toString();
+            /*
+                判断命令执行是否成功。
+                exitValue==0表示成功，如果错误信息中存在ERROR也认为失败
+             */
+            if (exitValue!=0 || errorStreamStr.contains("ERROR")) {
+                LOG.error("mysqlDumpApi.exportDbSql executor fail.errorMsg:{}",errorStreamStr);
+                throw new Exception("mysqlDumpApi.exportDbSql executor fail errorMsg:"+errorStreamStr);
+            }
+
+        }catch (Exception e) {
+            LOG.error("mysqlDumpApi.exportDbSql fail.",e);
+            throw new Exception("mysqlDumpApi.exportDbSql fail",e);
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (errorStream != null) {
+                    errorStream.close();
+                }
+            } catch (IOException e) {
+                LOG.error("mysqlDumpApi.exportDbSql fail.",e);
+                throw new Exception("mysqlDumpApi.exportDbSql fail",e);
+            }
+        }
+    }
+
+
+    /**
+     * 恢复数据
+     * @param host
+     * @param port
+     * @param userName
+     * @param password
+     * @param sqlPath
+     * @param databaseName
+     * @return
+     */
+    public static void restoreDbBySql(String host,String port,String userName,String password,String sqlPath,String databaseName) throws Exception {
+
+        LOG.debug("mysqlDumpApi.restoreDbBySql,param:host={},port={},userName={},password={},sqlPath={},databaseName={}",
+                host,port, userName, password, sqlPath, databaseName);
+
+
+        ByteArrayOutputStream outputStream = null;
+        ByteArrayOutputStream errorStream = null;
+        InputStream inputStream = null;
 
         try {
-            // 执行命令, 返回一个子进程对象（命令在子进程中执行）
-            process = Runtime.getRuntime().exec(cmd, null, dir);
 
-            // 方法阻塞, 等待命令执行完成（成功会返回0）
-            process.waitFor();
+            CommandLine command = new CommandLine("mysql");
+            command.addArgument("-h"+host);
+            command.addArgument("-P"+port);
+            command.addArgument("-u"+userName);
+            command.addArgument("-p"+password);
+            command.addArgument(databaseName);
 
-            // 获取命令执行结果, 有两个结果: 正常的输出 和 错误的输出（PS: 子进程的输出就是主进程的输入）
-            bufrIn = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
-            bufrError = new BufferedReader(new InputStreamReader(process.getErrorStream(), "UTF-8"));
+            LOG.debug("mysqlDumpApi.restoreDbBySql,command:{}",command.toString());
 
-            // 读取输出
-            String line = null;
-            while ((line = bufrIn.readLine()) != null) {
-                result.append(line).append('\n');
+            DefaultExecutor executor=new DefaultExecutor();
+            outputStream = new ByteArrayOutputStream();
+            errorStream = new ByteArrayOutputStream();
+            //sql文件路径
+            inputStream = new FileInputStream(sqlPath);
+
+            PumpStreamHandler psHandler=new PumpStreamHandler(outputStream,errorStream,inputStream);
+            executor.setStreamHandler(psHandler);
+
+            DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+            executor.execute(command,resultHandler);
+
+            resultHandler.waitFor();
+            int exitValue = resultHandler.getExitValue();
+            String errorStreamStr=errorStream.toString();
+            /*
+                判断命令执行是否成功。
+                exitValue==0表示成功，如果错误信息中存在ERROR也认为失败
+             */
+            if (exitValue!=0 || errorStreamStr.contains("ERROR")) {
+                LOG.error("mysqlDumpApi.restoreDbBySql executor fail.errorMsg:{}",errorStreamStr);
+                throw new Exception("mysqlDumpApi.restoreDbBySql executor fail errorMsg:"+errorStreamStr);
             }
-            while ((line = bufrError.readLine()) != null) {
-                result.append(line).append('\n');
-            }
-
+        } catch (Exception e) {
+            LOG.error("mysqlDumpApi.restoreDbBySql fail.",e);
+            throw new Exception("mysqlDumpApi.restoreDbBySql fail",e);
         } finally {
-            closeStream(bufrIn);
-            closeStream(bufrError);
-
-            // 销毁子进程
-            if (process != null) {
-                process.destroy();
-            }
-        }
-
-        // 返回执行结果
-        return result.toString();
-    }
-
-    private static void closeStream(Closeable stream) {
-        if (stream != null) {
             try {
-                stream.close();
-            } catch (Exception e) {
-                // nothing
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+                if (errorStream != null) {
+                    errorStream.close();
+                }
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                LOG.error("mysqlDumpApi.restoreDbBySql fail.",e);
+                throw new Exception("mysqlDumpApi.restoreDbBySql fail",e);
             }
         }
     }
+
 
 }
 

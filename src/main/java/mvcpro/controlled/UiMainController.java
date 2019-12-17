@@ -947,24 +947,20 @@ public class UiMainController extends VerifyCard implements Initializable{
 
     @FXML
     void ac_add_info(ActionEvent event) throws Exception {
-
-        if(uiInfoRoom==null){
             uiInfoRoom = new UiInfoRoom();
-        }else {
             uiInfoRoom.start(new Stage());
             uiInfoRoom.setInfoRoomData(infoRoomData_list);
             uiInfoRoom.show();
-        }
-
     }
 
     @FXML
     void ac_edit_info(ActionEvent event){
-
-        if (uiInfoRoom==null){
-            uiInfoRoom=new UiInfoRoom();
-        }else {
+        if (mTableInfoRoom.getSelectionModel().getSelectedIndex()==-1){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中房间").show();
+            return;
+        }
             try {
+                uiInfoRoom=new UiInfoRoom();
                 InfoRoom infoRoom=mTableInfoRoom.getSelectionModel().getSelectedItem().infoRoomToEntity();
                 uiInfoRoom.start(new Stage());
                 uiInfoRoom.setInfoRoomData(infoRoomData_list);
@@ -974,7 +970,6 @@ public class UiMainController extends VerifyCard implements Initializable{
                 e.printStackTrace();
             }
 
-        }
     }
     @FXML
     void ac_refresh_info(ActionEvent event){

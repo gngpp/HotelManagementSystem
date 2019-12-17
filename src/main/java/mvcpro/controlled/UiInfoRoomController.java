@@ -1,5 +1,8 @@
 package mvcpro.controlled;
 
+import com.lqing.orm.utils.LoggerUtils;
+import com.mysql.cj.util.LogUtils;
+import com.sun.codemodel.internal.JTryBlock;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import mvcpro.model.entity.User;
 import mvcpro.model.utils.Uitls;
 import mvcpro.view.AlertDefined;
 import mvcpro.view.server.InfoRoomData;
+import org.slf4j.Logger;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +28,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class UiInfoRoomController {
+
+    private static Logger LOG= LoggerUtils.getLogger(UiInfoRoomController.class);
+
     private Stage uiInfoRoom;
 
     private StandardRoomDao standardRoomDao;
@@ -99,7 +106,7 @@ public class UiInfoRoomController {
                 txf_bed_info.getText().equals("")||txf_phone_info.getText().equals("")||
                 cbx_air_conditioning_info.getValue()==null||cbx_tv_info.getValue()==null||
                 cbx_IdNumber_info.getValue()==null||cbx_rest_info.getValue()==null){
-            new AlertDefined(Alert.AlertType.ERROR, "提示", "请完善房间信息").show();
+            new AlertDefined(Alert.AlertType.ERROR, "提示", "请完善信息").show();
             return;
         }
 
@@ -115,6 +122,7 @@ public class UiInfoRoomController {
         }
         for (StandardRoom next:standardRoomDao.list())
             if(cbx_IdNumber_info.getValue()==next.getRoom_id_number()){
+                LOG.info("InfoRoomController{}","数据更新异常");
                 InfoRoom infoRoom=new InfoRoom();
                 infoRoom.setArea(Integer.parseInt(txf_area_info.getText()));
                 infoRoom.setId_number(cbx_IdNumber_info.getValue());
@@ -136,7 +144,38 @@ public class UiInfoRoomController {
 
     @FXML
     void ac_alter_info(ActionEvent event){
+        if (txf_area_info.getText().equals("")||txf_maxPeople_info.getText().equals("")||
+                txf_bed_info.getText().equals("")||txf_phone_info.getText().equals("")||
+                cbx_air_conditioning_info.getValue()==null||cbx_tv_info.getValue()==null ||
+                cbx_rest_info.getValue()==null){
+            new AlertDefined(Alert.AlertType.ERROR, "提示", "请完善信息").show();
+            return;
+        }
 
+        if (!Uitls.isNumber(txf_maxPeople_info.getText()) ||
+                !Uitls.isNumber(txf_area_info.getText())||
+                !Uitls.isNumber(txf_bed_info.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "人数/床数/房间面积请输入数字").show();
+            return;
+        }
+        infoRoomData_list.removeAll(infoRoomData_list);
+        InfoRoom infoRoom=getInfoRoom();
+        infoRoom.setArea(Integer.parseInt(txf_area_info.getText()));
+        infoRoom.setMax_people(Integer.parseInt(txf_maxPeople_info.getText()));
+        infoRoom.setMax_bed(Integer.parseInt(txf_bed_info.getText()));
+        infoRoom.setIphone(txf_phone_info.getText());
+        infoRoom.setTv(cbx_tv_info.getValue());
+        infoRoom.setType(cbx_air_conditioning_info.getValue());
+        infoRoom.setRest(cbx_rest_info.getValue());
+        try{
+            infoRoomDao.update(infoRoom);
+            for(InfoRoom next:infoRoomDao.list())
+                infoRoomData_list.add(new InfoRoomData(next));
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            uiInfoRoom.close();
+        }
     }
 
     public void setMainStage(Stage mainStage) {
