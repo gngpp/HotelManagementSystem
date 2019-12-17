@@ -13,10 +13,6 @@ import java.util.Date;
 
 public class BRSql {
 
-    public static void main(String[] args) {
-
-    }
-
     public static final String MYSQL_DUMP = "mysqldump --defaults-extra-file=/etc/my.cnf Fxdb";
 
     private static Logger LOG = LoggerUtils.getLogger(BRSql.class);

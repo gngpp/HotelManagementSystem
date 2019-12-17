@@ -12,6 +12,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mvcpro.controlled.UiInfoRoomController;
+import mvcpro.model.entity.InfoRoom;
 import mvcpro.view.server.InfoRoomData;
 
 public class UiInfoRoom extends Application {
@@ -46,7 +47,6 @@ public class UiInfoRoom extends Application {
         newStage.setScene(scene);
         //  newStage.initStyle(StageStyle.TRANSPARENT);
         newStage.initModality(Modality.APPLICATION_MODAL);
-        newStage.show();
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -65,5 +65,13 @@ public class UiInfoRoom extends Application {
 
     public void setInfoRoomData(ObservableList<InfoRoomData> infoRoomData) {
         uiInfoRoomController.setInfoRoomData(infoRoomData);
+    }
+
+    public void show(){
+        newStage.show();
+    }
+
+    public void setInfoRoom(InfoRoom infoRoom,Boolean check){
+        uiInfoRoomController.setInfoRoom(infoRoom,check);
     }
 }

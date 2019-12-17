@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -19,7 +21,7 @@ public class UiLogin extends Application {
 
     private double lastx_distance;
     private double lasty_distance;
-
+    private AudioClip audio =new AudioClip(getClass().getResource("/audio/Windows.wav").toString());
     @Override
     public void start(Stage primaryStage) throws IOException {
         createStage(primaryStage);
@@ -31,7 +33,12 @@ public class UiLogin extends Application {
         Pane root = loader.load();
         UiLoginController uiLoginController=loader.getController();
         uiLoginController.setLoginStage(loginStage);
-
+        if (audio.isPlaying()) {
+            audio.stop();
+        }
+        else {
+            audio.play(1.0);
+        }
         //
         //设置背景颜色
         //
@@ -53,6 +60,7 @@ public class UiLogin extends Application {
         loginStage.setScene(scene);
         loginStage.getIcons().add(new Image(UiLogin.class.getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         loginStage.show();
+
 
         scene.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override

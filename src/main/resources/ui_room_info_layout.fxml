@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="428.0" prefWidth="265.0" styleClass="frame" stylesheets="@ui_login_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
+<AnchorPane prefHeight="413.0" prefWidth="265.0" styleClass="frame" stylesheets="@ui_login_style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
    <children>
-      <TextField fx:id="txf_area_info" layoutX="52.0" layoutY="117.0" prefHeight="27.0" prefWidth="167.0" promptText="房间面积" styleClass="txf_username" />
-      <TextField fx:id="txf_bed_info" layoutX="51.0" layoutY="162.0" prefHeight="27.0" prefWidth="167.0" promptText="房间床数" styleClass="txf_username" />
-      <TextField fx:id="txf_maxPeople_info" layoutX="51.0" layoutY="209.0" prefHeight="27.0" prefWidth="167.0" promptText="额定人数" styleClass="txf_username" />
-      <ComboBox fx:id="cbx_air_conditioning_info" layoutX="51.0" layoutY="256.0" prefHeight="27.0" prefWidth="167.0" promptText="空调" />
-      <ComboBox fx:id="cbx_tv_info" layoutX="51.0" layoutY="303.0" prefHeight="27.0" prefWidth="167.0" promptText="电视" />
-      <ComboBox fx:id="cbx_rest_info" layoutX="52.0" layoutY="344.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
-      <TextField fx:id="txf_phone_info" layoutX="51.0" layoutY="67.0" prefHeight="27.0" prefWidth="167.0" promptText="房间电话" styleClass="txf_username" />
-      <ComboBox fx:id="cbx_IdNumber_info" layoutX="52.0" layoutY="24.0" prefHeight="27.0" prefWidth="167.0" promptText="房间编号" />
-      <Button layoutX="113.0" layoutY="387.0" mnemonicParsing="false" onAction="#ac_check_info" styleClass="btn" text="确定" textFill="WHITE" />
+      <TextField fx:id="txf_area_info" layoutX="52.0" layoutY="107.0" prefHeight="27.0" prefWidth="167.0" promptText="房间面积" />
+      <TextField fx:id="txf_bed_info" layoutX="51.0" layoutY="146.0" prefHeight="27.0" prefWidth="167.0" promptText="房间床数" />
+      <TextField fx:id="txf_maxPeople_info" layoutX="51.0" layoutY="187.0" prefHeight="27.0" prefWidth="167.0" promptText="额定人数" />
+      <ComboBox fx:id="cbx_air_conditioning_info" layoutX="51.0" layoutY="230.0" prefHeight="27.0" prefWidth="167.0" promptText="空调" />
+      <ComboBox fx:id="cbx_tv_info" layoutX="51.0" layoutY="276.0" prefHeight="27.0" prefWidth="167.0" promptText="电视" />
+      <ComboBox fx:id="cbx_rest_info" layoutX="52.0" layoutY="321.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
+      <TextField fx:id="txf_phone_info" layoutX="51.0" layoutY="66.0" prefHeight="27.0" prefWidth="167.0" promptText="房间电话" />
+      <ComboBox fx:id="cbx_IdNumber_info" layoutX="52.0" layoutY="23.0" prefHeight="27.0" prefWidth="167.0" promptText="房间编号" />
+      <Button fx:id="btn_alter_info" layoutX="113.0" layoutY="378.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="27.0" prefWidth="44.0" styleClass="btn" text="修改" textFill="WHITE" />
+      <Button fx:id="btn_check_info" layoutX="113.0" layoutY="378.0" mnemonicParsing="false" onAction="#ac_check_info" styleClass="btn" stylesheets="@ui_main_style.css" text="确定" textFill="WHITE" />
    </children>
 </AnchorPane>

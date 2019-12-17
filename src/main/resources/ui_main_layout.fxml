@@ -59,10 +59,11 @@
                                                    </effect>
                                                 </TableView>
                                                 <Button fx:id="btn_add_info" layoutX="92.0" layoutY="10.0" mnemonicParsing="false" onAction="#ac_add_info" prefHeight="21.0" prefWidth="70.0" styleClass="btn" text="添加" />
-                                                <Button fx:id="btn_delete_info" layoutX="175.0" layoutY="10.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="71.0" styleClass="btn" text="删除" />
+                                                <Button fx:id="btn_delete_info" layoutX="249.0" layoutY="11.0" mnemonicParsing="false" onAction="#ac_delete_info" prefHeight="26.0" prefWidth="71.0" styleClass="btn" text="删除" />
                                                 <Button defaultButton="true" layoutX="773.0" layoutY="7.0" mnemonicParsing="false" onAction="#ac_search_info" prefHeight="26.0" prefWidth="60.0" styleClass="btn" text="搜索" />
                                                 <TextField fx:id="txf_search_info" layoutX="597.0" layoutY="7.0" promptText="搜索..." styleClass="txf_username" />
                                                 <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#ac_refresh_info" prefHeight="21.0" prefWidth="64.0" styleClass="btn" text="刷新" />
+                                                <Button fx:id="btn_edit_info" layoutX="174.0" layoutY="10.0" mnemonicParsing="false" onAction="#ac_edit_info" prefHeight="26.0" prefWidth="61.0" styleClass="btn" text="编辑" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -71,30 +72,30 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableStandardRoom" layoutX="289.0" layoutY="51.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
-                                                   <columns>
-                                                      <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
-                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
-                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="91.0" text="楼层" />
-                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="102.0" text="单价/天" />
-                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="184.0" text="备注" />
-                                                   </columns>
-                                                </TableView>
-                                                <Button fx:id="btn_delete_standard" layoutX="384.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
-                                                <Button defaultButton="true" layoutX="801.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_search_standard" styleClass="btn" text="查找" textFill="WHITE" />
-                                                <TextField fx:id="txf_search_standard" layoutX="617.0" layoutY="16.0" promptText="查找..." styleClass="txf_username" />
-                                                <Button layoutX="306.0" layoutY="17.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
+                                                <Button fx:id="btn_delete_standard" layoutX="374.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_delete_standard" styleClass="btn" text="删除客房" textFill="WHITE" />
+                                                <Button defaultButton="true" layoutX="660.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_search_standard" prefHeight="26.0" prefWidth="50.0" styleClass="btn" text="查找" textFill="WHITE" />
+                                                <TextField fx:id="txf_search_standard" layoutX="483.0" layoutY="3.0" promptText="查找..." styleClass="txf_username" />
                                                 <Pane fx:id="pane_info" prefHeight="409.0" prefWidth="287.0" styleClass="frame" stylesheets="@ui_default_style.css">
                                                    <children>
                                                       <TextField fx:id="txf_price_standard" layoutX="61.0" layoutY="199.0" prefHeight="27.0" prefWidth="166.0" promptText="单价/天" />
                                                       <TextArea fx:id="txa_remark_standard" layoutX="42.0" layoutY="248.0" prefHeight="84.0" prefWidth="217.0" promptText="备注：" stylesheets="@ui_default_style.css" wrapText="true" />
                                                       <Button layoutX="67.0" layoutY="345.0" mnemonicParsing="false" onAction="#ac_alter_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="修改信息" textFill="WHITE" />
                                                       <Button layoutX="150.0" layoutY="345.0" mnemonicParsing="false" onAction="#ac_add_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="添加客房" textFill="WHITE" />
-                                                      <ComboBox fx:id="cbx_floor_standard" layoutX="62.0" layoutY="153.0" prefHeight="27.0" prefWidth="165.0" promptText="楼层" />
-                                                      <ComboBox fx:id="cbx_type_standard" layoutX="61.0" layoutY="108.0" prefHeight="27.0" prefWidth="167.0" promptText="客房类型" />
+                                                      <ComboBox fx:id="cbx_floor_standard" layoutX="62.0" layoutY="153.0" prefHeight="27.0" prefWidth="165.0" promptText="楼层" styleClass="combobox" />
+                                                      <ComboBox fx:id="cbx_type_standard" layoutX="61.0" layoutY="108.0" prefHeight="27.0" prefWidth="167.0" promptText="客房类型" styleClass="combobox" />
                                                       <TextField fx:id="txf_id_number_standard" layoutX="62.0" layoutY="61.0" prefHeight="27.0" prefWidth="165.0" promptText="客房编号" />
                                                    </children>
                                                 </Pane>
+                                                <TableView fx:id="mTableStandardRoom" layoutX="287.0" layoutY="31.0" prefHeight="366.0" prefWidth="596.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                   <columns>
+                                                      <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
+                                                      <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
+                                                      <TableColumn fx:id="tableColumnFloor_standard" minWidth="0.0" prefWidth="91.0" text="楼层" />
+                                                      <TableColumn fx:id="tableColumnPrice_standard" minWidth="0.0" prefWidth="120.0" text="单价/天" />
+                                                      <TableColumn fx:id="tableColumnRemark_standard" prefWidth="152.0" text="备注" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button fx:id="btn_refresh_standard" layoutX="298.0" layoutY="3.0" mnemonicParsing="false" onAction="#ac_refresh_standard" prefHeight="26.0" prefWidth="69.0" styleClass="btn" text="刷新" />
                                              </children>
                                           </AnchorPane>
                                     </content>

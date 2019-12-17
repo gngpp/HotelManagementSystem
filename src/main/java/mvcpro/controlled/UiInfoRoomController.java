@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,6 +30,8 @@ public class UiInfoRoomController {
 
     private InfoRoomDao infoRoomDao;
 
+    private InfoRoom  infoRoom;
+
     @FXML
     private ResourceBundle resources;
 
@@ -37,6 +40,11 @@ public class UiInfoRoomController {
 
     @FXML
     private TextField txf_maxPeople_info;
+
+    @FXML
+    private Button btn_alter_info;
+
+    @FXML Button btn_check_info;
 
     @FXML
     private ComboBox<String> cbx_air_conditioning_info;
@@ -126,11 +134,38 @@ public class UiInfoRoomController {
         this.uiInfoRoom.close();
     }
 
+    @FXML
+    void ac_alter_info(ActionEvent event){
+
+    }
+
     public void setMainStage(Stage mainStage) {
         this.uiInfoRoom=mainStage;
     }
 
     public void setInfoRoomData(ObservableList<InfoRoomData> infoRoomData_list) {
         this.infoRoomData_list = infoRoomData_list;
+    }
+
+    public InfoRoom getInfoRoom() {
+        return infoRoom;
+    }
+
+    public void setInfoRoom(InfoRoom infoRoom,Boolean check) {
+
+        if(check){
+            this.infoRoom = infoRoom;
+            btn_check_info.setVisible(false);
+            cbx_IdNumber_info.setEditable(true);
+            cbx_IdNumber_info.setVisible(false);
+            cbx_rest_info.setValue(infoRoom.getRest());
+            cbx_tv_info.setValue(infoRoom.getTv());
+            cbx_air_conditioning_info.setValue(infoRoom.getAir_conditioning());
+            txf_phone_info.setText(infoRoom.getIphone());
+            txf_bed_info.setText(infoRoom.getMax_people().toString());
+            txf_maxPeople_info.setText(infoRoom.getMax_people().toString());
+            txf_area_info.setText(String.valueOf(infoRoom.getArea()));
+        }
+
     }
 }

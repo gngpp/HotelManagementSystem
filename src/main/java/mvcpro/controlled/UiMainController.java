@@ -1,5 +1,6 @@
 package mvcpro.controlled;
 
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.application.Platform;
 
 import javafx.beans.value.ChangeListener;
@@ -40,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class UiMainController implements Initializable {
+public class UiMainController extends VerifyCard implements Initializable{
 
     private UserDao userDao;
     private ClientDao clientDao;
@@ -48,7 +49,6 @@ public class UiMainController implements Initializable {
     private BookRoomDao bookRoomDao;
     private StandardRoomDao standardRoomDao;
     private User user;
-    private final String verifyUser="用户";
 
     @FXML
     private TabPane tabPane_master;
@@ -65,6 +65,8 @@ public class UiMainController implements Initializable {
     private Menu menu_system;
 
     private Stage mainStage;
+
+    private UiInfoRoom uiInfoRoom;
 
     @FXML
     private ImageView imageView_one;
@@ -97,10 +99,18 @@ public class UiMainController implements Initializable {
     private Button btn_add_info;
 
     @FXML
+    private Button btn_edit_info;
+
+    @FXML
     private Button btn_delete_info;
 
     @FXML
     private Button btn_delete_standard;
+
+    @FXML
+    private Button btn_refresh_standard;
+
+
 
     @FXML
     private Pane pane_info;
@@ -321,13 +331,19 @@ public class UiMainController implements Initializable {
     public void setMainStage(Stage mainStage,User user) {
         this.user=user;
         this.mainStage = mainStage;
-        if (user.getUserType().equals(verifyUser)){
+        if (user.getUserType().equals(USER)){
+            mTableStandardRoom.setEditable(true);
+            mTableStandardRoom.setLayoutX(146);
+            mTableStandardRoom.setLayoutY(32);
+            btn_refresh_standard.setLayoutX(163);
+            btn_refresh_standard.setLayoutY(3);
             tabPane_master.getTabs().remove(tab_4);
             tabPane_master.getTabs().remove(tab_2);
             tabPane_master.getTabs().remove(tab_3);
             btn_add_info.setVisible(false);
             btn_delete_info.setVisible(false);
             btn_delete_standard.setVisible(false);
+            btn_edit_info.setVisible(false);
             pane_info.setVisible(false);
             menu_system.setVisible(false);
         }
@@ -373,7 +389,7 @@ public class UiMainController implements Initializable {
 
     }
 
-    private void initTableEvent(){
+    private void initTableEvent() {
         mTableUser.getSelectionModel().selectedItemProperty().addListener(// 选中某一行
                 new ChangeListener<UserData>() {
                     @Override
@@ -388,7 +404,7 @@ public class UiMainController implements Initializable {
                 new ChangeListener<StandardRoomData>() {
                     @Override
                     public void changed(ObservableValue<? extends StandardRoomData> observable, StandardRoomData oldValue, StandardRoomData newValue) {
-                        StandardRoom standardRoom= newValue.standardRoomToEntity();
+                        StandardRoom standardRoom = newValue.standardRoomToEntity();
                         txa_remark_standard.setText(standardRoom.getRoom_remark());
                         txf_id_number_standard.setText(standardRoom.getRoom_id_number().toString());
                         txf_price_standard.setText(standardRoom.getRoom_price().toString());
@@ -396,6 +412,8 @@ public class UiMainController implements Initializable {
                         cbx_floor_standard.setValue(standardRoom.getRoom_floor());
                     }
                 });
+
+
     }
 
     private void initDataDao() {
@@ -427,7 +445,7 @@ public class UiMainController implements Initializable {
         mainMinimize.setFont(new Font("宋体", 13));
         iv_picture_user.setImage(new Image("/png/timg.jpeg"));
         cbx_type_standard.getItems().setAll("单人间","标准间","豪华间/高级间","商务间","双套间","组合套间","复式套间");
-        cbx_floor_standard.getItems().setAll("一楼","二楼","一楼","二楼","一楼","二楼");
+        cbx_floor_standard.getItems().setAll("一楼","二楼","三楼","四楼","五楼","六楼");
         txf_search_standard.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("")){
                 try {
@@ -929,11 +947,35 @@ public class UiMainController implements Initializable {
 
     @FXML
     void ac_add_info(ActionEvent event) throws Exception {
-       UiInfoRoom uiInfoRoom = new UiInfoRoom();
-       uiInfoRoom.start(new Stage());
-       uiInfoRoom.setInfoRoomData(infoRoomData_list);
+
+        if(uiInfoRoom==null){
+            uiInfoRoom = new UiInfoRoom();
+        }else {
+            uiInfoRoom.start(new Stage());
+            uiInfoRoom.setInfoRoomData(infoRoomData_list);
+            uiInfoRoom.show();
+        }
+
     }
 
+    @FXML
+    void ac_edit_info(ActionEvent event){
+
+        if (uiInfoRoom==null){
+            uiInfoRoom=new UiInfoRoom();
+        }else {
+            try {
+                InfoRoom infoRoom=mTableInfoRoom.getSelectionModel().getSelectedItem().infoRoomToEntity();
+                uiInfoRoom.start(new Stage());
+                uiInfoRoom.setInfoRoomData(infoRoomData_list);
+                uiInfoRoom.setInfoRoom(infoRoom,true);
+                uiInfoRoom.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     @FXML
     void ac_refresh_info(ActionEvent event){
         Platform.runLater(new Runnable() {
