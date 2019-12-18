@@ -159,7 +159,14 @@ public class UiBookingRoomController    implements Initializable {
 
             if(bookRoomDao.save(bookRoom)&&clientDao.save(client)){
                 clientData_list.add(new ClientData(client));
-                bookRoomData_list.add(new BookRoomData(bookRoom));
+                for (BookRoom next:bookRoomDao.list()){
+                    if (next.getRoom_id_number()==cbx_room_id_booking.getValue()){
+                        bookRoomData_list.add(new BookRoomData(next));
+                        newStage.close();
+                    }
+
+                }
+
             }
         }catch (Exception e){
             e.printStackTrace();

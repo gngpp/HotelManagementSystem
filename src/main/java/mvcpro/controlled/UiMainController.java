@@ -813,7 +813,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             System.out.println(selectStandardRoom.standardRoomToEntity());
             AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要删除房间[ " + selectStandardRoom.getRoom_id_number() + " ]吗?");
             Optional result = dialog.showAndWait();
-            if (result.get() == ButtonType.OK) {
+            if (result.get() == ButtonType.OK||result.get()==null) {
                 if (!standardRoomDao.delete(selectStandardRoom.standardRoomToEntity())) {
                     new AlertDefined(Alert.AlertType.ERROR, "提示", "删除房间失败").show();
                     return;
@@ -1043,7 +1043,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             InfoRoomData selectInfoRoom = mTableInfoRoom.getSelectionModel().getSelectedItem();
             AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要房间[ " + selectInfoRoom.getId_number()+ " ]详情吗?");
             Optional result = dialog.showAndWait();
-            if (result.get() == ButtonType.OK) {
+            if (result.get() == ButtonType.OK||result.get()==null) {
                 if (infoRoomDao.delete(selectInfoRoom.infoRoomToEntity())) {
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
                     infoRoomData_list.remove(selectInfoRoom);
@@ -1160,9 +1160,6 @@ public class UiMainController extends VerifyCard implements Initializable{
                 if (bookRoomDao.delete(selectBookRoom.bookRoomExToEntity())) {
                     bookRoomData_list.remove(selectBookRoom);
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
-                    return;
-                } else {
-                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除失败").show();
                     return;
                 }
             }
