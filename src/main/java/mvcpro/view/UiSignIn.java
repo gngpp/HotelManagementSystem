@@ -18,18 +18,15 @@ import mvcpro.controlled.UiSignInController;
 public class UiSignIn extends Application {
 
 
-    private  Stage newStage=new Stage();
+    private Stage newStage;
     private Scene scene;
     private UiSignInController uiSignInController;
     private double lastx_distance,lasty_distance;
-    public UiSignIn(){
-        newStage=new Stage();
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
             try{
-
+                newStage=primaryStage;
                 //
                 //获取控制类对象
                 //
@@ -83,7 +80,5 @@ public class UiSignIn extends Application {
                 e.printStackTrace();
             }
     }
-
-
 
 }

@@ -23,8 +23,6 @@ public class UiLoginController {
 
     private Stage loginStage;
 
-    private Stage signInStage;
-
     private UiMainFrame uiMainFrame;
 
     private UiMessageBox uiMessageBox;
@@ -57,7 +55,6 @@ public class UiLoginController {
     void initialize() throws Exception {
         uiMainFrame=new UiMainFrame();
         uiMainFrame.start(new Stage());
-        signInStage=new Stage();
         uiMessageBox=new UiMessageBox();
         userDao=new UserDao();
         verify=new StringBuilder("");
@@ -121,7 +118,7 @@ public class UiLoginController {
 
     @FXML
     void loginSignIn(ActionEvent event) throws Exception {
-        new UiSignIn().start(signInStage);
+        new UiSignIn().start(new Stage());
     }
 
     private  Boolean loginVerify(User user){

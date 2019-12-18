@@ -4,10 +4,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import mvcpro.model.entity.BookRoom;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class BookRoomData {
     private BookRoom bookRoom;
@@ -16,22 +14,22 @@ public class BookRoomData {
     private SimpleStringProperty room_peple_id;
     private SimpleStringProperty room_in_date;
     private SimpleStringProperty room_out_date;
-    private SimpleStringProperty room_discount;
-    private SimpleIntegerProperty room_amout;
+    private SimpleStringProperty room_card;
+    private SimpleStringProperty room_sex;
     private SimpleStringProperty  room_peple_name;
     private SimpleIntegerProperty room_id_number;
-    private SimpleStringProperty room_remark;
+    private SimpleStringProperty room_phone;
 
     public BookRoomData(BookRoom bookRoom){
         this.room_id_number=new SimpleIntegerProperty(bookRoom.getRoom_id_number());
-        this.room_amout= new SimpleIntegerProperty(bookRoom.getRoom_amout());
-        this.room_discount=new SimpleStringProperty((bookRoom.getRoom_discount()));
+        this.room_sex = new SimpleStringProperty(bookRoom.getRoom_sex());
+        this.room_card=new SimpleStringProperty((bookRoom.getRoom_card()));
         this.room_peple_id=new SimpleStringProperty(bookRoom.getRoom_peple_id());
         this.room_peple_name=new SimpleStringProperty(bookRoom.getRoom_peple_name());
         this.room_in_date=new SimpleStringProperty(bookRoom.getRoom_in_date().toString());
         this.room_out_date=new SimpleStringProperty(bookRoom.getRoom_out_date().toString());
         this.room_price=new SimpleIntegerProperty(bookRoom.getRoom_price());
-        this.room_remark=new SimpleStringProperty(bookRoom.getRoom_remark());
+        this.room_phone =new SimpleStringProperty(bookRoom.getRoom_phone());
         this.room_type=new SimpleStringProperty(bookRoom.getRoom_type());
     }
     public BookRoom BookRoomExToEntity() throws ParseException {
@@ -42,9 +40,9 @@ public class BookRoomData {
         this.bookRoom.setRoom_in_date(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(room_in_date.get()));
         this.bookRoom.setRoom_out_date(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(room_out_date.get()));
         this.bookRoom.setRoom_peple_name(room_peple_name.get());
-        this.bookRoom.setRoom_amout(room_amout.get());
-        this.bookRoom.setRoom_discount(room_discount.get());
-        this.bookRoom.setRoom_remark(room_remark.get());
+        this.bookRoom.setRoom_sex(room_sex.get());
+        this.bookRoom.setRoom_card(room_card.get());
+        this.bookRoom.setRoom_phone(room_phone.get());
         this.bookRoom.setRoom_type(room_type.get());
         return bookRoom;
     }
@@ -97,16 +95,16 @@ public class BookRoomData {
         this.room_peple_name.set(room_peple_name);
     }
 
-    public String getRoom_remark() {
-        return room_remark.get();
+    public String getRoom_phone() {
+        return room_phone.get();
     }
 
-    public SimpleStringProperty room_remarkProperty() {
-        return room_remark;
+    public SimpleStringProperty room_phoneProperty() {
+        return room_phone;
     }
 
-    public void setRoom_remark(String room_remark) {
-        this.room_remark.set(room_remark);
+    public void setRoom_phone(String room_phone) {
+        this.room_phone.set(room_phone);
     }
 
     public int getRoom_id_number() {
@@ -133,16 +131,28 @@ public class BookRoomData {
         this.room_peple_id.set(room_peple_id);
     }
 
-    public int getRoom_amout() {
-        return room_amout.get();
+    public String getRoom_sex() {
+        return room_sex.get();
     }
 
-    public SimpleIntegerProperty room_amoutProperty() {
-        return room_amout;
+    public SimpleStringProperty room_sexProperty() {
+        return room_sex;
     }
 
-    public void setRoom_amout(int room_amout) {
-        this.room_amout.set(room_amout);
+    public void setRoom_sex(String room_sex) {
+        this.room_sex.set(room_sex);
+    }
+
+    public String getRoom_card() {
+        return room_card.get();
+    }
+
+    public SimpleStringProperty room_cardProperty() {
+        return room_card;
+    }
+
+    public void setRoom_card(String room_card) {
+        this.room_card.set(room_card);
     }
 
     public String getRoom_out_date() {
@@ -158,15 +168,15 @@ public class BookRoomData {
     }
 
     public String getRoom_discount() {
-        return room_discount.get();
+        return room_card.get();
     }
 
     public SimpleStringProperty room_discountProperty() {
-        return room_discount;
+        return room_card;
     }
 
     public void setRoom_discount(String room_discount) {
-        this.room_discount.set(room_discount);
+        this.room_card.set(room_discount);
     }
 
     public BookRoom getBookRoom() {

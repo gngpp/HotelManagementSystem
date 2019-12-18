@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiBookingRoomController">
+   <children>
+      <DatePicker fx:id="date_booking" layoutX="300.0" layoutY="199.0" prefHeight="27.0" prefWidth="167.0" />
+      <Button layoutX="221.0" layoutY="285.0" mnemonicParsing="false" onAction="#ac_bookingCheck_booking" text="订房" />
+      <Button layoutX="278.0" layoutY="285.0" mnemonicParsing="false" onAction="#ac_cancel_booking" text="取消" />
+      <TextField fx:id="txf_type_booking" editable="false" layoutX="111.0" layoutY="118.0" prefHeight="27.0" prefWidth="107.0" />
+      <ComboBox fx:id="cbx_room_id_booking" layoutX="111.0" layoutY="75.0" prefHeight="27.0" prefWidth="107.0" promptText="客房编号" />
+      <Label layoutX="54.0" layoutY="123.0" prefHeight="17.0" prefWidth="52.0" text="客房类型" />
+      <Label layoutX="54.0" layoutY="163.0" prefHeight="17.0" prefWidth="52.0" text="客房单价" />
+      <TextField fx:id="txf_price_booking" editable="false" layoutX="110.0" layoutY="158.0" prefHeight="27.0" prefWidth="107.0" />
+      <Label layoutX="54.0" layoutY="205.0" prefHeight="17.0" prefWidth="52.0" text="客户编号" />
+      <ComboBox fx:id="cbx_people_id_booking" layoutX="110.0" layoutY="199.0" prefHeight="27.0" prefWidth="107.0" />
+      <Label layoutX="266.0" layoutY="81.0" text="性别" />
+      <ComboBox fx:id="cbx_sex_booking" layoutX="300.0" layoutY="75.0" prefHeight="27.0" prefWidth="107.0" />
+      <Label layoutX="54.0" layoutY="80.0" prefHeight="17.0" prefWidth="52.0" text="客房编号" />
+      <Label layoutX="255.0" layoutY="124.0" text="身份证" />
+      <TextField fx:id="txf_card_booking" layoutX="300.0" layoutY="118.0" />
+      <Label layoutX="243.0" layoutY="164.0" prefHeight="17.0" prefWidth="52.0" text="联系电话" />
+      <TextField fx:id="txf_phone_booking" layoutX="300.0" layoutY="158.0" prefHeight="27.0" prefWidth="107.0" />
+      <Label layoutX="243.0" layoutY="205.0" prefHeight="17.0" prefWidth="52.0" text="入住日期" />
+   </children>
+</Pane>

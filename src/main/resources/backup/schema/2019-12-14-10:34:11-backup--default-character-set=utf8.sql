@@ -28,12 +28,12 @@ CREATE TABLE `booking_room` (
   `room_price` int(11) DEFAULT NULL COMMENT '客房单价',
   `room_peple_id` char(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '客户编号',
   `room_in_date` datetime DEFAULT NULL COMMENT '入住日期',
-  `room_discount` char(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '折扣',
+  `room_card` char(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '折扣',
   `room_out_date` datetime DEFAULT NULL COMMENT '结算日起',
-  `room_amout` int(20) DEFAULT NULL COMMENT '总额',
+  `room_sex` int(20) DEFAULT NULL COMMENT '总额',
   `room_peple_name` char(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '客户姓名',
   `room_id_number` int(11) DEFAULT NULL,
-  `room_remark` char(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `room_phone` char(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`room_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -121,7 +121,7 @@ CREATE TABLE `standard_room` (
   `room_type` char(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `room_floor` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `room_price` int(20) DEFAULT NULL,
-  `room_remark` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `room_phone` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `room_id_number` int(20) DEFAULT NULL,
   PRIMARY KEY (`room_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=44030 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

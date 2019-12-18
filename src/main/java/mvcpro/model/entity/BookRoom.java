@@ -49,10 +49,10 @@ public class BookRoom extends DefaultEntity {
 
 
     //折扣
-    @AnnotationField(col_name = "room_discount", sql_type = "char",
-            size = 20, field_name = "room_discount", java_type = "String",
+    @AnnotationField(col_name = "room_card", sql_type = "char",
+            size = 20, field_name = "room_card", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
-    private String room_discount;
+    private String room_card;
 
 
     //结算时间
@@ -62,10 +62,10 @@ public class BookRoom extends DefaultEntity {
     private Date room_out_date;
 
     //总金额
-    @AnnotationField(col_name = "room_amout", sql_type = "int",
-            size = 20, field_name = "room_amout", java_type = "Integer",
+    @AnnotationField(col_name = "room_sex", sql_type = "char",
+            size = 5, field_name = "room_sex", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
-    private Integer room_amout;
+    private String room_sex;
 
 
     //客房编号
@@ -75,17 +75,17 @@ public class BookRoom extends DefaultEntity {
     private Integer room_id_number;
 
     //备注
-    @AnnotationField(col_name = "room_remark", sql_type = "char",
-            size = 200, field_name = "room_remark", java_type = "String",
+    @AnnotationField(col_name = "room_phone", sql_type = "char",
+            size = 200, field_name = "room_phone", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
-    private String room_remark;
+    private String room_phone;
 
-    public String getRoom_remark() {
-        return room_remark;
+    public String getRoom_phone() {
+        return room_phone;
     }
 
-    public BookRoom setRoom_remark(String room_remark) {
-        this.room_remark = room_remark;
+    public BookRoom setRoom_phone(String room_phone) {
+        this.room_phone = room_phone;
         return this;
     }
 
@@ -155,20 +155,20 @@ public class BookRoom extends DefaultEntity {
         this.room_id = room_id;
     }
 
-    public String getRoom_discount() {
-        return room_discount;
+    public String getRoom_card() {
+        return room_card;
     }
 
-    public void setRoom_discount(String room_discount) {
-        this.room_discount = room_discount;
+    public void setRoom_card(String room_card) {
+        this.room_card = room_card;
     }
 
-    public Integer getRoom_amout() {
-        return room_amout;
+    public String getRoom_sex() {
+        return room_sex;
     }
 
-    public void setRoom_amout(Integer room_amout) {
-        this.room_amout = room_amout;
+    public void setRoom_sex(String room_sex) {
+        this.room_sex = room_sex;
     }
 
     @Override
@@ -180,11 +180,11 @@ public class BookRoom extends DefaultEntity {
                 ", room_peple_id='" + room_peple_id + '\'' +
                 ", room_peple_name='" + room_peple_name + '\'' +
                 ", room_in_date=" + room_in_date +
-                ", room_discount='" + room_discount + '\'' +
+                ", room_card='" + room_card + '\'' +
                 ", room_out_date=" + room_out_date +
-                ", room_amout=" + room_amout +
+                ", room_sex=" + room_sex +
                 ", room_id_number=" + room_id_number +
-                ", room_remark='" + room_remark + '\'' +
+                ", room_phone='" + room_phone + '\'' +
                 '}';
     }
 }

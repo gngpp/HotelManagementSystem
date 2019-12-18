@@ -1,6 +1,5 @@
 package mvcpro.controlled;
 
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
 import javafx.application.Platform;
 
 import javafx.beans.value.ChangeListener;
@@ -29,6 +28,7 @@ import mvcpro.model.entity.*;
 import mvcpro.model.utils.Uitls;
 import mvcpro.view.AlertDefined;
 import mvcpro.view.FileChooserDefined;
+import mvcpro.view.UiBookingRoom;
 import mvcpro.view.UiInfoRoom;
 import mvcpro.view.server.*;
 
@@ -78,13 +78,16 @@ public class UiMainController extends VerifyCard implements Initializable{
     private ImageView iv_picture_user;
 
     @FXML
-    private Button add;
+    private Button btn_refresh_booking;
 
     @FXML
-    private Button update;
+    private Button btn_add_booking;
 
     @FXML
-    private Button delete;
+    private Button btn_delete_booking;
+
+    @FXML
+    private TextField txf_search_booking;
 
     @FXML
     private Button mainMinimize;
@@ -196,13 +199,13 @@ public class UiMainController extends VerifyCard implements Initializable{
     private TableColumn<BookRoomData, String> tableColumnIn_date_booking;
 
     @FXML
-    private TableColumn<BookRoomData, String> tableColumnDiscount_booking;
+    private TableColumn<BookRoomData, String> tableColumnPhone_booking;
 
     @FXML
-    private TableColumn<BookRoomData, String> tableColumnOut_date_booking;
+    private TableColumn<BookRoomData, String> tableColumnCard_booking;
 
     @FXML
-    private TableColumn<BookRoomData, Integer> tableColumnAmout_booking;
+    private TableColumn<BookRoomData, String> tableColumnSex_booking;
 
     @FXML
     private TableColumn<BookRoomData, String> tableColumnRemark_booking;
@@ -297,6 +300,33 @@ public class UiMainController extends VerifyCard implements Initializable{
 
     @FXML
     private  TextField txf_search_info;
+
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or
+     *                  <tt>null</tt> if the location is not known.
+     * @param resources The resources used to localize the root object, or <tt>null</tt> if
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources)  {
+        try{
+            initDataDao();
+            initProprety();
+            initUserTable();
+            initClientTable();
+            initBookRoomTable();
+            initInfoRoomTable();
+            initStandardRoom();
+            initTableColumnEvent();
+            initTableEvent();
+            //tableColumnType_Info.setCellValueFactory(cellData ->cellData.getValue().cb.getComboBox());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     void CheckAdd(ActionEvent event) throws Exception {
@@ -437,10 +467,9 @@ public class UiMainController extends VerifyCard implements Initializable{
         imageView_two.setClip(clip_two);
 
 
-        update.setFont(new Font("宋体", 13));
-        delete.setFont(new Font("宋体", 13));
-        add.setFont(new Font("宋体", 13));
-        browse.setFont(new Font("宋体", 13));
+        btn_delete_booking.setFont(new Font("宋体", 13));
+        btn_add_booking.setFont(new Font("宋体", 13));
+        btn_refresh_booking.setFont(new Font("宋体", 13));
         mainExit.setFont(new Font("宋体", 13));
         mainMinimize.setFont(new Font("宋体", 13));
         iv_picture_user.setImage(new Image("/png/timg.jpeg"));
@@ -541,12 +570,12 @@ public class UiMainController extends VerifyCard implements Initializable{
 
     private void initBookRoomTable() throws Exception {
         tableColumnRemark_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_remark"));
-        tableColumnAmout_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, Integer>("room_amout"));
+        tableColumnSex_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_sex"));
         tableColumnPeople_name_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_peple_name"));
-        tableColumnDiscount_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_discount"));
+        tableColumnPhone_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_phone"));
         tableColumnId_number_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, Integer>("room_id_number"));
         tableColumnIn_date_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_in_date"));
-        tableColumnOut_date_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_out_date"));
+        tableColumnCard_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_card"));
         tableColumnPeople_id_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_peple_id"));
         tableColumnType_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_type"));
         tableColumnPrice_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, Integer>("room_price"));
@@ -1105,32 +1134,25 @@ public class UiMainController extends VerifyCard implements Initializable{
         }
     }
 
-
-    /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
-     *
-     * @param location  The location used to resolve relative paths for the root object, or
-     *                  <tt>null</tt> if the location is not known.
-     * @param resources The resources used to localize the root object, or <tt>null</tt> if
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources)  {
-        try{
-            initDataDao();
-            initProprety();
-            initUserTable();
-            initClientTable();
-            initBookRoomTable();
-            initInfoRoomTable();
-            initStandardRoom();
-            initTableColumnEvent();
-            initTableEvent();
-            //tableColumnType_Info.setCellValueFactory(cellData ->cellData.getValue().cb.getComboBox());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    @FXML
+    void ac_refresh_booking(ActionEvent event){
 
     }
+
+    @FXML
+    void ac_add_booking(ActionEvent event) throws Exception {
+        new UiBookingRoom().start(new Stage());
+    }
+
+    @FXML
+    void ac_delete_booking(ActionEvent event){
+
+    }
+
+    @FXML
+    void ac_search_booking(ActionEvent event){
+
+    }
+
 }
 
