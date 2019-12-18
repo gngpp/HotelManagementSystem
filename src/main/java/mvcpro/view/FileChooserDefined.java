@@ -33,7 +33,8 @@ public final class FileChooserDefined extends Application {
     @Override
     public void start( Stage stage) {
 
-        stage.setTitle("File Chooser");
+        stage.setTitle("数据库备份与恢复");
+        stage.initModality(Modality.APPLICATION_MODAL);
         final FileChooser fileChooser = new FileChooser();
         final DirectoryChooser directoryChooser=new DirectoryChooser();
         final Button openButton_backup = new Button("备份");

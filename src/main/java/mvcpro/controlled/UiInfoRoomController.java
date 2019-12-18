@@ -122,7 +122,6 @@ public class UiInfoRoomController {
         }
         for (StandardRoom next:standardRoomDao.list())
             if(cbx_IdNumber_info.getValue()==next.getRoom_id_number()){
-                LOG.info("InfoRoomController{}","数据更新异常");
                 InfoRoom infoRoom=new InfoRoom();
                 infoRoom.setArea(Integer.parseInt(txf_area_info.getText()));
                 infoRoom.setId_number(cbx_IdNumber_info.getValue());
@@ -191,7 +190,6 @@ public class UiInfoRoomController {
     }
 
     public void setInfoRoom(InfoRoom infoRoom,Boolean check) {
-
         if(check){
             this.infoRoom = infoRoom;
             btn_check_info.setVisible(false);

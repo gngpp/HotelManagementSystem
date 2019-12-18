@@ -137,8 +137,8 @@
                                     <Button fx:id="btn_delete_booking" focusTraversable="false" onAction="#ac_delete_booking" prefHeight="0.0" prefWidth="87.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="#f5f3f3" />
                                  </items>
                               </ToolBar>
-                              <Button focusTraversable="false" layoutX="624.0" layoutY="4.0" mnemonicParsing="false" onAction="#ac_search_booking" prefHeight="25.0" prefWidth="85.0" styleClass="btn" stylesheets="@ui_main_style.css" text="搜索" textFill="WHITE" />
-                              <TextField fx:id="txf_search_booking" layoutX="457.0" layoutY="4.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
+                              <Button focusTraversable="false" layoutX="733.0" layoutY="5.0" mnemonicParsing="false" onAction="#ac_search_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" stylesheets="@ui_main_style.css" text="搜索" textFill="WHITE" />
+                              <TextField fx:id="txf_search_booking" layoutX="559.0" layoutY="5.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username" />
                            </children>
                         </Pane>
                      </content>

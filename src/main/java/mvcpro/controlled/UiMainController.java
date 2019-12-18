@@ -1,5 +1,6 @@
 package mvcpro.controlled;
 
+import com.lqing.orm.utils.LoggerUtils;
 import javafx.application.Platform;
 
 import javafx.beans.value.ChangeListener;
@@ -26,11 +27,9 @@ import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
 import mvcpro.model.utils.Uitls;
-import mvcpro.view.AlertDefined;
-import mvcpro.view.FileChooserDefined;
-import mvcpro.view.UiBookingRoom;
-import mvcpro.view.UiInfoRoom;
+import mvcpro.view.*;
 import mvcpro.view.server.*;
+import org.slf4j.Logger;
 
 import java.awt.*;
 import java.io.File;
@@ -49,6 +48,8 @@ public class UiMainController extends VerifyCard implements Initializable{
     private BookRoomDao bookRoomDao;
     private StandardRoomDao standardRoomDao;
     private User user;
+
+    private final Logger LOG= LoggerUtils.getLogger(UiMainFrame.class);
 
     @FXML
     private TabPane tabPane_master;
@@ -434,12 +435,14 @@ public class UiMainController extends VerifyCard implements Initializable{
                 new ChangeListener<StandardRoomData>() {
                     @Override
                     public void changed(ObservableValue<? extends StandardRoomData> observable, StandardRoomData oldValue, StandardRoomData newValue) {
-                        StandardRoom standardRoom = newValue.standardRoomToEntity();
-                        txa_remark_standard.setText(standardRoom.getRoom_remark());
-                        txf_id_number_standard.setText(standardRoom.getRoom_id_number().toString());
-                        txf_price_standard.setText(standardRoom.getRoom_price().toString());
-                        cbx_type_standard.setValue(standardRoom.getRoom_type());
-                        cbx_floor_standard.setValue(standardRoom.getRoom_floor());
+                        if(newValue!=null){
+                            StandardRoom standardRoom = newValue.standardRoomToEntity();
+                            txa_remark_standard.setText(standardRoom.getRoom_remark());
+                            txf_id_number_standard.setText(standardRoom.getRoom_id_number().toString());
+                            txf_price_standard.setText(standardRoom.getRoom_price().toString());
+                            cbx_type_standard.setValue(standardRoom.getRoom_type());
+                            cbx_floor_standard.setValue(standardRoom.getRoom_floor());
+                        }
                     }
                 });
 
@@ -504,8 +507,9 @@ public class UiMainController extends VerifyCard implements Initializable{
             if (newValue.equals("")){
                 try {
                     userData_list.removeAll(userData_list);
-                    for (User user : userDao.list())
+                    for (User user : userDao.list()){
                         userData_list.add(new UserData(user));
+                    }
                     ac_refresh_user(new ActionEvent());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -513,7 +517,19 @@ public class UiMainController extends VerifyCard implements Initializable{
             }
         });
 
-
+        txf_search_booking.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals("")){
+                try{
+                    bookRoomData_list.removeAll(bookRoomData_list);
+                    for(BookRoom bookRoom:bookRoomDao.list()){
+                        bookRoomData_list.add(new BookRoomData(bookRoom));
+                    }
+                    ac_refresh_booking(new ActionEvent());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initUserTable() throws Exception {
@@ -531,7 +547,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("用户信息列表初始化线程已启动...");
+                LOG.info("用户信息列表初始化线程已启动...");
                 try {
                     for (User user : userDao.list())
                         userData_list.add(new UserData(user));
@@ -555,7 +571,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("客户信息列表初始化线程已启动...");
+                LOG.info("客户信息列表初始化线程已启动...");
                 try {
                     for (Client client : clientDao.list())
                         clientData_list.add(new ClientData(client));
@@ -569,7 +585,7 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     private void initBookRoomTable() throws Exception {
-        tableColumnRemark_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_remark"));
+
         tableColumnSex_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData,String>("room_sex"));
         tableColumnPeople_name_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_peple_name"));
         tableColumnPhone_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_phone"));
@@ -583,7 +599,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("房间预定信息列表初始化线程已启动...");
+                LOG.info("房间预定信息列表初始化线程已启动...");
                 try {
                     for (BookRoom bookRoom : bookRoomDao.list())
                         bookRoomData_list.add(new BookRoomData(bookRoom));
@@ -612,7 +628,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("房间信息列表初始化线程已启动...");
+                LOG.info("房间信息列表初始化线程已启动...");
                 try {
                     for (InfoRoom infoRoom : infoRoomDao.list())
                         infoRoomData_list.add(new InfoRoomData(infoRoom));
@@ -635,7 +651,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("标准房间信息列表初始化线程已启动...");
+                LOG.info("标准房间信息列表初始化线程已启动...");
                 try {
                     for (StandardRoom standardRoom : standardRoomDao.list())
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
@@ -660,8 +676,8 @@ public class UiMainController extends VerifyCard implements Initializable{
       Platform.runLater(new Runnable() {
           @Override
           public void run() {
+              LOG.info("用户刷新线程已启动...");
               try {
-                  System.out.println("用户刷新线程已启动...");
                   iv_picture_user.setImage(new Image("/png/timg.jpeg"));
                   userData_list.removeAll(userData_list);
                   for (User user : userDao.list())
@@ -703,7 +719,6 @@ public class UiMainController extends VerifyCard implements Initializable{
             Optional result = dialog.showAndWait();
             if (result.get() == ButtonType.OK) {
                 if (!userDao.delete(selectUser.userToEntity())) {
-                    System.out.println("点击确认");
                     new AlertDefined(Alert.AlertType.ERROR, "提示", "删除用户失败").show();
                     return;
                 } else {
@@ -726,7 +741,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("搜索线程已启动...");
+                LOG.info("搜索线程已启动...");
                 if (!txf_search_user.getText().equals("")) {
 
 
@@ -774,7 +789,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             @Override
             public void run() {
                 try {
-                    System.out.println("标准刷新线程已启动...");
+                    LOG.info("标准刷新线程已启动...");
                     standardRoomData_list.removeAll(standardRoomData_list);
                     clear_standard();
                     for (StandardRoom standardRoom: standardRoomDao.list())
@@ -834,7 +849,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("搜索线程已启动...");
+                  LOG.info("搜索线程已启动...");
                 if (!txf_search_standard.getText().equals("")) {
 
                     String search_text = txf_search_standard.getText();
@@ -925,7 +940,6 @@ public class UiMainController extends VerifyCard implements Initializable{
                     newNext.setId_number(Integer.parseInt(txf_id_number_standard.getText()));
 
             if (!standardRoomDao.update(standardRoom)||!infoRoomDao.update(newNext)) {
-                System.out.println("点击确认");
                 new AlertDefined(Alert.AlertType.ERROR, "提示", "修改失败").show();
                 return;
             } else {
@@ -1006,7 +1020,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             @Override
             public void run() {
                 try {
-                    System.out.println("标准刷新线程已启动...");
+                    LOG.info("标准刷新线程已启动...");
                     infoRoomData_list.removeAll(infoRoomData_list);
                     clear_standard();
                     for (InfoRoom infoRoom: infoRoomDao.list())
@@ -1030,12 +1044,13 @@ public class UiMainController extends VerifyCard implements Initializable{
             AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要房间[ " + selectInfoRoom.getId_number()+ " ]详情吗?");
             Optional result = dialog.showAndWait();
             if (result.get() == ButtonType.OK) {
-                if (!infoRoomDao.delete(selectInfoRoom.infoRoomToEntity())) {
-                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除失败").show();
-                    return;
-                } else {
+                if (infoRoomDao.delete(selectInfoRoom.infoRoomToEntity())) {
                     new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
                     infoRoomData_list.remove(selectInfoRoom);
+                    return;
+                } else {
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除失败").show();
+                    return;
                 }
             }
 
@@ -1055,13 +1070,12 @@ public class UiMainController extends VerifyCard implements Initializable{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("搜索线程已启动...");
+                LOG.info("搜索线程已启动...");
                 if (!txf_search_info.getText().equals("")) {
 
 
 
                     String search_text = txf_search_info.getText();
-                    System.out.println(search_text);
 
 
                     ArrayList<InfoRoomData> search_result_list = new ArrayList<>();
@@ -1104,6 +1118,118 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     @FXML
+    void ac_refresh_booking(ActionEvent event){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    LOG.info("订房列表刷新线程已启动...");
+                    bookRoomData_list.removeAll(bookRoomData_list);
+                    clear_standard();
+                    for (BookRoom bookRoom: bookRoomDao.list())
+                        bookRoomData_list.add(new BookRoomData(bookRoom));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    @FXML
+    void ac_add_booking(ActionEvent event) throws Exception {
+        UiBookingRoom uiBookingRoom=new UiBookingRoom();
+        uiBookingRoom.start(new Stage());
+        uiBookingRoom.setBookRoomData(bookRoomData_list);
+        uiBookingRoom.setClientData(clientData_list);
+        uiBookingRoom.show();
+    }
+
+    @FXML
+    void ac_delete_booking(ActionEvent event){
+        try {
+            int index = mTableBookRoom.getSelectionModel().getSelectedIndex();
+            if (index == -1) {
+                new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中房间").show();
+                return;
+            }
+            BookRoomData selectBookRoom = mTableBookRoom.getSelectionModel().getSelectedItem();
+            System.out.println(selectBookRoom.bookRoomExToEntity());
+            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要删除订房记录[ " + selectBookRoom.bookRoomExToEntity().getRoom_id_number()+ " ]吗?");
+            Optional result = dialog.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                if (bookRoomDao.delete(selectBookRoom.bookRoomExToEntity())) {
+                    bookRoomData_list.remove(selectBookRoom);
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
+                    return;
+                } else {
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除失败").show();
+                    return;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ac_search_booking(ActionEvent event){
+        if(txf_search_booking.getText().equals("")){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请输入搜索信息").show();
+            return;
+        }
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LOG.info("搜索线程已启动...");
+                if (!txf_search_booking.getText().equals("")) {
+
+
+
+                    String search_text = txf_search_booking.getText();
+
+                    ArrayList<BookRoomData> search_result_list = new ArrayList<>();
+
+
+
+                    try {
+                        for (BookRoom text :bookRoomDao.list()) {
+                            if (search_text.equals(text.getRoom_card())||
+                                    search_text.equals(text.getRoom_peple_id())||
+                                    search_text.equals(text.getRoom_peple_name())||
+                                    search_text.equals(text.getRoom_phone())||
+                                    search_text.equals(text.getRoom_sex())||
+                                    search_text.equals(String.valueOf(text.getRoom_in_date()))||
+                                    search_text.equals(String.valueOf(text.getRoom_id_number()))||
+                                    search_text.equals(text.getRoom_type())||
+                                    search_text.equals(text.getRoom_price())){
+
+
+                                search_result_list.add(new BookRoomData(text));
+                            }
+
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    bookRoomData_list.removeAll(bookRoomData_list);
+                    for (int j = 0; j < search_result_list.size(); j++) {
+                        bookRoomData_list.add(j, search_result_list.get(j));
+                    }
+
+                    //
+                    // 清空
+                    //
+                    search_result_list.clear();
+                }
+            }
+        }).start();
+    }
+
+    @FXML
     void ac_backup_restore_item(ActionEvent event){
         new FileChooserDefined().start(new Stage());
     }
@@ -1133,26 +1259,5 @@ public class UiMainController extends VerifyCard implements Initializable{
             }
         }
     }
-
-    @FXML
-    void ac_refresh_booking(ActionEvent event){
-
-    }
-
-    @FXML
-    void ac_add_booking(ActionEvent event) throws Exception {
-        new UiBookingRoom().start(new Stage());
-    }
-
-    @FXML
-    void ac_delete_booking(ActionEvent event){
-
-    }
-
-    @FXML
-    void ac_search_booking(ActionEvent event){
-
-    }
-
 }
 

@@ -1,6 +1,8 @@
 package mvcpro.view;
 
 import javafx.application.Application;
+import javafx.beans.value.ObservableBooleanValue;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,6 +19,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiBookingRoomController;
+import mvcpro.view.server.BookRoomData;
+import mvcpro.view.server.ClientData;
 
 public class UiBookingRoom extends Application {
     private Stage newStage;
@@ -52,7 +56,6 @@ public class UiBookingRoom extends Application {
             scene.setFill(Paint.valueOf("#FFFFFF00"));
             newStage.setScene(scene);
             newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.show();
             newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
                 //
@@ -79,5 +82,16 @@ public class UiBookingRoom extends Application {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void setBookRoomData(ObservableList<BookRoomData> bookRoomData_list){
+        this.bookingRoomController.setBookRoomData(bookRoomData_list);
+    }
+
+    public void setClientData(ObservableList<ClientData> clientData_list){
+        this.bookingRoomController.setClientData(clientData_list);
+    }
+    public void show(){
+        newStage.show();
     }
 }

@@ -7,7 +7,6 @@ import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.slf4j.Logger;
-import sun.rmi.runtime.Log;
 
 import java.io.*;
 import java.sql.Statement;

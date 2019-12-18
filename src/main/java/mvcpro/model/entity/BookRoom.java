@@ -15,8 +15,8 @@ public class BookRoom extends DefaultEntity {
     private Integer room_id;
 
         //客房类型
-    @AnnotationField(col_name = "room_id", sql_type = "int",
-            size = 20, field_name = "room_id", java_type = "Integer",
+    @AnnotationField(col_name = "room_type", sql_type = "char",
+            size = 20, field_name = "room_type", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
     private String room_type;
 
@@ -55,12 +55,6 @@ public class BookRoom extends DefaultEntity {
     private String room_card;
 
 
-    //结算时间
-    @AnnotationField(col_name = "room_out_date", sql_type = "datetime",
-            size = 255, field_name = "room_out_date", java_type = "Date",
-            is_autoincrement = false, is_primary_key = false)
-    private Date room_out_date;
-
     //总金额
     @AnnotationField(col_name = "room_sex", sql_type = "char",
             size = 5, field_name = "room_sex", java_type = "String",
@@ -74,7 +68,7 @@ public class BookRoom extends DefaultEntity {
             is_autoincrement = false, is_primary_key = false)
     private Integer room_id_number;
 
-    //备注
+    //手机号码
     @AnnotationField(col_name = "room_phone", sql_type = "char",
             size = 200, field_name = "room_phone", java_type = "String",
             is_autoincrement = false, is_primary_key = false)
@@ -131,14 +125,6 @@ public class BookRoom extends DefaultEntity {
         this.room_peple_id = room_peple_id;
     }
 
-    public Date getRoom_out_date() {
-        return room_out_date;
-    }
-
-    public void setRoom_out_date(Date room_out_date) {
-        this.room_out_date = room_out_date;
-    }
-
     public Date getRoom_in_date() {
         return room_in_date;
     }
@@ -181,7 +167,6 @@ public class BookRoom extends DefaultEntity {
                 ", room_peple_name='" + room_peple_name + '\'' +
                 ", room_in_date=" + room_in_date +
                 ", room_card='" + room_card + '\'' +
-                ", room_out_date=" + room_out_date +
                 ", room_sex=" + room_sex +
                 ", room_id_number=" + room_id_number +
                 ", room_phone='" + room_phone + '\'' +
