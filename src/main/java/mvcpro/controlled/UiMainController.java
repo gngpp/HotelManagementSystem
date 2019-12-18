@@ -369,7 +369,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             btn_refresh_standard.setLayoutX(163);
             btn_refresh_standard.setLayoutY(3);
             tabPane_master.getTabs().remove(tab_4);
-            tabPane_master.getTabs().remove(tab_2);
+            //tabPane_master.getTabs().remove(tab_2);
             tabPane_master.getTabs().remove(tab_3);
             btn_add_info.setVisible(false);
             btn_delete_info.setVisible(false);

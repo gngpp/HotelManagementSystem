@@ -94,10 +94,11 @@ public class UiInfoRoomController {
             e.printStackTrace();
         }finally {
             cbx_IdNumber_info.getItems().setAll(arrayList);
-        }
             cbx_air_conditioning_info.getItems().setAll("有","无");
             cbx_rest_info.getItems().setAll("单间","双间");
             cbx_tv_info.getItems().setAll("IPTV","网络电视");
+        }
+
     }
 
     @FXML
@@ -110,10 +111,6 @@ public class UiInfoRoomController {
             return;
         }
 
-//        if (!!Uitls.isPhone(txf_phone_info.getText())){
-//            new AlertDefined(Alert.AlertType.ERROR, "提示", "请输入正确的座机号码").show();
-//            return;
-//        }
         if (!Uitls.isNumber(txf_maxPeople_info.getText()) ||
                 !Uitls.isNumber(txf_area_info.getText())||
                 !Uitls.isNumber(txf_bed_info.getText())){
@@ -164,7 +161,6 @@ public class UiInfoRoomController {
         infoRoom.setMax_bed(Integer.parseInt(txf_bed_info.getText()));
         infoRoom.setIphone(txf_phone_info.getText());
         infoRoom.setTv(cbx_tv_info.getValue());
-        infoRoom.setType(cbx_air_conditioning_info.getValue());
         infoRoom.setRest(cbx_rest_info.getValue());
         try{
             infoRoomDao.update(infoRoom);

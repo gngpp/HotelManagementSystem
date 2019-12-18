@@ -19,7 +19,9 @@ import mvcpro.view.server.ClientData;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UiBookingRoomController    implements Initializable {
@@ -87,22 +89,26 @@ public class UiBookingRoomController    implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cbx_sex_booking.getItems().setAll("男", "女");
         date_booking.setValue(LocalDate.now());
-        cbx_room_id_booking.setOnAction(event -> {
-            try {
-                for (StandardRoom standardRoom : standardRoomDao.list()) {
-                    if (standardRoom.getRoom_id_number() == cbx_room_id_booking.getValue()) {
-                        txf_type_booking.setText(standardRoom.getRoom_type());
-                        txf_price_booking.setText(String.valueOf(standardRoom.getRoom_price()));
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
 
         try {
-            for (InfoRoom infoRoom : infoRoomDao.list()) {
-                cbx_room_id_booking.getItems().add(infoRoom.getId_number());
+            if (bookRoomDao.list().isEmpty()){
+                for (InfoRoom infoRoom : infoRoomDao.list()) {
+                    cbx_room_id_booking.getItems().add(infoRoom.getId_number());
+                }
+            }else {
+                List<Integer> list=new ArrayList<>();
+                for (InfoRoom next:infoRoomDao.list()){
+                    list.add(next.getId_number());
+                }
+
+                for(InfoRoom infoRoom:infoRoomDao.list()){
+                    for (BookRoom bookRoom:bookRoomDao.list()){
+                        if(infoRoom.getId_number()==bookRoom.getRoom_id_number()){
+                            list.remove(bookRoom.getRoom_id_number());
+                        }
+                    }
+                }
+                cbx_room_id_booking.getItems().setAll(list);
             }
 
             for (User user : userDao.list()) {
@@ -111,6 +117,23 @@ public class UiBookingRoomController    implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        cbx_room_id_booking.setOnAction(event -> {
+            try {
+                    for (StandardRoom standardRoom : standardRoomDao.list()) {
+                        if (standardRoom.getRoom_id_number() == cbx_room_id_booking.getValue()) {
+                            txf_type_booking.setText(standardRoom.getRoom_type());
+                            txf_price_booking.setText(String.valueOf(standardRoom.getRoom_price()));
+                        }
+                    }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+
     }
 
     @FXML
