@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiBookingRoomController;
+import mvcpro.model.entity.BookRoom;
 import mvcpro.view.server.BookRoomData;
 import mvcpro.view.server.ClientData;
 
@@ -90,6 +91,10 @@ public class UiBookingRoom extends Application {
 
     public void setClientData(ObservableList<ClientData> clientData_list){
         this.bookingRoomController.setClientData(clientData_list);
+    }
+
+    public void setBookRoom(BookRoom bookRoom){
+        this.bookingRoomController.setBookRooo(bookRoom);
     }
     public void show(){
         newStage.show();

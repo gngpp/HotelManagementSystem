@@ -88,6 +88,9 @@ public class UiMainController extends VerifyCard implements Initializable{
     private Button btn_delete_booking;
 
     @FXML
+    private Button btn_edit_booking;
+
+    @FXML
     private TextField txf_search_booking;
 
     @FXML
@@ -1007,7 +1010,7 @@ public class UiMainController extends VerifyCard implements Initializable{
                 InfoRoom infoRoom=mTableInfoRoom.getSelectionModel().getSelectedItem().infoRoomToEntity();
                 uiInfoRoom.start(new Stage());
                 uiInfoRoom.setInfoRoomData(infoRoomData_list);
-                uiInfoRoom.setInfoRoom(infoRoom,true);
+                uiInfoRoom.setInfoRoom(infoRoom);
                 uiInfoRoom.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1022,7 +1025,6 @@ public class UiMainController extends VerifyCard implements Initializable{
                 try {
                     LOG.info("标准刷新线程已启动...");
                     infoRoomData_list.removeAll(infoRoomData_list);
-                    clear_standard();
                     for (InfoRoom infoRoom: infoRoomDao.list())
                         infoRoomData_list.add(new InfoRoomData(infoRoom));
                 } catch (Exception e) {
@@ -1125,9 +1127,10 @@ public class UiMainController extends VerifyCard implements Initializable{
                 try {
                     LOG.info("订房列表刷新线程已启动...");
                     bookRoomData_list.removeAll(bookRoomData_list);
-                    clear_standard();
-                    for (BookRoom bookRoom: bookRoomDao.list())
+                    for (BookRoom bookRoom: bookRoomDao.list()){
                         bookRoomData_list.add(new BookRoomData(bookRoom));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -1224,6 +1227,25 @@ public class UiMainController extends VerifyCard implements Initializable{
                 }
             }
         }).start();
+    }
+
+    @FXML
+    void ac_edit_booking(ActionEvent event){
+        if (mTableBookRoom.getSelectionModel().getSelectedIndex()==-1){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中").show();
+            return;
+        }
+        try {
+            UiBookingRoom uiBookingRoom=new UiBookingRoom();
+            BookRoom bookRoom=mTableBookRoom.getSelectionModel().getSelectedItem().bookRoomExToEntity();
+            uiBookingRoom.start(new Stage());
+            uiBookingRoom.setBookRoom(bookRoom);
+            uiBookingRoom.setClientData(clientData_list);
+            uiBookingRoom.setBookRoomData(bookRoomData_list);
+            uiBookingRoom.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -71,7 +71,7 @@ public class UiInfoRoom extends Application {
         newStage.show();
     }
 
-    public void setInfoRoom(InfoRoom infoRoom,Boolean check){
-        uiInfoRoomController.setInfoRoom(infoRoom,check);
+    public void setInfoRoom(InfoRoom infoRoom){
+        uiInfoRoomController.setInfoRoom(infoRoom);
     }
 }

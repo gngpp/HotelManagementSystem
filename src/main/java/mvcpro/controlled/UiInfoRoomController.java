@@ -185,8 +185,8 @@ public class UiInfoRoomController {
         return infoRoom;
     }
 
-    public void setInfoRoom(InfoRoom infoRoom,Boolean check) {
-        if(check){
+    public void setInfoRoom(InfoRoom infoRoom) {
+
             this.infoRoom = infoRoom;
             btn_check_info.setVisible(false);
             cbx_IdNumber_info.setEditable(true);
@@ -198,7 +198,6 @@ public class UiInfoRoomController {
             txf_bed_info.setText(infoRoom.getMax_people().toString());
             txf_maxPeople_info.setText(infoRoom.getMax_people().toString());
             txf_area_info.setText(String.valueOf(infoRoom.getArea()));
-        }
 
     }
 }
