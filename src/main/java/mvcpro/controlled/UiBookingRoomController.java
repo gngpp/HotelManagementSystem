@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import mvcpro.model.dao.*;
 import mvcpro.model.entity.*;
@@ -39,6 +36,8 @@ public class UiBookingRoomController    implements Initializable {
 
     private ClientDao clientDao=new ClientDao();
 
+    private BookRoom bookRoom;
+
     private ObservableList<BookRoomData> bookRoomData_list;
 
     private ObservableList<ClientData> clientData_list;
@@ -48,6 +47,11 @@ public class UiBookingRoomController    implements Initializable {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button btn_alter_booking;
+
+    @FXML Button btn_bookingcheck;
 
     @FXML
     private TextField txf_type_booking;
@@ -88,6 +92,7 @@ public class UiBookingRoomController    implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        btn_alter_booking.setVisible(false);
         cbx_sex_booking.getItems().setAll("男", "女");
         date_booking.setValue(LocalDate.now());
 
@@ -196,9 +201,79 @@ public class UiBookingRoomController    implements Initializable {
                         bookRoomData_list.add(new BookRoomData(next));
                         break;
                     }
+                }
+                new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","订房成功！").show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            newStage.close();
+        }
+        newStage.close();
+    }
 
+    @FXML
+    void ac_alter_booking(ActionEvent event){
+        if(txf_card_booking.getText().equals("")||
+                txf_phone_booking.getText().equals("")||
+                txf_price_booking.getText().equals("")||
+                txf_type_booking.getText().equals("")||
+                txf_native_booking.getText().equals("")||
+                cbx_people_id_booking.getValue()==null||
+                cbx_room_id_booking.getValue()==null||
+                cbx_sex_booking.getValue()==null||
+                date_booking.getValue()==null){
+            new AlertDefined(Alert.AlertType.ERROR, "提示", "请完善信息").show();
+            return;
+        }
+
+
+        if (!Uitls.isNumber(txf_phone_booking.getText())){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请输入正确的手机号。").show();
+            return;
+        }
+
+        try{
+
+            Client client=null;
+            //更新数据两张表
+            for (Client next:clientDao.list()){
+                if(next.getClient_id_number().equals(String.valueOf(getBookRoom().getRoom_peple_id()))){
+                    next.setClient_id_number(cbx_people_id_booking.getValue().toString());
+                    next.setClient_phone(txf_phone_booking.getText());
+                    next.setClient_native(txf_native_booking.getText());
+                    next.setClient_name(txf_name_booking.getText());
+                    next.setClient_sex(cbx_sex_booking.getValue());
+                    next.setClient_id_card(txf_card_booking.getText());
+                    client=next;
+                    break;
                 }
 
+            }
+
+            BookRoom bookRoom=getBookRoom();
+            bookRoom.setRoom_id_number(cbx_room_id_booking.getValue());
+            bookRoom.setRoom_type(txf_type_booking.getText());
+            bookRoom.setRoom_price(Integer.parseInt(txf_price_booking.getText()));
+            bookRoom.setRoom_peple_id(cbx_people_id_booking.getValue().toString());
+            bookRoom.setRoom_peple_name(txf_name_booking.getText());
+            bookRoom.setRoom_sex(cbx_sex_booking.getValue());
+            bookRoom.setRoom_card(txf_card_booking.getText());
+            bookRoom.setRoom_phone(txf_phone_booking.getText());
+            bookRoom.setRoom_in_date(new Date());
+
+            if(bookRoomDao.update(bookRoom)&&clientDao.update(client)){
+
+                clientData_list.removeAll(clientData_list);
+                bookRoomData_list.removeAll(bookRoomData_list);
+
+                for (Client next:clientDao.list()){
+                    clientData_list.add(new ClientData(next));
+                }
+                for (BookRoom next:bookRoomDao.list()){
+                     bookRoomData_list.add(new BookRoomData(next));
+                }
+                new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","修改成功！").show();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -225,12 +300,19 @@ public class UiBookingRoomController    implements Initializable {
        this.clientData_list=clientData_list;
     }
 
-    public void setBookRooo(BookRoom bookRooo){
+    private BookRoom getBookRoom(){
+        return this.bookRoom;
+    }
 
+    public void setBookRoom(BookRoom bookRooo){
+            this.bookRoom=bookRooo;
+            btn_alter_booking.setVisible(true);
+            btn_bookingcheck.setVisible(false);
             try {
                 for (StandardRoom next:standardRoomDao.list()){
                     if (next.getRoom_id_number()==bookRooo.getRoom_id_number()){
                         cbx_room_id_booking.getItems().add(next.getRoom_id_number());
+                        cbx_room_id_booking.setValue(next.getRoom_id_number());
                         txf_price_booking.setText(String.valueOf(next.getRoom_price()));
                         txf_type_booking.setText(next.getRoom_type());
                     }

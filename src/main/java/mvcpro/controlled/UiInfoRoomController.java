@@ -163,9 +163,12 @@ public class UiInfoRoomController {
         infoRoom.setTv(cbx_tv_info.getValue());
         infoRoom.setRest(cbx_rest_info.getValue());
         try{
-            infoRoomDao.update(infoRoom);
-            for(InfoRoom next:infoRoomDao.list())
-                infoRoomData_list.add(new InfoRoomData(next));
+
+            if(infoRoomDao.update(infoRoom)){
+                for(InfoRoom next:infoRoomDao.list())
+                    infoRoomData_list.add(new InfoRoomData(next));
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="224.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.AboutController">
+   <children>
+      <ImageView disable="true" fitHeight="237.0" fitWidth="373.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@png/about.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="338.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_close" prefHeight="27.0" prefWidth="13.0" styleClass="btn" stylesheets="@ui_default_style.css" text="x" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -45,20 +45,16 @@ public class UiMainFrame extends Application {
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);
-       // mainStage.show();
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                lastx_distance=event.getScreenX()-mainStage.getX();
-                lasty_distance=event.getScreenY()-mainStage.getY();
-            }
+
+        scene.setOnMousePressed(event -> {
+            lastx_distance=event.getScreenX()-mainStage.getX();
+            lasty_distance=event.getScreenY()-mainStage.getY();
         });
-        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
+
+        scene.setOnMouseDragged(event -> {
+
                 mainStage.setX(event.getScreenX()-lastx_distance);
                 mainStage.setY(event.getScreenY()-lasty_distance);
-            }
         });
     }
 

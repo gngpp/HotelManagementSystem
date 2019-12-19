@@ -1,7 +1,6 @@
 package mvcpro.view;
 
 import javafx.application.Application;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import mvcpro.controlled.UiBookingRoomController;
 import mvcpro.model.entity.BookRoom;
 import mvcpro.view.server.BookRoomData;
@@ -94,7 +92,7 @@ public class UiBookingRoom extends Application {
     }
 
     public void setBookRoom(BookRoom bookRoom){
-        this.bookingRoomController.setBookRooo(bookRoom);
+        this.bookingRoomController.setBookRoom(bookRoom);
     }
     public void show(){
         newStage.show();

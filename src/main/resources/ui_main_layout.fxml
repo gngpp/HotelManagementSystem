@@ -144,21 +144,6 @@
                         </Pane>
                      </content>
                   </Tab>
-                <Tab fx:id="tab_3" text="结账信息管理">
-                     <content>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <TableView layoutX="445.0" layoutY="-1.0" prefHeight="442.0" prefWidth="443.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                    <TableColumn prefWidth="75.0" />
-                                </columns>
-                              </TableView>
-                           </children></Pane>
-                     </content>
-                  </Tab>
                   <Tab fx:id="tab_4" text="系统管理">
                      <content>
                         <Pane prefHeight="433.0" prefWidth="892.0">
@@ -250,7 +235,7 @@
                   </Menu>
                 <Menu mnemonicParsing="false" text="帮助">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="关于" />
+                    <MenuItem mnemonicParsing="false" onAction="#ac_about_item" text="关于" />
                         <MenuItem mnemonicParsing="false" onAction="#ac_technology_item" text="联系技术支持" />
                         <MenuItem mnemonicParsing="false" onAction="#ac_web_item" text="访问技术网站" />
                   </items>

@@ -58,8 +58,6 @@ public class UiMainController extends VerifyCard implements Initializable{
     private Tab tab_4;
 
     @FXML
-    private Tab tab_2;
-    @FXML
     private Tab tab_3;
 
     @FXML
@@ -333,26 +331,6 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     @FXML
-    void CheckAdd(ActionEvent event) throws Exception {
-        System.out.println("add");
-    }
-
-    @FXML
-    void CheckUadate(ActionEvent event) {
-        System.out.println("update!");
-    }
-
-    @FXML
-    void CheckDelete(ActionEvent event) {
-        System.out.println("delete!");
-    }
-
-    @FXML
-    void CheckBrower(ActionEvent event) {
-        System.out.println("brower!");
-    }
-
-    @FXML
     void CheckMainExit(ActionEvent event) {
         Platform.exit();
     }
@@ -372,7 +350,6 @@ public class UiMainController extends VerifyCard implements Initializable{
             btn_refresh_standard.setLayoutX(163);
             btn_refresh_standard.setLayoutY(3);
             tabPane_master.getTabs().remove(tab_4);
-            //tabPane_master.getTabs().remove(tab_2);
             tabPane_master.getTabs().remove(tab_3);
             btn_add_info.setVisible(false);
             btn_delete_info.setVisible(false);
@@ -1148,6 +1125,25 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     @FXML
+    void ac_edit_booking(ActionEvent event){
+        if (mTableBookRoom.getSelectionModel().getSelectedIndex()==-1){
+            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中").show();
+            return;
+        }
+        try {
+            UiBookingRoom uiBookingRoom=new UiBookingRoom();
+            BookRoom bookRoom=mTableBookRoom.getSelectionModel().getSelectedItem().bookRoomExToEntity();
+            uiBookingRoom.start(new Stage());
+            uiBookingRoom.setBookRoom(bookRoom);
+            uiBookingRoom.setClientData(clientData_list);
+            uiBookingRoom.setBookRoomData(bookRoomData_list);
+            uiBookingRoom.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void ac_delete_booking(ActionEvent event){
         try {
             int index = mTableBookRoom.getSelectionModel().getSelectedIndex();
@@ -1229,24 +1225,7 @@ public class UiMainController extends VerifyCard implements Initializable{
         }).start();
     }
 
-    @FXML
-    void ac_edit_booking(ActionEvent event){
-        if (mTableBookRoom.getSelectionModel().getSelectedIndex()==-1){
-            new AlertDefined(Alert.AlertType.INFORMATION, "提示", "当前未选中").show();
-            return;
-        }
-        try {
-            UiBookingRoom uiBookingRoom=new UiBookingRoom();
-            BookRoom bookRoom=mTableBookRoom.getSelectionModel().getSelectedItem().bookRoomExToEntity();
-            uiBookingRoom.start(new Stage());
-            uiBookingRoom.setBookRoom(bookRoom);
-            uiBookingRoom.setClientData(clientData_list);
-            uiBookingRoom.setBookRoomData(bookRoomData_list);
-            uiBookingRoom.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @FXML
     void ac_backup_restore_item(ActionEvent event){
@@ -1277,6 +1256,12 @@ public class UiMainController extends VerifyCard implements Initializable{
                 e1.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void ac_about_item(ActionEvent event) throws Exception {
+       About about= new About();
+       about.start(new Stage());
     }
 }
 
