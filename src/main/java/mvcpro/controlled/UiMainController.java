@@ -529,12 +529,17 @@ public class UiMainController extends VerifyCard implements Initializable{
             public void run() {
                 LOG.info("用户信息列表初始化线程已启动...");
                 try {
-                    for (User user : userDao.list())
+
+                    for (User user : userDao.list()){
                         userData_list.add(new UserData(user));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableUser.setItems(userData_list);
                 }
-                mTableUser.setItems(userData_list);
+
             }
         }).start();
     }
@@ -553,12 +558,17 @@ public class UiMainController extends VerifyCard implements Initializable{
             public void run() {
                 LOG.info("客户信息列表初始化线程已启动...");
                 try {
-                    for (Client client : clientDao.list())
+
+                    for (Client client : clientDao.list()){
                         clientData_list.add(new ClientData(client));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableClient.setItems(clientData_list);
                 }
-                mTableClient.setItems(clientData_list);
+
             }
         }).start();
 
@@ -581,11 +591,15 @@ public class UiMainController extends VerifyCard implements Initializable{
             public void run() {
                 LOG.info("房间预定信息列表初始化线程已启动...");
                 try {
-                    for (BookRoom bookRoom : bookRoomDao.list())
+
+                    for (BookRoom bookRoom : bookRoomDao.list()){
                         bookRoomData_list.add(new BookRoomData(bookRoom));
-                    mTableBookRoom.setItems(bookRoomData_list);
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableBookRoom.setItems(bookRoomData_list);
                 }
             }
         }).start();
@@ -610,12 +624,17 @@ public class UiMainController extends VerifyCard implements Initializable{
             public void run() {
                 LOG.info("房间信息列表初始化线程已启动...");
                 try {
-                    for (InfoRoom infoRoom : infoRoomDao.list())
+
+                    for (InfoRoom infoRoom : infoRoomDao.list()){
                         infoRoomData_list.add(new InfoRoomData(infoRoom));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableInfoRoom.setItems(infoRoomData_list);
                 }
-                mTableInfoRoom.setItems(infoRoomData_list);
+
             }
         }).start();
 
@@ -633,12 +652,17 @@ public class UiMainController extends VerifyCard implements Initializable{
             public void run() {
                 LOG.info("标准房间信息列表初始化线程已启动...");
                 try {
-                    for (StandardRoom standardRoom : standardRoomDao.list())
+
+                    for (StandardRoom standardRoom : standardRoomDao.list()){
                         standardRoomData_list.add(new StandardRoomData(standardRoom));
+                    }
+
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableStandardRoom.setItems(standardRoomData_list);
                 }
-                mTableStandardRoom.setItems(standardRoomData_list);
+
             }
         }).start();
     }
@@ -1098,21 +1122,26 @@ public class UiMainController extends VerifyCard implements Initializable{
 
     @FXML
     void ac_refresh_booking(ActionEvent event){
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+
+                LOG.info("订房列表刷新线程已启动...");
+
                 try {
-                    LOG.info("订房列表刷新线程已启动...");
                     bookRoomData_list.removeAll(bookRoomData_list);
-                    for (BookRoom bookRoom: bookRoomDao.list()){
+                    for (BookRoom bookRoom :bookRoomDao.list()) {
                         bookRoomData_list.add(new BookRoomData(bookRoom));
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
+                }finally {
+                    mTableBookRoom.setItems(bookRoomData_list);
                 }
             }
-        });
+            });
     }
 
     @FXML
