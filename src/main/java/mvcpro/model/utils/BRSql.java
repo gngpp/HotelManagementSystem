@@ -59,7 +59,7 @@ public class BRSql {
     }
 
     private InputStream executeBackUpCmd() throws IOException, InterruptedException {
-        Process p=Runtime.getRuntime().exec("which mysql");
+        Process p=Runtime.getRuntime().exec(MYSQL_DUMP);
         LOG.info("返回路径：{}",p.getInputStream());
         // Process p = Runtime.getRuntime().exec(MYSQL_DUMP);
         if (p.waitFor() == 0) {
