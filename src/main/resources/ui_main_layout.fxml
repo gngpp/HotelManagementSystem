@@ -154,7 +154,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableClient" layoutX="266.0" layoutY="-1.0" prefHeight="405.0" prefWidth="621.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableClient" layoutY="-1.0" prefHeight="405.0" prefWidth="621.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
                                                       <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
