@@ -60,10 +60,8 @@ public final class FileChooserDefined extends Application {
             }
 
             if(System.getProperties().get("os.name").equals("Mac OS X")){
-                if (fileDirectory!=null && brSql.backup(fileDirectory)) {
+                if (fileDirectory!=null&& brSql.backup(fileDirectory)) {
                     new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
-                }else {
-                    new AlertDefined(Alert.AlertType.ERROR,"提示","备份失败！").show();
                 }
             }
 
@@ -86,8 +84,6 @@ public final class FileChooserDefined extends Application {
             if(System.getProperties().get("os.name").equals("Mac OS X")){
                 if(file !=null && !file.isDirectory() && file.exists()&& brSql.recover(file)){
                     new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","恢复成功！").show();
-                } else{
-                    new AlertDefined(Alert.AlertType.ERROR,"提示","恢复失败！").show();
                 }
             }
 

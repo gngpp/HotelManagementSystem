@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import mvcpro.controlled.UiBookingRoomController;
 import mvcpro.model.entity.BookRoom;
 import mvcpro.view.server.BookRoomData;
@@ -46,7 +47,7 @@ public class UiBookingRoom extends Application {
             //
             //设置背景颜色
             //
-            Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFF6C"),new CornerRadii(0),new Insets(0)));
+            Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFFCC"),new CornerRadii(0),new Insets(0)));
             root.setBackground(bg);
 
             scene=new Scene(root);
@@ -55,6 +56,7 @@ public class UiBookingRoom extends Application {
             scene.setFill(Paint.valueOf("#FFFFFF00"));
             newStage.setScene(scene);
             newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.initStyle(StageStyle.TRANSPARENT);
             newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
                 //
