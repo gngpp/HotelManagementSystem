@@ -6,13 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fx-8" />
-        <module name="fx-17" />
-        <module name="fx-6" />
-        <module name="fx-5" />
-        <module name="idea_code" />
         <module name="orm" />
-        <module name="HotelManagementSystem-fx" />
       </profile>
     </annotationProcessing>
   </component>
