@@ -12,6 +12,20 @@
     -fx-background-color: rgba(63, 63, 70, 0.26);
 }
 
+.txf_username{
+    -fx-border-width: 0px;
+    -fx-border-color: rgb(0, 0, 0);
+    -fx-background-color: rgba(124, 124, 128, 0.8);
+    -fx-text-fill: #ffffff;
+}
+.txf_username:hover{
+    -fx-border-color: rgba(0,122,204,1);
+
+}
+.txf_username:focused{
+    -fx-border-color: rgba(0,122,204,1);
+    -fx-background-color: rgba(63, 63, 70, 1);
+}
 /*.btn_exit{*/
 /*    -fx-background-radius:0px;*/
 /*    -fx-background-color: rgba(37,37,38,1);*/

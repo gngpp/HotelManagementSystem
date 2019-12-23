@@ -209,8 +209,6 @@ public class UiMainController extends VerifyCard implements Initializable{
     @FXML
     private TableColumn<BookRoomData, String> tableColumnSex_booking;
 
-    @FXML
-    private TableColumn<BookRoomData, String> tableColumnRemark_booking;
 
     //房间信息列
     @FXML
@@ -960,9 +958,9 @@ public class UiMainController extends VerifyCard implements Initializable{
     @FXML
     void ac_add_standard(ActionEvent event) throws Exception {
         if (cbx_type_standard.getValue()==null||
-                txf_id_number_standard.getText().equals(null)||
-                txf_price_standard.getText().equals(null)||
-                txa_remark_standard.getText().equals(null)||
+                txf_id_number_standard.getText().equals("")||
+                txf_price_standard.getText().equals("")||
+                txa_remark_standard.getText().equals("")||
                  cbx_floor_standard.getValue()==null) {
             new AlertDefined(Alert.AlertType.INFORMATION, "提示", "请完善信息").show();
             return;

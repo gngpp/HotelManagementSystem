@@ -47,38 +47,26 @@ public class UiBookingRoom extends Application {
             //
             //设置背景颜色
             //
-            Background bg=new Background(new BackgroundFill(Color.valueOf("FFFFFFCC"),new CornerRadii(0),new Insets(0)));
+            Background bg=new Background(new BackgroundFill(Color.valueOf("282828BF"),new CornerRadii(7),new Insets(0)));
             root.setBackground(bg);
 
             scene=new Scene(root);
 
             newStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
-            scene.setFill(Paint.valueOf("#FFFFFF00"));
+            scene.setFill(Paint.valueOf("#00000000"));
             newStage.setScene(scene);
             newStage.initModality(Modality.APPLICATION_MODAL);
             newStage.initStyle(StageStyle.TRANSPARENT);
-            newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 
-                //
-                // 鼠标按下事件
-                //
+            scene.setOnMousePressed(event -> {
+                lastx_distance=event.getScreenX()-newStage.getX();
+                lasty_distance=event.getScreenY()-newStage.getY();
+            });
 
-                @Override
-                public void handle(MouseEvent event) {
-                    lastx_distance = event.getScreenX()-newStage.getX();
-                    lasty_distance = event.getScreenY()-newStage.getY();
-                }});
-            newStage.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>() {
+            scene.setOnMouseDragged(event -> {
 
-                //
-                // 鼠标拖拽事件
-                //
-
-                @Override
-                public void handle(MouseEvent event) {
-                    newStage.setX(event.getScreenX()-lastx_distance);
-                    newStage.setY(event.getScreenY()-lasty_distance);
-                }
+                newStage.setX(event.getScreenX()-lastx_distance);
+                newStage.setY(event.getScreenY()-lasty_distance);
             });
         }catch(Exception e){
             e.printStackTrace();

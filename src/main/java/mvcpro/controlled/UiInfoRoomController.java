@@ -82,8 +82,10 @@ public class UiInfoRoomController {
         standardRoomDao=new StandardRoomDao();
         infoRoomDao=new InfoRoomDao();
         List<Integer> arrayList=new ArrayList<>();
-        for (StandardRoom standardRoom : standardRoomDao.list())
+        for (StandardRoom standardRoom : standardRoomDao.list()){
             arrayList.add(standardRoom.getRoom_id_number());
+        }
+
         try{
                     for (StandardRoom standardRoom:standardRoomDao.list())
                         for (InfoRoom infoRoom:infoRoomDao.list())
