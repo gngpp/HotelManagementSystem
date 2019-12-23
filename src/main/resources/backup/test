@@ -1,0 +1,41 @@
+此路径为数据库备份
+ps:
+         * 所有字段名的格式都必须是:
+         *      TBL_NAME.COL_NAME 也就是 [表名].[字段名]
+         *      这样做是为了在多表操作中区分字段.
+
+
+             @AnnotationField(col_name = "rated_people", sql_type = "int",
+                              size = 20, field_name = "rated_people", java_type = "int",
+                              is_autoincrement = false, is_primary_key = false)
+             private int rated_people;
+
+             @AnnotationField(col_name = "rated_bed", sql_type = "int",
+                             size = 20, field_name = "rated_bed", java_type = "int",
+                             is_autoincrement = false, is_primary_key = false)
+             private int rated_bed;
+
+             @AnnotationField(col_name = "air_conditioning", sql_type = "char",
+                             size = 2, field_name = "air_conditioning", java_type = "String",
+                             is_autoincrement = false, is_primary_key = false)
+             private String air_conditioning;
+
+             @AnnotationField(col_name = "tv", sql_type = "char",
+                             size = 2, field_name = "tv", java_type = "String",
+                             is_autoincrement = false, is_primary_key = false)
+             private String tv;
+
+             @AnnotationField(col_name = "rest", sql_type = "char",
+                             size = 10, field_name = "rest", java_type = "String",
+                             is_autoincrement = false, is_primary_key = false)
+             private String  rest;
+
+             @AnnotationField(col_name = "phone", sql_type = "int",
+                             size = 100, field_name = "phone", java_type = "String",
+                             is_autoincrement = false, is_primary_key = false)
+             private String phone;
+
+             @AnnotationField(col_name = "ps", sql_type = "char",
+                             size = 100, field_name = "ps", java_type = "String",
+                             is_autoincrement = false, is_primary_key = false)
+             private String ps;
