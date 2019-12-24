@@ -92,10 +92,7 @@
                                                       <TextField fx:id="txf_price_standard" layoutX="87.0" layoutY="178.0" prefHeight="27.0" prefWidth="144.0">
                                                          <effect>
                                                             <Lighting bumpInput="$null" light="$null" />
-                                                         </effect>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor></TextField>
+                                                         </effect></TextField>
                                                       <TextArea fx:id="txa_remark_standard" layoutX="70.0" layoutY="223.0" prefHeight="84.0" prefWidth="175.0" promptText="备注：" wrapText="true">
                                                          <effect>
                                                             <Blend>
@@ -114,10 +111,7 @@
                                                                   </Lighting>
                                                                </topInput>
                                                             </Blend>
-                                                         </effect>
-                                                         <cursor>
-                                                            <Cursor fx:constant="NONE" />
-                                                         </cursor></TextArea>
+                                                         </effect></TextArea>
                                                       <Button layoutX="80.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_alter_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="修改信息" textFill="WHITE" />
                                                       <Button layoutX="162.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_add_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="添加客房" textFill="WHITE" />
                                                       <ComboBox fx:id="cbx_floor_standard" layoutX="86.0" layoutY="133.0" prefHeight="27.0" prefWidth="144.0">
@@ -145,10 +139,7 @@
                                                       <TextField fx:id="txf_id_number_standard" layoutX="85.0" layoutY="42.0" prefHeight="27.0" prefWidth="145.0">
                                                          <effect>
                                                             <Lighting bumpInput="$null" light="$null" />
-                                                         </effect>
-                                                         <cursor>
-                                                            <Cursor fx:constant="DEFAULT" />
-                                                         </cursor></TextField>
+                                                         </effect></TextField>
                                                       <Label layoutX="20.0" layoutY="47.0" text="客房编号" textFill="WHITE" />
                                                       <Label layoutX="20.0" layoutY="90.0" text="客房类型" textFill="WHITE" />
                                                       <Label layoutX="45.0" layoutY="139.0" text="楼层" textFill="WHITE" />
@@ -189,16 +180,16 @@
                                     <TableColumn fx:id="tableColumnRemark_booking" minWidth="0.0" prefWidth="12.0" text="备注" />
                                     <TableColumn fx:id="tableColumnSex_booking" minWidth="0.0" prefWidth="53.0" text="性别" />
                                     <TableColumn fx:id="tableColumnCard_booking" minWidth="0.0" prefWidth="183.0" text="身份证" />
-                                    <TableColumn fx:id="tableColumnPhone_booking" prefWidth="107.0" text="联系电话" />
-                                    <TableColumn fx:id="tableColumnIn_date_booking" minWidth="0.0" prefWidth="150.0" text="入住日期" />
+                                    <TableColumn fx:id="tableColumnPhone_booking" minWidth="0.0" prefWidth="104.0" text="联系电话" />
+                                    <TableColumn fx:id="tableColumnIn_date_booking" minWidth="0.0" prefWidth="157.0" text="入住日期" />
                                 </columns>
                               </TableView>
-                              <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="39.0" prefWidth="374.0">
+                              <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="39.0" prefWidth="311.0">
                                  <items>
                                     <Button fx:id="btn_refresh_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_refresh_booking" prefHeight="0.0" prefWidth="78.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更新" textFill="WHITE" />
                                     <Button fx:id="btn_add_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_add_booking" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="订房" textFill="WHITE" />
+                                    <Button fx:id="btn_delete_booking" focusTraversable="false" onAction="#ac_delete_booking" prefHeight="26.0" prefWidth="66.0" styleClass="btn" stylesheets="@ui_main_style.css" text="退订" textFill="#f5f3f3" />
                                     <Button fx:id="btn_edit_booking" mnemonicParsing="false" onAction="#ac_edit_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" text="修改" />
-                                    <Button fx:id="btn_delete_booking" focusTraversable="false" onAction="#ac_delete_booking" prefHeight="26.0" prefWidth="66.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="#f5f3f3" />
                                  </items>
                               </ToolBar>
                               <Button focusTraversable="false" layoutX="733.0" layoutY="5.0" mnemonicParsing="false" onAction="#ac_search_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" stylesheets="@ui_main_style.css" text="搜索" textFill="WHITE" />
@@ -220,14 +211,14 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableClient" layoutX="158.0" layoutY="-1.0" prefHeight="405.0" prefWidth="621.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableClient" layoutX="59.0" layoutY="-1.0" prefHeight="405.0" prefWidth="817.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
                                                       <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
                                                       <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" text="性别" />
                                                       <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" text="联系电话" />
-                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="234.0" text="身份证" />
-                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="93.0" text="籍贯" />
+                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="142.0" text="身份证" />
+                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="175.0" text="籍贯" />
                                                    </columns>
                                                 </TableView>
                                              </children>
@@ -311,6 +302,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
+                        <MenuItem mnemonicParsing="false" onAction="#ac_exitLogin_item" text="退出登陆" />
                     <MenuItem mnemonicParsing="false" onAction="#systemClose" text="退出系统" />
                   </items>
                 </Menu>

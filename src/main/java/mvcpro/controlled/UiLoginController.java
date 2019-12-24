@@ -51,6 +51,10 @@ public class UiLoginController {
     private StringBuilder verify;
 
 
+    public void setUserId(User user) {
+        loginID.setText(user.getId());
+    }
+
     @FXML
     void initialize() throws Exception {
         uiMainFrame=new UiMainFrame();

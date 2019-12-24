@@ -14,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiLoginController;
+import mvcpro.model.entity.User;
 
 import java.io.IOException;
 
@@ -21,6 +22,7 @@ public class UiLogin extends Application {
 
     private double lastx_distance;
     private double lasty_distance;
+    private UiLoginController uiLoginController;
     private AudioClip audio =new AudioClip(getClass().getResource("/audio/Windows.wav").toString());
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -31,8 +33,8 @@ public class UiLogin extends Application {
 
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui_login_layout.fxml"));
         Pane root = loader.load();
-        UiLoginController uiLoginController=loader.getController();
-        uiLoginController.setLoginStage(loginStage);
+        this.uiLoginController=loader.getController();
+        this.uiLoginController.setLoginStage(loginStage);
         if (audio.isPlaying()) {
             audio.stop();
         }
@@ -78,6 +80,10 @@ public class UiLogin extends Application {
             }
         });
 
+    }
+
+    public void setUserId(User user){
+        this.uiLoginController.setUserId(user);
     }
 
     public static void main(String[] args) {

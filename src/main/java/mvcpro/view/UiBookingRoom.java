@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiBookingRoomController;
 import mvcpro.model.entity.BookRoom;
+import mvcpro.model.entity.User;
 import mvcpro.view.server.BookRoomData;
 import mvcpro.view.server.ClientData;
 
@@ -86,5 +87,8 @@ public class UiBookingRoom extends Application {
     }
     public void show(){
         newStage.show();
+    }
+    public void setUser(User user){
+        this.bookingRoomController.setUser(user);
     }
 }

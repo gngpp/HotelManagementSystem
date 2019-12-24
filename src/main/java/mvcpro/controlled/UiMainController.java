@@ -33,10 +33,12 @@ import org.slf4j.Logger;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -58,7 +60,10 @@ public class UiMainController extends VerifyCard implements Initializable{
     private Tab tab_4;
 
     @FXML
-    private Tab tab_3;
+    private Tab tab_1;
+
+    @FXML
+    private Tab tab_2;
 
     @FXML
     private Menu menu_system;
@@ -338,7 +343,15 @@ public class UiMainController extends VerifyCard implements Initializable{
         mainStage.setIconified(true);
     }
 
-    public void setMainStage(Stage mainStage,User user) {
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setMainStage(Stage mainStage, User user) {
         this.user=user;
         this.mainStage = mainStage;
         if (user.getUserType().equals(USER)){
@@ -348,14 +361,48 @@ public class UiMainController extends VerifyCard implements Initializable{
             btn_refresh_standard.setLayoutX(163);
             btn_refresh_standard.setLayoutY(3);
             tabPane_master.getTabs().remove(tab_4);
-            tabPane_master.getTabs().remove(tab_3);
+            tab_1.setText("房间");
+            tab_2.setText("订房");
             btn_add_info.setVisible(false);
             btn_delete_info.setVisible(false);
             btn_delete_standard.setVisible(false);
             btn_edit_info.setVisible(false);
+            btn_edit_booking.setVisible(false);
             pane_info.setVisible(false);
             menu_system.setVisible(false);
+
+            try {
+                for (BookRoom bookRoom:bookRoomDao.list()){
+                    if (bookRoom.getRoom_peple_id().equals(user.getUUID().toString())){
+                        bookRoomData_list.add(new BookRoomData(bookRoom));
+                        return;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                mTableBookRoom.setItems(bookRoomData_list);
+            }
+        }else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    LOG.info("房间预定信息列表初始化线程已启动...");
+                    try {
+
+                        for (BookRoom bookRoom : bookRoomDao.list()){
+                            bookRoomData_list.add(new BookRoomData(bookRoom));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }finally {
+                        mTableBookRoom.setItems(bookRoomData_list);
+                    }
+                }
+            }).start();
         }
+
     }
 
     @FXML
@@ -583,24 +630,6 @@ public class UiMainController extends VerifyCard implements Initializable{
         tableColumnPeople_id_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_peple_id"));
         tableColumnType_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, String>("room_type"));
         tableColumnPrice_booking.setCellValueFactory(new PropertyValueFactory<BookRoomData, Integer>("room_price"));
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                LOG.info("房间预定信息列表初始化线程已启动...");
-                try {
-
-                    for (BookRoom bookRoom : bookRoomDao.list()){
-                        bookRoomData_list.add(new BookRoomData(bookRoom));
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
-                    mTableBookRoom.setItems(bookRoomData_list);
-                }
-            }
-        }).start();
 
 
     }
@@ -992,10 +1021,12 @@ public class UiMainController extends VerifyCard implements Initializable{
 
     @FXML
     void ac_add_info(ActionEvent event) throws Exception {
+
             uiInfoRoom = new UiInfoRoom();
             uiInfoRoom.start(new Stage());
             uiInfoRoom.setInfoRoomData(infoRoomData_list);
             uiInfoRoom.show();
+
     }
 
     @FXML
@@ -1119,36 +1150,63 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     @FXML
-    void ac_refresh_booking(ActionEvent event){
+    void ac_refresh_booking(ActionEvent event)  {
 
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-
-                LOG.info("订房列表刷新线程已启动...");
-
-                try {
-                    bookRoomData_list.removeAll(bookRoomData_list);
-                    for (BookRoom bookRoom :bookRoomDao.list()) {
+        if (this.user.getUserType().equals(USER)){
+            try{
+                bookRoomData_list.removeAll(bookRoomData_list);
+                for (BookRoom bookRoom:bookRoomDao.list()){
+                    if (bookRoom.getRoom_peple_id().equals(this.user.getUUID().toString())){
                         bookRoomData_list.add(new BookRoomData(bookRoom));
+                        return;
                     }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }finally {
-                    mTableBookRoom.setItems(bookRoomData_list);
                 }
+            }catch (Exception e){
+                e.printStackTrace();
             }
+        }else {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    LOG.info("订房列表刷新线程已启动...");
+
+                    try {
+                        bookRoomData_list.removeAll(bookRoomData_list);
+                        for (BookRoom bookRoom : bookRoomDao.list()) {
+                            bookRoomData_list.add(new BookRoomData(bookRoom));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             });
+        }
+
     }
 
     @FXML
     void ac_add_booking(ActionEvent event) throws Exception {
-        UiBookingRoom uiBookingRoom=new UiBookingRoom();
-        uiBookingRoom.start(new Stage());
-        uiBookingRoom.setBookRoomData(bookRoomData_list);
-        uiBookingRoom.setClientData(clientData_list);
-        uiBookingRoom.show();
+        if (this.user.getUserType().equals(USER)){
+            if(!bookRoomData_list.isEmpty()){
+                new AlertDefined(Alert.AlertType.ERROR,"提示","您已订房，如需修改信息请联系管理人员").show();
+                return;
+            }else {
+                UiBookingRoom uiBookingRoom = new UiBookingRoom();
+                uiBookingRoom.start(new Stage());
+                uiBookingRoom.setBookRoomData(bookRoomData_list);
+                uiBookingRoom.setClientData(clientData_list);
+                uiBookingRoom.setUser(this.user);
+                uiBookingRoom.show();
+            }
+        }else {
+            UiBookingRoom uiBookingRoom = new UiBookingRoom();
+            uiBookingRoom.start(new Stage());
+            uiBookingRoom.setBookRoomData(bookRoomData_list);
+            uiBookingRoom.setClientData(clientData_list);
+            uiBookingRoom.show();
+        }
     }
 
     @FXML
@@ -1180,12 +1238,12 @@ public class UiMainController extends VerifyCard implements Initializable{
             }
             BookRoomData selectBookRoom = mTableBookRoom.getSelectionModel().getSelectedItem();
             System.out.println(selectBookRoom.bookRoomExToEntity());
-            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要删除订房记录[ " + selectBookRoom.bookRoomExToEntity().getRoom_id_number()+ " ]吗?");
+            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要退订房间[ " + selectBookRoom.bookRoomExToEntity().getRoom_id_number()+ " ]吗?");
             Optional result = dialog.showAndWait();
             if (result.get() == ButtonType.OK) {
                 if (bookRoomDao.delete(selectBookRoom.bookRoomExToEntity())) {
                     bookRoomData_list.remove(selectBookRoom);
-                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已删除").show();
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "已退订").show();
                     return;
                 }
             }
@@ -1286,9 +1344,25 @@ public class UiMainController extends VerifyCard implements Initializable{
     }
 
     @FXML
-    void ac_about_item(ActionEvent event) throws Exception {
+    void ac_about_item(ActionEvent event) {
        About about= new About();
-       about.start(new Stage());
+        try {
+            about.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ac_exitLogin_item(ActionEvent event){
+        mainStage.close();
+        try {
+            UiLogin uiLogin=new UiLogin();
+            uiLogin.start(new Stage());
+            uiLogin.setUserId(this.user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

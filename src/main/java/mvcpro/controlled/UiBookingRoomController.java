@@ -1,6 +1,7 @@
 package mvcpro.controlled;
 
 import com.sun.codemodel.internal.JTryBlock;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +18,7 @@ import mvcpro.view.server.ClientData;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class UiBookingRoomController    implements Initializable {
 
@@ -338,6 +336,19 @@ public class UiBookingRoomController    implements Initializable {
 
         cbx_sex_booking.setValue(bookRooo.getRoom_sex());
 
+    }
+
+    public void setUser(User user) {
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                cbx_people_id_booking.getItems().removeAll(cbx_people_id_booking.getItems());
+                cbx_people_id_booking.getItems().add(user.getUUID());
+                cbx_people_id_booking.setValue(user.getUUID());
+            }
+        });
 
     }
 }
