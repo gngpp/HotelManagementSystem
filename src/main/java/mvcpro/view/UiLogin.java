@@ -15,8 +15,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import mvcpro.controlled.UiLoginController;
 import mvcpro.model.entity.User;
+import mvcpro.model.utils.ProgressFrom;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UiLogin extends Application {
 
@@ -25,11 +28,11 @@ public class UiLogin extends Application {
     private UiLoginController uiLoginController;
     private AudioClip audio =new AudioClip(getClass().getResource("/audio/Windows.wav").toString());
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, InterruptedException {
         createStage(primaryStage);
     }
 
-    private void createStage(Stage loginStage) throws IOException {
+    private void createStage(Stage loginStage) throws IOException, InterruptedException {
 
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui_login_layout.fxml"));
         Pane root = loader.load();
@@ -61,25 +64,23 @@ public class UiLogin extends Application {
         loginStage.initStyle(StageStyle.TRANSPARENT);
         loginStage.setScene(scene);
         loginStage.getIcons().add(new Image(UiLogin.class.getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
-        loginStage.show();
 
 
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                lastx_distance=event.getScreenX()-loginStage.getX();
-                lasty_distance=event.getScreenY()-loginStage.getY();
-            }
+        scene.setOnMousePressed(event -> {
+            lastx_distance=event.getScreenX()-loginStage.getX();
+            lasty_distance=event.getScreenY()-loginStage.getY();
         });
 
-        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                loginStage.setX(event.getScreenX()-lastx_distance);
-                loginStage.setY(event.getScreenY()-lasty_distance);
-            }
+        scene.setOnMouseDragged(event -> {
+            loginStage.setX(event.getScreenX()-lastx_distance);
+            loginStage.setY(event.getScreenY()-lasty_distance);
         });
 
+        // 创建定时任务
+        TimerTask timerTask = new ProgressFrom(loginStage,"数据加载中, 请稍后...");
+        //创建定时器对象
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 1000);
     }
 
     public void setUserId(User user){

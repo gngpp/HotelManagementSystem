@@ -1007,6 +1007,7 @@ public class UiMainController extends VerifyCard implements Initializable{
             return;
         }
 
+        //写进数据库
         StandardRoom standardRoom=new StandardRoom();
         standardRoom.setRoom_id_number(Integer.parseInt(txf_id_number_standard.getText()));
         standardRoom.setRoom_remark(txa_remark_standard.getText());
@@ -1360,7 +1361,16 @@ public class UiMainController extends VerifyCard implements Initializable{
             UiLogin uiLogin=new UiLogin();
             uiLogin.start(new Stage());
             uiLogin.setUserId(this.user);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void ac_signIn_item(ActionEvent event){
+        try {
+            new UiSignIn().start(new Stage());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

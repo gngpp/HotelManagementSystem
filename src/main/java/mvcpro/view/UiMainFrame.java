@@ -57,9 +57,11 @@ public class UiMainFrame extends Application {
         });
     }
 
-    public void show(User user) {
+    public Stage getMainStage(){
+        return this.mainStage;
+    }
+    public void setUser(User user) {
         uiMainController.setMainStage(mainStage,user);
-        mainStage.show();
     }
     public static void main(String[] args) {
         launch(args);

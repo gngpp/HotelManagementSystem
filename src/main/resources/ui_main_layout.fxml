@@ -302,6 +302,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
+                        <MenuItem mnemonicParsing="false" onAction="#ac_signIn_item" text="注册" />
                         <MenuItem mnemonicParsing="false" onAction="#ac_exitLogin_item" text="退出登陆" />
                     <MenuItem mnemonicParsing="false" onAction="#systemClose" text="退出系统" />
                   </items>
@@ -319,6 +320,9 @@
                   </items>
                 </Menu>
               </menus>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </MenuBar>
             <ImageView fitHeight="30.0" fitWidth="353.0" layoutX="208.0" pickOnBounds="true" preserveRatio="true" styleClass="frame">
                <image>

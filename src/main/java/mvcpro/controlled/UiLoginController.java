@@ -8,12 +8,16 @@ import javafx.stage.Modality;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.utils.MD5;
+import mvcpro.model.utils.ProgressFrom;
 import mvcpro.view.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UiLoginController {
 
@@ -101,7 +105,10 @@ public class UiLoginController {
             for (User user :userDao.list())
                 if (loginVerify(user)) {
                     loginStage.hide();
-                    uiMainFrame.show(user);
+                    this.uiMainFrame.setUser(user);
+                    TimerTask timerTask=new ProgressFrom(this.uiMainFrame.getMainStage(),"数据加载中，请稍等...");
+                    Timer timer=new Timer();
+                    timer.schedule(timerTask,1000);
                     return;
                 }
             new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();
@@ -112,7 +119,7 @@ public class UiLoginController {
 
     @FXML
     void LoginExitEvent(ActionEvent event){
-        Platform.exit();
+        System.exit(0);
     }
 
     @FXML

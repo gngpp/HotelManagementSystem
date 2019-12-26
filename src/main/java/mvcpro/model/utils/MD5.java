@@ -12,11 +12,11 @@ import java.security.MessageDigest;
 public class MD5 {
 
     public final static String encrypt(String ss){//MD5加密算法
-        String s = ss == null ? "":ss;//如果为空，则返回""
-        char hexDigists[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d',
-                'e','f'};//字典
 
         try {
+            String s = ss == null ? "":ss;//如果为空，则返回""
+            char hexDigists[] = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d',
+                    'e','f'};//字典
             byte[] strTemp =s.getBytes();//获取二进制
             MessageDigest mdTemp =MessageDigest.getInstance("MD5");
             mdTemp.update(strTemp);//执行加密
@@ -28,7 +28,6 @@ public class MD5 {
                 byte byte0 = md[i];
                 str[k++] = hexDigists[byte0 >>> 4 &0xf];
                 str[k++] = hexDigists[byte0 & 0xf];
-
             }
             return new String(str);//输出加密后的字符
         } catch (Exception e) {
