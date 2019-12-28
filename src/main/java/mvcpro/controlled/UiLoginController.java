@@ -106,9 +106,7 @@ public class UiLoginController {
                 if (loginVerify(user)) {
                     loginStage.hide();
                     this.uiMainFrame.setUser(user);
-                    TimerTask timerTask=new ProgressFrom(this.uiMainFrame.getMainStage(),"数据加载中，请稍等...");
-                    Timer timer=new Timer();
-                    timer.schedule(timerTask,1000);
+                    this.uiMainFrame.show();
                     return;
                 }
             new AlertDefined(Alert.AlertType.ERROR,"提示","你的账号或密码错误").show();

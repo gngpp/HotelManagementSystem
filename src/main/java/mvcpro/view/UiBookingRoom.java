@@ -1,5 +1,6 @@
 package mvcpro.view;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -17,6 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mvcpro.controlled.UiBookingRoomController;
 import mvcpro.model.entity.BookRoom;
 import mvcpro.model.entity.User;
@@ -25,6 +27,7 @@ import mvcpro.view.server.ClientData;
 
 public class UiBookingRoom extends Application {
     private Stage newStage;
+    private Pane root;
     private Scene scene;
     private UiBookingRoomController  bookingRoomController;
     private double lastx_distance,lasty_distance;
@@ -38,7 +41,7 @@ public class UiBookingRoom extends Application {
             //
             FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_bookingroom_layout.fxml"));
             Pane root =loader.load();
-
+            this.root=root;
             //
             //获取控制类对象引用
             //
@@ -86,6 +89,14 @@ public class UiBookingRoom extends Application {
         this.bookingRoomController.setBookRoom(bookRoom);
     }
     public void show(){
+
+        ScaleTransition st=new ScaleTransition(Duration.millis(700),root);
+        st.setFromX(0.1);
+        st.setToX(1);
+        st.setFromY(0.1);
+        st.setToY(1);
+        st.play();
+
         newStage.show();
     }
     public void setUser(User user){

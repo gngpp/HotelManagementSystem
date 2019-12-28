@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,6 +23,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import mvcpro.model.utils.BRSql;
 
 public final class FileChooserDefined extends Application {
@@ -52,13 +55,17 @@ public final class FileChooserDefined extends Application {
                     System.getProperties().get("os.name").equals("Windows 7")){
 
                 try {
-                    File file = new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup.sql");
+                    /*
+                    windows平台不能使用-命名。。。
+                     */
+                    File file = new File(fileDirectory, new SimpleDateFormat("YYYY_MM_dd___hh_mm_ss").format(new Date()) + "_ToBackup.sql");
                     if (!file.exists()) {
-                        file.mkdir();
+                        file.createNewFile();
                     }
-                    brSql.exportDbSql("localhost","3306",txf_root.getText(),psf_password                                                .getText(),fileDirectory.getAbsolutePath(),file.getName(),"FXdb");
+                    brSql.exportDbSql("localhost","3306",txf_root.getText(),psf_password.getText(),fileDirectory.getAbsolutePath(),file.getName(),"FXdb");
                     new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
                 } catch (Exception e) {
+                    new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份失败！").show();
                     e.printStackTrace();
                 }
             }
@@ -113,6 +120,13 @@ public final class FileChooserDefined extends Application {
         final Pane rootGroup = new VBox(12);
         rootGroup.getChildren().addAll(flowPane);
         rootGroup.setPadding(new Insets(0, 50, 12, 50));
+
+        ScaleTransition st=new ScaleTransition(Duration.millis(700),rootGroup);
+        st.setFromX(0.1);
+        st.setToX(1);
+        st.setFromY(0.1);
+        st.setToY(1);
+        st.play();
 
         if(!System.getProperties().get("os.name").equals("Windows 10")||
                 !System.getProperties().get("os.name").equals("Windows 7")){

@@ -1,5 +1,6 @@
 package mvcpro.view;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mvcpro.controlled.AboutController;
 
 import java.awt.*;
@@ -61,6 +63,13 @@ public class About extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.initModality(Modality.APPLICATION_MODAL);
+        ScaleTransition st=new ScaleTransition(Duration.millis(1000),root);
+        st.setFromX(0.1);
+        st.setToX(1);
+        st.setFromY(0.1);
+        st.setToY(1);
+        st.play();
+
         primaryStage.show();
 
         scene.setOnMousePressed(event -> {

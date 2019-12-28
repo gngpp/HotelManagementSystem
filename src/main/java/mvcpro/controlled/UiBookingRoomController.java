@@ -1,6 +1,5 @@
 package mvcpro.controlled;
 
-import com.sun.codemodel.internal.JTryBlock;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

@@ -79,7 +79,12 @@ public class UiLogin extends Application {
         });
 
 
-
+        ScaleTransition st=new ScaleTransition(Duration.millis(2000),root);
+        st.setFromX(0.1);
+        st.setToX(1);
+        st.setFromY(0.1);
+        st.setToY(1);
+        st.play();
         // 创建定时任务
         TimerTask timerTask = new ProgressFrom(loginStage,"数据加载中, 请稍后...");
         //创建定时器对象

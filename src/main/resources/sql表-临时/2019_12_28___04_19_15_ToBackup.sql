@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.10, for osx10.9 (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.62, for Win64 (AMD64)
 --
--- Host: localhost    Database: Fxdb
+-- Host: localhost    Database: FXdb
 -- ------------------------------------------------------
--- Server version	5.7.10
+-- Server version	5.5.62
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -205,4 +205,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-19 20:31:16
+-- Dump completed on 2019-12-28 16:19:16

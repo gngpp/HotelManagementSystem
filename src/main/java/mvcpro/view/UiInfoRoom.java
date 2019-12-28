@@ -1,5 +1,6 @@
 package mvcpro.view;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -11,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import mvcpro.controlled.UiInfoRoomController;
 import mvcpro.model.entity.InfoRoom;
 import mvcpro.view.server.InfoRoomData;
@@ -19,6 +21,7 @@ public class UiInfoRoom extends Application {
     private double lastx_distance;
     private double lasty_distance;
     private Stage newStage;
+    private Pane root;
     private UiInfoRoomController uiInfoRoomController;
 
     @Override
@@ -26,6 +29,7 @@ public class UiInfoRoom extends Application {
         newStage = primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui_room_info_layout.fxml"));
         Pane root = loader.load();
+        this.root=root;
         uiInfoRoomController = loader.getController();
         uiInfoRoomController.setMainStage(newStage);
 
@@ -68,6 +72,12 @@ public class UiInfoRoom extends Application {
     }
 
     public void show(){
+        ScaleTransition st=new ScaleTransition(Duration.millis(700),root);
+        st.setFromX(0.1);
+        st.setToX(1);
+        st.setFromY(0.1);
+        st.setToY(1);
+        st.play();
         newStage.show();
     }
 

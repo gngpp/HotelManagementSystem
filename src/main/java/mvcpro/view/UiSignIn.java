@@ -1,5 +1,6 @@
 package mvcpro.view;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mvcpro.controlled.UiSignInController;
 
 public class UiSignIn extends Application {
@@ -52,6 +54,14 @@ public class UiSignIn extends Application {
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);
                 newStage.initModality(Modality.APPLICATION_MODAL);
+
+                ScaleTransition st=new ScaleTransition(Duration.millis(500),root);
+                st.setFromX(0.1);
+                st.setToX(1);
+                st.setFromY(0.1);
+                st.setToY(1);
+                st.play();
+
                 newStage.show();
                 newStage.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
 

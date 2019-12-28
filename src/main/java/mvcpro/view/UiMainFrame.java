@@ -1,5 +1,6 @@
 package mvcpro.view;
 
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +13,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mvcpro.controlled.UiMainController;
 import mvcpro.model.entity.User;
+import mvcpro.model.utils.ProgressFrom;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class UiMainFrame extends Application {
@@ -21,6 +27,7 @@ public class UiMainFrame extends Application {
     private double lastx_distance;
     private double lasty_distance;
     private Stage mainStage;
+    private Pane root;
     UiMainController uiMainController;
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -28,7 +35,7 @@ public class UiMainFrame extends Application {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_main_layout.fxml"));
         Pane root=loader.load();
         uiMainController =loader.getController();
-
+        this.root=root;
         //
         //设置背景颜色
         //
@@ -45,7 +52,7 @@ public class UiMainFrame extends Application {
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);
-        mainStage.show();
+
         scene.setOnMousePressed(event -> {
             lastx_distance=event.getScreenX()-mainStage.getX();
             lasty_distance=event.getScreenY()-mainStage.getY();
@@ -63,6 +70,18 @@ public class UiMainFrame extends Application {
     }
     public void setUser(User user) {
         uiMainController.setMainStage(mainStage,user);
+    }
+
+    public void show(){
+        ScaleTransition st=new ScaleTransition(Duration.millis(2000),root);
+        st.setFromX(0);
+        st.setToX(1);
+        st.setFromY(0);
+        st.setToY(1);
+        st.play();
+        TimerTask timerTask=new ProgressFrom(mainStage,"数据加载中，请稍等...");
+        Timer timer=new Timer();
+        timer.schedule(timerTask,1000);
     }
     public static void main(String[] args) {
         launch(args);
