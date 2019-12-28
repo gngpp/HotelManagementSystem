@@ -2,24 +2,21 @@ package mvcpro.view;
 
 
 
-import java.awt.Desktop;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -29,6 +26,8 @@ import mvcpro.model.utils.BRSql;
 public final class FileChooserDefined extends Application {
 
     private final Desktop desktop = Desktop.getDesktop();
+    private TextField txf_root =new TextField();
+    private PasswordField psf_password=new PasswordField();
 
     @Override
     public void start( Stage stage) {
@@ -39,20 +38,25 @@ public final class FileChooserDefined extends Application {
         final DirectoryChooser directoryChooser=new DirectoryChooser();
         final Button openButton_backup = new Button("备份");
         final Button openButton_restore = new Button("恢复");
+        txf_root.setPromptText("User");
+        txf_root.setPrefWidth(50);
+        psf_password.setPromptText("Password");
+        psf_password.setPrefWidth(100);
 
         openButton_backup.setOnAction(event-> {
 
             File fileDirectory = directoryChooser.showDialog(stage);
             BRSql brSql = new BRSql();
 
-            if(System.getProperties().get("os.name").equals("Windows 10")){
+            if(System.getProperties().get("os.name").equals("Windows 10")||
+                    System.getProperties().get("os.name").equals("Windows 7")){
 
                 try {
                     File file = new File(fileDirectory, new SimpleDateFormat("YYYY-MM-dd-hh:mm:ss").format(new Date()) + "-backup.sql");
                     if (!file.exists()) {
                         file.mkdir();
                     }
-                    brSql.exportDbSql("localhost","3306","root","itcast",fileDirectory.getAbsolutePath(),file.getName(),"FXdb");
+                    brSql.exportDbSql("localhost","3306",txf_root.getText(),psf_password                                                .getText(),fileDirectory.getAbsolutePath(),file.getName(),"FXdb");
                     new AlertDefined(Alert.AlertType.CONFIRMATION,"提示","备份成功！").show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -73,9 +77,10 @@ public final class FileChooserDefined extends Application {
             File file = fileChooser.showOpenDialog(new Stage());
             BRSql brSql = new BRSql();
 
-            if (System.getProperties().get("os.name").equals("Windows 10")){
+            if (System.getProperties().get("os.name").equals("Windows 10")||
+                    System.getProperties().get("os.name").equals("Windows 7")){
                 try {
-                    brSql.restoreDbBySql("localhost","3306","root","itcast",file.getAbsolutePath(),"FXdb");
+                    brSql.restoreDbBySql("localhost","3306",txf_root.getText(),psf_password.getText(),file.getAbsolutePath(),"FXdb");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -90,19 +95,37 @@ public final class FileChooserDefined extends Application {
         }));
 
 
-        final GridPane inputGridPane = new GridPane();
+        final FlowPane flowPane = new FlowPane();
+
+        FlowPane flow = new FlowPane();
+        flow.setPadding(new Insets(5, 0, 5, 0));//设置
+        flow.setVgap(4);//设置节点间垂直间隔
+        flow.setHgap(4);//设置节点间水平间隔
+        flow.setPrefWrapLength(100); // 设置FlowPane的宽度
 
         GridPane.setConstraints(openButton_backup, 0, 1);
         GridPane.setConstraints(openButton_restore, 1, 1);
-        inputGridPane.setHgap(6);
-        inputGridPane.setVgap(6);
-        inputGridPane.getChildren().addAll(openButton_backup, openButton_restore);
-
+        flowPane.setHgap(6);
+        flowPane.setVgap(6);
+        flowPane.getChildren().addAll(openButton_backup, openButton_restore);
+        flowPane.getChildren().add(txf_root);
+        flowPane.getChildren().add(psf_password);
         final Pane rootGroup = new VBox(12);
-        rootGroup.getChildren().addAll(inputGridPane);
+        rootGroup.getChildren().addAll(flowPane);
         rootGroup.setPadding(new Insets(0, 50, 12, 50));
 
-        stage.setScene(new Scene(rootGroup,200,50));
+        if(!System.getProperties().get("os.name").equals("Windows 10")||
+                !System.getProperties().get("os.name").equals("Windows 7")){
+            txf_root.setVisible(true);
+            psf_password.setVisible(true);
+            stage.setScene(new Scene(rootGroup,360,30));
+
+        }else {
+            txf_root.setVisible(false);
+            psf_password.setVisible(false);
+            stage.setScene(new Scene(rootGroup,200,30));
+        }
+
         stage.show();
     }
 

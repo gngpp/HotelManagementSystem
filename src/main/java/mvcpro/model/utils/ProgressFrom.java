@@ -1,15 +1,21 @@
 package mvcpro.model.utils;
 
+import javafx.animation.Interpolator;
+import javafx.animation.ScaleTransition;
+import javafx.animation.StrokeTransition;
+import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.util.TimerTask;
 
@@ -18,7 +24,7 @@ public class ProgressFrom extends TimerTask {
     private ProgressIndicator progressIndicator;
     private Stage newStage;
 
-    public ProgressFrom(Stage primaryStage,String title) throws InterruptedException {
+    public ProgressFrom(Stage primaryStage, String title) {
         this.newStage=primaryStage;
         dialogStage = new Stage();
         progressIndicator = new ProgressIndicator();
@@ -41,7 +47,6 @@ public class ProgressFrom extends TimerTask {
         dialogStage.show();
 
     }
-
 
     @Override
     public void run() {

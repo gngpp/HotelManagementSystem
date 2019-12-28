@@ -45,6 +45,7 @@ public class UiMainFrame extends Application {
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         mainStage.setScene(scene);
         mainStage.initStyle(StageStyle.TRANSPARENT);
+        mainStage.show();
         scene.setOnMousePressed(event -> {
             lastx_distance=event.getScreenX()-mainStage.getX();
             lasty_distance=event.getScreenY()-mainStage.getY();

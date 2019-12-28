@@ -1,4 +1,5 @@
 package mvcpro.view;
+import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import mvcpro.controlled.UiLoginController;
 import mvcpro.model.entity.User;
 import mvcpro.model.utils.ProgressFrom;
@@ -75,6 +77,8 @@ public class UiLogin extends Application {
             loginStage.setX(event.getScreenX()-lastx_distance);
             loginStage.setY(event.getScreenY()-lasty_distance);
         });
+
+
 
         // 创建定时任务
         TimerTask timerTask = new ProgressFrom(loginStage,"数据加载中, 请稍后...");
