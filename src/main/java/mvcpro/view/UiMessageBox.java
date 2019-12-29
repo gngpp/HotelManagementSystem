@@ -59,21 +59,16 @@ public class UiMessageBox{
                 scene.setFill(Paint.valueOf("#FFFFFF00"));
                 newStage.initStyle(StageStyle.TRANSPARENT);
                 newStage.setScene(scene);
-                scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        lastx_distance=event.getScreenX()-newStage.getX();
-                        lasty_distance=event.getScreenY()-newStage.getY();
-                    }
+                scene.setOnMousePressed(event -> {
+                    lastx_distance=event.getScreenX()-newStage.getX();
+                    lasty_distance=event.getScreenY()-newStage.getY();
                 });
 
-                scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        newStage.setX(event.getScreenX()-lastx_distance);
-                        newStage.setY(event.getScreenY()-lasty_distance);
-                    }
+                scene.setOnMouseDragged(event -> {
+                    newStage.setX(event.getScreenX()-lastx_distance);
+                    newStage.setY(event.getScreenY()-lasty_distance);
                 });
+
             }catch(Exception e){
                 e.printStackTrace();
             }

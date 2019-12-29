@@ -746,14 +746,14 @@ public class UiMainController extends VerifyCard implements Initializable{
                 return;
             }
             UserData selectUser = mTableUser.getSelectionModel().getSelectedItem();
-            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要删除用户[ " + selectUser.getId() + " ]吗?");
+            AlertDefined dialog = new AlertDefined(Alert.AlertType.INFORMATION, "提示", "你确定要注销用户[ " + selectUser.getId() + " ]吗?");
             Optional result = dialog.showAndWait();
             if (result.get() == ButtonType.OK) {
                 if (!userDao.delete(selectUser.userToEntity())) {
-                    new AlertDefined(Alert.AlertType.ERROR, "提示", "删除用户失败").show();
+                    new AlertDefined(Alert.AlertType.ERROR, "提示", "注销失败").show();
                     return;
                 } else {
-                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "该用户已删除").show();
+                    new AlertDefined(Alert.AlertType.INFORMATION, "提示", "用户已注销").show();
                     ac_refresh_user(event);
                 }
             }

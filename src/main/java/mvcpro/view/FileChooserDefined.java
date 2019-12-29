@@ -121,12 +121,6 @@ public final class FileChooserDefined extends Application {
         rootGroup.getChildren().addAll(flowPane);
         rootGroup.setPadding(new Insets(0, 50, 12, 50));
 
-        ScaleTransition st=new ScaleTransition(Duration.millis(700),rootGroup);
-        st.setFromX(0.1);
-        st.setToX(1);
-        st.setFromY(0.1);
-        st.setToY(1);
-        st.play();
 
         if(!System.getProperties().get("os.name").equals("Windows 10")||
                 !System.getProperties().get("os.name").equals("Windows 7")){

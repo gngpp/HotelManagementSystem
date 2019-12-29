@@ -1,5 +1,6 @@
 package mvcpro.controlled;
 
+import com.lqing.orm.utils.LoggerUtils;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -15,14 +16,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
 
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class UiLoginController {
 
     private  static boolean isTure=false;
 
+    private final Logger LOG=LoggerUtils.getLogger(UiLoginController.class);
     private UserDao userDao;
 
     private Stage loginStage;
@@ -70,8 +71,8 @@ public class UiLoginController {
         selectUserType.getItems().addAll("用户","管理员");
         image.screenToLocal(20,20);
 
-        loginCheck.setFont(new Font("System", 13));
-        btnSignIn.setFont(new Font("System",13));
+        loginCheck.setFont(new Font("System", 10));
+        btnSignIn.setFont(new Font("System",10));
         final Tooltip tooltip = new Tooltip();
         tooltip.setText(
                 "\nYour password must be\n" +
@@ -84,7 +85,7 @@ public class UiLoginController {
             @Override
             public void handle(ActionEvent event) {
                    verify=new StringBuilder(selectUserType.getValue().toString());
-                     System.out.println(verify);
+                   LOG.info(verify.toString());
                 }
         });
 

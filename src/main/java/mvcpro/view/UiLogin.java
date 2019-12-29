@@ -34,7 +34,7 @@ public class UiLogin extends Application {
         createStage(primaryStage);
     }
 
-    private void createStage(Stage loginStage) throws IOException, InterruptedException {
+    private void createStage(Stage loginStage) throws IOException{
 
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui_login_layout.fxml"));
         Pane root = loader.load();

@@ -89,7 +89,7 @@
                                                    </effect></TextField>
                                                 <Pane fx:id="pane_info" prefHeight="409.0" prefWidth="287.0">
                                                    <children>
-                                                      <TextField fx:id="txf_price_standard" layoutX="87.0" layoutY="178.0" prefHeight="27.0" prefWidth="144.0">
+                                                      <TextField fx:id="txf_price_standard" layoutX="86.0" layoutY="178.0" prefHeight="27.0" prefWidth="144.0">
                                                          <effect>
                                                             <Lighting bumpInput="$null" light="$null" />
                                                          </effect></TextField>
@@ -207,24 +207,6 @@
                            <children>
                               <TabPane layoutY="-4.0" prefHeight="435.0" prefWidth="887.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="客户信息管理">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <TableView fx:id="mTableClient" layoutX="59.0" layoutY="-1.0" prefHeight="405.0" prefWidth="817.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
-                                                   <columns>
-                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
-                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
-                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" text="性别" />
-                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" text="联系电话" />
-                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="142.0" text="身份证" />
-                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="175.0" text="籍贯" />
-                                                   </columns>
-                                                </TableView>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                  </Tab>
                                   <Tab text="用户管理">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="701.0">
@@ -269,9 +251,27 @@
                                                       </Lighting>
                                                    </effect>
                                                 </ImageView>
-                                                <Button fx:id="add11" focusTraversable="false" layoutX="361.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="删除" textFill="WHITE" />
+                                                <Button fx:id="add11" focusTraversable="false" layoutX="361.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="注销" textFill="WHITE" />
                                                 <Button fx:id="add111" focusTraversable="false" layoutX="279.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="刷新" textFill="WHITE" />
                                                 <Button fx:id="add112" focusTraversable="false" layoutX="90.0" layoutY="291.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更换头像" textFill="WHITE" />
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="客户信息管理">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TableView fx:id="mTableClient" layoutX="59.0" layoutY="-1.0" prefHeight="405.0" prefWidth="817.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                   <columns>
+                                                      <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
+                                                      <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
+                                                      <TableColumn fx:id="tableColumnSex_client" prefWidth="86.0" text="性别" />
+                                                      <TableColumn fx:id="tableColumnPhone_client" prefWidth="128.0" text="联系电话" />
+                                                      <TableColumn fx:id="tableColumnCard_client" minWidth="0.0" prefWidth="142.0" text="身份证" />
+                                                      <TableColumn fx:id="tableColumnNative_client" minWidth="0.0" prefWidth="175.0" text="籍贯" />
+                                                   </columns>
+                                                </TableView>
                                              </children>
                                           </AnchorPane>
                                     </content>

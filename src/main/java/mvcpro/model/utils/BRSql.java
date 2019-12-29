@@ -178,14 +178,14 @@ public class BRSql {
             if (sqlStr.size() > 0) {
                 int num = batchDate(sqlStr);
                 if (num > 0){
-                    System.out.println("执行成功");
+                    LOG.info("执行成功");
                     return false;
                 } else{
-                    System.out.println("未有执行的SQL语句");
+                    LOG.info("未有执行的SQL语句");
                     return true;
                 }
             } else {
-                System.out.println("没有需要执行的SQL语句");
+                LOG.info("没有需要执行的SQL语句");
             }
         } catch (Exception e) {
             e.printStackTrace();

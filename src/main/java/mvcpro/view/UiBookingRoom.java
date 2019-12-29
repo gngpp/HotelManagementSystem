@@ -72,6 +72,7 @@ public class UiBookingRoom extends Application {
                 newStage.setX(event.getScreenX()-lastx_distance);
                 newStage.setY(event.getScreenY()-lasty_distance);
             });
+
         }catch(Exception e){
             e.printStackTrace();
         }

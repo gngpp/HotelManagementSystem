@@ -1,5 +1,6 @@
 package mvcpro.controlled;
 
+import com.lqing.orm.utils.LoggerUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import mvcpro.model.entity.User;
 import mvcpro.model.entity.UserVerify;
 import mvcpro.model.utils.MD5;
 import mvcpro.view.AlertDefined;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +24,8 @@ import java.util.ResourceBundle;
 
 public class UiSignInController implements Initializable {
     private  Stage signInStage;
+
+    private final Logger LOG=LoggerUtils.getLogger(UiSignInController.class);
 
     @FXML
     private TextField txf_question_two_find;
@@ -300,7 +304,7 @@ public class UiSignInController implements Initializable {
 
     private Boolean isWriteInfo() throws Exception {
 
-        System.out.println("正在判断账号是否已存在。。。。。");
+        LOG.info("正在判断账号是否已存在");
         //判断是否有相同的账号
         for(User user:userDao.list()){
             if(user.getId().equals(txf_id.getText()))

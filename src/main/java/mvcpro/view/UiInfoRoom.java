@@ -46,24 +46,20 @@ public class UiInfoRoom extends Application {
         //
         scene.getStylesheets().add(getClass().getResource("/ui_default_style.css").toExternalForm());
 
-        scene.setFill(Paint.valueOf("#00000000"));
+        scene.setFill(Paint.valueOf("#373738"));
         newStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));
         newStage.setScene(scene);
-        //  newStage.initStyle(StageStyle.TRANSPARENT);
+
+
         newStage.initModality(Modality.APPLICATION_MODAL);
-        scene.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                lastx_distance = event.getScreenX() - newStage.getX();
-                lasty_distance = event.getScreenY() - newStage.getY();
-            }
+
+        scene.setOnMousePressed(event -> {
+            lastx_distance = event.getScreenX() - newStage.getX();
+            lasty_distance = event.getScreenY() - newStage.getY();
         });
-        scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                newStage.setX(event.getScreenX() - lastx_distance);
-                newStage.setY(event.getScreenY() - lasty_distance);
-            }
+        scene.setOnMouseDragged(event -> {
+            newStage.setX(event.getScreenX() - lastx_distance);
+            newStage.setY(event.getScreenY() - lasty_distance);
         });
     }
 
