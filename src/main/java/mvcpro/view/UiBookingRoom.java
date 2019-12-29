@@ -91,7 +91,7 @@ public class UiBookingRoom extends Application {
     }
     public void show(){
 
-        ScaleTransition st=new ScaleTransition(Duration.millis(700),root);
+        ScaleTransition st=new ScaleTransition(Duration.millis(400),root);
         st.setFromX(0.1);
         st.setToX(1);
         st.setFromY(0.1);

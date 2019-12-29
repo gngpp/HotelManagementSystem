@@ -23,7 +23,7 @@ public class ProgressFrom extends TimerTask {
     private Stage dialogStage;
     private ProgressIndicator progressIndicator;
     private Stage newStage;
-
+    private Pane root=null;
     public ProgressFrom(Stage primaryStage, String title) {
         this.newStage=primaryStage;
         dialogStage = new Stage();
@@ -48,11 +48,28 @@ public class ProgressFrom extends TimerTask {
 
     }
 
+    public Pane getRoot() {
+        return root;
+    }
+
+    public void setRoot(Pane root) {
+        this.root = root;
+    }
+
     @Override
     public void run() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                if(root!=null){
+                    ScaleTransition st=new ScaleTransition(Duration.millis(1000),root);
+                    st.setFromX(0.1);
+                    st.setToX(1);
+                    st.setFromY(0.1);
+                    st.setToY(1);
+                    st.play();
+                }
+
                 dialogStage.hide();
                 newStage.show();
             }

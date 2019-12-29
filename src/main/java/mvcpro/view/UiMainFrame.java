@@ -73,15 +73,10 @@ public class UiMainFrame extends Application {
     }
 
     public void show(){
-        ScaleTransition st=new ScaleTransition(Duration.millis(2000),root);
-        st.setFromX(0);
-        st.setToX(1);
-        st.setFromY(0);
-        st.setToY(1);
-        st.play();
-        TimerTask timerTask=new ProgressFrom(mainStage,"数据加载中，请稍等...");
+        ProgressFrom progressFrom=new ProgressFrom(mainStage,"数据加载中，请稍等...");
+        progressFrom.setRoot(root);
         Timer timer=new Timer();
-        timer.schedule(timerTask,1000);
+        timer.schedule(progressFrom,1000);
     }
     public static void main(String[] args) {
         launch(args);

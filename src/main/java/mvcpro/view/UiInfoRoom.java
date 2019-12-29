@@ -37,8 +37,6 @@ public class UiInfoRoom extends Application {
         //
         //设置背景颜色
         //
-        //Background bg=new Background(new BackgroundFill(Color.valueOf("#282828BF"),new CornerRadii(7),new Insets(0)));
-        //root.setBackground(bg);
         Scene scene = new Scene(root);
 
         //
