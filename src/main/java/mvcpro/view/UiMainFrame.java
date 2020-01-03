@@ -1,25 +1,20 @@
 package mvcpro.view;
 
-import javafx.animation.ScaleTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import mvcpro.controlled.UiMainController;
 import mvcpro.model.entity.User;
 import mvcpro.model.utils.ProgressFrom;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class UiMainFrame extends Application {
@@ -32,7 +27,7 @@ public class UiMainFrame extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainStage=primaryStage;
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_main_layout.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ui_main_layout.fxml"));
         Pane root=loader.load();
         uiMainController =loader.getController();
         this.root=root;
@@ -46,7 +41,7 @@ public class UiMainFrame extends Application {
         //
         //加载CSS文件
         //
-        scene.getStylesheets().add(getClass().getResource("/ui_main_style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/ui_main_style.css").toExternalForm());
 
         scene.setFill(Paint.valueOf("#00000000"));
         mainStage.getIcons().add(new Image(getClass().getResource("/png/icons8-fahrenheit_symbol.png").toExternalForm()));

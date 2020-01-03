@@ -1,27 +1,21 @@
 package mvcpro.view;
-import javafx.animation.ScaleTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import mvcpro.controlled.UiLoginController;
 import mvcpro.model.entity.User;
 import mvcpro.model.utils.ProgressFrom;
 
 import java.io.IOException;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class UiLogin extends Application {
 
@@ -36,7 +30,7 @@ public class UiLogin extends Application {
 
     private void createStage(Stage loginStage) throws IOException{
 
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui_login_layout.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxml/ui_login_layout.fxml"));
         Pane root = loader.load();
         this.uiLoginController=loader.getController();
         this.uiLoginController.setLoginStage(loginStage);
@@ -57,7 +51,7 @@ public class UiLogin extends Application {
         //
         //加载CSS文件
         //
-        scene.getStylesheets().add(getClass().getResource("/ui_login_style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/ui_login_style.css").toExternalForm());
 
         //
         //设置场景透明

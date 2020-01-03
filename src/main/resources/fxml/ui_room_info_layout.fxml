@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="413.0" prefWidth="265.0" styleClass="frame" stylesheets="@ui_login_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
+<AnchorPane prefHeight="413.0" prefWidth="265.0" styleClass="frame" stylesheets="@../css/ui_login_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiInfoRoomController">
    <children>
       <TextField fx:id="txf_area_info" layoutX="52.0" layoutY="107.0" prefHeight="27.0" prefWidth="167.0" promptText="房间面积" />
       <TextField fx:id="txf_bed_info" layoutX="51.0" layoutY="146.0" prefHeight="27.0" prefWidth="167.0" promptText="房间床数" />
@@ -18,7 +18,7 @@
       <ComboBox fx:id="cbx_rest_info" layoutX="52.0" layoutY="321.0" prefHeight="27.0" prefWidth="167.0" promptText="卫生间" />
       <TextField fx:id="txf_phone_info" layoutX="51.0" layoutY="66.0" prefHeight="27.0" prefWidth="167.0" promptText="房间电话" />
       <ComboBox fx:id="cbx_IdNumber_info" layoutX="52.0" layoutY="23.0" prefHeight="27.0" prefWidth="167.0" promptText="房间编号" />
-      <Button fx:id="btn_alter_info" layoutX="110.0" layoutY="361.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="27.0" prefWidth="51.0" styleClass="btn" stylesheets="@ui_main_style.css" text="修改" textFill="WHITE" />
-      <Button fx:id="btn_check_info" layoutX="110.0" layoutY="362.0" mnemonicParsing="false" onAction="#ac_check_info" prefHeight="26.0" prefWidth="51.0" styleClass="btn" stylesheets="@ui_main_style.css" text="确定" textFill="WHITE" />
+      <Button fx:id="btn_alter_info" layoutX="110.0" layoutY="361.0" mnemonicParsing="false" onAction="#ac_alter_info" prefHeight="27.0" prefWidth="51.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="修改" textFill="WHITE" />
+      <Button fx:id="btn_check_info" layoutX="110.0" layoutY="362.0" mnemonicParsing="false" onAction="#ac_check_info" prefHeight="26.0" prefWidth="51.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="确定" textFill="WHITE" />
    </children>
 </AnchorPane>

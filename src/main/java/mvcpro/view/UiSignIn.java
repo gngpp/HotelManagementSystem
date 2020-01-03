@@ -32,7 +32,7 @@ public class UiSignIn extends Application {
                 //
                 //获取控制类对象
                 //
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_sign_in_layout.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ui_sign_in_layout.fxml"));
                 Pane root =loader.load();
 
                 //

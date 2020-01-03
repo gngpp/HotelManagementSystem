@@ -1,20 +1,32 @@
 package mvcpro.model.entity.test;
 
 import com.lqing.orm.internal.SimpleDaoImpl;
+import com.lqing.orm.internal.connection.C3p0ConnectionProvider;
 import mvcpro.model.dao.InfoRoomDao;
 import mvcpro.model.entity.InfoRoom;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Date;
 
 public class Test {
+
     public static void main(String[] args) {
 
         try {
 
-            InfoRoomDao roomDao=new InfoRoomDao();
-            roomDao.list().forEach(System.out::println);
-
-
+            C3p0ConnectionProvider c3p0ConnectionProvider=new C3p0ConnectionProvider();
+            try(Connection conn=c3p0ConnectionProvider.getConnection()){
+                PreparedStatement pst = conn.prepareStatement("select * from users");
+                ResultSet st=pst.executeQuery();
+                while (st.next()){
+                    System.out.println(st.getString(2));
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         //    Connection connection=DriverManager.getConnection("数据库的url","root","你的数据库密码");
 //          // System.out.println(connection);
      //       StudentDao student=new StudentDao();

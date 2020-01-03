@@ -3,12 +3,10 @@ package mvcpro.view;
 import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -39,7 +37,7 @@ public class UiBookingRoom extends Application {
             //
             //获取控制类对象
             //
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_bookingroom_layout.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ui_bookingroom_layout.fxml"));
             Pane root =loader.load();
             this.root=root;
             //

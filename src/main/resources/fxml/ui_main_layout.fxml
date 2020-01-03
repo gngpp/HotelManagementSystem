@@ -28,7 +28,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
+<HBox prefHeight="526.0" prefWidth="887.0" stylesheets="@../css/ui_main_style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvcpro.controlled.UiMainController">
    <children>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="887.0">
          <children>
@@ -44,7 +44,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="887.0">
                                              <children>
-                                                <TableView fx:id="mTableInfoRoom" layoutY="40.0" prefHeight="363.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableInfoRoom" layoutY="40.0" prefHeight="363.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@../css/ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_Info" prefWidth="75.0" text="房间编号" />
                                                       <TableColumn fx:id="tableColumnType_Info" prefWidth="89.0" text="房间类型" />
@@ -112,8 +112,8 @@
                                                                </topInput>
                                                             </Blend>
                                                          </effect></TextArea>
-                                                      <Button layoutX="80.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_alter_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="修改信息" textFill="WHITE" />
-                                                      <Button layoutX="162.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_add_standard" styleClass="btn" stylesheets="@ui_main_style.css" text="添加客房" textFill="WHITE" />
+                                                      <Button layoutX="80.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_alter_standard" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="修改信息" textFill="WHITE" />
+                                                      <Button layoutX="162.0" layoutY="323.0" mnemonicParsing="false" onAction="#ac_add_standard" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="添加客房" textFill="WHITE" />
                                                       <ComboBox fx:id="cbx_floor_standard" layoutX="86.0" layoutY="133.0" prefHeight="27.0" prefWidth="144.0">
                                                          <effect>
                                                             <Lighting>
@@ -146,7 +146,7 @@
                                                       <Label layoutX="28.0" layoutY="183.0" text="单价/天" textFill="WHITE" />
                                                    </children>
                                                 </Pane>
-                                                <TableView fx:id="mTableStandardRoom" layoutX="287.0" layoutY="31.0" prefHeight="366.0" prefWidth="596.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableStandardRoom" layoutX="287.0" layoutY="31.0" prefHeight="366.0" prefWidth="596.0" styleClass="table_Ktrdata" stylesheets="@../css/ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_standard" prefWidth="89.0" text="客房编号" />
                                                       <TableColumn fx:id="tableColumnType_standard" prefWidth="129.0" text="客房类型" />
@@ -170,7 +170,7 @@
                      <content>
                         <Pane prefHeight="449.0" prefWidth="887.0">
                            <children>
-                              <TableView fx:id="mTableBookRoom" layoutY="35.0" prefHeight="400.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                              <TableView fx:id="mTableBookRoom" layoutY="35.0" prefHeight="400.0" prefWidth="887.0" styleClass="table_Ktrdata" stylesheets="@../css/ui_main_style.css" tableMenuButtonVisible="true">
                                 <columns>
                                   <TableColumn fx:id="tableColumnId_number_booking" prefWidth="76.0" text="客房编号" />
                                   <TableColumn fx:id="tableColumnType_booking" prefWidth="70.0" text="客房类型" />
@@ -186,13 +186,13 @@
                               </TableView>
                               <ToolBar layoutX="-1.0" layoutY="-2.0" prefHeight="39.0" prefWidth="311.0">
                                  <items>
-                                    <Button fx:id="btn_refresh_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_refresh_booking" prefHeight="0.0" prefWidth="78.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更新" textFill="WHITE" />
-                                    <Button fx:id="btn_add_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_add_booking" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="订房" textFill="WHITE" />
-                                    <Button fx:id="btn_delete_booking" focusTraversable="false" onAction="#ac_delete_booking" prefHeight="26.0" prefWidth="66.0" styleClass="btn" stylesheets="@ui_main_style.css" text="退订" textFill="#f5f3f3" />
+                                    <Button fx:id="btn_refresh_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_refresh_booking" prefHeight="0.0" prefWidth="78.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="更新" textFill="WHITE" />
+                                    <Button fx:id="btn_add_booking" focusTraversable="false" mnemonicParsing="false" onAction="#ac_add_booking" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="订房" textFill="WHITE" />
+                                    <Button fx:id="btn_delete_booking" focusTraversable="false" onAction="#ac_delete_booking" prefHeight="26.0" prefWidth="66.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="退订" textFill="#f5f3f3" />
                                     <Button fx:id="btn_edit_booking" mnemonicParsing="false" onAction="#ac_edit_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" text="修改" />
                                  </items>
                               </ToolBar>
-                              <Button focusTraversable="false" layoutX="733.0" layoutY="5.0" mnemonicParsing="false" onAction="#ac_search_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" stylesheets="@ui_main_style.css" text="搜索" textFill="WHITE" />
+                              <Button focusTraversable="false" layoutX="733.0" layoutY="5.0" mnemonicParsing="false" onAction="#ac_search_booking" prefHeight="26.0" prefWidth="64.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="搜索" textFill="WHITE" />
                               <TextField fx:id="txf_search_booking" layoutX="559.0" layoutY="5.0" prefHeight="27.0" prefWidth="154.0" promptText="搜索..." styleClass="txf_username">
                                  <effect>
                                     <Blend />
@@ -251,9 +251,9 @@
                                                       </Lighting>
                                                    </effect>
                                                 </ImageView>
-                                                <Button fx:id="add11" focusTraversable="false" layoutX="361.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="注销" textFill="WHITE" />
-                                                <Button fx:id="add111" focusTraversable="false" layoutX="279.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="刷新" textFill="WHITE" />
-                                                <Button fx:id="add112" focusTraversable="false" layoutX="90.0" layoutY="291.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@ui_main_style.css" text="更换头像" textFill="WHITE" />
+                                                <Button fx:id="add11" focusTraversable="false" layoutX="361.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_delete_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="注销" textFill="WHITE" />
+                                                <Button fx:id="add111" focusTraversable="false" layoutX="279.0" layoutY="15.0" mnemonicParsing="false" onAction="#ac_refresh_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="刷新" textFill="WHITE" />
+                                                <Button fx:id="add112" focusTraversable="false" layoutX="90.0" layoutY="291.0" mnemonicParsing="false" onAction="#ac_AlterPicture_user" prefHeight="0.0" prefWidth="72.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="更换头像" textFill="WHITE" />
                                              </children>
                                           </AnchorPane>
                                     </content>
@@ -262,7 +262,7 @@
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
-                                                <TableView fx:id="mTableClient" layoutX="59.0" layoutY="-1.0" prefHeight="405.0" prefWidth="817.0" styleClass="table_Ktrdata" stylesheets="@ui_main_style.css" tableMenuButtonVisible="true">
+                                                <TableView fx:id="mTableClient" layoutX="59.0" layoutY="-1.0" prefHeight="405.0" prefWidth="817.0" styleClass="table_Ktrdata" stylesheets="@../css/ui_main_style.css" tableMenuButtonVisible="true">
                                                    <columns>
                                                       <TableColumn fx:id="tableColumnIdNumber_client" prefWidth="75.0" text="客户编号" />
                                                       <TableColumn fx:id="tableColumnName_client" prefWidth="89.0" text="姓名" />
@@ -285,20 +285,20 @@
             </TabPane>
             <ImageView fx:id="imageView_two" fitHeight="30.0" fitWidth="361.0" layoutX="533.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@png/logo_main_new.png" />
+                  <Image url="@../png/logo_main_new.png" />
                </image>
             </ImageView>
-            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="856.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="0.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainExit" cancelButton="true" focusTraversable="false" layoutX="856.0" layoutY="4.0" mnemonicParsing="false" onAction="#CheckMainExit" prefHeight="0.0" prefWidth="25.0" styleClass="btn_exit" stylesheets="@../css/ui_main_style.css" text="x" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
             </Button>
-            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="825.0" layoutY="3.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="7.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button fx:id="mainMinimize" focusTraversable="false" layoutX="825.0" layoutY="3.0" mnemonicParsing="false" onAction="#CheckMainMinimize" prefHeight="7.0" prefWidth="24.0" styleClass="btn_exit" stylesheets="@../css/ui_main_style.css" text="-" textAlignment="JUSTIFY" textFill="WHITE">
                <effect>
                   <Blend />
                </effect>
             </Button>
-            <MenuBar layoutY="30.0" prefHeight="30.0" prefWidth="887.0" stylesheets="@ui_main_style.css">
+            <MenuBar layoutY="30.0" prefHeight="30.0" prefWidth="887.0" stylesheets="@../css/ui_main_style.css">
               <menus>
                 <Menu mnemonicParsing="false" text="菜单">
                   <items>
@@ -326,12 +326,12 @@
             </MenuBar>
             <ImageView fitHeight="30.0" fitWidth="353.0" layoutX="208.0" pickOnBounds="true" preserveRatio="true" styleClass="frame">
                <image>
-                  <Image url="@png/logo_main_new.png" />
+                  <Image url="@../png/logo_main_new.png" />
                </image>
             </ImageView>
             <ImageView fx:id="imageView_one" fitHeight="57.0" fitWidth="502.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
-                  <Image url="@png/1205125218.jpg" />
+                  <Image url="@../png/1205125218.jpg" />
                </image>
             </ImageView>
          </children>

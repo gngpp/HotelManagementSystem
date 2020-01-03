@@ -2,12 +2,10 @@ package mvcpro.view;
 
 import javafx.animation.ScaleTransition;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -19,8 +17,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import mvcpro.controlled.AboutController;
-
-import java.awt.*;
 
 public class About extends Application {
 
@@ -43,7 +39,7 @@ public class About extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_about_layout.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ui_about_layout.fxml"));
         Pane root=loader.load();
         AboutController aboutController=loader.getController();
         aboutController.setStage(primaryStage);

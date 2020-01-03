@@ -1,7 +1,6 @@
 package mvcpro.controlled;
 
 import com.lqing.orm.utils.LoggerUtils;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
@@ -9,7 +8,6 @@ import javafx.stage.Modality;
 import mvcpro.model.entity.User;
 import mvcpro.model.dao.UserDao;
 import mvcpro.model.utils.MD5;
-import mvcpro.model.utils.ProgressFrom;
 import mvcpro.view.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

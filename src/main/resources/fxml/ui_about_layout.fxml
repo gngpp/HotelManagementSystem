@@ -11,9 +11,9 @@
    <children>
       <ImageView disable="true" fitHeight="237.0" fitWidth="373.0" layoutX="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@png/about.png" />
+            <Image url="@../png/about.png" />
          </image>
       </ImageView>
-      <Button layoutX="338.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_close" prefHeight="27.0" prefWidth="13.0" styleClass="btn" stylesheets="@ui_default_style.css" text="x" textFill="WHITE" />
+      <Button layoutX="338.0" layoutY="1.0" mnemonicParsing="false" onAction="#ac_close" prefHeight="27.0" prefWidth="13.0" styleClass="btn" stylesheets="@../css/ui_default_style.css" text="x" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -1,10 +1,8 @@
 package mvcpro.view;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -31,7 +29,7 @@ public class UiMessageBox{
                 //
                 //获取控制类对象
                 //
-                FXMLLoader loader=new FXMLLoader(getClass().getResource("/ui_messagebox_layout.fxml"));
+                FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/ui_messagebox_layout.fxml"));
                 Pane root =loader.load();
 
                 //
@@ -51,7 +49,7 @@ public class UiMessageBox{
                 //
                 //加载CSS文件
                 //
-                scene.getStylesheets().add(getClass().getResource("/ui_messagebox_style.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/css/ui_messagebox_style.css").toExternalForm());
 
                 //
                 //设置场景透明

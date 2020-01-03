@@ -20,8 +20,8 @@
                </light>
             </Lighting>
          </effect></DatePicker>
-      <Button fx:id="btn_bookingcheck" layoutX="201.0" layoutY="258.0" mnemonicParsing="false" onAction="#ac_bookingCheck_booking" styleClass="btn" stylesheets="@ui_main_style.css" text="订房" />
-      <Button cancelButton="true" layoutX="256.0" layoutY="259.0" mnemonicParsing="false" onAction="#ac_cancel_booking" prefHeight="27.0" prefWidth="44.0" styleClass="btn" stylesheets="@ui_main_style.css" text="取消">
+      <Button fx:id="btn_bookingcheck" layoutX="201.0" layoutY="258.0" mnemonicParsing="false" onAction="#ac_bookingCheck_booking" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="订房" />
+      <Button cancelButton="true" layoutX="256.0" layoutY="259.0" mnemonicParsing="false" onAction="#ac_cancel_booking" prefHeight="27.0" prefWidth="44.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="取消">
          <effect>
             <Lighting>
                <bumpInput>
@@ -32,7 +32,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <TextField fx:id="txf_type_booking" editable="false" layoutX="111.0" layoutY="78.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_type_booking" editable="false" layoutX="111.0" layoutY="78.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
@@ -49,7 +49,7 @@
          </effect></ComboBox>
       <Label layoutX="54.0" layoutY="83.0" prefHeight="17.0" prefWidth="52.0" text="客房类型" textFill="WHITE" />
       <Label layoutX="54.0" layoutY="125.0" prefHeight="17.0" prefWidth="52.0" text="单价/元" textFill="WHITE" />
-      <TextField fx:id="txf_price_booking" editable="false" layoutX="111.0" layoutY="120.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_price_booking" editable="false" layoutX="111.0" layoutY="120.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
@@ -79,26 +79,26 @@
          </effect></ComboBox>
       <Label layoutX="54.0" layoutY="44.0" prefHeight="17.0" prefWidth="52.0" text="客房编号" textFill="WHITE" />
       <Label layoutX="258.0" layoutY="163.0" text="身份证" textFill="WHITE" />
-      <TextField fx:id="txf_card_booking" layoutX="301.0" layoutY="158.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_card_booking" layoutX="301.0" layoutY="158.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
       <Label layoutX="242.0" layoutY="83.0" prefHeight="17.0" prefWidth="52.0" text="联系电话" textFill="WHITE" />
-      <TextField fx:id="txf_phone_booking" layoutX="300.0" layoutY="78.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_phone_booking" layoutX="300.0" layoutY="78.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
       <Label layoutX="245.0" layoutY="205.0" prefHeight="17.0" prefWidth="52.0" text="入住日期" textFill="WHITE" />
-      <TextField fx:id="txf_name_booking" layoutX="111.0" layoutY="199.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_name_booking" layoutX="111.0" layoutY="199.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
       <Label layoutX="79.0" layoutY="204.0" text="姓名" textFill="WHITE" />
       <Label layoutX="268.0" layoutY="125.0" prefHeight="17.0" prefWidth="26.0" text="籍贯" textFill="WHITE" />
-      <TextField fx:id="txf_native_booking" layoutX="300.0" layoutY="119.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@ui_default_style.css">
+      <TextField fx:id="txf_native_booking" layoutX="300.0" layoutY="119.0" prefHeight="27.0" prefWidth="107.0" styleClass="txf_username" stylesheets="@../css/ui_default_style.css">
          <effect>
             <Blend />
          </effect></TextField>
-      <Button fx:id="btn_alter_booking" defaultButton="true" layoutX="201.0" layoutY="259.0" mnemonicParsing="false" onAction="#ac_alter_booking" prefHeight="27.0" prefWidth="44.0" styleClass="btn" stylesheets="@ui_main_style.css" text="修改" />
+      <Button fx:id="btn_alter_booking" defaultButton="true" layoutX="201.0" layoutY="259.0" mnemonicParsing="false" onAction="#ac_alter_booking" prefHeight="27.0" prefWidth="44.0" styleClass="btn" stylesheets="@../css/ui_main_style.css" text="修改" />
    </children>
 </Pane>
